@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "agent": {
+    "system_prompt": "You are a coding agent. Help the user with their task.",
+    "workspace": "/workspace"
+  },
+  "models": [
+    {
+      "provider": "openai-compatible",
+      "endpoint": "https://api.example.com/v1",
+      "model": "example-model",
+      "context_window": 128000,
+      "max_tokens": 4096,
+      "temperature": 0.7,
+      "api_key_env": "OPENAI_API_KEY",
+      "priority": 1,
+      "compression_prompt_path": "prompts/compression.md",
+      "ignore_self_signed": false,
+      "hostname": ""
+    }
+  ]
+}

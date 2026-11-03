@@ -1,0 +1,4 @@
+-*/build*/*
+-*/tests/*
+-*/third_party/*
++*/src/*

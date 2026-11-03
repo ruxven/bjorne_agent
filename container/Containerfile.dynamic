@@ -1,0 +1,22 @@
+# Dynamic build environment: glibc and a shared OpenSSL.
+#
+# Produces a dynamically linked binary that resolves libssl, libcrypto, and the
+# C library at run time. The builder user takes the caller's uid and gid, so the
+# source bind mount stays writable without root while compiling, and the
+# artifacts belong to the caller.
+FROM docker.io/library/debian:bookworm-slim
+
+ARG UID=1000
+ARG GID=1000
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+      build-essential \
+      cmake \
+      libssl-dev \
+ && rm -rf /var/lib/apt/lists/* \
+ && groupadd -g "${GID}" builder \
+ && useradd -m -u "${UID}" -g builder builder
+
+USER builder
+WORKDIR /src

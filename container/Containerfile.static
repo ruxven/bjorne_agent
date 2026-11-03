@@ -1,0 +1,21 @@
+# Static build environment: musl libc and static OpenSSL.
+#
+# Produces a fully static binary with TLS and no dynamic dependencies. The
+# builder user takes the caller's uid and gid, so the source bind mount stays
+# writable without root while compiling, and the artifacts belong to the
+# caller.
+FROM docker.io/library/alpine:3.22
+
+ARG UID=1000
+ARG GID=1000
+
+RUN apk add --no-cache \
+      build-base \
+      cmake \
+      openssl-dev \
+      openssl-libs-static \
+ && addgroup -g "${GID}" builder \
+ && adduser -D -u "${UID}" -G builder builder
+
+USER builder
+WORKDIR /src

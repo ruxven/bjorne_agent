@@ -1,0 +1,77 @@
+# Runtime image for bjorne_agent.
+#
+# The first stage compiles a fully static binary against musl and static
+# OpenSSL, then assembles the root tree the runtime needs. The second stage is
+# scratch and holds only that tree:
+#
+#   - the static bjorne_agent executable
+#   - the compression prompt, both next to the config mount point and in the
+#     install layout
+#   - a CA bundle, because the TLS transport verifies the peer against the
+#     system trust store
+#   - busybox and the musl loader, because the run_shell tool calls popen,
+#     which needs a shell
+#   - a passwd and group file, so the container runs as a named non-root user
+#
+# The build context is the repository root, not this directory:
+#
+#   podman build -t bjorne_agent -f container/Containerfile.runtime .
+FROM docker.io/library/alpine:3.22 AS builder
+
+RUN apk add --no-cache \
+      build-base \
+      cmake \
+      openssl-dev \
+      openssl-libs-static
+
+WORKDIR /src
+COPY . /src
+
+RUN cmake -S /src -B /src/build \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DBJORNE_AGENT_OPENSSL=static \
+      -DBJORNE_AGENT_TLS=openssl \
+      -DBJORNE_AGENT_STATIC=ON \
+ && cmake --build /src/build --target bjorne_agent \
+ && cmake --install /src/build --prefix /out
+
+# Assemble the runtime root. busybox is linked against musl, so the loader
+# and the libc come with it. The applet symlinks cover the commands the
+# run_shell tool reaches for; popen itself only needs /bin/sh.
+RUN set -eu; \
+    root=/out/root; \
+    mkdir -p "$root/bin" "$root/etc/ssl/certs" "$root/etc/bjorne_agent/prompts" \
+             "$root/usr/local/share/bjorne_agent/prompts" "$root/usr/local/bin" \
+             "$root/home/bjorne_agent" "$root/lib" "$root/tmp" "$root/workspace"; \
+    cp /bin/busybox "$root/bin/busybox"; \
+    for applet in sh ash ls cat echo grep sed awk mkdir rmdir rm cp mv find \
+                 wc head tail pwd touch date sleep env true false printf test \
+                 uname whoami id ps kill chmod ln sort uniq cut tr tee xargs \
+                 df du stat seq basename dirname expr which diff sha256sum; do \
+      ln -sf busybox "$root/bin/$applet"; \
+    done; \
+    cp /lib/ld-musl-x86_64.so.1 "$root/lib/ld-musl-x86_64.so.1"; \
+    cp /lib/libc.musl-x86_64.so.1 "$root/lib/libc.musl-x86_64.so.1"; \
+    cp /etc/ssl/certs/ca-certificates.crt "$root/etc/ssl/certs/ca-certificates.crt"; \
+    cp /etc/ssl/certs/ca-certificates.crt "$root/etc/ssl/cert.pem"; \
+    cp /out/bin/bjorne_agent "$root/usr/local/bin/bjorne_agent"; \
+    cp /out/share/bjorne_agent/prompts/compression.md "$root/etc/bjorne_agent/prompts/compression.md"; \
+    cp /out/share/bjorne_agent/prompts/compression.md \
+       "$root/usr/local/share/bjorne_agent/prompts/compression.md"; \
+    printf 'bjorne_agent:x:1000:1000:bjorne_agent:/home/bjorne_agent:/bin/sh\n' > "$root/etc/passwd"; \
+    printf 'bjorne_agent:x:1000:\n' > "$root/etc/group"; \
+    chmod 1777 "$root/tmp"; \
+    chown -R 1000:1000 "$root/home/bjorne_agent" "$root/workspace"
+
+FROM scratch
+
+COPY --from=builder /out/root/ /
+
+WORKDIR /workspace
+USER 1000:1000
+
+ENV HOME=/home/bjorne_agent \
+    TMPDIR=/tmp \
+    BJORNE_AGENT_CONFIG=/etc/bjorne_agent/bjorne_agent.json
+
+ENTRYPOINT ["/usr/local/bin/bjorne_agent"]

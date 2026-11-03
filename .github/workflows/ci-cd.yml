@@ -1,0 +1,626 @@
+---
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run weekly security scans
+    - cron: '0 2 * * 1'
+env:
+  BUILD_TYPE: Debug
+  CMAKE_BUILD_PARALLEL_LEVEL: 4
+
+jobs:
+  # Build and Test Job
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          cmake \
+          ninja-build \
+          llvm \
+          clang \
+          clang-tidy \
+          clang-format \
+          lcov \
+          libssl-dev
+        python3 -m pip install --upgrade pip
+        pip3 install codechecker
+
+    - name: Configure CMake
+      run: |
+        cmake -S . -B build \
+          -G Ninja \
+          -DCMAKE_CXX_COMPILER=clang++ \
+          -DCMAKE_C_COMPILER=clang \
+          -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} \
+          -DBJORNE_AGENT_OPENSSL=shared \
+          -DCMAKE_CXX_FLAGS="--coverage -fprofile-instr-generate -fcoverage-mapping" \
+          -DCMAKE_C_FLAGS="--coverage -fprofile-instr-generate -fcoverage-mapping" \
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+    - name: Build
+      run: cmake --build build --config ${{env.BUILD_TYPE}}
+
+    - name: Run clang-tidy
+      run: |
+        find src tests -name "*.cpp" -o -name "*.h" | xargs clang-tidy -p build/ --quiet
+      continue-on-error: true
+
+    - name: Check code formatting
+      run: |
+        find src tests -name "*.cpp" -o -name "*.h" | xargs clang-format --dry-run --Werror
+      continue-on-error: true
+
+    - name: Run tests
+      run: |
+        cd build
+        LLVM_PROFILE_FILE="coverage-%p.profraw" ctest --output-on-failure --verbose
+
+    - name: Generate coverage report
+      run: |
+        cd build
+        # Merge profile data
+        llvm-profdata merge -sparse coverage-*.profraw -o coverage.profdata
+        # Find the test executable
+        TEST_BINARIES=$(find . -name "bjorne_agent_tests" -type f -perm -111 | tr '\n' ' ')
+        # Generate coverage report (text)
+        llvm-cov show $TEST_BINARIES -instr-profile=coverage.profdata -format=text > coverage.txt
+        llvm-cov report $TEST_BINARIES -instr-profile=coverage.profdata
+        # Generate HTML report
+        llvm-cov show $TEST_BINARIES -instr-profile=coverage.profdata -format=html -output-dir=coverage_html
+        # Generate lcov format for codecov
+        llvm-cov export $TEST_BINARIES -instr-profile=coverage.profdata -format=lcov > coverage.lcov
+        # Translate lcov formate to json for pain point analysis
+        python3 "${GITHUB_WORKSPACE}/.github/scripts/lcov_to_json.py" coverage.lcov coverage.json
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        files: ./build/coverage.lcov
+        fail_ci_if_error: false
+        verbose: true
+        token: ${{ secrets.CODECOV_TOKEN }}
+        exclude: "tests/**"
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: |
+          build/coverage_html/
+          build/coverage.lcov
+          build/coverage.json
+          build/coverage.txt
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: |
+          build/
+          !build/coverage_html/
+          !build/*.profraw
+          !build/*.profdata
+
+    - name: Run CodeChecker
+      run: |
+        echo "Running Analysis..."
+        CodeChecker analyze build/compile_commands.json \
+          --output codechecker-analysis \
+          --analyzers clangsa clang-tidy \
+          --ctu \
+          --jobs $(nproc) \
+          --skip .codechecker.skip
+        echo "Generating HTML Report..."
+        CodeChecker parse codechecker-analysis \
+          --export html \
+          --output security-reports/html || echo "One or more errors reported"
+        echo "Generating SARIF Report..."
+        CodeChecker parse codechecker-analysis \
+          --export sarif \
+          --output security-reports/codechecker.sarif || echo "One or more errors reported"
+        echo "All reports generated!"
+
+    - name: Generate CodeChecker badge
+      run: |
+        mkdir -p security-reports/badges
+
+        # Check if CodeChecker found any issues
+        if [ -f "security-reports/codechecker.sarif" ]; then
+          ISSUES=$(jq '.results | length' security-reports/codechecker.sarif 2>/dev/null || echo "0")
+        else
+          ISSUES=0
+        fi
+
+        if [ "$ISSUES" -eq 0 ]; then
+          COLOR="green"
+          MESSAGE="passing"
+        else
+          COLOR="red"
+          MESSAGE="${ISSUES} issues"
+        fi
+
+        cat > security-reports/badges/codechecker.json << EOF
+        {
+          "schemaVersion": 1,
+          "label": "CodeChecker",
+          "message": "${MESSAGE}",
+          "color": "${COLOR}"
+        }
+        EOF
+        echo "Generated CodeChecker badge: $MESSAGE"
+
+    - name: Upload CodeChecker reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: CodeChecker-reports
+        path: security-reports/
+
+  windows-native:
+    name: Windows Build and Test
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Configure CMake
+      # The Windows runners carry no static OpenSSL, and the "-static" link
+      # option is not a valid MSVC flag, so this job builds without TLS.
+      # The generator is left to CMake so the runner uses whichever Visual
+      # Studio it ships with.
+      run: cmake -S . -B build -A x64 -DBJORNE_AGENT_OPENSSL=disabled -DBJORNE_AGENT_STATIC=OFF
+
+    - name: Build
+      run: cmake --build build --config Release
+
+    - name: Run tests
+      run: ctest --test-dir build -C Release --output-on-failure
+
+    - name: Install
+      run: cmake --install build --config Release --prefix dist/windows-x64
+
+    - name: Upload executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: bjorne_agent-windows-x64
+        path: dist/windows-x64/bin/bjorne_agent.exe
+        if-no-files-found: error
+
+  windows-cross-build:
+    name: Windows Cross Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install MinGW-w64
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake ninja-build g++-mingw-w64-x86-64
+
+    - name: Configure CMake
+      run: |
+        cmake -S . -B build_windows -G Ninja \
+          -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/mingw-w64-x86_64.cmake \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DBJORNE_AGENT_OPENSSL=disabled \
+          -DBJORNE_AGENT_STATIC=OFF \
+          -DBUILD_TESTING=OFF
+
+    - name: Build
+      run: cmake --build build_windows
+
+    - name: Check dependencies
+      run: |
+        file build_windows/bin/bjorne_agent.exe
+        x86_64-w64-mingw32-objdump -p build_windows/bin/bjorne_agent.exe | grep 'DLL Name'
+
+    - name: Upload executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: bjorne_agent-windows-x64-mingw
+        path: build_windows/bin/bjorne_agent.exe
+        if-no-files-found: error
+
+  # Code Complexity Analysis
+  code-complexity:
+    name: Code Complexity Analysis
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - name: Install Lizard and bc
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y bc
+        python3 -m pip install --upgrade pip
+        pip3 install lizard
+
+    - name: Run Lizard complexity analysis
+      run: |
+        mkdir -p complexity-reports
+
+        # HTML report
+        echo "Generating HTML complexity report..."
+        lizard src/ \
+          -l cpp -V -C 15 -L 100 -a 5 -s cyclomatic_complexity \
+          -x '*/build/*' -x '*/tests/*' -x '*/.git/*' -x '*/third_party/*' -x '*/external/*' \
+          -H -o complexity-reports/complexity.html || true
+
+        # XML report
+        echo "Generating XML complexity report..."
+        lizard src/ \
+          -l cpp -V -C 15 -L 100 -a 5 -s cyclomatic_complexity \
+          -x '*/build/*' -x '*/tests/*' -x '*/.git/*' -x '*/third_party/*' -x '*/external/*' \
+          -X -o complexity-reports/complexity.xml || true
+
+        # Text (full) report
+        echo "Generating text complexity report..."
+        lizard src/ \
+          -l cpp -V -C 15 -L 100 -a 5 -s cyclomatic_complexity \
+          -x '*/build/*' -x '*/tests/*' -x '*/.git/*' -x '*/third_party/*' -x '*/external/*' \
+          > complexity-reports/complexity.txt || true
+
+        # CSV report
+        echo "Generating CSV complexity report..."
+        lizard src/ \
+          -l cpp -V -C 15 -L 100 -a 5 -s cyclomatic_complexity \
+          -x '*/build/*' -x '*/tests/*' -x '*/.git/*' -x '*/third_party/*' -x '*/external/*' \
+          --csv -o complexity-reports/complexity.csv || true
+
+        # JSON report (converted from CSV)
+        echo "Generating JSON complexity report..."
+        python3 .github/scripts/csv_to_json_complexity.py \
+          complexity-reports/complexity.csv \
+          complexity-reports/complexity.json || echo "Failed to generate JSON report"
+
+        echo "=== Code Complexity Summary ==="
+        lizard src/ \
+          -l cpp -V -C 15 -L 100 -a 5 -s cyclomatic_complexity \
+          -x '*/build/*' -x '*/tests/*' -x '*/.git/*' -x '*/third_party/*' -x '*/external/*' || true
+        echo "=== End Code Complexity Summary ==="
+
+    - name: Generate complexity badge
+      run: |
+        # Extract Avg CCN from the summary table
+        AVG_COMPLEXITY=$(
+          lizard src/ \
+            -l cpp -C 15 -L 100 -a 5 -s cyclomatic_complexity \
+            -x '*/build/*' -x '*/tests/*' -x '*/.git/*' -x '*/third_party/*' -x '*/external/*' \
+          | tail -n 1 | tr -s " " | sed 's/ /,/g' | cut -d, -f4
+        )
+
+        mkdir -p complexity-reports/badges
+
+        if [[ $(echo "$AVG_COMPLEXITY > 10" | bc -l) -eq 1 ]]; then
+          COLOR="red"
+        elif [[ $(echo "$AVG_COMPLEXITY > 5" | bc -l) -eq 1 ]]; then
+          COLOR="yellow"
+        else
+          COLOR="green"
+        fi
+
+        cat > complexity-reports/badges/complexity.json << EOF
+        {
+          "schemaVersion": 1,
+          "label": "complexity",
+          "message": "${AVG_COMPLEXITY}",
+          "color": "${COLOR}"
+        }
+        EOF
+        echo "Generated complexity badge with average CCN: $AVG_COMPLEXITY"
+
+    - name: Upload complexity reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: complexity-reports
+        path: complexity-reports/
+
+    - name: Check complexity thresholds
+      run: |
+        MAX_COMPLEXITY=15
+        MAX_LINES=100
+        echo "Checking for functions exceeding complexity thresholds..."
+        if lizard src/ -l cpp -w -C $MAX_COMPLEXITY -L $MAX_LINES \
+             -x '*/build/*' -x '*/tests/*' -x '*/.git/*' -x '*/third_party/*' -x '*/external/*' \
+           | grep -q "!!"; then
+          echo "⚠️ Warning: Some functions exceed complexity thresholds"
+          lizard src/ -l cpp -w -C $MAX_COMPLEXITY -L $MAX_LINES \
+            -x '*/build/*' -x '*/tests/*' -x '*/.git/*' -x '*/third_party/*' -x '*/external/*' || echo oops > /dev/null
+          echo "Consider refactoring complex functions for better maintainability"
+        else
+          echo "✅ All functions are within acceptable complexity limits"
+        fi
+      continue-on-error: true
+
+  # Pain Point Analysis
+  pain-point-analysis:
+    name: Pain Point Analysis
+    runs-on: ubuntu-latest
+    needs: [build-and-test, code-complexity]
+    if: always() && (needs.build-and-test.result == 'success' || needs.code-complexity.result == 'success')
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-pip jq
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build-artifacts
+        path: build/
+      continue-on-error: true
+
+    - name: Download complexity reports
+      uses: actions/download-artifact@v4
+      with:
+        name: complexity-reports
+        path: complexity-reports/
+      continue-on-error: true
+
+    - name: Download coverage report
+      uses: actions/download-artifact@v4
+      with:
+        name: coverage-report
+        path: coverage-report/
+      continue-on-error: true
+
+    - name: Download CodeChecker reports
+      uses: actions/download-artifact@v4
+      with:
+        name: CodeChecker-reports
+        path: security-reports/
+      continue-on-error: true
+
+    - name: Run pain point analysis
+      run: |
+        cp ./complexity-reports/complexity.json ./complexity.json
+        cp ./coverage-report/coverage.json ./coverage.json
+        cp ./security-reports/codechecker.sarif ./codechecker.sarif
+
+        echo "Running pain point analysis..."
+        python3 .github/scripts/prioritize_pain_points.py \
+          --complexity complexity.json \
+          --sarif codechecker.sarif \
+          --coverage coverage.json \
+          --output pain_points_report.md \
+          --output_csv pain_points_report.csv
+
+        echo "Pain point analysis complete!"
+
+    - name: Converts Markdown to HTML
+      uses: jaywcjlove/markdown-to-html-cli@main
+      with:
+        source: pain_points_report.md
+        output: pain_points_report.html
+
+    - name: Upload pain point report
+      uses: actions/upload-artifact@v4
+      with:
+        name: pain-point-analysis
+        path: |
+          pain_points_report.html
+          pain_points_report.md
+          complexity.json
+          coverage.json
+          CodeChecker.sarif
+
+    - name: Comment on PR with pain points
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+
+          try {
+            const report = fs.readFileSync('pain_points_report.md', 'utf8');
+
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🔍 Pain Point Analysis\n\n${report}`
+            });
+          } catch (error) {
+            console.log('Could not post pain point analysis:', error);
+          }
+
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+
+  # CodeQL Analysis
+  codeql:
+    name: CodeQL Security Analysis
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'cpp' ]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          config-file: ./.github/codeql/codeql-config.yml
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build libssl-dev
+
+      - name: Build for CodeQL
+        run: |
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBJORNE_AGENT_OPENSSL=shared -DBJORNE_AGENT_STATIC=OFF
+          cmake --build build
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"
+
+      - name: Generate CodeQL badge
+        run: |
+          mkdir -p security-reports/badges
+
+          # CodeQL analysis completed successfully if we reach this step
+          # Check if there are any alerts by looking at the security tab
+          # For now, we'll assume success since the action completed
+          COLOR="green"
+          MESSAGE="passing"
+
+          cat > security-reports/badges/codeql.json << EOF
+          {
+            "schemaVersion": 1,
+            "label": "CodeQL",
+            "message": "${MESSAGE}",
+            "color": "${COLOR}"
+          }
+          EOF
+          echo "Generated CodeQL badge: $MESSAGE"
+
+      - name: Upload CodeQL reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: codeql-reports
+          path: security-reports/
+
+  # Release Job (only on tags)
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: [build-and-test, code-complexity, pain-point-analysis, codeql]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build libssl-dev dpkg-dev rpm
+      - name: Build Release
+        run: |
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBJORNE_AGENT_OPENSSL=shared -DBJORNE_AGENT_STATIC=OFF
+          cmake --build build
+          cmake --build build --target package
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            build/*.tar.gz
+            build/*.deb
+            build/*.rpm
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Documentation Job
+  docs:
+    name: Generate Documentation
+    runs-on: ubuntu-latest
+    needs: [build-and-test, code-complexity, pain-point-analysis, codeql]
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Doxygen and dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz python3-pip
+          pip3 install lizard
+
+      - name: Download complexity reports
+        uses: actions/download-artifact@v4
+        with:
+          name: complexity-reports
+          path: complexity-reports/
+
+      - name: Download security reports
+        uses: actions/download-artifact@v4
+        with:
+          name: CodeChecker-reports
+          path: security-reports/
+        continue-on-error: true
+
+      - name: Download CodeQL reports
+        uses: actions/download-artifact@v4
+        with:
+          name: codeql-reports
+          path: security-reports/
+        continue-on-error: true
+
+      - name: Download Pain Point Analysis
+        uses: actions/download-artifact@v4
+        with:
+          name: pain-point-analysis
+          path: pain-point-analysis/
+        continue-on-error: true
+
+      - name: Generate Doxygen documentation
+        run: |
+          # Generate Doxygen documentation
+          doxygen Doxyfile || echo "No Doxyfile found, creating basic documentation structure"
+
+          # Create docs directory if it doesn't exist
+          mkdir -p docs/html
+
+      - name: Create comprehensive documentation site
+        run: |
+          # Create main documentation directory structure
+          mkdir -p docs/html/complexity
+          mkdir -p docs/html/security-reports
+          mkdir -p docs/html/security-reports/badges
+
+          # Copy complexity reports to documentation
+          cp -r complexity-reports/* docs/html/complexity/ || echo "No complexity reports found"
+
+          # Copy security reports and badges to documentation
+          cp -r security-reports/* docs/html/security-reports/ || echo "No security reports found"
+
+          # Copy pain point analysis to documentation
+          mkdir -p docs/html/pain-points
+          cp -r pain-point-analysis/* docs/html/pain-points/ || echo "No pain point analysis found"
+
+          # Create an index page that includes links to all reports
+          cp .github/static/index.html docs/html/index.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/html

@@ -1,0 +1,19 @@
+# No-TLS build environment: musl libc, no OpenSSL at all.
+#
+# Produces a fully static binary with no dynamic dependencies and no TLS
+# support; https endpoints are rejected at the model client. The builder user
+# takes the caller's uid and gid, so the source bind mount stays writable
+# without root while compiling, and the artifacts belong to the caller.
+FROM docker.io/library/alpine:3.22
+
+ARG UID=1000
+ARG GID=1000
+
+RUN apk add --no-cache \
+      build-base \
+      cmake \
+ && addgroup -g "${GID}" builder \
+ && adduser -D -u "${UID}" -G builder builder
+
+USER builder
+WORKDIR /src

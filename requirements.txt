@@ -1,0 +1,2 @@
+lizard==1.24.1
+codechecker==6.29.1

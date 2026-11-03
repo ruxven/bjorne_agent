@@ -1,0 +1,22 @@
+# Build output directories. The trailing slash keeps the rule from catching
+# build.sh and container/build-inside.sh, which are source files.
+build*/
+third-party
+
+test_input.txt
+
+*.sarif
+pain_points_report.*
+reports
+reports-codecheck*
+coverage-reports*
+complexity-reports
+.codegraph
+coverage.json
+html
+__pycache__/
+*.pyc
+
+bjorne_agent.json
+.env
+.bjorne_agent/

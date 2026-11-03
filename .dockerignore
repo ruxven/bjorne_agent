@@ -1,0 +1,16 @@
+# Build context for the runtime image. The image builds from source, so the
+# source tree is needed and the build output is not.
+build*/
+.git
+.codegraph
+.cache
+reports*
+coverage-reports*
+complexity-reports
+html
+*.sarif
+coverage.json
+pain_points_report.*
+bjorne_agent.json
+.env
+.bjorne_agent
