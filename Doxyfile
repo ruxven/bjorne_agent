@@ -1,0 +1,63 @@
+# Doxygen configuration for bjorne_agent.
+#
+# The documentation job runs "doxygen Doxyfile" and publishes the result
+# together with the CI reports, so the HTML output goes to docs/html.
+
+PROJECT_NAME           = "bjorne_agent"
+PROJECT_NUMBER         = 0.1
+PROJECT_BRIEF          = "A coding agent harness in C++20"
+
+OUTPUT_DIRECTORY       = docs
+HTML_OUTPUT            = html
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_TREEVIEW      = YES
+
+INPUT                  = src \
+                         README.md \
+                         SPEC.md \
+                         SPEC.CONFIG.md \
+                         SPEC.LOOP.md \
+                         DESIGN.md \
+                         ROADMAP.md
+FILE_PATTERNS          = *.cpp \
+                         *.h
+RECURSIVE              = YES
+
+EXCLUDE                = build/ \
+                         third_party/ \
+                         .github/
+EXCLUDE_PATTERNS       = */build/* \
+                         */third_party/*
+EXCLUDE_SYMBOLS        = catch_* \
+                         CATCH_*
+
+EXTRACT_ALL            = YES
+EXTRACT_STATIC         = YES
+HIDE_UNDOC_MEMBERS     = NO
+INTERNAL_DOCS          = NO
+CASE_SENSE_NAMES       = YES
+SORT_MEMBER_DOCS       = NO
+
+JAVADOC_AUTOBRIEF      = YES
+QT_AUTOBRIEF           = YES
+INHERIT_DOCS           = YES
+TAB_SIZE               = 2
+
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = NO
+WARN_IF_DOC_ERROR      = YES
+WARN_IF_INCOMPLETE_DOC = YES
+WARN_NO_PARAMDOC       = NO
+WARN_AS_ERROR          = NO
+WARN_FORMAT            = "$file:$line: $text"
+WARN_LINE_FORMAT       = "at line $line of file $file"
+
+HAVE_DOT               = NO
+CLASS_DIAGRAMS         = YES
+SOURCE_BROWSER        = YES
+ALPHABETICAL_INDEX    = YES
+
+GENERATE_TODOLIST      = YES
+LATEX_SOURCE_CODE     = NO

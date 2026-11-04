@@ -1,5 +1,10 @@
 # bjorne_agent
 
+[![codecov](https://codecov.io/gh/ruxven/bjorne_agent/branch/master/graph/badge.svg)](https://codecov.io/gh/ruxven/bjorne_agent)
+[![complexity](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ruxven/bjorne_agent/gh-pages/complexity/badges/complexity.json)](https://ruxven.github.io/bjorne_agent/complexity/complexity.html)
+[![codechecker](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ruxven/bjorne_agent/gh-pages/security-reports/badges/codechecker.json)](https://ruxven.github.io/bjorne_agent/security-reports/html/index.html)
+[![codeql](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/ruxven/bjorne_agent/gh-pages/security-reports/badges/codeql.json)](https://github.com/ruxven/bjorne_agent/security/code-scanning)
+
 A coding agent harness in C++20. It takes a task, calls an OpenAI compatible
 model endpoint, runs the tools the model asks for, and repeats until the model
 answers.

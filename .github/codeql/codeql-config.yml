@@ -1,0 +1,13 @@
+name: "CodeQL config"
+
+queries:
+  - uses: security-extended
+  - uses: security-and-quality
+
+paths-ignore:
+  # Exclude build trees and vendored third party sources. The vendored Catch2
+  # headers are not part of the shipped artifact and are not ours to scan.
+  - "build/**"
+  - "**/build/**"
+  - "third_party/**"
+  - "**/third_party/**"
