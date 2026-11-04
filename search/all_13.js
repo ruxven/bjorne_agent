@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['package_0',['Package',['../md_README.html#autotoc_md5',1,'']]],
+  ['parse_1',['parse',['../namespacebjorne__agent_1_1json.html#aef0d1ee272eb61b0dff732e64b4ef9f4',1,'bjorne_agent::json']]],
+  ['parsednsresponse_2',['parseDnsResponse',['../namespacebjorne__agent_1_1http.html#a87e983bcb4a09fd86132d8fc45cf44d8',1,'bjorne_agent::http']]],
+  ['parselevel_3',['parseLevel',['../namespacebjorne__agent_1_1log.html#a84b2fcbd9acdd6ec069955643f3fbd18',1,'bjorne_agent::log']]],
+  ['parseurl_4',['parseUrl',['../namespacebjorne__agent_1_1http.html#a1de187c402c3d5009043ffb8c2c2bbeb',1,'bjorne_agent::http']]],
+  ['path_5',['path',['../structbjorne__agent_1_1http_1_1HttpRequest.html#aea704eb6b0699d25852c7cb27a67d04a',1,'bjorne_agent::http::HttpRequest::path'],['../structbjorne__agent_1_1http_1_1Url.html#a098952e28528a2329df3535aa459d1e1',1,'bjorne_agent::http::Url::path']]],
+  ['persistence_6',['Phase C: Session persistence',['../md_ROADMAP.html#autotoc_md84',1,'']]],
+  ['phase_201_3a_20specification_20development_7',['Phase 1: Specification Development',['../md_ROADMAP.html#autotoc_md78',1,'']]],
+  ['phase_202_3a_20design_8',['Phase 2: Design',['../md_ROADMAP.html#autotoc_md79',1,'']]],
+  ['phase_203_3a_20implementation_9',['Phase 3: Implementation',['../md_ROADMAP.html#autotoc_md80',1,'']]],
+  ['phase_204_3a_20evolution_10',['Phase 4: Evolution',['../md_ROADMAP.html#autotoc_md81',1,'']]],
+  ['phase_20a_3a_20foundation_11',['Phase A: Foundation',['../md_ROADMAP.html#autotoc_md82',1,'']]],
+  ['phase_20b_3a_20context_20fragments_12',['Phase B: Context fragments',['../md_ROADMAP.html#autotoc_md83',1,'']]],
+  ['phase_20c_3a_20session_20persistence_13',['Phase C: Session persistence',['../md_ROADMAP.html#autotoc_md84',1,'']]],
+  ['phase_20d_3a_20interaction_14',['Phase D: Interaction',['../md_ROADMAP.html#autotoc_md85',1,'']]],
+  ['phase_20e_3a_20mcp_15',['Phase E: MCP',['../md_ROADMAP.html#autotoc_md86',1,'']]],
+  ['phase_20f_3a_20acp_20client_20mode_16',['Phase F: ACP client mode',['../md_ROADMAP.html#autotoc_md87',1,'']]],
+  ['plaintcptransport_17',['PlainTcpTransport',['../classbjorne__agent_1_1http_1_1PlainTcpTransport.html',1,'bjorne_agent::http']]],
+  ['point_18',['Entry Point',['../md_DESIGN.html#autotoc_md65',1,'']]],
+  ['port_19',['port',['../structbjorne__agent_1_1http_1_1Url.html#acf0257d6a426fe45d6b2d6aba117e8c2',1,'bjorne_agent::http::Url::port'],['../structbjorne__agent_1_1http_1_1HttpRequest.html#ab53440ad1fef4e3090d2e6498fefaf37',1,'bjorne_agent::http::HttpRequest::port']]],
+  ['principles_20',['Design Principles',['../md_DESIGN.html#autotoc_md63',1,'']]],
+  ['priority_21',['priority',['../structbjorne__agent_1_1config_1_1ModelConfig.html#ad7c87695e03d607cabf8fb3fd91b1462',1,'bjorne_agent::config::ModelConfig']]],
+  ['progress_22',['progress',['../namespacebjorne__agent_1_1log.html#a490e68ceb9168265077a796c4b171f3c',1,'bjorne_agent::log']]],
+  ['provider_23',['provider',['../structbjorne__agent_1_1config_1_1ModelConfig.html#a72dd924bbaddbf918fada09d371fd290',1,'bjorne_agent::config::ModelConfig']]],
+  ['purpose_24',['purpose',['../md_DESIGN.html#autotoc_md62',1,'Purpose'],['../md_SPEC_8LOOP.html#autotoc_md50',1,'Purpose'],['../md_SPEC_8CONFIG.html#autotoc_md37',1,'Purpose'],['../md_SPEC.html#autotoc_md20',1,'Purpose']]]
+];
