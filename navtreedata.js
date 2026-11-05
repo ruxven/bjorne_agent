@@ -166,8 +166,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AgentLoop_8cpp.html",
-"md_DESIGN.html#autotoc_md75",
-"structbjorne__agent_1_1model_1_1ModelClientOptions.html#a3228ffcefe0e5683fa70d909e25b6c3b"
+"main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627",
+"structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html#af910c2025d93fff29c58d31b72c6f23d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

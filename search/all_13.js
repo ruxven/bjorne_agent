@@ -18,11 +18,13 @@ var searchData=
   ['phase_20e_3a_20mcp_15',['Phase E: MCP',['../md_ROADMAP.html#autotoc_md86',1,'']]],
   ['phase_20f_3a_20acp_20client_20mode_16',['Phase F: ACP client mode',['../md_ROADMAP.html#autotoc_md87',1,'']]],
   ['plaintcptransport_17',['PlainTcpTransport',['../classbjorne__agent_1_1http_1_1PlainTcpTransport.html',1,'bjorne_agent::http']]],
-  ['point_18',['Entry Point',['../md_DESIGN.html#autotoc_md65',1,'']]],
-  ['port_19',['port',['../structbjorne__agent_1_1http_1_1Url.html#acf0257d6a426fe45d6b2d6aba117e8c2',1,'bjorne_agent::http::Url::port'],['../structbjorne__agent_1_1http_1_1HttpRequest.html#ab53440ad1fef4e3090d2e6498fefaf37',1,'bjorne_agent::http::HttpRequest::port']]],
-  ['principles_20',['Design Principles',['../md_DESIGN.html#autotoc_md63',1,'']]],
-  ['priority_21',['priority',['../structbjorne__agent_1_1config_1_1ModelConfig.html#ad7c87695e03d607cabf8fb3fd91b1462',1,'bjorne_agent::config::ModelConfig']]],
-  ['progress_22',['progress',['../namespacebjorne__agent_1_1log.html#a490e68ceb9168265077a796c4b171f3c',1,'bjorne_agent::log']]],
-  ['provider_23',['provider',['../structbjorne__agent_1_1config_1_1ModelConfig.html#a72dd924bbaddbf918fada09d371fd290',1,'bjorne_agent::config::ModelConfig']]],
-  ['purpose_24',['purpose',['../md_DESIGN.html#autotoc_md62',1,'Purpose'],['../md_SPEC_8LOOP.html#autotoc_md50',1,'Purpose'],['../md_SPEC_8CONFIG.html#autotoc_md37',1,'Purpose'],['../md_SPEC.html#autotoc_md20',1,'Purpose']]]
+  ['platform_2eh_18',['Platform.h',['../Platform_8h.html',1,'']]],
+  ['point_19',['Entry Point',['../md_DESIGN.html#autotoc_md65',1,'']]],
+  ['port_20',['port',['../structbjorne__agent_1_1http_1_1Url.html#acf0257d6a426fe45d6b2d6aba117e8c2',1,'bjorne_agent::http::Url::port'],['../structbjorne__agent_1_1http_1_1HttpRequest.html#ab53440ad1fef4e3090d2e6498fefaf37',1,'bjorne_agent::http::HttpRequest::port']]],
+  ['principles_21',['Design Principles',['../md_DESIGN.html#autotoc_md63',1,'']]],
+  ['priority_22',['priority',['../structbjorne__agent_1_1config_1_1ModelConfig.html#ad7c87695e03d607cabf8fb3fd91b1462',1,'bjorne_agent::config::ModelConfig']]],
+  ['processid_23',['processId',['../namespacebjorne__agent_1_1platform.html#a871058d68e6b1db37c803a9c9489aeca',1,'bjorne_agent::platform']]],
+  ['progress_24',['progress',['../namespacebjorne__agent_1_1log.html#a490e68ceb9168265077a796c4b171f3c',1,'bjorne_agent::log']]],
+  ['provider_25',['provider',['../structbjorne__agent_1_1config_1_1ModelConfig.html#a72dd924bbaddbf918fada09d371fd290',1,'bjorne_agent::config::ModelConfig']]],
+  ['purpose_26',['purpose',['../md_DESIGN.html#autotoc_md62',1,'Purpose'],['../md_SPEC_8LOOP.html#autotoc_md50',1,'Purpose'],['../md_SPEC_8CONFIG.html#autotoc_md37',1,'Purpose'],['../md_SPEC.html#autotoc_md20',1,'Purpose']]]
 ];

@@ -2,8 +2,8 @@ var searchData=
 [
   ['language_20and_20toolchain_0',['Language and Toolchain',['../md_SPEC.html#autotoc_md23',1,'']]],
   ['layer_1',['Tool Layer',['../md_DESIGN.html#autotoc_md70',1,'']]],
-  ['length_2',['length',['../structbjorne__agent_1_1http_1_1ResolvedAddress.html#aeea952d489d5e5d165f137b75f994729',1,'bjorne_agent::http::ResolvedAddress']]],
-  ['level_3',['level',['../namespacebjorne__agent_1_1log.html#ac923e7d2faae3eab1a1a3bfa3cd7d947',1,'bjorne_agent::log::Level'],['../namespacebjorne__agent_1_1log.html#a6822fc756f0b915cde3ecc436722b055',1,'bjorne_agent::log::level()'],['../md_SPEC_8CONFIG.html#autotoc_md41',1,'Top Level'],['../md_SPEC.html#autotoc_md28',1,'Top level']]],
+  ['length_2',['length',['../structbjorne__agent_1_1http_1_1ResolvedAddress.html#a928b0f19479d0c7ff6f6880c44d6f64f',1,'bjorne_agent::http::ResolvedAddress']]],
+  ['level_3',['level',['../namespacebjorne__agent_1_1log.html#a6822fc756f0b915cde3ecc436722b055',1,'bjorne_agent::log::level()'],['../namespacebjorne__agent_1_1log.html#ac923e7d2faae3eab1a1a3bfa3cd7d947',1,'bjorne_agent::log::Level'],['../md_SPEC_8CONFIG.html#autotoc_md41',1,'Top Level'],['../md_SPEC.html#autotoc_md28',1,'Top level']]],
   ['levels_4',['Output levels',['../md_README.html#autotoc_md8',1,'']]],
   ['license_5',['License',['../md_README.html#autotoc_md18',1,'']]],
   ['load_6',['load',['../namespacebjorne__agent_1_1config.html#ad56b705962a4be07d5e6182a9dcae13e',1,'bjorne_agent::config']]],

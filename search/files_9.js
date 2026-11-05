@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['spec_2econfig_2emd_0',['SPEC.CONFIG.md',['../SPEC_8CONFIG_8md.html',1,'']]],
-  ['spec_2eloop_2emd_1',['SPEC.LOOP.md',['../SPEC_8LOOP_8md.html',1,'']]],
-  ['spec_2emd_2',['SPEC.md',['../SPEC_8md.html',1,'']]]
+  ['readme_2emd_0',['README.md',['../README_8md.html',1,'']]],
+  ['resolver_2ecpp_1',['Resolver.cpp',['../Resolver_8cpp.html',1,'']]],
+  ['resolver_2eh_2',['Resolver.h',['../Resolver_8h.html',1,'']]],
+  ['roadmap_2emd_3',['ROADMAP.md',['../ROADMAP_8md.html',1,'']]]
 ];

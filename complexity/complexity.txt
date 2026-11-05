@@ -5,60 +5,85 @@
       14      2     90      1      14 bjorne_agent::agent::AgentLoop::buildContext@16-29@src/agent/AgentLoop.cpp
       15      3    139      2      16 bjorne_agent::agent::AgentLoop::appendToolTurn@31-46@src/agent/AgentLoop.cpp
       27      5    239      3      27 bjorne_agent::agent::AgentLoop::run@48-74@src/agent/AgentLoop.cpp
-       8      3     57      2       8 bjorne_agent::tools::parseArguments@24-31@src/tools/Tools.cpp
-       8      3     65      3       8 bjorne_agent::tools::argString@33-40@src/tools/Tools.cpp
-      12      4     90      1      12 bjorne_agent::tools::hasParentTraversal@42-53@src/tools/Tools.cpp
-      12      3     54      1      12 bjorne_agent::tools::shellQuote@55-66@src/tools/Tools.cpp
-       1      1     21      1       1 bjorne_agent::tools::ToolRegistry::ToolRegistry@70-70@src/tools/Tools.cpp
-      10      2     96      2      10 bjorne_agent::tools::ToolRegistry::execute@72-81@src/tools/Tools.cpp
-      15      5     86      2      15 bjorne_agent::tools::ToolRegistry::dispatch@83-97@src/tools/Tools.cpp
-      19      6    106      2      19 bjorne_agent::tools::ToolRegistry::resolvePath@99-117@src/tools/Tools.cpp
-      22      5    152      1      22 bjorne_agent::tools::ToolRegistry::readFile@119-140@src/tools/Tools.cpp
-      33      8    237      1      33 bjorne_agent::tools::ToolRegistry::writeFile@142-174@src/tools/Tools.cpp
-      45     10    315      1      45 bjorne_agent::tools::ToolRegistry::editFile@176-220@src/tools/Tools.cpp
-      46     13    326      1      46 bjorne_agent::tools::ToolRegistry::runShell@222-267@src/tools/Tools.cpp
-       8      1    235      0       8 bjorne_agent::tools::ToolRegistry::definitionsJson@269-276@src/tools/Tools.cpp
+       8      3     57      2       8 bjorne_agent::tools::parseArguments@27-34@src/tools/Tools.cpp
+       8      3     65      3       8 bjorne_agent::tools::argString@36-43@src/tools/Tools.cpp
+       4      3     21      1       7 bjorne_agent::tools::isPathSeparator@47-53@src/tools/Tools.cpp
+       8      3     56      2       8 bjorne_agent::tools::nextPathSeparator@55-62@src/tools/Tools.cpp
+      13      8     92      1      15 bjorne_agent::tools::isAbsolutePath@66-80@src/tools/Tools.cpp
+      12      4     88      1      12 bjorne_agent::tools::hasParentTraversal@82-93@src/tools/Tools.cpp
+      22      6     97      1      27 bjorne_agent::tools::shellQuote@95-121@src/tools/Tools.cpp
+       9      5     66      1      12 bjorne_agent::tools::shellExitCode@126-137@src/tools/Tools.cpp
+       4      2     37      1       7 bjorne_agent::tools::openShellPipe@139-145@src/tools/Tools.cpp
+       1      1     21      1       1 bjorne_agent::tools::ToolRegistry::ToolRegistry@149-149@src/tools/Tools.cpp
+      10      2     96      2      10 bjorne_agent::tools::ToolRegistry::execute@151-160@src/tools/Tools.cpp
+      15      5     86      2      15 bjorne_agent::tools::ToolRegistry::dispatch@162-176@src/tools/Tools.cpp
+      19      6    105      2      19 bjorne_agent::tools::ToolRegistry::resolvePath@178-196@src/tools/Tools.cpp
+      22      5    152      1      22 bjorne_agent::tools::ToolRegistry::readFile@198-219@src/tools/Tools.cpp
+      33      8    237      1      33 bjorne_agent::tools::ToolRegistry::writeFile@221-253@src/tools/Tools.cpp
+      45     10    315      1      45 bjorne_agent::tools::ToolRegistry::editFile@255-299@src/tools/Tools.cpp
+      46     12    308      1      51 bjorne_agent::tools::ToolRegistry::runShell@301-351@src/tools/Tools.cpp
+       8      1    235      0       8 bjorne_agent::tools::ToolRegistry::definitionsJson@353-360@src/tools/Tools.cpp
+       7      1     42      0       7 bjorne_agent::platform::initializeSockets@42-48@src/platform/Platform.h
+       3      1     12      1       3 bjorne_agent::platform::isValidSocket@50-52@src/platform/Platform.h
+      13      4    109      2      13 bjorne_agent::platform::getEnvironmentVariable@56-68@src/platform/Platform.h
+       3      1     34      2       3 bjorne_agent::platform::setEnvironmentVariable@70-72@src/platform/Platform.h
+       3      1     23      1       4 bjorne_agent::platform::unsetEnvironmentVariable@74-77@src/platform/Platform.h
+       3      1     17      0       3 bjorne_agent::platform::processId@79-81@src/platform/Platform.h
+       3      1     14      1       3 bjorne_agent::platform::closeSocket@83-85@src/platform/Platform.h
+       3      1     27      3       3 bjorne_agent::platform::addressToBinary@89-91@src/platform/Platform.h
+       3      1     40      4       3 bjorne_agent::platform::addressToText@94-96@src/platform/Platform.h
+       4      2     37      1       4 bjorne_agent::platform::addressErrorMessage@100-103@src/platform/Platform.h
+       3      1      8      0       3 bjorne_agent::platform::initializeSockets@126-128@src/platform/Platform.h
+       3      1     12      1       3 bjorne_agent::platform::isValidSocket@130-132@src/platform/Platform.h
+       8      3     58      2       8 bjorne_agent::platform::getEnvironmentVariable@136-143@src/platform/Platform.h
+       3      1     36      2       3 bjorne_agent::platform::setEnvironmentVariable@145-147@src/platform/Platform.h
+       3      1     21      1       3 bjorne_agent::platform::unsetEnvironmentVariable@149-151@src/platform/Platform.h
+       3      1     17      0       3 bjorne_agent::platform::processId@153-155@src/platform/Platform.h
+       3      1     14      1       3 bjorne_agent::platform::closeSocket@157-159@src/platform/Platform.h
+       3      1     27      3       3 bjorne_agent::platform::addressToBinary@161-163@src/platform/Platform.h
+       3      1     34      4       3 bjorne_agent::platform::addressToText@165-167@src/platform/Platform.h
+       4      2     37      1       4 bjorne_agent::platform::addressErrorMessage@169-172@src/platform/Platform.h
       11      5     52      1      11 bjorne_agent::http::allDigits@10-20@src/http/Url.cpp
       39     11    269      3      41 bjorne_agent::http::splitAuthority@25-65@src/http/Url.cpp
        1      3     26      1       1 bjorne_agent::http::isDefaultPort@69-69@src/http/Url.cpp
       32      8    236      3      36 bjorne_agent::http::parseUrl@71-106@src/http/Url.cpp
-       3      1     40      1       3 bjorne_agent::http::readU16@19-21@src/http/DnsResponse.cpp
-      14      5     94      3      14 bjorne_agent::http::skipName@26-39@src/http/DnsResponse.cpp
-      33      9    287      5      33 bjorne_agent::http::appendRecord@41-73@src/http/DnsResponse.cpp
-      24      8    186      4      24 bjorne_agent::http::parseDnsResponse@77-100@src/http/DnsResponse.cpp
-      20      7    113      2      20 bjorne_agent::http::parsePort@33-52@src/http/Resolver.cpp
-       6      4     58      1       6 bjorne_agent::http::withoutBrackets@56-61@src/http/Resolver.cpp
-      20      3    179      3      20 bjorne_agent::http::numericAddress@63-82@src/http/Resolver.cpp
-      20      5    125      2      20 bjorne_agent::http::readFile@86-105@src/http/Resolver.cpp
-      17      7    139      1      17 bjorne_agent::http::splitFields@107-123@src/http/Resolver.cpp
-      14      5    141      3      14 bjorne_agent::http::hostsLineMatches@126-139@src/http/Resolver.cpp
-      22      7    172      4      22 bjorne_agent::http::lookupHosts@141-162@src/http/Resolver.cpp
-       8      2     88      4       8 bjorne_agent::http::queryDns@164-171@src/http/Resolver.cpp
-      18      5    132      5      18 bjorne_agent::http::resolveStub@173-190@src/http/Resolver.cpp
-      27      5    213      4      27 bjorne_agent::http::resolveWithGetaddrinfo@194-220@src/http/Resolver.cpp
-      17      4    128      5      20 bjorne_agent::http::resolveHost@226-245@src/http/Resolver.cpp
-      10      3     50      0      12 bjorne_agent::http::ignoreSigPipe@42-53@src/http/HttpClient.cpp
-      30      7    313      2      30 bjorne_agent::http::findHeader@58-87@src/http/HttpClient.cpp
-      34     11    241      4      34 bjorne_agent::http::parseChunkSize@90-123@src/http/HttpClient.cpp
-      24      7    150      3      24 bjorne_agent::http::decodeChunked@128-151@src/http/HttpClient.cpp
-      22      7    168      4      24 bjorne_agent::http::readBody@155-178@src/http/HttpClient.cpp
-      13      3    128      1      13 bjorne_agent::http::buildRequest@180-192@src/http/HttpClient.cpp
-      24      5    190      3      24 bjorne_agent::http::connectToHost@196-219@src/http/HttpClient.cpp
-      15      4     95      3      15 bjorne_agent::http::readAllPlain@221-235@src/http/HttpClient.cpp
-       6      1     48      1       6 bjorne_agent::http::tlsError@238-243@src/http/HttpClient.cpp
-      15      4     94      3      15 bjorne_agent::http::readAllTls@245-259@src/http/HttpClient.cpp
-       4      1     22      2       4 bjorne_agent::http::closeTransport@261-264@src/http/HttpClient.cpp
-      17      6    136      5      19 bjorne_agent::http::configureTlsSession@268-286@src/http/HttpClient.cpp
-      25      6    165      4      27 bjorne_agent::http::handshakeTls@291-317@src/http/HttpClient.cpp
-      13      3    116      3      13 bjorne_agent::http::writeTlsRequest@320-332@src/http/HttpClient.cpp
-       1      1     19      1       1 bjorne_agent::http::OpenSslTransport::OpenSslTransport@337-337@src/http/HttpClient.cpp
-      62     10    370      5      76 bjorne_agent::http::OpenSslTransport::send@339-414@src/http/HttpClient.cpp
-      29      5    216      5      32 bjorne_agent::http::PlainTcpTransport::send@416-447@src/http/HttpClient.cpp
-       3      1     25      0       3 bjorne_agent::http::HttpClient::createOpenSsl@449-451@src/http/HttpClient.cpp
-       3      1     35      1       3 bjorne_agent::http::HttpClient::createOpenSsl@453-455@src/http/HttpClient.cpp
-       3      1     25      0       3 bjorne_agent::http::HttpClient::createPlainTcp@457-459@src/http/HttpClient.cpp
-       1      1     24      1       1 bjorne_agent::http::HttpClient::HttpClient@461-461@src/http/HttpClient.cpp
-      30      8    292      3      32 bjorne_agent::http::HttpClient::request@463-494@src/http/HttpClient.cpp
+       3      1     40      1       3 bjorne_agent::http::readU16@26-28@src/http/DnsResponse.cpp
+      14      5     94      3      14 bjorne_agent::http::skipName@33-46@src/http/DnsResponse.cpp
+      33      9    287      5      33 bjorne_agent::http::appendRecord@48-80@src/http/DnsResponse.cpp
+      25      8    192      4      26 bjorne_agent::http::parseDnsResponse@84-109@src/http/DnsResponse.cpp
+      20      7    113      2      20 bjorne_agent::http::parsePort@40-59@src/http/Resolver.cpp
+       6      4     58      1       6 bjorne_agent::http::withoutBrackets@63-68@src/http/Resolver.cpp
+      20      3    181      3      20 bjorne_agent::http::numericAddress@70-89@src/http/Resolver.cpp
+      20      5    125      2      20 bjorne_agent::http::readFile@93-112@src/http/Resolver.cpp
+      17      7    139      1      17 bjorne_agent::http::splitFields@114-130@src/http/Resolver.cpp
+      14      5    141      3      14 bjorne_agent::http::hostsLineMatches@133-146@src/http/Resolver.cpp
+      22      7    172      4      22 bjorne_agent::http::lookupHosts@148-169@src/http/Resolver.cpp
+       8      2     88      4       8 bjorne_agent::http::queryDns@171-178@src/http/Resolver.cpp
+      18      5    132      5      18 bjorne_agent::http::resolveStub@180-197@src/http/Resolver.cpp
+      27      5    216      4      27 bjorne_agent::http::resolveWithGetaddrinfo@201-227@src/http/Resolver.cpp
+      21      5    146      5      24 bjorne_agent::http::resolveHost@233-256@src/http/Resolver.cpp
+      10      3     50      0      12 bjorne_agent::http::ignoreSigPipe@60-71@src/http/HttpClient.cpp
+      30      7    313      2      30 bjorne_agent::http::findHeader@76-105@src/http/HttpClient.cpp
+      34     11    241      4      34 bjorne_agent::http::parseChunkSize@108-141@src/http/HttpClient.cpp
+      24      7    150      3      24 bjorne_agent::http::decodeChunked@146-169@src/http/HttpClient.cpp
+      22      7    168      4      24 bjorne_agent::http::readBody@173-196@src/http/HttpClient.cpp
+      13      3    128      1      13 bjorne_agent::http::buildRequest@198-210@src/http/HttpClient.cpp
+      28      6    226      3      28 bjorne_agent::http::connectToHost@214-241@src/http/HttpClient.cpp
+      15      4     97      3      15 bjorne_agent::http::readAllPlain@243-257@src/http/HttpClient.cpp
+       6      1     48      1       6 bjorne_agent::http::tlsError@260-265@src/http/HttpClient.cpp
+      15      4     94      3      15 bjorne_agent::http::readAllTls@267-281@src/http/HttpClient.cpp
+       4      1     25      2       4 bjorne_agent::http::closeTransport@283-286@src/http/HttpClient.cpp
+      17      6    136      5      19 bjorne_agent::http::configureTlsSession@290-308@src/http/HttpClient.cpp
+      25      6    165      4      27 bjorne_agent::http::handshakeTls@313-339@src/http/HttpClient.cpp
+      13      3    116      3      13 bjorne_agent::http::writeTlsRequest@342-354@src/http/HttpClient.cpp
+       1      1     19      1       1 bjorne_agent::http::OpenSslTransport::OpenSslTransport@359-359@src/http/HttpClient.cpp
+      62     10    388      5      76 bjorne_agent::http::OpenSslTransport::send@361-436@src/http/HttpClient.cpp
+      29      5    237      5      32 bjorne_agent::http::PlainTcpTransport::send@438-469@src/http/HttpClient.cpp
+       3      1     25      0       3 bjorne_agent::http::HttpClient::createOpenSsl@471-473@src/http/HttpClient.cpp
+       3      1     35      1       3 bjorne_agent::http::HttpClient::createOpenSsl@475-477@src/http/HttpClient.cpp
+       3      1     25      0       3 bjorne_agent::http::HttpClient::createPlainTcp@479-481@src/http/HttpClient.cpp
+       1      1     24      1       1 bjorne_agent::http::HttpClient::HttpClient@483-483@src/http/HttpClient.cpp
+      30      8    292      3      32 bjorne_agent::http::HttpClient::request@485-516@src/http/HttpClient.cpp
        2      1     32      2       2 bjorne_agent::context::ContextManager::ContextManager@9-10@src/context/ContextManager.cpp
        1      1     11      0       1 bjorne_agent::context::ContextManager::config@12-12@src/context/ContextManager.cpp
        1      1     11      0       1 bjorne_agent::context::ContextManager::compressionHandler@14-14@src/context/ContextManager.cpp
@@ -67,16 +92,16 @@
       15      4    111      3      15 bjorne_agent::context::ContextManager::trim@29-43@src/context/ContextManager.cpp
       27      7    270      4      27 bjorne_agent::context::ContextManager::truncate@45-71@src/context/ContextManager.cpp
       29      6    174      3      29 bjorne_agent::context::ContextManager::compress@73-101@src/context/ContextManager.cpp
-      23      8    153      1      23 bjorne_agent::model::escapeJson@20-42@src/model/ModelClient.cpp
-       7      2     75      1       7 bjorne_agent::model::toolCallJson@44-50@src/model/ModelClient.cpp
-      18      6    153      1      18 bjorne_agent::model::messageJson@52-69@src/model/ModelClient.cpp
-      16      4    112      3      16 bjorne_agent::model::requestBodyJson@71-86@src/model/ModelClient.cpp
-      30     14    238      2      30 bjorne_agent::model::parseToolCalls@88-117@src/model/ModelClient.cpp
-      27      8    219      3      27 bjorne_agent::model::parseChatResponse@120-146@src/model/ModelClient.cpp
-       7      1     76      1       7 bjorne_agent::model::ModelClient::ModelClient@150-156@src/model/ModelClient.cpp
-       3      1     60      4       3 bjorne_agent::model::ModelClient::ModelClient@158-160@src/model/ModelClient.cpp
-      52     10    429      3      60 bjorne_agent::model::ModelClient::respond@162-221@src/model/ModelClient.cpp
-       1      1     17      1       1 bjorne_agent::model::ModelClient::setTools@223-223@src/model/ModelClient.cpp
+      23      8    153      1      23 bjorne_agent::model::escapeJson@21-43@src/model/ModelClient.cpp
+       7      2     75      1       7 bjorne_agent::model::toolCallJson@45-51@src/model/ModelClient.cpp
+      18      6    153      1      18 bjorne_agent::model::messageJson@53-70@src/model/ModelClient.cpp
+      16      4    112      3      16 bjorne_agent::model::requestBodyJson@72-87@src/model/ModelClient.cpp
+      30     14    238      2      30 bjorne_agent::model::parseToolCalls@89-118@src/model/ModelClient.cpp
+      27      8    219      3      27 bjorne_agent::model::parseChatResponse@121-147@src/model/ModelClient.cpp
+       7      1     76      1       7 bjorne_agent::model::ModelClient::ModelClient@151-157@src/model/ModelClient.cpp
+       3      1     60      4       3 bjorne_agent::model::ModelClient::ModelClient@159-161@src/model/ModelClient.cpp
+      52     10    419      3      60 bjorne_agent::model::ModelClient::respond@163-222@src/model/ModelClient.cpp
+       1      1     17      1       1 bjorne_agent::model::ModelClient::setTools@224-224@src/model/ModelClient.cpp
        1      1     16      1       1 bjorne_agent::json::Parser::Parser@14-14@src/json/Json.cpp
        8      2     40      0       8 bjorne_agent::json::Parser::parse@16-23@src/json/Json.cpp
        6      2     32      0       6 bjorne_agent::json::Parser::peek@29-34@src/json/Json.cpp
@@ -110,64 +135,71 @@
        8      3     60      1       8 bjorne_agent::log::formatSeconds@75-82@src/log/Log.cpp
        4      2     31      1       4 bjorne_agent::cli::namesAnExistingFile@15-18@src/cli/Invocation.cpp
       24      5    169      3      30 bjorne_agent::cli::resolveInvocation@22-51@src/cli/Invocation.cpp
-      11      5     83      0      11 bjorne_agent::config::userConfigPath@18-28@src/config/ConfigPaths.cpp
-      12      3     82      1      12 bjorne_agent::config::trimmed@32-43@src/config/ConfigPaths.cpp
-       3      1     16      0       3 bjorne_agent::config::environmentConfigPath@47-49@src/config/ConfigPaths.cpp
-       9      2     53      0       9 bjorne_agent::config::defaultConfigPaths@51-59@src/config/ConfigPaths.cpp
-      24      8    151      1      29 bjorne_agent::config::findDefaultConfig@61-89@src/config/ConfigPaths.cpp
+       4      3     21      1       7 bjorne_agent::config::isPathSeparator@20-26@src/config/ConfigPaths.cpp
+      13      8     92      1      15 bjorne_agent::config::isAbsolutePath@30-44@src/config/ConfigPaths.cpp
+       9      3     56      2       9 bjorne_agent::config::joinPath@48-56@src/config/ConfigPaths.cpp
+      19     10    149      0      23 bjorne_agent::config::userConfigPath@62-84@src/config/ConfigPaths.cpp
+       8      2     63      1       8 bjorne_agent::config::trimmed@88-95@src/config/ConfigPaths.cpp
+       7      2     34      0       7 bjorne_agent::config::environmentConfigPath@99-105@src/config/ConfigPaths.cpp
+       9      2     53      0       9 bjorne_agent::config::defaultConfigPaths@107-115@src/config/ConfigPaths.cpp
+      24      8    151      1      29 bjorne_agent::config::findDefaultConfig@117-145@src/config/ConfigPaths.cpp
        8      3     65      3       8 bjorne_agent::config::getString@13-20@src/config/Config.cpp
        8      3     71      3       8 bjorne_agent::config::getNumber@22-29@src/config/Config.cpp
        8      3     70      2       8 bjorne_agent::config::loadAgent@31-38@src/config/Config.cpp
       22      7    211      2      22 bjorne_agent::config::loadModel@40-61@src/config/Config.cpp
       14      5     96      2      14 bjorne_agent::config::loadModels@63-76@src/config/Config.cpp
       33      7    229      3      35 bjorne_agent::config::load@80-114@src/config/Config.cpp
-       5      1     28      0       5 readStdin@22-26@src/main.cpp
-      10      2     64      2      10 readTextFile@28-37@src/main.cpp
-      10      4     79      2      10 resolveAgainstConfig@39-48@src/main.cpp
-      10      2     90      1      10 selectModel@50-59@src/main.cpp
-       9      1     30      0       9 usage@61-69@src/main.cpp
-      20      8    134      5      20 parseFlags@74-93@src/main.cpp
-      12      3     78      2      12 applyLogEnvironment@96-107@src/main.cpp
-      17      5    116      4      21 resolveLogLevel@113-133@src/main.cpp
-      19      3    143      3      20 buildContextConfig@138-157@src/main.cpp
-      18      2    164      1      18 makeCompressionHandler@161-178@src/main.cpp
-       7      2     53      3       7 positionalArguments@181-187@src/main.cpp
-      74     12    634      2      85 main@191-275@src/main.cpp
-27 file analyzed.
+       5      1     28      0       5 readStdin@24-28@src/main.cpp
+      10      2     64      2      10 readTextFile@30-39@src/main.cpp
+       4      3     21      1       7 isPathSeparator@43-49@src/main.cpp
+      13      8     92      1      15 isAbsolutePath@53-67@src/main.cpp
+       4      2     27      1       7 lastPathSeparator@69-75@src/main.cpp
+      10      4     74      2      10 resolveAgainstConfig@77-86@src/main.cpp
+      10      2     90      1      10 selectModel@88-97@src/main.cpp
+       9      1     30      0       9 usage@99-107@src/main.cpp
+      20      8    134      5      20 parseFlags@112-131@src/main.cpp
+      12      3     79      2      12 applyLogEnvironment@134-145@src/main.cpp
+      17      5    116      4      21 resolveLogLevel@151-171@src/main.cpp
+      19      3    143      3      20 buildContextConfig@176-195@src/main.cpp
+      18      2    164      1      18 makeCompressionHandler@199-216@src/main.cpp
+       7      2     53      3       7 positionalArguments@219-225@src/main.cpp
+      74     12    634      2      85 main@229-313@src/main.cpp
+28 file analyzed.
 ==============================================================
 NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
 --------------------------------------------------------------
      28       0.0     0.0        0.0         0     src/agent/AgentLoop.h
      68      14.8     2.8      136.8         4     src/agent/AgentLoop.cpp
-    258      18.4     4.9      141.5        13     src/tools/Tools.cpp
+    307      15.9     4.8      118.6        18     src/tools/Tools.cpp
      23       0.0     0.0        0.0         0     src/tools/Tools.h
-     17       0.0     0.0        0.0         0     src/http/Resolver.h
+    106       4.0     1.4       30.9        20     src/platform/Platform.h
+     20       0.0     0.0        0.0         0     src/http/Resolver.h
      91      20.8     6.8      145.8         4     src/http/Url.cpp
       8       0.0     0.0        0.0         0     src/http/DnsResponse.h
      14       0.0     0.0        0.0         0     src/http/Url.h
-     89      18.5     5.8      151.8         4     src/http/DnsResponse.cpp
+     93      18.8     5.8      153.2         4     src/http/DnsResponse.cpp
      56       0.0     0.0        0.0         0     src/http/HttpClient.h
-    210      17.2     4.9      135.3        11     src/http/Resolver.cpp
-    409      17.5     4.4      132.8        22     src/http/HttpClient.cpp
+    217      17.5     5.0      137.4        11     src/http/Resolver.cpp
+    419      17.6     4.4      136.5        22     src/http/HttpClient.cpp
      34       0.0     0.0        0.0         0     src/context/ContextManager.h
      92      10.6     2.9       86.4         8     src/context/ContextManager.cpp
      53       0.0     0.0        0.0         0     src/model/ModelClient.h
-    201      18.4     5.5      153.2        10     src/model/ModelClient.cpp
+    202      18.4     5.5      152.2        10     src/model/ModelClient.cpp
     268      18.0     6.1      119.9        14     src/json/Json.cpp
      40       2.4     1.2       19.4         8     src/json/Json.h
      14       0.0     0.0        0.0         0     src/log/Log.h
      67       6.1     1.9       36.7         9     src/log/Log.cpp
      12       0.0     0.0        0.0         0     src/cli/Invocation.h
      40      14.0     3.5      100.0         2     src/cli/Invocation.cpp
-     71      11.8     3.8       77.0         5     src/config/ConfigPaths.cpp
+    107      11.6     4.8       77.4         8     src/config/ConfigPaths.cpp
      29       0.0     0.0        0.0         0     src/config/Config.h
     103      15.5     4.7      123.7         6     src/config/Config.cpp
       9       0.0     0.0        0.0         0     src/config/ConfigPaths.h
-    230      17.6     3.8      134.4        12     src/main.cpp
+    253      15.5     3.9      116.6        15     src/main.cpp
 
 ============================================================================================================
 No thresholds exceeded (cyclomatic_complexity > 15 or length > 100 or nloc > 1000000 or parameter_count > 5)
 ==========================================================================================
 Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt
 ------------------------------------------------------------------------------------------
-      2534      15.3     4.3      116.0      132            0      0.00    0.00
+      2773      13.5     4.0      102.4      163            0      0.00    0.00

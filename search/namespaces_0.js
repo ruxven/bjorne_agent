@@ -9,5 +9,6 @@ var searchData=
   ['bjorne_5fagent_3a_3ajson_6',['json',['../namespacebjorne__agent_1_1json.html',1,'bjorne_agent']]],
   ['bjorne_5fagent_3a_3alog_7',['log',['../namespacebjorne__agent_1_1log.html',1,'bjorne_agent']]],
   ['bjorne_5fagent_3a_3amodel_8',['model',['../namespacebjorne__agent_1_1model.html',1,'bjorne_agent']]],
-  ['bjorne_5fagent_3a_3atools_9',['tools',['../namespacebjorne__agent_1_1tools.html',1,'bjorne_agent']]]
+  ['bjorne_5fagent_3a_3aplatform_9',['platform',['../namespacebjorne__agent_1_1platform.html',1,'bjorne_agent']]],
+  ['bjorne_5fagent_3a_3atools_10',['tools',['../namespacebjorne__agent_1_1tools.html',1,'bjorne_agent']]]
 ];

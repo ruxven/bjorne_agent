@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['httpclient_0',['HttpClient',['../classbjorne__agent_1_1http_1_1HttpClient.html#a4ed9922abb0a1b39efeebf1cfd6aae8f',1,'bjorne_agent::http::HttpClient']]]
+  ['getenvironmentvariable_0',['getEnvironmentVariable',['../namespacebjorne__agent_1_1platform.html#a5faeaf7cfe82a356a3c760348ac0fc1c',1,'bjorne_agent::platform']]]
 ];

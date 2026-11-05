@@ -126,17 +126,17 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/src/config/ConfigPaths.cpp",
     "function_coverage": [
       {
-        "line_start": 47,
-        "line_end": 49,
-        "line_count": 3,
-        "line_hit": 3,
-        "branch_count": 0,
-        "branch_hit": 0,
+        "line_start": 99,
+        "line_end": 105,
+        "line_count": 7,
+        "line_hit": 7,
+        "branch_count": 2,
+        "branch_hit": 2,
         "function_name": "_ZN12bjorne_agent6config21environmentConfigPathB5cxx11Ev"
       },
       {
-        "line_start": 51,
-        "line_end": 59,
+        "line_start": 107,
+        "line_end": 115,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 2,
@@ -144,8 +144,8 @@
         "function_name": "_ZN12bjorne_agent6config18defaultConfigPathsB5cxx11Ev"
       },
       {
-        "line_start": 61,
-        "line_end": 89,
+        "line_start": 117,
+        "line_end": 145,
         "line_count": 24,
         "line_hit": 24,
         "branch_count": 18,
@@ -153,22 +153,49 @@
         "function_name": "_ZN12bjorne_agent6config17findDefaultConfigERNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 32,
-        "line_end": 43,
-        "line_count": 12,
-        "line_hit": 12,
-        "branch_count": 4,
-        "branch_hit": 4,
-        "function_name": "ConfigPaths.cpp:_ZN12bjorne_agent6config12_GLOBAL__N_17trimmedB5cxx11EPKc"
+        "line_start": 88,
+        "line_end": 95,
+        "line_count": 8,
+        "line_hit": 8,
+        "branch_count": 2,
+        "branch_hit": 2,
+        "function_name": "ConfigPaths.cpp:_ZN12bjorne_agent6config12_GLOBAL__N_17trimmedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 18,
-        "line_end": 28,
+        "line_start": 62,
+        "line_end": 84,
         "line_count": 11,
         "line_hit": 11,
-        "branch_count": 8,
-        "branch_hit": 7,
+        "branch_count": 12,
+        "branch_hit": 11,
         "function_name": "ConfigPaths.cpp:_ZN12bjorne_agent6config12_GLOBAL__N_114userConfigPathB5cxx11Ev"
+      },
+      {
+        "line_start": 30,
+        "line_end": 44,
+        "line_count": 9,
+        "line_hit": 7,
+        "branch_count": 4,
+        "branch_hit": 3,
+        "function_name": "ConfigPaths.cpp:_ZN12bjorne_agent6config12_GLOBAL__N_114isAbsolutePathERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
+      },
+      {
+        "line_start": 20,
+        "line_end": 26,
+        "line_count": 4,
+        "line_hit": 4,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "ConfigPaths.cpp:_ZN12bjorne_agent6config12_GLOBAL__N_115isPathSeparatorEc"
+      },
+      {
+        "line_start": 48,
+        "line_end": 56,
+        "line_count": 9,
+        "line_hit": 7,
+        "branch_count": 4,
+        "branch_hit": 3,
+        "function_name": "ConfigPaths.cpp:_ZN12bjorne_agent6config12_GLOBAL__N_18joinPathERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_"
       }
     ]
   },
@@ -253,17 +280,17 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/src/http/DnsResponse.cpp",
     "function_coverage": [
       {
-        "line_start": 78,
-        "line_end": 100,
-        "line_count": 23,
-        "line_hit": 23,
+        "line_start": 85,
+        "line_end": 109,
+        "line_count": 24,
+        "line_hit": 24,
         "branch_count": 14,
         "branch_hit": 14,
         "function_name": "_ZN12bjorne_agent4http16parseDnsResponseEPKhitRSt6vectorINS0_15ResolvedAddressESaIS4_EE"
       },
       {
-        "line_start": 19,
-        "line_end": 21,
+        "line_start": 26,
+        "line_end": 28,
         "line_count": 3,
         "line_hit": 3,
         "branch_count": 0,
@@ -271,8 +298,8 @@
         "function_name": "DnsResponse.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_17readU16EPKh"
       },
       {
-        "line_start": 26,
-        "line_end": 39,
+        "line_start": 33,
+        "line_end": 46,
         "line_count": 14,
         "line_hit": 14,
         "branch_count": 8,
@@ -280,8 +307,8 @@
         "function_name": "DnsResponse.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_18skipNameEPKhii"
       },
       {
-        "line_start": 42,
-        "line_end": 73,
+        "line_start": 49,
+        "line_end": 80,
         "line_count": 32,
         "line_hit": 32,
         "branch_count": 16,
@@ -294,8 +321,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/src/http/HttpClient.cpp",
     "function_coverage": [
       {
-        "line_start": 337,
-        "line_end": 337,
+        "line_start": 359,
+        "line_end": 359,
         "line_count": 1,
         "line_hit": 1,
         "branch_count": 0,
@@ -303,8 +330,8 @@
         "function_name": "_ZN12bjorne_agent4http16OpenSslTransportC2ENS1_7OptionsE"
       },
       {
-        "line_start": 340,
-        "line_end": 414,
+        "line_start": 362,
+        "line_end": 436,
         "line_count": 56,
         "line_hit": 40,
         "branch_count": 16,
@@ -312,8 +339,8 @@
         "function_name": "_ZN12bjorne_agent4http16OpenSslTransport4sendERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_RS7_SA_"
       },
       {
-        "line_start": 417,
-        "line_end": 447,
+        "line_start": 439,
+        "line_end": 469,
         "line_count": 28,
         "line_hit": 24,
         "branch_count": 8,
@@ -321,8 +348,8 @@
         "function_name": "_ZN12bjorne_agent4http17PlainTcpTransport4sendERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_RS7_SA_"
       },
       {
-        "line_start": 449,
-        "line_end": 451,
+        "line_start": 471,
+        "line_end": 473,
         "line_count": 3,
         "line_hit": 3,
         "branch_count": 0,
@@ -330,8 +357,8 @@
         "function_name": "_ZN12bjorne_agent4http10HttpClient13createOpenSslEv"
       },
       {
-        "line_start": 453,
-        "line_end": 455,
+        "line_start": 475,
+        "line_end": 477,
         "line_count": 3,
         "line_hit": 3,
         "branch_count": 0,
@@ -339,8 +366,8 @@
         "function_name": "_ZN12bjorne_agent4http10HttpClient13createOpenSslENS0_16OpenSslTransport7OptionsE"
       },
       {
-        "line_start": 457,
-        "line_end": 459,
+        "line_start": 479,
+        "line_end": 481,
         "line_count": 3,
         "line_hit": 3,
         "branch_count": 0,
@@ -348,8 +375,8 @@
         "function_name": "_ZN12bjorne_agent4http10HttpClient14createPlainTcpEv"
       },
       {
-        "line_start": 461,
-        "line_end": 461,
+        "line_start": 483,
+        "line_end": 483,
         "line_count": 1,
         "line_hit": 1,
         "branch_count": 0,
@@ -357,8 +384,8 @@
         "function_name": "_ZN12bjorne_agent4http10HttpClientC2ESt10shared_ptrINS0_13HttpTransportEE"
       },
       {
-        "line_start": 463,
-        "line_end": 494,
+        "line_start": 485,
+        "line_end": 516,
         "line_count": 30,
         "line_hit": 30,
         "branch_count": 14,
@@ -366,8 +393,8 @@
         "function_name": "_ZN12bjorne_agent4http10HttpClient7requestERKNS0_11HttpRequestERNS0_12HttpResponseERNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 42,
-        "line_end": 43,
+        "line_start": 60,
+        "line_end": 61,
         "line_count": 2,
         "line_hit": 2,
         "branch_count": 0,
@@ -375,8 +402,8 @@
         "function_name": "HttpClient.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_113ignoreSigPipeEv"
       },
       {
-        "line_start": 44,
-        "line_end": 53,
+        "line_start": 62,
+        "line_end": 71,
         "line_count": 10,
         "line_hit": 7,
         "branch_count": 2,
@@ -384,17 +411,17 @@
         "function_name": "HttpClient.cpp:_ZZN12bjorne_agent4http12_GLOBAL__N_113ignoreSigPipeEvENK3$_0clEv"
       },
       {
-        "line_start": 196,
-        "line_end": 219,
-        "line_count": 24,
-        "line_hit": 20,
-        "branch_count": 8,
-        "branch_hit": 7,
+        "line_start": 214,
+        "line_end": 241,
+        "line_count": 28,
+        "line_hit": 21,
+        "branch_count": 10,
+        "branch_hit": 8,
         "function_name": "HttpClient.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_113connectToHostERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_RS7_"
       },
       {
-        "line_start": 269,
-        "line_end": 286,
+        "line_start": 291,
+        "line_end": 308,
         "line_count": 16,
         "line_hit": 13,
         "branch_count": 10,
@@ -402,8 +429,8 @@
         "function_name": "HttpClient.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_119configureTlsSessionEP6ssl_stRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS0_16OpenSslTransport7OptionsERS9_SG_"
       },
       {
-        "line_start": 261,
-        "line_end": 264,
+        "line_start": 283,
+        "line_end": 286,
         "line_count": 4,
         "line_hit": 4,
         "branch_count": 0,
@@ -411,8 +438,8 @@
         "function_name": "HttpClient.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_114closeTransportEP6ssl_sti"
       },
       {
-        "line_start": 291,
-        "line_end": 317,
+        "line_start": 313,
+        "line_end": 339,
         "line_count": 25,
         "line_hit": 16,
         "branch_count": 8,
@@ -420,8 +447,8 @@
         "function_name": "HttpClient.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_112handshakeTlsEP6ssl_stRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEbRS9_"
       },
       {
-        "line_start": 238,
-        "line_end": 243,
+        "line_start": 260,
+        "line_end": 265,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 0,
@@ -429,8 +456,8 @@
         "function_name": "HttpClient.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_18tlsErrorERNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 320,
-        "line_end": 332,
+        "line_start": 342,
+        "line_end": 354,
         "line_count": 13,
         "line_hit": 10,
         "branch_count": 4,
@@ -438,8 +465,8 @@
         "function_name": "HttpClient.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_115writeTlsRequestEP6ssl_stRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERS9_"
       },
       {
-        "line_start": 245,
-        "line_end": 259,
+        "line_start": 267,
+        "line_end": 281,
         "line_count": 15,
         "line_hit": 15,
         "branch_count": 4,
@@ -447,8 +474,8 @@
         "function_name": "HttpClient.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_110readAllTlsEP6ssl_stRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESA_"
       },
       {
-        "line_start": 221,
-        "line_end": 235,
+        "line_start": 243,
+        "line_end": 257,
         "line_count": 15,
         "line_hit": 15,
         "branch_count": 4,
@@ -456,8 +483,8 @@
         "function_name": "HttpClient.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_112readAllPlainEiRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_"
       },
       {
-        "line_start": 180,
-        "line_end": 192,
+        "line_start": 198,
+        "line_end": 210,
         "line_count": 13,
         "line_hit": 13,
         "branch_count": 4,
@@ -465,8 +492,8 @@
         "function_name": "HttpClient.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_112buildRequestB5cxx11ERKNS0_11HttpRequestE"
       },
       {
-        "line_start": 155,
-        "line_end": 178,
+        "line_start": 173,
+        "line_end": 196,
         "line_count": 22,
         "line_hit": 20,
         "branch_count": 12,
@@ -474,8 +501,8 @@
         "function_name": "HttpClient.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_18readBodyERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_RS7_SA_"
       },
       {
-        "line_start": 58,
-        "line_end": 60,
+        "line_start": 76,
+        "line_end": 78,
         "line_count": 3,
         "line_hit": 3,
         "branch_count": 0,
@@ -483,8 +510,8 @@
         "function_name": "HttpClient.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_110findHeaderERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_"
       },
       {
-        "line_start": 61,
-        "line_end": 69,
+        "line_start": 79,
+        "line_end": 87,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 6,
@@ -492,8 +519,8 @@
         "function_name": "HttpClient.cpp:_ZZN12bjorne_agent4http12_GLOBAL__N_110findHeaderERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ENK3$_0clEh"
       },
       {
-        "line_start": 70,
-        "line_end": 87,
+        "line_start": 88,
+        "line_end": 105,
         "line_count": 18,
         "line_hit": 16,
         "branch_count": 6,
@@ -501,8 +528,8 @@
         "function_name": "HttpClient.cpp:_ZZN12bjorne_agent4http12_GLOBAL__N_110findHeaderERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ENK3$_1clEh"
       },
       {
-        "line_start": 128,
-        "line_end": 151,
+        "line_start": 146,
+        "line_end": 169,
         "line_count": 24,
         "line_hit": 21,
         "branch_count": 10,
@@ -510,8 +537,8 @@
         "function_name": "HttpClient.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_113decodeChunkedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERS7_SA_"
       },
       {
-        "line_start": 90,
-        "line_end": 123,
+        "line_start": 108,
+        "line_end": 141,
         "line_count": 34,
         "line_hit": 27,
         "branch_count": 20,
@@ -547,17 +574,17 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/src/http/Resolver.cpp",
     "function_coverage": [
       {
-        "line_start": 227,
-        "line_end": 245,
-        "line_count": 16,
-        "line_hit": 16,
-        "branch_count": 4,
-        "branch_hit": 4,
+        "line_start": 234,
+        "line_end": 256,
+        "line_count": 20,
+        "line_hit": 17,
+        "branch_count": 6,
+        "branch_hit": 5,
         "function_name": "_ZN12bjorne_agent4http11resolveHostERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_RSt6vectorINS0_15ResolvedAddressESaISA_EERS6_RKNS0_15ResolverOptionsE"
       },
       {
-        "line_start": 33,
-        "line_end": 52,
+        "line_start": 40,
+        "line_end": 59,
         "line_count": 20,
         "line_hit": 20,
         "branch_count": 12,
@@ -565,8 +592,8 @@
         "function_name": "Resolver.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_19parsePortERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERt"
       },
       {
-        "line_start": 63,
-        "line_end": 82,
+        "line_start": 70,
+        "line_end": 89,
         "line_count": 20,
         "line_hit": 20,
         "branch_count": 4,
@@ -574,8 +601,8 @@
         "function_name": "Resolver.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_114numericAddressERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEtRNS0_15ResolvedAddressE"
       },
       {
-        "line_start": 56,
-        "line_end": 61,
+        "line_start": 63,
+        "line_end": 68,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 6,
@@ -583,8 +610,8 @@
         "function_name": "Resolver.cpp:_ZN12bjorne_agent4http12_GLOBAL__N_115withoutBracketsERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 195,
-        "line_end": 220,
+        "line_start": 202,
+        "line_end": 227,
         "line_count": 26,
         "line_hit": 21,
         "branch_count": 8,
@@ -932,8 +959,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/src/model/ModelClient.cpp",
     "function_coverage": [
       {
-        "line_start": 151,
-        "line_end": 156,
+        "line_start": 152,
+        "line_end": 157,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 0,
@@ -941,8 +968,8 @@
         "function_name": "_ZN12bjorne_agent5model11ModelClientC2ENS0_18ModelClientOptionsE"
       },
       {
-        "line_start": 160,
-        "line_end": 160,
+        "line_start": 161,
+        "line_end": 161,
         "line_count": 1,
         "line_hit": 1,
         "branch_count": 0,
@@ -950,8 +977,8 @@
         "function_name": "_ZN12bjorne_agent5model11ModelClientC2ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_St10shared_ptrINS_4http13HttpTransportEE"
       },
       {
-        "line_start": 162,
-        "line_end": 221,
+        "line_start": 163,
+        "line_end": 222,
         "line_count": 51,
         "line_hit": 51,
         "branch_count": 16,
@@ -959,8 +986,8 @@
         "function_name": "_ZN12bjorne_agent5model11ModelClient7respondERKSt6vectorINS0_12ModelMessageESaIS3_EERNS0_13ModelResponseERNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 223,
-        "line_end": 223,
+        "line_start": 224,
+        "line_end": 224,
         "line_count": 1,
         "line_hit": 1,
         "branch_count": 0,
@@ -968,8 +995,8 @@
         "function_name": "_ZN12bjorne_agent5model11ModelClient8setToolsERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 72,
-        "line_end": 86,
+        "line_start": 73,
+        "line_end": 87,
         "line_count": 15,
         "line_hit": 15,
         "branch_count": 6,
@@ -977,8 +1004,8 @@
         "function_name": "ModelClient.cpp:_ZN12bjorne_agent5model12_GLOBAL__N_115requestBodyJsonERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKSt6vectorINS0_12ModelMessageESaISB_EES9_"
       },
       {
-        "line_start": 20,
-        "line_end": 42,
+        "line_start": 21,
+        "line_end": 43,
         "line_count": 23,
         "line_hit": 23,
         "branch_count": 16,
@@ -986,8 +1013,8 @@
         "function_name": "ModelClient.cpp:_ZN12bjorne_agent5model12_GLOBAL__N_110escapeJsonERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 52,
-        "line_end": 69,
+        "line_start": 53,
+        "line_end": 70,
         "line_count": 18,
         "line_hit": 18,
         "branch_count": 10,
@@ -995,8 +1022,8 @@
         "function_name": "ModelClient.cpp:_ZN12bjorne_agent5model12_GLOBAL__N_111messageJsonB5cxx11ERKNS0_12ModelMessageE"
       },
       {
-        "line_start": 44,
-        "line_end": 50,
+        "line_start": 45,
+        "line_end": 51,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 2,
@@ -1004,8 +1031,8 @@
         "function_name": "ModelClient.cpp:_ZN12bjorne_agent5model12_GLOBAL__N_112toolCallJsonB5cxx11ERKNS0_8ToolCallE"
       },
       {
-        "line_start": 120,
-        "line_end": 146,
+        "line_start": 121,
+        "line_end": 147,
         "line_count": 27,
         "line_hit": 27,
         "branch_count": 12,
@@ -1013,8 +1040,8 @@
         "function_name": "ModelClient.cpp:_ZN12bjorne_agent5model12_GLOBAL__N_117parseChatResponseERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERNS0_13ModelResponseERS7_"
       },
       {
-        "line_start": 88,
-        "line_end": 117,
+        "line_start": 89,
+        "line_end": 118,
         "line_count": 30,
         "line_hit": 30,
         "branch_count": 26,
@@ -1038,11 +1065,106 @@
     ]
   },
   {
+    "filename": "/home/runner/work/bjorne_agent/bjorne_agent/src/platform/Platform.h",
+    "function_coverage": [
+      {
+        "line_start": 153,
+        "line_end": 155,
+        "line_count": 3,
+        "line_hit": 3,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZN12bjorne_agent8platform9processIdEv"
+      },
+      {
+        "line_start": 126,
+        "line_end": 128,
+        "line_count": 3,
+        "line_hit": 3,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZN12bjorne_agent8platform17initializeSocketsEv"
+      },
+      {
+        "line_start": 130,
+        "line_end": 132,
+        "line_count": 3,
+        "line_hit": 3,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZN12bjorne_agent8platform13isValidSocketEi"
+      },
+      {
+        "line_start": 136,
+        "line_end": 143,
+        "line_count": 8,
+        "line_hit": 8,
+        "branch_count": 4,
+        "branch_hit": 3,
+        "function_name": "_ZN12bjorne_agent8platform22getEnvironmentVariableERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERS6_"
+      },
+      {
+        "line_start": 145,
+        "line_end": 147,
+        "line_count": 3,
+        "line_hit": 3,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZN12bjorne_agent8platform22setEnvironmentVariableERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_"
+      },
+      {
+        "line_start": 149,
+        "line_end": 151,
+        "line_count": 3,
+        "line_hit": 3,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZN12bjorne_agent8platform24unsetEnvironmentVariableERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
+      },
+      {
+        "line_start": 157,
+        "line_end": 159,
+        "line_count": 3,
+        "line_hit": 3,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZN12bjorne_agent8platform11closeSocketEi"
+      },
+      {
+        "line_start": 161,
+        "line_end": 163,
+        "line_count": 3,
+        "line_hit": 3,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZN12bjorne_agent8platform15addressToBinaryEiPKcPv"
+      },
+      {
+        "line_start": 165,
+        "line_end": 167,
+        "line_count": 3,
+        "line_hit": 3,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZN12bjorne_agent8platform13addressToTextEiPKvPcm"
+      },
+      {
+        "line_start": 169,
+        "line_end": 172,
+        "line_count": 4,
+        "line_hit": 4,
+        "branch_count": 2,
+        "branch_hit": 1,
+        "function_name": "_ZN12bjorne_agent8platform19addressErrorMessageB5cxx11Ei"
+      }
+    ]
+  },
+  {
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/src/tools/Tools.cpp",
     "function_coverage": [
       {
-        "line_start": 70,
-        "line_end": 70,
+        "line_start": 149,
+        "line_end": 149,
         "line_count": 1,
         "line_hit": 1,
         "branch_count": 0,
@@ -1050,8 +1172,8 @@
         "function_name": "_ZN12bjorne_agent5tools12ToolRegistryC2ENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 72,
-        "line_end": 81,
+        "line_start": 151,
+        "line_end": 160,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 2,
@@ -1059,8 +1181,8 @@
         "function_name": "_ZNK12bjorne_agent5tools12ToolRegistry7executeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_"
       },
       {
-        "line_start": 83,
-        "line_end": 97,
+        "line_start": 162,
+        "line_end": 176,
         "line_count": 15,
         "line_hit": 15,
         "branch_count": 8,
@@ -1068,17 +1190,17 @@
         "function_name": "_ZNK12bjorne_agent5tools12ToolRegistry8dispatchERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_"
       },
       {
-        "line_start": 99,
-        "line_end": 117,
+        "line_start": 178,
+        "line_end": 196,
         "line_count": 19,
         "line_hit": 19,
         "branch_count": 10,
-        "branch_hit": 8,
+        "branch_hit": 9,
         "function_name": "_ZNK12bjorne_agent5tools12ToolRegistry11resolvePathERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERS7_"
       },
       {
-        "line_start": 119,
-        "line_end": 140,
+        "line_start": 198,
+        "line_end": 219,
         "line_count": 22,
         "line_hit": 22,
         "branch_count": 8,
@@ -1086,8 +1208,8 @@
         "function_name": "_ZNK12bjorne_agent5tools12ToolRegistry8readFileERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 142,
-        "line_end": 174,
+        "line_start": 221,
+        "line_end": 253,
         "line_count": 33,
         "line_hit": 31,
         "branch_count": 14,
@@ -1095,8 +1217,8 @@
         "function_name": "_ZNK12bjorne_agent5tools12ToolRegistry9writeFileERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 176,
-        "line_end": 220,
+        "line_start": 255,
+        "line_end": 299,
         "line_count": 45,
         "line_hit": 43,
         "branch_count": 18,
@@ -1104,8 +1226,8 @@
         "function_name": "_ZNK12bjorne_agent5tools12ToolRegistry8editFileERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 222,
-        "line_end": 267,
+        "line_start": 301,
+        "line_end": 351,
         "line_count": 46,
         "line_hit": 40,
         "branch_count": 20,
@@ -1113,8 +1235,8 @@
         "function_name": "_ZNK12bjorne_agent5tools12ToolRegistry8runShellERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 269,
-        "line_end": 276,
+        "line_start": 353,
+        "line_end": 360,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -1122,8 +1244,8 @@
         "function_name": "_ZN12bjorne_agent5tools12ToolRegistry15definitionsJsonB5cxx11Ev"
       },
       {
-        "line_start": 42,
-        "line_end": 53,
+        "line_start": 82,
+        "line_end": 93,
         "line_count": 12,
         "line_hit": 12,
         "branch_count": 6,
@@ -1131,8 +1253,35 @@
         "function_name": "Tools.cpp:_ZN12bjorne_agent5tools12_GLOBAL__N_118hasParentTraversalERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 24,
-        "line_end": 31,
+        "line_start": 55,
+        "line_end": 62,
+        "line_count": 8,
+        "line_hit": 8,
+        "branch_count": 4,
+        "branch_hit": 4,
+        "function_name": "Tools.cpp:_ZN12bjorne_agent5tools12_GLOBAL__N_117nextPathSeparatorERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm"
+      },
+      {
+        "line_start": 66,
+        "line_end": 80,
+        "line_count": 9,
+        "line_hit": 7,
+        "branch_count": 4,
+        "branch_hit": 3,
+        "function_name": "Tools.cpp:_ZN12bjorne_agent5tools12_GLOBAL__N_114isAbsolutePathERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
+      },
+      {
+        "line_start": 47,
+        "line_end": 53,
+        "line_count": 4,
+        "line_hit": 4,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "Tools.cpp:_ZN12bjorne_agent5tools12_GLOBAL__N_115isPathSeparatorEc"
+      },
+      {
+        "line_start": 27,
+        "line_end": 34,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 2,
@@ -1140,8 +1289,8 @@
         "function_name": "Tools.cpp:_ZN12bjorne_agent5tools12_GLOBAL__N_114parseArgumentsERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERNS_4json5ValueE"
       },
       {
-        "line_start": 33,
-        "line_end": 40,
+        "line_start": 36,
+        "line_end": 43,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 4,
@@ -1149,13 +1298,31 @@
         "function_name": "Tools.cpp:_ZN12bjorne_agent5tools12_GLOBAL__N_19argStringERKNS_4json5ValueERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERSB_"
       },
       {
-        "line_start": 55,
-        "line_end": 66,
-        "line_count": 12,
-        "line_hit": 12,
+        "line_start": 95,
+        "line_end": 121,
+        "line_count": 13,
+        "line_hit": 13,
         "branch_count": 4,
         "branch_hit": 4,
         "function_name": "Tools.cpp:_ZN12bjorne_agent5tools12_GLOBAL__N_110shellQuoteERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
+      },
+      {
+        "line_start": 139,
+        "line_end": 145,
+        "line_count": 4,
+        "line_hit": 4,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "Tools.cpp:_ZN12bjorne_agent5tools12_GLOBAL__N_113openShellPipeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
+      },
+      {
+        "line_start": 126,
+        "line_end": 137,
+        "line_count": 8,
+        "line_hit": 6,
+        "branch_count": 2,
+        "branch_hit": 1,
+        "function_name": "Tools.cpp:_ZN12bjorne_agent5tools12_GLOBAL__N_113shellExitCodeEP8_IO_FILE"
       }
     ]
   },
@@ -1163,8 +1330,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/tests/agent/AgentLoopTest.cpp",
     "function_coverage": [
       {
-        "line_start": 86,
-        "line_end": 102,
+        "line_start": 87,
+        "line_end": 103,
         "line_count": 16,
         "line_hit": 16,
         "branch_count": 0,
@@ -1172,8 +1339,8 @@
         "function_name": "AgentLoopTest.cpp:_ZL22CATCH2_INTERNAL_TEST_0v"
       },
       {
-        "line_start": 20,
-        "line_end": 33,
+        "line_start": 21,
+        "line_end": 34,
         "line_count": 14,
         "line_hit": 11,
         "branch_count": 4,
@@ -1181,8 +1348,8 @@
         "function_name": "AgentLoopTest.cpp:_ZN12_GLOBAL__N_116MockModelBackend7respondERKSt6vectorIN12bjorne_agent5model12ModelMessageESaIS4_EERNS3_13ModelResponseERNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 65,
-        "line_end": 76,
+        "line_start": 66,
+        "line_end": 77,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
@@ -1190,8 +1357,8 @@
         "function_name": "AgentLoopTest.cpp:_ZN12_GLOBAL__N_18makeLoopESt10shared_ptrINS_16MockModelBackendEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEx"
       },
       {
-        "line_start": 104,
-        "line_end": 125,
+        "line_start": 105,
+        "line_end": 126,
         "line_count": 20,
         "line_hit": 20,
         "branch_count": 0,
@@ -1199,8 +1366,8 @@
         "function_name": "AgentLoopTest.cpp:_ZL22CATCH2_INTERNAL_TEST_2v"
       },
       {
-        "line_start": 43,
-        "line_end": 50,
+        "line_start": 44,
+        "line_end": 51,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 0,
@@ -1208,8 +1375,8 @@
         "function_name": "AgentLoopTest.cpp:_ZN12_GLOBAL__N_17TempDirC2Ev"
       },
       {
-        "line_start": 58,
-        "line_end": 58,
+        "line_start": 59,
+        "line_end": 59,
         "line_count": 1,
         "line_hit": 1,
         "branch_count": 0,
@@ -1217,8 +1384,8 @@
         "function_name": "AgentLoopTest.cpp:_ZNK12_GLOBAL__N_17TempDir3strB5cxx11Ev"
       },
       {
-        "line_start": 78,
-        "line_end": 82,
+        "line_start": 79,
+        "line_end": 83,
         "line_count": 5,
         "line_hit": 5,
         "branch_count": 0,
@@ -1226,8 +1393,8 @@
         "function_name": "AgentLoopTest.cpp:_ZN12_GLOBAL__N_112toolResponseERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_"
       },
       {
-        "line_start": 51,
-        "line_end": 54,
+        "line_start": 52,
+        "line_end": 55,
         "line_count": 4,
         "line_hit": 4,
         "branch_count": 0,
@@ -1235,8 +1402,8 @@
         "function_name": "AgentLoopTest.cpp:_ZN12_GLOBAL__N_17TempDirD2Ev"
       },
       {
-        "line_start": 127,
-        "line_end": 140,
+        "line_start": 128,
+        "line_end": 141,
         "line_count": 13,
         "line_hit": 13,
         "branch_count": 0,
@@ -1244,8 +1411,8 @@
         "function_name": "AgentLoopTest.cpp:_ZL22CATCH2_INTERNAL_TEST_4v"
       },
       {
-        "line_start": 142,
-        "line_end": 152,
+        "line_start": 143,
+        "line_end": 153,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -1253,8 +1420,8 @@
         "function_name": "AgentLoopTest.cpp:_ZL22CATCH2_INTERNAL_TEST_6v"
       },
       {
-        "line_start": 154,
-        "line_end": 165,
+        "line_start": 155,
+        "line_end": 166,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
@@ -1262,8 +1429,8 @@
         "function_name": "AgentLoopTest.cpp:_ZL22CATCH2_INTERNAL_TEST_8v"
       },
       {
-        "line_start": 167,
-        "line_end": 187,
+        "line_start": 168,
+        "line_end": 188,
         "line_count": 18,
         "line_hit": 18,
         "branch_count": 0,
@@ -1285,13 +1452,22 @@
         "function_name": "InvocationTest.cpp:_ZL22CATCH2_INTERNAL_TEST_0v"
       },
       {
-        "line_start": 21,
-        "line_end": 33,
-        "line_count": 13,
-        "line_hit": 11,
-        "branch_count": 4,
-        "branch_hit": 2,
+        "line_start": 22,
+        "line_end": 26,
+        "line_count": 5,
+        "line_hit": 5,
+        "branch_count": 0,
+        "branch_hit": 0,
         "function_name": "InvocationTest.cpp:_ZN12_GLOBAL__N_116EnvironmentGuardC2Ev"
+      },
+      {
+        "line_start": 38,
+        "line_end": 40,
+        "line_count": 3,
+        "line_hit": 3,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "InvocationTest.cpp:_ZN12_GLOBAL__N_116EnvironmentGuard4saveERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERNS0_5SavedE"
       },
       {
         "line_start": 57,
@@ -1339,13 +1515,22 @@
         "function_name": "InvocationTest.cpp:_ZN12_GLOBAL__N_17TempDirD2Ev"
       },
       {
-        "line_start": 34,
-        "line_end": 45,
-        "line_count": 12,
-        "line_hit": 9,
-        "branch_count": 4,
-        "branch_hit": 2,
+        "line_start": 27,
+        "line_end": 30,
+        "line_count": 4,
+        "line_hit": 4,
+        "branch_count": 0,
+        "branch_hit": 0,
         "function_name": "InvocationTest.cpp:_ZN12_GLOBAL__N_116EnvironmentGuardD2Ev"
+      },
+      {
+        "line_start": 42,
+        "line_end": 48,
+        "line_count": 7,
+        "line_hit": 7,
+        "branch_count": 2,
+        "branch_hit": 2,
+        "function_name": "InvocationTest.cpp:_ZN12_GLOBAL__N_116EnvironmentGuard7restoreERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS0_5SavedE"
       },
       {
         "line_start": 125,
@@ -1407,8 +1592,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/tests/config/ConfigPathsTest.cpp",
     "function_coverage": [
       {
-        "line_start": 94,
-        "line_end": 103,
+        "line_start": 91,
+        "line_end": 100,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -1416,26 +1601,44 @@
         "function_name": "ConfigPathsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_0v"
       },
       {
-        "line_start": 18,
-        "line_end": 36,
-        "line_count": 18,
-        "line_hit": 16,
-        "branch_count": 6,
-        "branch_hit": 3,
+        "line_start": 19,
+        "line_end": 27,
+        "line_count": 8,
+        "line_hit": 8,
+        "branch_count": 0,
+        "branch_hit": 0,
         "function_name": "ConfigPathsTest.cpp:_ZN12_GLOBAL__N_116EnvironmentGuardC2Ev"
       },
       {
-        "line_start": 37,
-        "line_end": 53,
-        "line_count": 17,
-        "line_hit": 12,
-        "branch_count": 6,
-        "branch_hit": 3,
+        "line_start": 42,
+        "line_end": 44,
+        "line_count": 3,
+        "line_hit": 3,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "ConfigPathsTest.cpp:_ZN12_GLOBAL__N_116EnvironmentGuard4saveERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERNS0_5SavedE"
+      },
+      {
+        "line_start": 28,
+        "line_end": 34,
+        "line_count": 7,
+        "line_hit": 7,
+        "branch_count": 0,
+        "branch_hit": 0,
         "function_name": "ConfigPathsTest.cpp:_ZN12_GLOBAL__N_116EnvironmentGuardD2Ev"
       },
       {
-        "line_start": 105,
-        "line_end": 113,
+        "line_start": 46,
+        "line_end": 52,
+        "line_count": 7,
+        "line_hit": 7,
+        "branch_count": 2,
+        "branch_hit": 2,
+        "function_name": "ConfigPathsTest.cpp:_ZN12_GLOBAL__N_116EnvironmentGuard7restoreERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS0_5SavedE"
+      },
+      {
+        "line_start": 102,
+        "line_end": 110,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -1443,8 +1646,8 @@
         "function_name": "ConfigPathsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_2v"
       },
       {
-        "line_start": 115,
-        "line_end": 124,
+        "line_start": 112,
+        "line_end": 120,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -1452,8 +1655,8 @@
         "function_name": "ConfigPathsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_4v"
       },
       {
-        "line_start": 126,
-        "line_end": 134,
+        "line_start": 122,
+        "line_end": 131,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -1461,8 +1664,8 @@
         "function_name": "ConfigPathsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_6v"
       },
       {
-        "line_start": 136,
-        "line_end": 146,
+        "line_start": 133,
+        "line_end": 145,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -1470,53 +1673,17 @@
         "function_name": "ConfigPathsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_8v"
       },
       {
-        "line_start": 148,
-        "line_end": 160,
-        "line_count": 11,
-        "line_hit": 11,
+        "line_start": 147,
+        "line_end": 157,
+        "line_count": 10,
+        "line_hit": 10,
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "ConfigPathsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_10v"
       },
       {
-        "line_start": 67,
-        "line_end": 72,
-        "line_count": 6,
-        "line_hit": 6,
-        "branch_count": 0,
-        "branch_hit": 0,
-        "function_name": "ConfigPathsTest.cpp:_ZN12_GLOBAL__N_17TempDirC2Ev"
-      },
-      {
-        "line_start": 80,
-        "line_end": 80,
-        "line_count": 1,
-        "line_hit": 1,
-        "branch_count": 0,
-        "branch_hit": 0,
-        "function_name": "ConfigPathsTest.cpp:_ZNK12_GLOBAL__N_17TempDir3strB5cxx11Ev"
-      },
-      {
-        "line_start": 86,
-        "line_end": 90,
-        "line_count": 5,
-        "line_hit": 5,
-        "branch_count": 0,
-        "branch_hit": 0,
-        "function_name": "ConfigPathsTest.cpp:_ZN12_GLOBAL__N_19writeFileERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
-      },
-      {
-        "line_start": 73,
-        "line_end": 76,
-        "line_count": 4,
-        "line_hit": 4,
-        "branch_count": 0,
-        "branch_hit": 0,
-        "function_name": "ConfigPathsTest.cpp:_ZN12_GLOBAL__N_17TempDirD2Ev"
-      },
-      {
-        "line_start": 162,
-        "line_end": 174,
+        "line_start": 159,
+        "line_end": 171,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
@@ -1524,31 +1691,76 @@
         "function_name": "ConfigPathsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_12v"
       },
       {
-        "line_start": 176,
-        "line_end": 191,
-        "line_count": 14,
-        "line_hit": 14,
+        "line_start": 64,
+        "line_end": 69,
+        "line_count": 6,
+        "line_hit": 6,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "ConfigPathsTest.cpp:_ZN12_GLOBAL__N_17TempDirC2Ev"
+      },
+      {
+        "line_start": 77,
+        "line_end": 77,
+        "line_count": 1,
+        "line_hit": 1,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "ConfigPathsTest.cpp:_ZNK12_GLOBAL__N_17TempDir3strB5cxx11Ev"
+      },
+      {
+        "line_start": 83,
+        "line_end": 87,
+        "line_count": 5,
+        "line_hit": 5,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "ConfigPathsTest.cpp:_ZN12_GLOBAL__N_19writeFileERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
+      },
+      {
+        "line_start": 70,
+        "line_end": 73,
+        "line_count": 4,
+        "line_hit": 4,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "ConfigPathsTest.cpp:_ZN12_GLOBAL__N_17TempDirD2Ev"
+      },
+      {
+        "line_start": 173,
+        "line_end": 185,
+        "line_count": 11,
+        "line_hit": 11,
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "ConfigPathsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_14v"
       },
       {
-        "line_start": 193,
-        "line_end": 206,
-        "line_count": 13,
-        "line_hit": 13,
+        "line_start": 187,
+        "line_end": 202,
+        "line_count": 14,
+        "line_hit": 14,
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "ConfigPathsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_16v"
       },
       {
-        "line_start": 208,
-        "line_end": 213,
+        "line_start": 204,
+        "line_end": 217,
+        "line_count": 13,
+        "line_hit": 13,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "ConfigPathsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_18v"
+      },
+      {
+        "line_start": 219,
+        "line_end": 224,
         "line_count": 5,
         "line_hit": 5,
         "branch_count": 0,
         "branch_hit": 0,
-        "function_name": "ConfigPathsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_18v"
+        "function_name": "ConfigPathsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_20v"
       }
     ]
   },
@@ -1556,8 +1768,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/tests/config/ConfigTest.cpp",
     "function_coverage": [
       {
-        "line_start": 36,
-        "line_end": 76,
+        "line_start": 38,
+        "line_end": 78,
         "line_count": 40,
         "line_hit": 40,
         "branch_count": 0,
@@ -1565,8 +1777,8 @@
         "function_name": "ConfigTest.cpp:_ZL22CATCH2_INTERNAL_TEST_0v"
       },
       {
-        "line_start": 25,
-        "line_end": 32,
+        "line_start": 27,
+        "line_end": 34,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 2,
@@ -1574,8 +1786,8 @@
         "function_name": "ConfigTest.cpp:_ZN12_GLOBAL__N_110loadConfigERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERS5_"
       },
       {
-        "line_start": 20,
-        "line_end": 23,
+        "line_start": 22,
+        "line_end": 25,
         "line_count": 4,
         "line_hit": 4,
         "branch_count": 0,
@@ -1583,8 +1795,8 @@
         "function_name": "ConfigTest.cpp:_ZN12_GLOBAL__N_111writeConfigERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 78,
-        "line_end": 88,
+        "line_start": 80,
+        "line_end": 90,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -1592,8 +1804,8 @@
         "function_name": "ConfigTest.cpp:_ZL22CATCH2_INTERNAL_TEST_2v"
       },
       {
-        "line_start": 90,
-        "line_end": 95,
+        "line_start": 92,
+        "line_end": 97,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 0,
@@ -1601,8 +1813,8 @@
         "function_name": "ConfigTest.cpp:_ZL22CATCH2_INTERNAL_TEST_4v"
       },
       {
-        "line_start": 97,
-        "line_end": 101,
+        "line_start": 99,
+        "line_end": 103,
         "line_count": 5,
         "line_hit": 5,
         "branch_count": 0,
@@ -1610,8 +1822,8 @@
         "function_name": "ConfigTest.cpp:_ZL22CATCH2_INTERNAL_TEST_6v"
       },
       {
-        "line_start": 103,
-        "line_end": 107,
+        "line_start": 105,
+        "line_end": 109,
         "line_count": 5,
         "line_hit": 5,
         "branch_count": 0,
@@ -1619,8 +1831,8 @@
         "function_name": "ConfigTest.cpp:_ZL22CATCH2_INTERNAL_TEST_8v"
       },
       {
-        "line_start": 109,
-        "line_end": 113,
+        "line_start": 111,
+        "line_end": 115,
         "line_count": 5,
         "line_hit": 5,
         "branch_count": 0,
@@ -1628,8 +1840,8 @@
         "function_name": "ConfigTest.cpp:_ZL23CATCH2_INTERNAL_TEST_10v"
       },
       {
-        "line_start": 115,
-        "line_end": 121,
+        "line_start": 117,
+        "line_end": 123,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
@@ -1637,8 +1849,8 @@
         "function_name": "ConfigTest.cpp:_ZL23CATCH2_INTERNAL_TEST_12v"
       },
       {
-        "line_start": 123,
-        "line_end": 141,
+        "line_start": 125,
+        "line_end": 143,
         "line_count": 18,
         "line_hit": 18,
         "branch_count": 0,
@@ -1818,8 +2030,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/tests/http/DnsResponseTest.cpp",
     "function_coverage": [
       {
-        "line_start": 84,
-        "line_end": 96,
+        "line_start": 91,
+        "line_end": 103,
         "line_count": 12,
         "line_hit": 12,
         "branch_count": 0,
@@ -1827,8 +2039,8 @@
         "function_name": "DnsResponseTest.cpp:_ZL22CATCH2_INTERNAL_TEST_0v"
       },
       {
-        "line_start": 34,
-        "line_end": 43,
+        "line_start": 41,
+        "line_end": 50,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -1836,8 +2048,8 @@
         "function_name": "DnsResponseTest.cpp:_ZN12_GLOBAL__N_16headerEii"
       },
       {
-        "line_start": 16,
-        "line_end": 19,
+        "line_start": 23,
+        "line_end": 26,
         "line_count": 4,
         "line_hit": 4,
         "branch_count": 0,
@@ -1845,8 +2057,8 @@
         "function_name": "DnsResponseTest.cpp:_ZN12_GLOBAL__N_17pushU16ERSt6vectorIhSaIhEEj"
       },
       {
-        "line_start": 46,
-        "line_end": 50,
+        "line_start": 53,
+        "line_end": 57,
         "line_count": 5,
         "line_hit": 5,
         "branch_count": 0,
@@ -1854,8 +2066,8 @@
         "function_name": "DnsResponseTest.cpp:_ZN12_GLOBAL__N_112pushQuestionERSt6vectorIhSaIhEE"
       },
       {
-        "line_start": 21,
-        "line_end": 32,
+        "line_start": 28,
+        "line_end": 39,
         "line_count": 12,
         "line_hit": 12,
         "branch_count": 4,
@@ -1863,8 +2075,8 @@
         "function_name": "DnsResponseTest.cpp:_ZN12_GLOBAL__N_18pushNameERSt6vectorIhSaIhEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 53,
-        "line_end": 61,
+        "line_start": 60,
+        "line_end": 68,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -1872,8 +2084,8 @@
         "function_name": "DnsResponseTest.cpp:_ZN12_GLOBAL__N_116pushRecordHeaderERSt6vectorIhSaIhEEjjj"
       },
       {
-        "line_start": 63,
-        "line_end": 73,
+        "line_start": 70,
+        "line_end": 80,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 2,
@@ -1881,8 +2093,8 @@
         "function_name": "DnsResponseTest.cpp:_ZN12_GLOBAL__N_111addressTextB5cxx11ERKN12bjorne_agent4http15ResolvedAddressE"
       },
       {
-        "line_start": 75,
-        "line_end": 80,
+        "line_start": 82,
+        "line_end": 87,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 2,
@@ -1890,8 +2102,8 @@
         "function_name": "DnsResponseTest.cpp:_ZN12_GLOBAL__N_16portOfERKN12bjorne_agent4http15ResolvedAddressE"
       },
       {
-        "line_start": 98,
-        "line_end": 111,
+        "line_start": 105,
+        "line_end": 118,
         "line_count": 13,
         "line_hit": 13,
         "branch_count": 0,
@@ -1899,8 +2111,8 @@
         "function_name": "DnsResponseTest.cpp:_ZL22CATCH2_INTERNAL_TEST_2v"
       },
       {
-        "line_start": 113,
-        "line_end": 127,
+        "line_start": 120,
+        "line_end": 134,
         "line_count": 14,
         "line_hit": 14,
         "branch_count": 0,
@@ -1908,8 +2120,8 @@
         "function_name": "DnsResponseTest.cpp:_ZL22CATCH2_INTERNAL_TEST_4v"
       },
       {
-        "line_start": 129,
-        "line_end": 144,
+        "line_start": 136,
+        "line_end": 151,
         "line_count": 15,
         "line_hit": 15,
         "branch_count": 0,
@@ -1917,8 +2129,8 @@
         "function_name": "DnsResponseTest.cpp:_ZL22CATCH2_INTERNAL_TEST_6v"
       },
       {
-        "line_start": 146,
-        "line_end": 151,
+        "line_start": 153,
+        "line_end": 158,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 0,
@@ -1926,8 +2138,8 @@
         "function_name": "DnsResponseTest.cpp:_ZL22CATCH2_INTERNAL_TEST_8v"
       },
       {
-        "line_start": 153,
-        "line_end": 159,
+        "line_start": 160,
+        "line_end": 166,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 0,
@@ -1935,8 +2147,8 @@
         "function_name": "DnsResponseTest.cpp:_ZL23CATCH2_INTERNAL_TEST_10v"
       },
       {
-        "line_start": 161,
-        "line_end": 168,
+        "line_start": 168,
+        "line_end": 175,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
@@ -1944,8 +2156,8 @@
         "function_name": "DnsResponseTest.cpp:_ZL23CATCH2_INTERNAL_TEST_12v"
       },
       {
-        "line_start": 170,
-        "line_end": 178,
+        "line_start": 177,
+        "line_end": 185,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -1953,8 +2165,8 @@
         "function_name": "DnsResponseTest.cpp:_ZL23CATCH2_INTERNAL_TEST_14v"
       },
       {
-        "line_start": 180,
-        "line_end": 187,
+        "line_start": 187,
+        "line_end": 194,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
@@ -1962,8 +2174,8 @@
         "function_name": "DnsResponseTest.cpp:_ZL23CATCH2_INTERNAL_TEST_16v"
       },
       {
-        "line_start": 189,
-        "line_end": 196,
+        "line_start": 196,
+        "line_end": 203,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
@@ -1971,8 +2183,8 @@
         "function_name": "DnsResponseTest.cpp:_ZL23CATCH2_INTERNAL_TEST_18v"
       },
       {
-        "line_start": 198,
-        "line_end": 205,
+        "line_start": 205,
+        "line_end": 212,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
@@ -2233,8 +2445,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/tests/http/LoopbackServer.h",
     "function_coverage": [
       {
-        "line_start": 39,
-        "line_end": 45,
+        "line_start": 70,
+        "line_end": 76,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 4,
@@ -2242,8 +2454,8 @@
         "function_name": "_ZN17bjorne_agent_test14LoopbackServerC2ENS0_4ModeE"
       },
       {
-        "line_start": 250,
-        "line_end": 281,
+        "line_start": 292,
+        "line_end": 323,
         "line_count": 31,
         "line_hit": 22,
         "branch_count": 12,
@@ -2251,17 +2463,17 @@
         "function_name": "_ZN17bjorne_agent_test14LoopbackServer15makeCertificateEv"
       },
       {
-        "line_start": 83,
-        "line_end": 110,
-        "line_count": 26,
-        "line_hit": 16,
+        "line_start": 114,
+        "line_end": 142,
+        "line_count": 27,
+        "line_hit": 17,
         "branch_count": 8,
         "branch_hit": 4,
         "function_name": "_ZN17bjorne_agent_test14LoopbackServer12openListenerEv"
       },
       {
-        "line_start": 46,
-        "line_end": 47,
+        "line_start": 77,
+        "line_end": 78,
         "line_count": 2,
         "line_hit": 2,
         "branch_count": 0,
@@ -2269,17 +2481,17 @@
         "function_name": "_ZZN17bjorne_agent_test14LoopbackServerC1ENS0_4ModeEENKUlvE_clEv"
       },
       {
-        "line_start": 126,
-        "line_end": 150,
-        "line_count": 24,
-        "line_hit": 20,
+        "line_start": 158,
+        "line_end": 181,
+        "line_count": 23,
+        "line_hit": 19,
         "branch_count": 10,
         "branch_hit": 8,
         "function_name": "_ZN17bjorne_agent_test14LoopbackServer5serveEv"
       },
       {
-        "line_start": 112,
-        "line_end": 124,
+        "line_start": 144,
+        "line_end": 156,
         "line_count": 13,
         "line_hit": 10,
         "branch_count": 10,
@@ -2287,8 +2499,26 @@
         "function_name": "_ZN17bjorne_agent_test14LoopbackServer12acceptClientEv"
       },
       {
-        "line_start": 173,
-        "line_end": 200,
+        "line_start": 51,
+        "line_end": 53,
+        "line_count": 3,
+        "line_hit": 3,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZN17bjorne_agent_test11pollSocketsEP6pollfdii"
+      },
+      {
+        "line_start": 191,
+        "line_end": 199,
+        "line_count": 5,
+        "line_hit": 5,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZN17bjorne_agent_test14LoopbackServer17setReceiveTimeoutEi"
+      },
+      {
+        "line_start": 215,
+        "line_end": 242,
         "line_count": 28,
         "line_hit": 24,
         "branch_count": 10,
@@ -2296,8 +2526,8 @@
         "function_name": "_ZN17bjorne_agent_test14LoopbackServer8serveTlsEi"
       },
       {
-        "line_start": 216,
-        "line_end": 238,
+        "line_start": 258,
+        "line_end": 280,
         "line_count": 23,
         "line_hit": 21,
         "branch_count": 10,
@@ -2305,8 +2535,8 @@
         "function_name": "_ZN17bjorne_agent_test14LoopbackServer11readRequestEiP6ssl_st"
       },
       {
-        "line_start": 204,
-        "line_end": 213,
+        "line_start": 246,
+        "line_end": 255,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 2,
@@ -2314,8 +2544,8 @@
         "function_name": "_ZN17bjorne_agent_test14LoopbackServer8readFromEiP6ssl_stPci"
       },
       {
-        "line_start": 240,
-        "line_end": 247,
+        "line_start": 282,
+        "line_end": 289,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 2,
@@ -2323,8 +2553,8 @@
         "function_name": "_ZN17bjorne_agent_test14LoopbackServer18parseContentLengthERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 154,
-        "line_end": 157,
+        "line_start": 185,
+        "line_end": 188,
         "line_count": 4,
         "line_hit": 4,
         "branch_count": 0,
@@ -2332,8 +2562,8 @@
         "function_name": "_ZN17bjorne_agent_test14LoopbackServer12prepareResetEi"
       },
       {
-        "line_start": 159,
-        "line_end": 170,
+        "line_start": 201,
+        "line_end": 212,
         "line_count": 12,
         "line_hit": 10,
         "branch_count": 4,
@@ -2341,8 +2571,8 @@
         "function_name": "_ZN17bjorne_agent_test14LoopbackServer10servePlainEi"
       },
       {
-        "line_start": 72,
-        "line_end": 72,
+        "line_start": 103,
+        "line_end": 103,
         "line_count": 1,
         "line_hit": 1,
         "branch_count": 0,
@@ -2350,8 +2580,8 @@
         "function_name": "_ZN17bjorne_agent_test14LoopbackServer11setResponseENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 70,
-        "line_end": 70,
+        "line_start": 101,
+        "line_end": 101,
         "line_count": 1,
         "line_hit": 1,
         "branch_count": 0,
@@ -2359,8 +2589,8 @@
         "function_name": "_ZNK17bjorne_agent_test14LoopbackServer4portB5cxx11Ev"
       },
       {
-        "line_start": 75,
-        "line_end": 80,
+        "line_start": 106,
+        "line_end": 111,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 2,
@@ -2368,8 +2598,8 @@
         "function_name": "_ZN17bjorne_agent_test14LoopbackServer4waitEv"
       },
       {
-        "line_start": 71,
-        "line_end": 71,
+        "line_start": 102,
+        "line_end": 102,
         "line_count": 1,
         "line_hit": 1,
         "branch_count": 0,
@@ -2377,8 +2607,8 @@
         "function_name": "_ZNK17bjorne_agent_test14LoopbackServer7requestB5cxx11Ev"
       },
       {
-        "line_start": 49,
-        "line_end": 65,
+        "line_start": 80,
+        "line_end": 96,
         "line_count": 17,
         "line_hit": 17,
         "branch_count": 8,
@@ -2391,8 +2621,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/tests/http/ResolverTest.cpp",
     "function_coverage": [
       {
-        "line_start": 38,
-        "line_end": 47,
+        "line_start": 44,
+        "line_end": 53,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -2400,8 +2630,8 @@
         "function_name": "ResolverTest.cpp:_ZL22CATCH2_INTERNAL_TEST_0v"
       },
       {
-        "line_start": 17,
-        "line_end": 27,
+        "line_start": 23,
+        "line_end": 33,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 2,
@@ -2409,8 +2639,8 @@
         "function_name": "ResolverTest.cpp:_ZN12_GLOBAL__N_111addressTextB5cxx11ERKN12bjorne_agent4http15ResolvedAddressE"
       },
       {
-        "line_start": 29,
-        "line_end": 34,
+        "line_start": 35,
+        "line_end": 40,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 2,
@@ -2418,8 +2648,8 @@
         "function_name": "ResolverTest.cpp:_ZN12_GLOBAL__N_16portOfERKN12bjorne_agent4http15ResolvedAddressE"
       },
       {
-        "line_start": 49,
-        "line_end": 58,
+        "line_start": 55,
+        "line_end": 64,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -2427,8 +2657,8 @@
         "function_name": "ResolverTest.cpp:_ZL22CATCH2_INTERNAL_TEST_2v"
       },
       {
-        "line_start": 60,
-        "line_end": 66,
+        "line_start": 66,
+        "line_end": 72,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
@@ -2436,8 +2666,8 @@
         "function_name": "ResolverTest.cpp:_ZL22CATCH2_INTERNAL_TEST_4v"
       },
       {
-        "line_start": 68,
-        "line_end": 73,
+        "line_start": 74,
+        "line_end": 79,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 0,
@@ -2445,8 +2675,8 @@
         "function_name": "ResolverTest.cpp:_ZL22CATCH2_INTERNAL_TEST_6v"
       },
       {
-        "line_start": 75,
-        "line_end": 80,
+        "line_start": 81,
+        "line_end": 86,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 0,
@@ -2454,8 +2684,8 @@
         "function_name": "ResolverTest.cpp:_ZL22CATCH2_INTERNAL_TEST_8v"
       },
       {
-        "line_start": 82,
-        "line_end": 87,
+        "line_start": 88,
+        "line_end": 93,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 0,
@@ -2463,8 +2693,8 @@
         "function_name": "ResolverTest.cpp:_ZL23CATCH2_INTERNAL_TEST_10v"
       },
       {
-        "line_start": 89,
-        "line_end": 99,
+        "line_start": 95,
+        "line_end": 105,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 10,
@@ -2472,8 +2702,8 @@
         "function_name": "ResolverTest.cpp:_ZL23CATCH2_INTERNAL_TEST_12v"
       },
       {
-        "line_start": 101,
-        "line_end": 108,
+        "line_start": 107,
+        "line_end": 114,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -2852,8 +3082,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/tests/model/ModelClientTest.cpp",
     "function_coverage": [
       {
-        "line_start": 58,
-        "line_end": 77,
+        "line_start": 60,
+        "line_end": 79,
         "line_count": 19,
         "line_hit": 19,
         "branch_count": 0,
@@ -2861,8 +3091,8 @@
         "function_name": "ModelClientTest.cpp:_ZL22CATCH2_INTERNAL_TEST_0v"
       },
       {
-        "line_start": 39,
-        "line_end": 43,
+        "line_start": 41,
+        "line_end": 45,
         "line_count": 5,
         "line_hit": 5,
         "branch_count": 0,
@@ -2870,8 +3100,8 @@
         "function_name": "ModelClientTest.cpp:_ZN12_GLOBAL__N_18makeMockERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 19,
-        "line_end": 29,
+        "line_start": 21,
+        "line_end": 31,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 2,
@@ -2879,8 +3109,8 @@
         "function_name": "ModelClientTest.cpp:_ZN12_GLOBAL__N_113MockTransport4sendERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_S8_RS6_S9_"
       },
       {
-        "line_start": 45,
-        "line_end": 47,
+        "line_start": 47,
+        "line_end": 49,
         "line_count": 3,
         "line_hit": 3,
         "branch_count": 0,
@@ -2888,8 +3118,8 @@
         "function_name": "ModelClientTest.cpp:_ZN12_GLOBAL__N_110okResponseERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 49,
-        "line_end": 54,
+        "line_start": 51,
+        "line_end": 56,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 0,
@@ -2897,8 +3127,8 @@
         "function_name": "ModelClientTest.cpp:_ZN12_GLOBAL__N_17messageERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_"
       },
       {
-        "line_start": 79,
-        "line_end": 94,
+        "line_start": 81,
+        "line_end": 96,
         "line_count": 15,
         "line_hit": 15,
         "branch_count": 0,
@@ -2906,8 +3136,8 @@
         "function_name": "ModelClientTest.cpp:_ZL22CATCH2_INTERNAL_TEST_2v"
       },
       {
-        "line_start": 96,
-        "line_end": 112,
+        "line_start": 98,
+        "line_end": 114,
         "line_count": 15,
         "line_hit": 15,
         "branch_count": 0,
@@ -2915,8 +3145,8 @@
         "function_name": "ModelClientTest.cpp:_ZL22CATCH2_INTERNAL_TEST_4v"
       },
       {
-        "line_start": 114,
-        "line_end": 125,
+        "line_start": 116,
+        "line_end": 127,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
@@ -2924,8 +3154,8 @@
         "function_name": "ModelClientTest.cpp:_ZL22CATCH2_INTERNAL_TEST_6v"
       },
       {
-        "line_start": 127,
-        "line_end": 138,
+        "line_start": 129,
+        "line_end": 140,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
@@ -2933,8 +3163,8 @@
         "function_name": "ModelClientTest.cpp:_ZL22CATCH2_INTERNAL_TEST_8v"
       },
       {
-        "line_start": 140,
-        "line_end": 150,
+        "line_start": 142,
+        "line_end": 152,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -2942,8 +3172,8 @@
         "function_name": "ModelClientTest.cpp:_ZL23CATCH2_INTERNAL_TEST_10v"
       },
       {
-        "line_start": 152,
-        "line_end": 162,
+        "line_start": 154,
+        "line_end": 164,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -2951,8 +3181,8 @@
         "function_name": "ModelClientTest.cpp:_ZL23CATCH2_INTERNAL_TEST_12v"
       },
       {
-        "line_start": 164,
-        "line_end": 174,
+        "line_start": 166,
+        "line_end": 176,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -2960,8 +3190,8 @@
         "function_name": "ModelClientTest.cpp:_ZL23CATCH2_INTERNAL_TEST_14v"
       },
       {
-        "line_start": 176,
-        "line_end": 188,
+        "line_start": 178,
+        "line_end": 190,
         "line_count": 12,
         "line_hit": 12,
         "branch_count": 0,
@@ -2969,8 +3199,8 @@
         "function_name": "ModelClientTest.cpp:_ZL23CATCH2_INTERNAL_TEST_16v"
       },
       {
-        "line_start": 190,
-        "line_end": 206,
+        "line_start": 192,
+        "line_end": 208,
         "line_count": 15,
         "line_hit": 15,
         "branch_count": 0,
@@ -2978,8 +3208,8 @@
         "function_name": "ModelClientTest.cpp:_ZL23CATCH2_INTERNAL_TEST_18v"
       },
       {
-        "line_start": 208,
-        "line_end": 221,
+        "line_start": 210,
+        "line_end": 223,
         "line_count": 12,
         "line_hit": 12,
         "branch_count": 0,
@@ -2987,8 +3217,8 @@
         "function_name": "ModelClientTest.cpp:_ZL23CATCH2_INTERNAL_TEST_20v"
       },
       {
-        "line_start": 223,
-        "line_end": 236,
+        "line_start": 225,
+        "line_end": 238,
         "line_count": 13,
         "line_hit": 13,
         "branch_count": 0,
@@ -2996,8 +3226,8 @@
         "function_name": "ModelClientTest.cpp:_ZL23CATCH2_INTERNAL_TEST_22v"
       },
       {
-        "line_start": 238,
-        "line_end": 249,
+        "line_start": 240,
+        "line_end": 251,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
@@ -3005,8 +3235,8 @@
         "function_name": "ModelClientTest.cpp:_ZL23CATCH2_INTERNAL_TEST_24v"
       },
       {
-        "line_start": 251,
-        "line_end": 261,
+        "line_start": 253,
+        "line_end": 263,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -3014,8 +3244,8 @@
         "function_name": "ModelClientTest.cpp:_ZL23CATCH2_INTERNAL_TEST_26v"
       },
       {
-        "line_start": 263,
-        "line_end": 283,
+        "line_start": 265,
+        "line_end": 285,
         "line_count": 19,
         "line_hit": 19,
         "branch_count": 0,
@@ -3023,8 +3253,8 @@
         "function_name": "ModelClientTest.cpp:_ZL23CATCH2_INTERNAL_TEST_28v"
       },
       {
-        "line_start": 285,
-        "line_end": 297,
+        "line_start": 287,
+        "line_end": 299,
         "line_count": 12,
         "line_hit": 12,
         "branch_count": 0,
@@ -3032,8 +3262,8 @@
         "function_name": "ModelClientTest.cpp:_ZL23CATCH2_INTERNAL_TEST_30v"
       },
       {
-        "line_start": 299,
-        "line_end": 310,
+        "line_start": 301,
+        "line_end": 312,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
@@ -3041,8 +3271,8 @@
         "function_name": "ModelClientTest.cpp:_ZL23CATCH2_INTERNAL_TEST_32v"
       },
       {
-        "line_start": 313,
-        "line_end": 338,
+        "line_start": 315,
+        "line_end": 340,
         "line_count": 22,
         "line_hit": 22,
         "branch_count": 0,
@@ -3055,8 +3285,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/tests/tools/ToolsTest.cpp",
     "function_coverage": [
       {
-        "line_start": 40,
-        "line_end": 48,
+        "line_start": 42,
+        "line_end": 50,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -3064,8 +3294,8 @@
         "function_name": "ToolsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_0v"
       },
       {
-        "line_start": 17,
-        "line_end": 24,
+        "line_start": 19,
+        "line_end": 26,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 0,
@@ -3073,8 +3303,8 @@
         "function_name": "ToolsTest.cpp:_ZN12_GLOBAL__N_17TempDirC2Ev"
       },
       {
-        "line_start": 32,
-        "line_end": 32,
+        "line_start": 34,
+        "line_end": 34,
         "line_count": 1,
         "line_hit": 1,
         "branch_count": 0,
@@ -3082,8 +3312,8 @@
         "function_name": "ToolsTest.cpp:_ZNK12_GLOBAL__N_17TempDir3strB5cxx11Ev"
       },
       {
-        "line_start": 25,
-        "line_end": 28,
+        "line_start": 27,
+        "line_end": 30,
         "line_count": 4,
         "line_hit": 4,
         "branch_count": 0,
@@ -3091,8 +3321,8 @@
         "function_name": "ToolsTest.cpp:_ZN12_GLOBAL__N_17TempDirD2Ev"
       },
       {
-        "line_start": 50,
-        "line_end": 59,
+        "line_start": 52,
+        "line_end": 61,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -3100,8 +3330,8 @@
         "function_name": "ToolsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_2v"
       },
       {
-        "line_start": 61,
-        "line_end": 72,
+        "line_start": 63,
+        "line_end": 74,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -3109,8 +3339,8 @@
         "function_name": "ToolsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_4v"
       },
       {
-        "line_start": 74,
-        "line_end": 82,
+        "line_start": 76,
+        "line_end": 84,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -3118,17 +3348,17 @@
         "function_name": "ToolsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_6v"
       },
       {
-        "line_start": 84,
-        "line_end": 91,
-        "line_count": 8,
-        "line_hit": 8,
+        "line_start": 86,
+        "line_end": 98,
+        "line_count": 10,
+        "line_hit": 10,
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "ToolsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_8v"
       },
       {
-        "line_start": 93,
-        "line_end": 99,
+        "line_start": 100,
+        "line_end": 106,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
@@ -3136,17 +3366,17 @@
         "function_name": "ToolsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_10v"
       },
       {
-        "line_start": 101,
-        "line_end": 107,
-        "line_count": 7,
-        "line_hit": 7,
+        "line_start": 108,
+        "line_end": 121,
+        "line_count": 11,
+        "line_hit": 11,
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "ToolsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_12v"
       },
       {
-        "line_start": 109,
-        "line_end": 115,
+        "line_start": 123,
+        "line_end": 129,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
@@ -3154,8 +3384,8 @@
         "function_name": "ToolsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_14v"
       },
       {
-        "line_start": 117,
-        "line_end": 123,
+        "line_start": 131,
+        "line_end": 137,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
@@ -3163,58 +3393,67 @@
         "function_name": "ToolsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_16v"
       },
       {
-        "line_start": 125,
-        "line_end": 134,
-        "line_count": 9,
-        "line_hit": 9,
+        "line_start": 139,
+        "line_end": 145,
+        "line_count": 7,
+        "line_hit": 7,
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "ToolsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_18v"
       },
       {
-        "line_start": 136,
-        "line_end": 143,
-        "line_count": 8,
-        "line_hit": 8,
+        "line_start": 147,
+        "line_end": 161,
+        "line_count": 11,
+        "line_hit": 11,
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "ToolsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_20v"
       },
       {
-        "line_start": 145,
-        "line_end": 162,
-        "line_count": 14,
-        "line_hit": 14,
+        "line_start": 163,
+        "line_end": 176,
+        "line_count": 10,
+        "line_hit": 10,
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "ToolsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_22v"
       },
       {
-        "line_start": 164,
-        "line_end": 171,
-        "line_count": 7,
-        "line_hit": 7,
+        "line_start": 178,
+        "line_end": 195,
+        "line_count": 14,
+        "line_hit": 14,
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "ToolsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_24v"
       },
       {
-        "line_start": 173,
-        "line_end": 191,
-        "line_count": 16,
-        "line_hit": 16,
+        "line_start": 197,
+        "line_end": 204,
+        "line_count": 7,
+        "line_hit": 7,
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "ToolsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_26v"
       },
       {
-        "line_start": 193,
-        "line_end": 209,
+        "line_start": 206,
+        "line_end": 224,
+        "line_count": 16,
+        "line_hit": 16,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "ToolsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_28v"
+      },
+      {
+        "line_start": 226,
+        "line_end": 242,
         "line_count": 16,
         "line_hit": 16,
         "branch_count": 2,
         "branch_hit": 2,
-        "function_name": "ToolsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_28v"
+        "function_name": "ToolsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_30v"
       }
     ]
   },

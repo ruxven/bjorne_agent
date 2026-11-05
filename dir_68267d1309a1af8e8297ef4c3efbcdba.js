@@ -8,6 +8,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "json", "dir_da4c9dd239018fe26269ba2e1cf7c9a1.html", "dir_da4c9dd239018fe26269ba2e1cf7c9a1" ],
     [ "log", "dir_2241064965c8d9ca993f08b926076f7d.html", "dir_2241064965c8d9ca993f08b926076f7d" ],
     [ "model", "dir_5dd65160827af56e6353642206b80129.html", "dir_5dd65160827af56e6353642206b80129" ],
+    [ "platform", "dir_4b68c2fef3e151b6b93d5e93b14f1857.html", "dir_4b68c2fef3e151b6b93d5e93b14f1857" ],
     [ "tools", "dir_1563a38af0d3a5e4a6330d6d45e9792a.html", "dir_1563a38af0d3a5e4a6330d6d45e9792a" ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ]
 ];
