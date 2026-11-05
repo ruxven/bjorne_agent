@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cctype>
 #include <cstdlib>
 #include <fstream>
 #include <functional>
@@ -15,6 +16,7 @@
 #include "context/ContextManager.h"
 #include "log/Log.h"
 #include "model/ModelClient.h"
+#include "platform/Platform.h"
 #include "tools/Tools.h"
 
 namespace {
@@ -36,11 +38,47 @@ bool readTextFile(const std::string& path, std::string& out) {
   return true;
 }
 
+// Windows accepts either separator; POSIX has only the forward slash, and a
+// backslash is an ordinary character in a POSIX file name.
+bool isPathSeparator(char c) {
+#if defined(_WIN32)
+  return c == '/' || c == '\\';
+#else
+  return c == '/';
+#endif
+}
+
+// True for a path that starts at the root: /dir on POSIX, C:\dir or \\server
+// on Windows.
+bool isAbsolutePath(const std::string& path) {
+  if (path.empty()) {
+    return false;
+  }
+  if (isPathSeparator(path.front())) {
+    return true;
+  }
+#if defined(_WIN32)
+  if (path.size() >= 3 && std::isalpha(static_cast<unsigned char>(path[0])) != 0 && path[1] == ':' &&
+      isPathSeparator(path[2])) {
+    return true;
+  }
+#endif
+  return false;
+}
+
+size_t lastPathSeparator(const std::string& path) {
+#if defined(_WIN32)
+  return path.find_last_of("/\\");
+#else
+  return path.find_last_of('/');
+#endif
+}
+
 std::string resolveAgainstConfig(const std::string& configPath, const std::string& path) {
-  if (path.empty() || path.front() == '/') {
+  if (path.empty() || isAbsolutePath(path)) {
     return path;
   }
-  const size_t slash = configPath.find_last_of('/');
+  const size_t slash = lastPathSeparator(configPath);
   if (slash == std::string::npos) {
     return path;
   }
@@ -94,8 +132,8 @@ int parseFlags(int argc, char** argv, int& first, bjorne_agent::log::Level& leve
 
 // Reads BJORNE_AGENT_LOG. Returns false when the variable holds an unknown level.
 bool applyLogEnvironment(bjorne_agent::log::Level& level, bool& levelSet) {
-  const char* configured = std::getenv("BJORNE_AGENT_LOG");
-  if (configured == nullptr) {
+  std::string configured;
+  if (!bjorne_agent::platform::getEnvironmentVariable("BJORNE_AGENT_LOG", configured)) {
     return true;
   }
   if (!bjorne_agent::log::parseLevel(configured, level)) {

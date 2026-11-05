@@ -1,8 +1,15 @@
 #include "http/DnsResponse.h"
 
+#include "platform/Platform.h"
+
+#if defined(_WIN32)
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
+#endif
 
 #include <array>
 #include <cstddef>
@@ -68,7 +75,7 @@ std::string addressText(const bjorne_agent::http::ResolvedAddress& address) {
   } else {
     raw = &reinterpret_cast<const sockaddr_in6*>(&address.storage)->sin6_addr;
   }
-  ::inet_ntop(address.storage.ss_family, raw, buffer, sizeof(buffer));
+  bjorne_agent::platform::addressToText(address.storage.ss_family, raw, buffer, sizeof(buffer));
   return buffer;
 }
 

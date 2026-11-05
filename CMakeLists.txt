@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.16)
 project(bjorne_agent VERSION 0.1.0 LANGUAGES CXX)
 
+# Declares the standard BUILD_TESTING cache option (default ON) and calls
+# enable_testing() when it is set. Building with -DBUILD_TESTING=OFF skips the
+# vendored Catch2 translation unit and the test binary entirely, which matters
+# for CodeQL: the C++ extractor traces whatever the build actually compiles,
+# and paths-ignore in the CodeQL config does not reliably remove an already
+# traced compilation unit after the fact.
+include(CTest)
+
 set(BJORNE_AGENT_OPENSSL "static" CACHE STRING "OpenSSL linkage: static, shared, or disabled")
 set(BJORNE_AGENT_TLS "openssl" CACHE STRING "TLS backend for the model client: openssl or none")
 option(BJORNE_AGENT_COVERAGE "Instrument BJORNE_AGENT targets with gcov coverage" OFF)
@@ -62,6 +70,12 @@ target_compile_features(bjorne_agent_core PUBLIC cxx_std_20)
 target_compile_options(bjorne_agent_core PRIVATE ${BJORNE_AGENT_WARNING_FLAGS})
 target_include_directories(bjorne_agent_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
+if(WIN32)
+  # Winsock lives in ws2_32. The library is PUBLIC because the test binary and
+  # the executable both reach the network through bjorne_agent_core.
+  target_link_libraries(bjorne_agent_core PUBLIC ws2_32)
+endif()
+
 if(BJORNE_AGENT_COVERAGE)
   target_compile_options(bjorne_agent_core PRIVATE ${BJORNE_AGENT_COVERAGE_FLAGS} --coverage)
   target_link_options(bjorne_agent_core INTERFACE --coverage)
@@ -109,50 +123,58 @@ if(BJORNE_AGENT_STATIC AND BJORNE_AGENT_OPENSSL STREQUAL "shared")
   message(FATAL_ERROR "BJORNE_AGENT_STATIC=ON cannot work with a shared OpenSSL; use static or disabled")
 endif()
 
-enable_testing()
+# The test binary, and the vendored Catch2 translation unit it links, only
+# exist when BUILD_TESTING is ON (the CTest default). CodeQL's build job turns
+# this off so the third party source is never compiled, and therefore never
+# traced into the CodeQL database in the first place.
+if(BUILD_TESTING)
+  find_package(Threads REQUIRED)
 
-find_package(Threads REQUIRED)
+  add_library(catch2_main STATIC third_party/catch2/catch_amalgamated.cpp)
+  target_compile_features(catch2_main PRIVATE cxx_std_20)
+  target_compile_options(catch2_main PRIVATE ${BJORNE_AGENT_RELEASE_FLAGS} ${BJORNE_AGENT_WARNING_FLAGS})
+  target_include_directories(catch2_main PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third_party/catch2)
 
-add_library(catch2_main STATIC third_party/catch2/catch_amalgamated.cpp)
-target_compile_features(catch2_main PRIVATE cxx_std_20)
-target_compile_options(catch2_main PRIVATE ${BJORNE_AGENT_RELEASE_FLAGS} ${BJORNE_AGENT_WARNING_FLAGS})
-target_include_directories(catch2_main PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third_party/catch2)
+  add_executable(bjorne_agent_tests
+    tests/json/JsonTest.cpp
+    tests/config/ConfigTest.cpp
+    tests/config/ConfigPathsTest.cpp
+    tests/cli/InvocationTest.cpp
+    tests/http/UrlTest.cpp
+    tests/http/ResolverTest.cpp
+    tests/http/DnsResponseTest.cpp
+    tests/http/HttpClientTest.cpp
+    tests/log/LogTest.cpp
+    tests/model/ModelClientTest.cpp
+    tests/context/ContextManagerTest.cpp
+    tests/tools/ToolsTest.cpp
+    tests/agent/AgentLoopTest.cpp
+  )
 
-add_executable(bjorne_agent_tests
-  tests/json/JsonTest.cpp
-  tests/config/ConfigTest.cpp
-  tests/config/ConfigPathsTest.cpp
-  tests/cli/InvocationTest.cpp
-  tests/http/UrlTest.cpp
-  tests/http/ResolverTest.cpp
-  tests/http/DnsResponseTest.cpp
-  tests/http/HttpClientTest.cpp
-  tests/log/LogTest.cpp
-  tests/model/ModelClientTest.cpp
-  tests/context/ContextManagerTest.cpp
-  tests/tools/ToolsTest.cpp
-  tests/agent/AgentLoopTest.cpp
-)
+  target_compile_features(bjorne_agent_tests PRIVATE cxx_std_20)
+  target_compile_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_WARNING_FLAGS})
+  target_include_directories(bjorne_agent_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+  target_link_libraries(bjorne_agent_tests PRIVATE bjorne_agent_core catch2_main Threads::Threads)
 
-target_compile_features(bjorne_agent_tests PRIVATE cxx_std_20)
-target_compile_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_WARNING_FLAGS})
-target_include_directories(bjorne_agent_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
-target_link_libraries(bjorne_agent_tests PRIVATE bjorne_agent_core catch2_main Threads::Threads)
+  if(BJORNE_AGENT_COVERAGE)
+    target_compile_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_COVERAGE_FLAGS} --coverage)
+  else()
+    target_compile_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_RELEASE_FLAGS})
+  endif()
 
-if(BJORNE_AGENT_COVERAGE)
-  target_compile_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_COVERAGE_FLAGS} --coverage)
-else()
-  target_compile_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_RELEASE_FLAGS})
-endif()
+  if(BJORNE_AGENT_WITH_OPENSSL)
+    target_link_libraries(bjorne_agent_tests PRIVATE OpenSSL::SSL OpenSSL::Crypto)
+  endif()
 
-if(BJORNE_AGENT_WITH_OPENSSL)
-  target_link_libraries(bjorne_agent_tests PRIVATE OpenSSL::SSL OpenSSL::Crypto)
+  add_test(NAME bjorne_agent_tests COMMAND bjorne_agent_tests)
 endif()
 
 if(BJORNE_AGENT_STATIC)
   message(STATUS "Static link: bjorne_agent will have no dynamic dependencies")
   target_link_options(bjorne_agent PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
-  target_link_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
+  if(BUILD_TESTING)
+    target_link_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
+  endif()
 endif()
 
 # Ship without a symbol table. Coverage builds keep theirs so gcov can map
@@ -163,8 +185,9 @@ endif()
 
 # A static glibc cannot call getaddrinfo: it needs the NSS modules, which are
 # shared objects. The static build resolves through /etc/hosts and the libc stub
-# resolver instead, so the binary never references getaddrinfo at all.
-if(BJORNE_AGENT_STATIC)
+# resolver instead, so the binary never references getaddrinfo at all. The stub
+# resolver is a glibc construct; Windows resolves through getaddrinfo.
+if(BJORNE_AGENT_STATIC AND NOT WIN32)
   target_compile_definitions(bjorne_agent_core PUBLIC BJORNE_AGENT_USE_STUB_RESOLVER=1)
   message(STATUS "Static link: name resolution uses /etc/hosts and the stub resolver, not nsswitch")
 else()
@@ -189,8 +212,6 @@ install(TARGETS bjorne_agent_core
 install(FILES LICENSE
   DESTINATION share/licenses/bjorne_agent
   COMPONENT runtime)
-
-add_test(NAME bjorne_agent_tests COMMAND bjorne_agent_tests)
 
 # Packaging for the release job. The archive name carries the project name and
 # version so the uploaded artifacts are unambiguous.

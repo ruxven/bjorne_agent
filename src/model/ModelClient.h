@@ -66,7 +66,9 @@ class ModelClient final : public ModelBackend {
   std::string apiKeyEnv_;
   std::string toolsJson_;
   std::shared_ptr<http::HttpTransport> transport_;
-  bool ignoreSelfSigned_ = false;
+  // Only a build with TLS reads this, so a no TLS build would flag it as an
+  // unused field.
+  [[maybe_unused]] bool ignoreSelfSigned_ = false;
   std::string hostname_;
 };
 

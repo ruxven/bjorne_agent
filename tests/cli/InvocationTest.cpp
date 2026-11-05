@@ -6,8 +6,9 @@
 #include <filesystem>
 #include <fstream>
 #include <string>
-#include <unistd.h>
 #include <vector>
+
+#include "platform/Platform.h"
 
 #include <catch_amalgamated.hpp>
 
@@ -19,36 +20,35 @@ namespace {
 class EnvironmentGuard {
  public:
   EnvironmentGuard() {
-    const char* home = std::getenv("HOME");
-    hadHome_ = home != nullptr;
-    if (hadHome_) {
-      oldHome_ = home;
-    }
-    const char* config = std::getenv("BJORNE_AGENT_CONFIG");
-    hadConfig_ = config != nullptr;
-    if (hadConfig_) {
-      oldConfig_ = config;
-    }
-    ::unsetenv("BJORNE_AGENT_CONFIG");
+    save("HOME", home_);
+    save("BJORNE_AGENT_CONFIG", config_);
+    bjorne_agent::platform::unsetEnvironmentVariable("BJORNE_AGENT_CONFIG");
   }
   ~EnvironmentGuard() {
-    if (hadHome_) {
-      ::setenv("HOME", oldHome_.c_str(), 1);
-    } else {
-      ::unsetenv("HOME");
-    }
-    if (hadConfig_) {
-      ::setenv("BJORNE_AGENT_CONFIG", oldConfig_.c_str(), 1);
-    } else {
-      ::unsetenv("BJORNE_AGENT_CONFIG");
-    }
+    restore("HOME", home_);
+    restore("BJORNE_AGENT_CONFIG", config_);
   }
 
  private:
-  bool hadHome_ = false;
-  bool hadConfig_ = false;
-  std::string oldHome_;
-  std::string oldConfig_;
+  struct Saved {
+    bool had = false;
+    std::string value;
+  };
+
+  static void save(const std::string& name, Saved& out) {
+    out.had = bjorne_agent::platform::getEnvironmentVariable(name, out.value);
+  }
+
+  static void restore(const std::string& name, const Saved& saved) {
+    if (saved.had) {
+      bjorne_agent::platform::setEnvironmentVariable(name, saved.value);
+    } else {
+      bjorne_agent::platform::unsetEnvironmentVariable(name);
+    }
+  }
+
+  Saved home_;
+  Saved config_;
 };
 
 // A directory holding the config file for one test, removed afterwards.
@@ -57,7 +57,7 @@ class TempDir {
   TempDir() {
     static int counter = 0;
     path_ = std::filesystem::temp_directory_path() /
-            ("bjorne_agent_invocation_test_" + std::to_string(::getpid()) + "_" + std::to_string(++counter));
+            ("bjorne_agent_invocation_test_" + std::to_string(bjorne_agent::platform::processId()) + "_" + std::to_string(++counter));
     std::filesystem::create_directories(path_);
   }
   ~TempDir() {
@@ -101,8 +101,8 @@ class CurrentDirectoryGuard {
 // Points HOME at a directory that holds no config file, so the default search
 // only finds a project local file.
 void pointHomeAtEmptyDirectory(const TempDir& dir) {
-  ::setenv("HOME", dir.str().c_str(), 1);
-  ::unsetenv("XDG_CONFIG_HOME");
+  bjorne_agent::platform::setEnvironmentVariable("HOME", dir.str().c_str());
+  bjorne_agent::platform::unsetEnvironmentVariable("XDG_CONFIG_HOME");
 }
 
 }  // namespace

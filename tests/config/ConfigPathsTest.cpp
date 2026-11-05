@@ -4,8 +4,9 @@
 #include <filesystem>
 #include <fstream>
 #include <string>
-#include <unistd.h>
 #include <vector>
+
+#include "platform/Platform.h"
 
 #include <catch_amalgamated.hpp>
 
@@ -16,49 +17,45 @@ namespace {
 class EnvironmentGuard {
  public:
   EnvironmentGuard() {
-    const char* home = std::getenv("HOME");
-    const char* xdg = std::getenv("XDG_CONFIG_HOME");
-    hadHome_ = home != nullptr;
-    hadXdg_ = xdg != nullptr;
-    if (hadHome_) {
-      oldHome_ = home;
-    }
-    if (hadXdg_) {
-      oldXdg_ = xdg;
-    }
-    const char* config = std::getenv("BJORNE_AGENT_CONFIG");
-    hadConfig_ = config != nullptr;
-    if (hadConfig_) {
-      oldConfig_ = config;
-    }
+    save("HOME", home_);
+    save("XDG_CONFIG_HOME", xdg_);
+    save("BJORNE_AGENT_CONFIG", config_);
+    save("APPDATA", appData_);
+    save("USERPROFILE", userProfile_);
     // An ambient value must not change the outcome of a test.
-    ::unsetenv("BJORNE_AGENT_CONFIG");
+    bjorne_agent::platform::unsetEnvironmentVariable("BJORNE_AGENT_CONFIG");
   }
   ~EnvironmentGuard() {
-    if (hadHome_) {
-      ::setenv("HOME", oldHome_.c_str(), 1);
-    } else {
-      ::unsetenv("HOME");
-    }
-    if (hadXdg_) {
-      ::setenv("XDG_CONFIG_HOME", oldXdg_.c_str(), 1);
-    } else {
-      ::unsetenv("XDG_CONFIG_HOME");
-    }
-    if (hadConfig_) {
-      ::setenv("BJORNE_AGENT_CONFIG", oldConfig_.c_str(), 1);
-    } else {
-      ::unsetenv("BJORNE_AGENT_CONFIG");
-    }
+    restore("HOME", home_);
+    restore("XDG_CONFIG_HOME", xdg_);
+    restore("BJORNE_AGENT_CONFIG", config_);
+    restore("APPDATA", appData_);
+    restore("USERPROFILE", userProfile_);
   }
 
  private:
-  bool hadHome_ = false;
-  bool hadXdg_ = false;
-  bool hadConfig_ = false;
-  std::string oldHome_;
-  std::string oldXdg_;
-  std::string oldConfig_;
+  struct Saved {
+    bool had = false;
+    std::string value;
+  };
+
+  static void save(const std::string& name, Saved& out) {
+    out.had = bjorne_agent::platform::getEnvironmentVariable(name, out.value);
+  }
+
+  static void restore(const std::string& name, const Saved& saved) {
+    if (saved.had) {
+      bjorne_agent::platform::setEnvironmentVariable(name, saved.value);
+    } else {
+      bjorne_agent::platform::unsetEnvironmentVariable(name);
+    }
+  }
+
+  Saved home_;
+  Saved xdg_;
+  Saved config_;
+  Saved appData_;
+  Saved userProfile_;
 };
 
 // A directory that holds the config file for one test, removed afterwards.
@@ -67,7 +64,7 @@ class TempDir {
   TempDir() {
     static int counter = 0;
     path_ = std::filesystem::temp_directory_path() /
-            ("bjorne_agent_paths_test_" + std::to_string(::getpid()) + "_" + std::to_string(++counter));
+            ("bjorne_agent_paths_test_" + std::to_string(bjorne_agent::platform::processId()) + "_" + std::to_string(++counter));
     std::filesystem::create_directories(path_);
   }
   ~TempDir() {
@@ -93,8 +90,8 @@ void writeFile(const std::string& path) {
 
 TEST_CASE("default config paths start with the project local file") {
   const EnvironmentGuard guard;
-  ::unsetenv("XDG_CONFIG_HOME");
-  ::setenv("HOME", "/home/tester", 1);
+  bjorne_agent::platform::unsetEnvironmentVariable("XDG_CONFIG_HOME");
+  bjorne_agent::platform::setEnvironmentVariable("HOME", "/home/tester");
 
   const std::vector<std::string> paths = bjorne_agent::config::defaultConfigPaths();
   REQUIRE(paths.size() == 2);
@@ -104,8 +101,18 @@ TEST_CASE("default config paths start with the project local file") {
 
 TEST_CASE("XDG_CONFIG_HOME replaces the home directory default") {
   const EnvironmentGuard guard;
-  ::setenv("HOME", "/home/tester", 1);
-  ::setenv("XDG_CONFIG_HOME", "/xdg", 1);
+  bjorne_agent::platform::setEnvironmentVariable("HOME", "/home/tester");
+  bjorne_agent::platform::setEnvironmentVariable("XDG_CONFIG_HOME", "/xdg");
+
+  const std::vector<std::string> paths = bjorne_agent::config::defaultConfigPaths();
+  REQUIRE(paths.size() == 2);
+  REQUIRE(paths[1] == "/xdg/bjorne_agent/bjorne_agent.json");
+}
+
+TEST_CASE("a trailing separator in XDG_CONFIG_HOME is not doubled") {
+  const EnvironmentGuard guard;
+  bjorne_agent::platform::setEnvironmentVariable("HOME", "/home/tester");
+  bjorne_agent::platform::setEnvironmentVariable("XDG_CONFIG_HOME", "/xdg/");
 
   const std::vector<std::string> paths = bjorne_agent::config::defaultConfigPaths();
   REQUIRE(paths.size() == 2);
@@ -114,9 +121,9 @@ TEST_CASE("XDG_CONFIG_HOME replaces the home directory default") {
 
 TEST_CASE("a relative XDG_CONFIG_HOME is ignored") {
   const EnvironmentGuard guard;
-  ::setenv("HOME", "/home/tester", 1);
+  bjorne_agent::platform::setEnvironmentVariable("HOME", "/home/tester");
   // The XDG spec says a relative value must be ignored.
-  ::setenv("XDG_CONFIG_HOME", "relative/path", 1);
+  bjorne_agent::platform::setEnvironmentVariable("XDG_CONFIG_HOME", "relative/path");
 
   const std::vector<std::string> paths = bjorne_agent::config::defaultConfigPaths();
   REQUIRE(paths.size() == 2);
@@ -125,8 +132,12 @@ TEST_CASE("a relative XDG_CONFIG_HOME is ignored") {
 
 TEST_CASE("no home directory leaves only the project local path") {
   const EnvironmentGuard guard;
-  ::unsetenv("XDG_CONFIG_HOME");
-  ::unsetenv("HOME");
+  bjorne_agent::platform::unsetEnvironmentVariable("XDG_CONFIG_HOME");
+  bjorne_agent::platform::unsetEnvironmentVariable("HOME");
+  // Windows falls back to the application data directories, so they are
+  // cleared too to make the case meaningful there.
+  bjorne_agent::platform::unsetEnvironmentVariable("APPDATA");
+  bjorne_agent::platform::unsetEnvironmentVariable("USERPROFILE");
 
   const std::vector<std::string> paths = bjorne_agent::config::defaultConfigPaths();
   REQUIRE(paths.size() == 1);
@@ -135,8 +146,8 @@ TEST_CASE("no home directory leaves only the project local path") {
 
 TEST_CASE("findDefaultConfig reports where it looked when nothing exists") {
   const EnvironmentGuard guard;
-  ::setenv("HOME", "/nonexistent-home-for-bjorne_agent-tests", 1);
-  ::unsetenv("XDG_CONFIG_HOME");
+  bjorne_agent::platform::setEnvironmentVariable("HOME", "/nonexistent-home-for-bjorne_agent-tests");
+  bjorne_agent::platform::unsetEnvironmentVariable("XDG_CONFIG_HOME");
 
   std::string error;
   const std::string path = bjorne_agent::config::findDefaultConfig(error);
@@ -148,8 +159,8 @@ TEST_CASE("findDefaultConfig reports where it looked when nothing exists") {
 TEST_CASE("findDefaultConfig finds the user level file") {
   const EnvironmentGuard guard;
   TempDir dir;
-  ::unsetenv("XDG_CONFIG_HOME");
-  ::setenv("HOME", dir.str().c_str(), 1);
+  bjorne_agent::platform::unsetEnvironmentVariable("XDG_CONFIG_HOME");
+  bjorne_agent::platform::setEnvironmentVariable("HOME", dir.str().c_str());
 
   const std::string expected = dir.str() + "/.config/bjorne_agent/bjorne_agent.json";
   writeFile(expected);
@@ -164,7 +175,7 @@ TEST_CASE("the environment variable names the config file") {
   TempDir dir;
   const std::string expected = dir.str() + "/mounted.json";
   writeFile(expected);
-  ::setenv("BJORNE_AGENT_CONFIG", expected.c_str(), 1);
+  bjorne_agent::platform::setEnvironmentVariable("BJORNE_AGENT_CONFIG", expected.c_str());
 
   REQUIRE(bjorne_agent::config::environmentConfigPath() == expected);
 
@@ -176,14 +187,14 @@ TEST_CASE("the environment variable names the config file") {
 TEST_CASE("the environment variable wins over the search") {
   const EnvironmentGuard guard;
   TempDir dir;
-  ::unsetenv("XDG_CONFIG_HOME");
-  ::setenv("HOME", dir.str().c_str(), 1);
+  bjorne_agent::platform::unsetEnvironmentVariable("XDG_CONFIG_HOME");
+  bjorne_agent::platform::setEnvironmentVariable("HOME", dir.str().c_str());
   const std::string fromSearch = dir.str() + "/.config/bjorne_agent/bjorne_agent.json";
   writeFile(fromSearch);
 
   const std::string fromEnvironment = dir.str() + "/mounted.json";
   writeFile(fromEnvironment);
-  ::setenv("BJORNE_AGENT_CONFIG", fromEnvironment.c_str(), 1);
+  bjorne_agent::platform::setEnvironmentVariable("BJORNE_AGENT_CONFIG", fromEnvironment.c_str());
 
   std::string error;
   const std::string path = bjorne_agent::config::findDefaultConfig(error);
@@ -193,10 +204,10 @@ TEST_CASE("the environment variable wins over the search") {
 TEST_CASE("an environment variable naming a missing file is an error") {
   const EnvironmentGuard guard;
   TempDir dir;
-  ::unsetenv("XDG_CONFIG_HOME");
-  ::setenv("HOME", dir.str().c_str(), 1);
+  bjorne_agent::platform::unsetEnvironmentVariable("XDG_CONFIG_HOME");
+  bjorne_agent::platform::setEnvironmentVariable("HOME", dir.str().c_str());
   const std::string missing = dir.str() + "/not-there.json";
-  ::setenv("BJORNE_AGENT_CONFIG", missing.c_str(), 1);
+  bjorne_agent::platform::setEnvironmentVariable("BJORNE_AGENT_CONFIG", missing.c_str());
 
   std::string error;
   const std::string path = bjorne_agent::config::findDefaultConfig(error);
@@ -207,7 +218,7 @@ TEST_CASE("an environment variable naming a missing file is an error") {
 
 TEST_CASE("a blank environment variable counts as unset") {
   const EnvironmentGuard guard;
-  ::setenv("BJORNE_AGENT_CONFIG", "   ", 1);
+  bjorne_agent::platform::setEnvironmentVariable("BJORNE_AGENT_CONFIG", "   ");
 
   REQUIRE(bjorne_agent::config::environmentConfigPath().empty());
 }

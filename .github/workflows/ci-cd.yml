@@ -480,8 +480,14 @@ jobs:
           sudo apt-get install -y cmake ninja-build libssl-dev
 
       - name: Build for CodeQL
+        # BUILD_TESTING=OFF keeps the test binary and the vendored Catch2
+        # translation unit out of the build entirely. CodeQL's C++ extractor
+        # traces the compiler invocations it is given; paths-ignore filters
+        # the database afterwards but does not reliably remove an already
+        # traced compilation unit, so third_party/ must never be compiled
+        # in the first place rather than excluded after the fact.
         run: |
-          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBJORNE_AGENT_OPENSSL=shared -DBJORNE_AGENT_STATIC=OFF
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBJORNE_AGENT_OPENSSL=shared -DBJORNE_AGENT_STATIC=OFF -DBUILD_TESTING=OFF
           cmake --build build
 
       - name: Perform CodeQL Analysis

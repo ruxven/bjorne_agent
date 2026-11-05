@@ -4,6 +4,7 @@
 #include "http/Url.h"
 #include "json/Json.h"
 #include "log/Log.h"
+#include "platform/Platform.h"
 
 #include <algorithm>
 #include <cstdlib>
@@ -165,8 +166,8 @@ bool ModelClient::respond(const std::vector<ModelMessage>& messages, ModelRespon
     return false;
   }
 
-  const char* apiKey = std::getenv(apiKeyEnv_.c_str());
-  if (apiKey == nullptr) {
+  std::string apiKey;
+  if (!platform::getEnvironmentVariable(apiKeyEnv_, apiKey)) {
     error = "Missing API key environment variable: " + apiKeyEnv_;
     log::fail(error);
     return false;
@@ -195,7 +196,7 @@ bool ModelClient::respond(const std::vector<ModelMessage>& messages, ModelRespon
   request.port = url.port;
   request.path = url.path + "/chat/completions";
   request.body = requestBodyJson(model_, messages, toolsJson_);
-  request.headers = {{ "Authorization", "Bearer " + std::string(apiKey) }};
+  request.headers = {{ "Authorization", "Bearer " + apiKey }};
 
   http::HttpResponse response;
   log::progress("Requesting " + url.scheme + "://" + url.host + ":" + url.port + request.path);

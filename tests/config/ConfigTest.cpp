@@ -5,7 +5,8 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <unistd.h>
+
+#include "platform/Platform.h"
 
 #include <catch_amalgamated.hpp>
 
@@ -14,7 +15,8 @@ namespace {
 // The path carries the process id so that two test binaries running at the
 // same time do not overwrite each other's fixture.
 const std::string kTempPath =
-    (std::filesystem::temp_directory_path() / ("bjorne_agent_config_test_" + std::to_string(::getpid()) + ".json"))
+    (std::filesystem::temp_directory_path() /
+     ("bjorne_agent_config_test_" + std::to_string(bjorne_agent::platform::processId()) + ".json"))
         .string();
 
 void writeConfig(const std::string& content) {

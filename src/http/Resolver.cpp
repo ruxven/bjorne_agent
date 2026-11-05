@@ -1,7 +1,12 @@
 #include "http/Resolver.h"
 
 #include "http/DnsResponse.h"
+#include "platform/Platform.h"
 
+#if defined(_WIN32)
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
 #include <arpa/inet.h>
 #include <fcntl.h>
 #include <netdb.h>
@@ -10,13 +15,15 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
+#endif
 
 // A static glibc cannot resolve names through getaddrinfo: the call needs the
 // NSS modules, which are shared objects, and loading one from a static binary
 // crashes. The static build therefore resolves through /etc/hosts and the libc
 // stub resolver, which talks to the nameservers in /etc/resolv.conf directly.
 // BJORNE_AGENT_USE_STUB_RESOLVER comes from the build and follows BJORNE_AGENT_STATIC.
-#if BJORNE_AGENT_USE_STUB_RESOLVER
+// The stub resolver is a glibc construct, so Windows resolves through getaddrinfo.
+#if BJORNE_AGENT_USE_STUB_RESOLVER && !defined(_WIN32)
 #include <resolv.h>
 #endif
 
@@ -63,7 +70,7 @@ std::string withoutBrackets(const std::string& host) {
 bool numericAddress(const std::string& host, unsigned short port, ResolvedAddress& out) {
   const std::string bare = withoutBrackets(host);
   sockaddr_in v4{};
-  if (::inet_pton(AF_INET, bare.c_str(), &v4.sin_addr) == 1) {
+  if (platform::addressToBinary(AF_INET, bare.c_str(), &v4.sin_addr) == 1) {
     v4.sin_family = AF_INET;
     v4.sin_port = htons(port);
     std::memcpy(&out.storage, &v4, sizeof(v4));
@@ -71,7 +78,7 @@ bool numericAddress(const std::string& host, unsigned short port, ResolvedAddres
     return true;
   }
   sockaddr_in6 v6{};
-  if (::inet_pton(AF_INET6, bare.c_str(), &v6.sin6_addr) == 1) {
+  if (platform::addressToBinary(AF_INET6, bare.c_str(), &v6.sin6_addr) == 1) {
     v6.sin6_family = AF_INET6;
     v6.sin6_port = htons(port);
     std::memcpy(&out.storage, &v6, sizeof(v6));
@@ -81,7 +88,7 @@ bool numericAddress(const std::string& host, unsigned short port, ResolvedAddres
   return false;
 }
 
-#if BJORNE_AGENT_USE_STUB_RESOLVER
+#if BJORNE_AGENT_USE_STUB_RESOLVER && !defined(_WIN32)
 
 bool readFile(const std::string& path, std::string& contents) {
   const int fd = ::open(path.c_str(), O_RDONLY);
@@ -199,7 +206,7 @@ bool resolveWithGetaddrinfo(const std::string& host, const std::string& port,
   addrinfo* results = nullptr;
   const int rc = ::getaddrinfo(host.c_str(), port.c_str(), &hints, &results);
   if (rc != 0) {
-    error = std::string("DNS resolution failed: ") + ::gai_strerror(rc);
+    error = std::string("DNS resolution failed: ") + platform::addressErrorMessage(rc);
     return false;
   }
   for (addrinfo* entry = results; entry != nullptr; entry = entry->ai_next) {
@@ -208,7 +215,7 @@ bool resolveWithGetaddrinfo(const std::string& host, const std::string& port,
     }
     ResolvedAddress address;
     std::memcpy(&address.storage, entry->ai_addr, entry->ai_addrlen);
-    address.length = static_cast<socklen_t>(entry->ai_addrlen);
+    address.length = static_cast<platform::SocketLength>(entry->ai_addrlen);
     addresses.push_back(address);
   }
   ::freeaddrinfo(results);
@@ -226,6 +233,10 @@ bool resolveWithGetaddrinfo(const std::string& host, const std::string& port,
 bool resolveHost(const std::string& host, const std::string& port, std::vector<ResolvedAddress>& addresses,
                  std::string& error, const ResolverOptions& options) {
   addresses.clear();
+  if (!platform::initializeSockets()) {
+    error = "DNS resolution failed: socket startup failed";
+    return false;
+  }
   unsigned short number = 0;
   if (!parsePort(port, number)) {
     error = "Invalid port: " + port;
@@ -236,7 +247,7 @@ bool resolveHost(const std::string& host, const std::string& port, std::vector<R
     addresses.push_back(literal);
     return true;
   }
-#if BJORNE_AGENT_USE_STUB_RESOLVER
+#if BJORNE_AGENT_USE_STUB_RESOLVER && !defined(_WIN32)
   return resolveStub(host, number, addresses, error, options);
 #else
   (void)options;

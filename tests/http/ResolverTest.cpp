@@ -1,13 +1,19 @@
 #include "http/Resolver.h"
 
+#include "platform/Platform.h"
+
+#if defined(_WIN32)
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
+#endif
 
 #include <filesystem>
 #include <fstream>
 #include <string>
-#include <unistd.h>
 #include <vector>
 
 #include <catch_amalgamated.hpp>
@@ -22,7 +28,7 @@ std::string addressText(const bjorne_agent::http::ResolvedAddress& address) {
   } else {
     raw = &reinterpret_cast<const sockaddr_in6*>(&address.storage)->sin6_addr;
   }
-  ::inet_ntop(address.storage.ss_family, raw, buffer, sizeof(buffer));
+  bjorne_agent::platform::addressToText(address.storage.ss_family, raw, buffer, sizeof(buffer));
   return buffer;
 }
 
@@ -114,7 +120,8 @@ namespace {
 // The path carries the process id so that two test binaries running at the
 // same time do not overwrite each other's fixture.
 std::string hostsPath() {
-  return (std::filesystem::temp_directory_path() / ("bjorne_agent_resolver_hosts_" + std::to_string(::getpid())))
+  return (std::filesystem::temp_directory_path() /
+          ("bjorne_agent_resolver_hosts_" + std::to_string(bjorne_agent::platform::processId())))
       .string();
 }
 

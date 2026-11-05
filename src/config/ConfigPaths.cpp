@@ -1,9 +1,11 @@
 #include "config/ConfigPaths.h"
 
-#include <cstdlib>
+#include <cctype>
 #include <filesystem>
 #include <string>
 #include <vector>
+
+#include "platform/Platform.h"
 
 namespace bjorne_agent {
 namespace config {
@@ -11,41 +13,95 @@ namespace config {
 namespace {
 
 constexpr const char* kProjectConfigPath = ".bjorne_agent/bjorne_agent.json";
+constexpr const char* kUserConfigPath = "bjorne_agent/bjorne_agent.json";
 
-// The user level config directory follows the XDG base directory spec: the
-// XDG_CONFIG_HOME variable when it is set and absolute, otherwise .config
-// under the home directory.
+// Windows accepts either separator; POSIX has only the forward slash, and a
+// backslash is an ordinary character in a POSIX file name.
+bool isPathSeparator(char c) {
+#if defined(_WIN32)
+  return c == '/' || c == '\\';
+#else
+  return c == '/';
+#endif
+}
+
+// True for a path that starts at the root: /dir on POSIX, C:\dir or \\server
+// on Windows.
+bool isAbsolutePath(const std::string& path) {
+  if (path.empty()) {
+    return false;
+  }
+  if (isPathSeparator(path.front())) {
+    return true;
+  }
+#if defined(_WIN32)
+  if (path.size() >= 3 && std::isalpha(static_cast<unsigned char>(path[0])) != 0 && path[1] == ':' &&
+      isPathSeparator(path[2])) {
+    return true;
+  }
+#endif
+  return false;
+}
+
+// Joins a directory and a relative path. The separator is always a forward
+// slash, which both platforms accept.
+std::string joinPath(const std::string& base, const std::string& rest) {
+  if (base.empty()) {
+    return rest;
+  }
+  if (isPathSeparator(base.back())) {
+    return base + rest;
+  }
+  return base + "/" + rest;
+}
+
+// The user level config directory follows the XDG base directory spec where it
+// applies: the XDG_CONFIG_HOME variable when it is set and absolute, otherwise
+// .config under the home directory. Windows has no XDG variable by default, so
+// the roaming application data directory is used instead.
 std::string userConfigPath() {
-  const char* xdgHome = std::getenv("XDG_CONFIG_HOME");
-  if (xdgHome != nullptr && xdgHome[0] == '/') {
-    return std::string(xdgHome) + "/bjorne_agent/bjorne_agent.json";
+  std::string xdgHome;
+  if (platform::getEnvironmentVariable("XDG_CONFIG_HOME", xdgHome) && isAbsolutePath(xdgHome)) {
+    return joinPath(xdgHome, kUserConfigPath);
   }
-  const char* home = std::getenv("HOME");
-  if (home == nullptr || home[0] == '\0') {
-    return {};
+  std::string home;
+  if (platform::getEnvironmentVariable("HOME", home) && !home.empty()) {
+    return joinPath(joinPath(home, ".config"), kUserConfigPath);
   }
-  return std::string(home) + "/.config/bjorne_agent/bjorne_agent.json";
+#if defined(_WIN32)
+  // Windows has no HOME by default, so the roaming application data directory
+  // is the user level location.
+  std::string appData;
+  if (platform::getEnvironmentVariable("APPDATA", appData) && !appData.empty()) {
+    return joinPath(appData, kUserConfigPath);
+  }
+  std::string profile;
+  if (platform::getEnvironmentVariable("USERPROFILE", profile) && !profile.empty()) {
+    return joinPath(joinPath(profile, ".config"), kUserConfigPath);
+  }
+#endif
+  return {};
 }
 
 // Trims the spaces and tabs around a value, so a variable that holds only
 // whitespace counts as unset.
-std::string trimmed(const char* value) {
-  if (value == nullptr) {
-    return {};
-  }
-  const std::string text(value);
-  const size_t first = text.find_first_not_of(" \t");
+std::string trimmed(const std::string& value) {
+  const size_t first = value.find_first_not_of(" \t");
   if (first == std::string::npos) {
     return {};
   }
-  const size_t last = text.find_last_not_of(" \t");
-  return text.substr(first, last - first + 1);
+  const size_t last = value.find_last_not_of(" \t");
+  return value.substr(first, last - first + 1);
 }
 
 }  // namespace
 
 std::string environmentConfigPath() {
-  return trimmed(std::getenv("BJORNE_AGENT_CONFIG"));
+  std::string value;
+  if (!platform::getEnvironmentVariable("BJORNE_AGENT_CONFIG", value)) {
+    return {};
+  }
+  return trimmed(value);
 }
 
 std::vector<std::string> defaultConfigPaths() {

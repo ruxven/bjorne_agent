@@ -1,10 +1,12 @@
 #include "tools/Tools.h"
 
+#include <algorithm>
 #include <filesystem>
 #include <fstream>
 #include <string>
-#include <unistd.h>
 #include <vector>
+
+#include "platform/Platform.h"
 
 #include <catch_amalgamated.hpp>
 
@@ -19,7 +21,7 @@ class TempDir {
     // The path carries the process id so that two test binaries running at the
     // same time do not overwrite each other's fixture.
     path_ = std::filesystem::temp_directory_path() /
-            ("bjorne_agent_tools_test_" + std::to_string(::getpid()) + "_" + std::to_string(++counter));
+            ("bjorne_agent_tools_test_" + std::to_string(bjorne_agent::platform::processId()) + "_" + std::to_string(++counter));
     std::filesystem::create_directories(path_);
   }
   ~TempDir() {
@@ -84,7 +86,12 @@ TEST_CASE("edit_file reports missing text") {
 TEST_CASE("run_shell captures command output in the workspace") {
   TempDir dir;
   bjorne_agent::tools::ToolRegistry registry(dir.str());
-  const bjorne_agent::tools::ToolResult result = registry.execute("run_shell", R"({"command":"pwd && printf hello"})");
+#if defined(_WIN32)
+  const std::string command = R"({"command":"cd & echo hello"})";
+#else
+  const std::string command = R"({"command":"pwd && printf hello"})";
+#endif
+  const bjorne_agent::tools::ToolResult result = registry.execute("run_shell", command);
   REQUIRE(result.ok);
   REQUIRE(result.output.find(dir.str()) != std::string::npos);
   REQUIRE(result.output.find("hello") != std::string::npos);
@@ -96,6 +103,21 @@ TEST_CASE("run_shell reports a non-zero exit code") {
   const bjorne_agent::tools::ToolResult result = registry.execute("run_shell", R"({"command":"exit 3"})");
   REQUIRE_FALSE(result.ok);
   REQUIRE(result.output.find("exit code 3") != std::string::npos);
+}
+
+TEST_CASE("read_file accepts an absolute path outside the workspace") {
+  TempDir dir;
+  std::ofstream(dir.str() + "/absolute.txt") << "absolute content";
+  bjorne_agent::tools::ToolRegistry registry(dir.str() + "/workspace");
+
+  // The path goes through JSON, where a Windows backslash would start an
+  // escape. Forward slashes are a valid Windows separator, so they are used.
+  std::string path = dir.str() + "/absolute.txt";
+  std::replace(path.begin(), path.end(), '\\', '/');
+  const std::string arguments = "{\"path\":\"" + path + "\"}";
+  const bjorne_agent::tools::ToolResult result = registry.execute("read_file", arguments);
+  REQUIRE(result.ok);
+  REQUIRE(result.output == "absolute content");
 }
 
 TEST_CASE("unknown tool reports an error") {
@@ -128,7 +150,12 @@ TEST_CASE("run_shell quotes a workspace path containing a single quote") {
   std::filesystem::create_directories(quoted);
   bjorne_agent::tools::ToolRegistry registry(quoted);
 
-  const bjorne_agent::tools::ToolResult result = registry.execute("run_shell", R"({"command":"pwd"})");
+#if defined(_WIN32)
+  const std::string command = R"({"command":"cd"})";
+#else
+  const std::string command = R"({"command":"pwd"})";
+#endif
+  const bjorne_agent::tools::ToolResult result = registry.execute("run_shell", command);
   REQUIRE(result.ok);
   REQUIRE(result.output.find("quote'dir") != std::string::npos);
 }
@@ -136,7 +163,13 @@ TEST_CASE("run_shell quotes a workspace path containing a single quote") {
 TEST_CASE("run_shell truncates oversized output") {
   TempDir dir;
   bjorne_agent::tools::ToolRegistry registry(dir.str());
-  const bjorne_agent::tools::ToolResult result = registry.execute("run_shell", R"({"command":"yes x | head -c 300000"})");
+#if defined(_WIN32)
+  // 3000 lines of 99 characters is about 300 KB, comfortably past the cap.
+  const std::string command = R"({"command":"for /L %i in (1,1,3000) do @echo 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"})";
+#else
+  const std::string command = R"({"command":"yes x | head -c 300000"})";
+#endif
+  const bjorne_agent::tools::ToolResult result = registry.execute("run_shell", command);
   REQUIRE(result.ok);
   REQUIRE(result.output.size() > 256 * 1024);
   REQUIRE(result.output.find("[output truncated]") != std::string::npos);

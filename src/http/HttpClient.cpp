@@ -3,6 +3,8 @@
 #include "http/Resolver.h"
 #include "http/Url.h"
 
+#include "platform/Platform.h"
+
 // BJORNE_AGENT_HAS_OPENSSL comes from the build. At 0 the OpenSSL headers and library
 // are absent entirely, so everything that touches SSL is compiled out and https
 // endpoints are rejected at the model client.
@@ -12,10 +14,15 @@
 #include <openssl/x509v3.h>
 #endif
 
+#if defined(_WIN32)
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
+#endif
 
 #include <algorithm>
 #include <cctype>
@@ -34,13 +41,24 @@ namespace {
 
 constexpr int kReadBufferSize = 65536;
 
+// Flags for send(). A peer that resets the connection raises SIGPIPE on POSIX,
+// so the write asks the socket layer to suppress it. Winsock has no SIGPIPE and
+// no MSG_NOSIGNAL, so the plain zero flags are used there.
+constexpr int kSendFlags =
+#if defined(_WIN32)
+    0;
+#else
+    MSG_NOSIGNAL;
+#endif
+
 #if BJORNE_AGENT_HAS_OPENSSL
 // OpenSSL's socket BIO writes with send(..., 0), so a peer that resets the
 // connection raises SIGPIPE and would kill the process. The plain transport
 // uses MSG_NOSIGNAL instead, which OpenSSL cannot be told to use without a
-// custom BIO. Ignore the signal once, process wide.
+// custom BIO. Ignore the signal once, process wide. Winsock reports a reset as
+// an error code and never raises SIGPIPE, so Windows needs no equivalent.
 void ignoreSigPipe() {
-#ifdef SIGPIPE
+#if !defined(_WIN32) && defined(SIGPIPE)
   static const bool ignored = [] {
     if (std::signal(SIGPIPE, SIG_IGN) == SIG_ERR) {
       log::fail("Could not ignore SIGPIPE. A peer that resets the connection may kill the process.");
@@ -192,37 +210,41 @@ std::string buildRequest(const HttpRequest& request) {
 }
 
 // Resolves the host and connects, trying each address in turn. Returns the
-// connected socket, or -1 with error set.
-int connectToHost(const std::string& host, const std::string& port, std::string& error) {
+// connected socket, or kInvalidSocket with error set.
+platform::SocketHandle connectToHost(const std::string& host, const std::string& port, std::string& error) {
+  if (!platform::initializeSockets()) {
+    error = "Socket startup failed";
+    return platform::kInvalidSocket;
+  }
   std::vector<ResolvedAddress> addresses;
   log::detail("Resolving " + host + ":" + port);
   if (!resolveHost(host, port, addresses, error)) {
     log::fail(error);
-    return -1;
+    return platform::kInvalidSocket;
   }
   for (const ResolvedAddress& address : addresses) {
-    const int fd = ::socket(address.storage.ss_family, SOCK_STREAM, 0);
-    if (fd < 0) {
+    const platform::SocketHandle fd = ::socket(address.storage.ss_family, SOCK_STREAM, 0);
+    if (!platform::isValidSocket(fd)) {
       error = "Socket creation failed";
       log::fail(error);
-      return -1;
+      return platform::kInvalidSocket;
     }
     log::detail("Connecting to " + host + ":" + port);
-    if (::connect(fd, reinterpret_cast<const sockaddr*>(&address.storage), address.length) == 0) {
+    if (::connect(fd, reinterpret_cast<const sockaddr*>(&address.storage), static_cast<int>(address.length)) == 0) {
       return fd;
     }
-    ::close(fd);
+    platform::closeSocket(fd);
   }
   error = "Socket connect failed";
   log::fail(error);
-  return -1;
+  return platform::kInvalidSocket;
 }
 
-bool readAllPlain(int fd, std::string& data, std::string& error) {
+bool readAllPlain(platform::SocketHandle fd, std::string& data, std::string& error) {
   data.clear();
   char buffer[kReadBufferSize];
   for (;;) {
-    const ssize_t bytes = ::recv(fd, buffer, kReadBufferSize, 0);
+    const int bytes = ::recv(fd, buffer, kReadBufferSize, 0);
     if (bytes < 0) {
       error = "Socket read failed";
       return false;
@@ -258,9 +280,9 @@ bool readAllTls(SSL* ssl, std::string& data, std::string& error) {
   }
 }
 
-void closeTransport(SSL* ssl, int fd) {
+void closeTransport(SSL* ssl, platform::SocketHandle fd) {
   SSL_free(ssl);
-  ::close(fd);
+  platform::closeSocket(fd);
 }
 
 // Sets the SNI name and the hostname the certificate has to match. The
@@ -321,7 +343,7 @@ bool writeTlsRequest(SSL* ssl, const std::string& request, std::string& error) {
   size_t sent = 0;
   while (sent < request.size()) {
     const size_t chunk = std::min(request.size() - sent, static_cast<size_t>(kReadBufferSize));
-    const ssize_t written = SSL_write(ssl, request.data() + sent, static_cast<int>(chunk));
+    const int written = SSL_write(ssl, request.data() + sent, static_cast<int>(chunk));
     if (written <= 0) {
       error = "TLS write failed";
       return false;
@@ -347,8 +369,8 @@ bool OpenSslTransport::send(const std::string& request, const std::string& host,
   return false;
 #else
   ignoreSigPipe();
-  const int fd = connectToHost(host, port, error);
-  if (fd < 0) {
+  const platform::SocketHandle fd = connectToHost(host, port, error);
+  if (!platform::isValidSocket(fd)) {
     return false;
   }
 
@@ -356,7 +378,7 @@ bool OpenSslTransport::send(const std::string& request, const std::string& host,
   SSL_CTX* context = SSL_CTX_new(TLS_client_method());
   if (context == nullptr) {
     error = "TLS context creation failed";
-    ::close(fd);
+    bjorne_agent::platform::closeSocket(fd);
     return false;
   }
 
@@ -375,7 +397,7 @@ bool OpenSslTransport::send(const std::string& request, const std::string& host,
   if (ssl == nullptr) {
     error = "TLS session creation failed";
     log::fail(error);
-    ::close(fd);
+    bjorne_agent::platform::closeSocket(fd);
     return false;
   }
 
@@ -386,7 +408,7 @@ bool OpenSslTransport::send(const std::string& request, const std::string& host,
     return false;
   }
 
-  SSL_set_fd(ssl, fd);
+  SSL_set_fd(ssl, static_cast<int>(fd));
   SSL_set_connect_state(ssl);
   if (!handshakeTls(ssl, sniHost, options_.ignore_self_signed, error)) {
     closeTransport(ssl, fd);
@@ -415,18 +437,18 @@ bool OpenSslTransport::send(const std::string& request, const std::string& host,
 
 bool PlainTcpTransport::send(const std::string& request, const std::string& host, const std::string& port,
                              std::string& response, std::string& error) {
-  const int fd = connectToHost(host, port, error);
-  if (fd < 0) {
+  const platform::SocketHandle fd = connectToHost(host, port, error);
+  if (!platform::isValidSocket(fd)) {
     return false;
   }
 
   size_t sent = 0;
   while (sent < request.size()) {
     const size_t chunk = std::min(request.size() - sent, static_cast<size_t>(kReadBufferSize));
-    const ssize_t written = ::send(fd, request.data() + sent, chunk, MSG_NOSIGNAL);
+    const int written = ::send(fd, request.data() + sent, static_cast<int>(chunk), kSendFlags);
     if (written <= 0) {
       error = "Socket write failed";
-      ::close(fd);
+      bjorne_agent::platform::closeSocket(fd);
       return false;
     }
     sent += static_cast<size_t>(written);
@@ -436,12 +458,12 @@ bool PlainTcpTransport::send(const std::string& request, const std::string& host
   std::string readError;
   if (!readAllPlain(fd, responseText, readError)) {
     error = readError;
-    ::close(fd);
+    bjorne_agent::platform::closeSocket(fd);
     return false;
   }
 
   const std::string result = responseText;
-  ::close(fd);
+  bjorne_agent::platform::closeSocket(fd);
   response = result;
   return true;
 }

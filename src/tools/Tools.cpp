@@ -1,6 +1,7 @@
 #include "tools/Tools.h"
 
 #include <algorithm>
+#include <cctype>
 #include <cstdio>
 #include <exception>
 #include <filesystem>
@@ -9,7 +10,9 @@
 #include <string>
 #include <utility>
 
+#if !defined(_WIN32)
 #include <sys/wait.h>
+#endif
 
 #include "json/Json.h"
 #include "log/Log.h"
@@ -39,10 +42,47 @@ bool argString(const json::Value& object, const std::string& key, std::string& o
   return true;
 }
 
+// Windows accepts either separator; POSIX has only the forward slash, and a
+// backslash is an ordinary character in a POSIX file name.
+bool isPathSeparator(char c) {
+#if defined(_WIN32)
+  return c == '/' || c == '\\';
+#else
+  return c == '/';
+#endif
+}
+
+size_t nextPathSeparator(const std::string& path, size_t start) {
+  for (size_t i = start; i < path.size(); ++i) {
+    if (isPathSeparator(path[i])) {
+      return i;
+    }
+  }
+  return std::string::npos;
+}
+
+// True for a path that starts at the root: /dir on POSIX, C:\dir or \\server
+// on Windows.
+bool isAbsolutePath(const std::string& path) {
+  if (path.empty()) {
+    return false;
+  }
+  if (isPathSeparator(path.front())) {
+    return true;
+  }
+#if defined(_WIN32)
+  if (path.size() >= 3 && std::isalpha(static_cast<unsigned char>(path[0])) != 0 && path[1] == ':' &&
+      isPathSeparator(path[2])) {
+    return true;
+  }
+#endif
+  return false;
+}
+
 bool hasParentTraversal(const std::string& path) {
   size_t start = 0;
   while (start <= path.size()) {
-    const size_t end = path.find('/', start);
+    const size_t end = nextPathSeparator(path, start);
     const size_t stop = end == std::string::npos ? path.size() : end;
     if (path.substr(start, stop - start) == "..") {
       return true;
@@ -53,6 +93,20 @@ bool hasParentTraversal(const std::string& path) {
 }
 
 std::string shellQuote(const std::string& text) {
+#if defined(_WIN32)
+  // cmd.exe does not understand single quotes, so the workspace is wrapped in
+  // double quotes. An embedded quote is doubled.
+  std::string quoted = "\"";
+  for (const char c : text) {
+    if (c == '"') {
+      quoted += "\"\"";
+    } else {
+      quoted += c;
+    }
+  }
+  quoted += '"';
+  return quoted;
+#else
   std::string quoted = "'";
   for (const char c : text) {
     if (c == '\'') {
@@ -63,6 +117,31 @@ std::string shellQuote(const std::string& text) {
   }
   quoted += "'";
   return quoted;
+#endif
+}
+
+// Runs the command through the platform shell and returns its exit code, or -1
+// when the status could not be determined. POSIX pclose reports a wait status
+// that has to be decoded; the Windows _pclose already reports the exit code.
+int shellExitCode(FILE* pipe) {
+#if defined(_WIN32)
+  const int status = ::_pclose(pipe);
+  return status == -1 ? -1 : status;
+#else
+  const int status = ::pclose(pipe);
+  if (status == -1) {
+    return -1;
+  }
+  return WIFEXITED(status) ? WEXITSTATUS(status) : -1;
+#endif
+}
+
+FILE* openShellPipe(const std::string& command) {
+#if defined(_WIN32)
+  return ::_popen(command.c_str(), "r");
+#else
+  return ::popen(command.c_str(), "r");
+#endif
 }
 
 }  // namespace
@@ -105,11 +184,11 @@ std::string ToolRegistry::resolvePath(const std::string& path, std::string& erro
     error = "path must not traverse parent directories";
     return {};
   }
-  if (path.front() == '/' || workspace_.empty()) {
+  if (isAbsolutePath(path) || workspace_.empty()) {
     return path;
   }
   std::string resolved = workspace_;
-  if (resolved.back() != '/') {
+  if (!isPathSeparator(resolved.back())) {
     resolved += '/';
   }
   resolved += path;
@@ -230,10 +309,16 @@ ToolResult ToolRegistry::runShell(const std::string& arguments) const {
   }
   std::string full = command;
   if (!workspace_.empty()) {
+#if defined(_WIN32)
+    // cmd.exe keeps a current directory per drive, so a plain cd to a path on
+    // another drive leaves the process on the old drive. /d switches both.
+    full = "cd /d " + shellQuote(workspace_) + " && " + command;
+#else
     full = "cd " + shellQuote(workspace_) + " && " + command;
+#endif
   }
   full += " 2>&1";
-  FILE* pipe = popen(full.c_str(), "r");
+  FILE* pipe = openShellPipe(full);
   if (pipe == nullptr) {
     return {false, "cannot start shell command"};
   }
@@ -252,17 +337,16 @@ ToolResult ToolRegistry::runShell(const std::string& arguments) const {
       truncated = true;
     }
   }
-  const int status = pclose(pipe);
+  const int code = shellExitCode(pipe);
   if (truncated) {
     output += "\n[output truncated]";
   }
-  if (status == -1) {
+  if (code == -1) {
     return {false, output + "\nshell status unavailable"};
   }
-  if (WIFEXITED(status) && WEXITSTATUS(status) == 0) {
+  if (code == 0) {
     return {true, output};
   }
-  const int code = WIFEXITED(status) ? WEXITSTATUS(status) : -1;
   return {false, output + "\nexit code " + std::to_string(code)};
 }
 

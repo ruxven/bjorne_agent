@@ -1,11 +1,18 @@
 #pragma once
 
+#include "platform/Platform.h"
+
+#if defined(_WIN32)
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <poll.h>
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <unistd.h>
+#endif
 
 #if BJORNE_AGENT_HAS_OPENSSL
 #include <openssl/ec.h>
@@ -23,6 +30,30 @@ struct SSL;
 #include <utility>
 
 namespace bjorne_agent_test {
+
+// The fixture lives outside the agent namespace, so the platform helpers are
+// reachable through a short alias.
+namespace platform = bjorne_agent::platform;
+
+#if defined(_WIN32)
+using PollDescriptor = WSAPOLLFD;
+
+inline int pollSockets(PollDescriptor* entry, int count, int timeout) {
+  return ::WSAPoll(entry, static_cast<ULONG>(count), timeout);
+}
+
+// Winsock takes the send flags that suppress SIGPIPE differently: it has no
+// SIGPIPE, so the flags are zero.
+constexpr int kSendFlags = 0;
+#else
+using PollDescriptor = pollfd;
+
+inline int pollSockets(PollDescriptor* entry, int count, int timeout) {
+  return ::poll(entry, static_cast<nfds_t>(count), timeout);
+}
+
+constexpr int kSendFlags = MSG_NOSIGNAL;
+#endif
 
 // Single connection HTTP(S) server on 127.0.0.1 for transport tests. TLS mode
 // generates a throwaway self-signed certificate, which the transport accepts
@@ -51,8 +82,8 @@ class LoopbackServer {
     if (thread_.joinable()) {
       thread_.join();
     }
-    if (listen_fd_ >= 0) {
-      ::close(listen_fd_);
+    if (platform::isValidSocket(listen_fd_)) {
+      platform::closeSocket(listen_fd_);
     }
 #if BJORNE_AGENT_HAS_OPENSSL
     if (cert_ != nullptr) {
@@ -81,61 +112,61 @@ class LoopbackServer {
 
  private:
   void openListener() {
+    platform::initializeSockets();
     listen_fd_ = ::socket(AF_INET, SOCK_STREAM, 0);
-    if (listen_fd_ < 0) {
+    if (!platform::isValidSocket(listen_fd_)) {
       return;
     }
     int enable = 1;
-    ::setsockopt(listen_fd_, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(enable));
+    ::setsockopt(listen_fd_, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<const char*>(&enable), sizeof(enable));
 
     sockaddr_in address{};
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = ::htonl(INADDR_LOOPBACK);
     address.sin_port = 0;
-    if (::bind(listen_fd_, reinterpret_cast<sockaddr*>(&address), sizeof(address)) != 0 ||
+    if (::bind(listen_fd_, reinterpret_cast<sockaddr*>(&address), static_cast<int>(sizeof(address))) != 0 ||
         ::listen(listen_fd_, 1) != 0) {
-      ::close(listen_fd_);
-      listen_fd_ = -1;
+      platform::closeSocket(listen_fd_);
+      listen_fd_ = platform::kInvalidSocket;
       return;
     }
 
     sockaddr_in bound{};
-    socklen_t length = sizeof(bound);
+    platform::SocketLength length = static_cast<platform::SocketLength>(sizeof(bound));
     if (::getsockname(listen_fd_, reinterpret_cast<sockaddr*>(&bound), &length) != 0) {
-      ::close(listen_fd_);
-      listen_fd_ = -1;
+      platform::closeSocket(listen_fd_);
+      listen_fd_ = platform::kInvalidSocket;
       return;
     }
     port_ = std::to_string(::ntohs(bound.sin_port));
   }
 
-  int acceptClient() {
+  platform::SocketHandle acceptClient() {
     for (int attempt = 0; attempt < 50 && !stop_; ++attempt) {
-      pollfd entry{listen_fd_, POLLIN, 0};
-      const int ready = ::poll(&entry, 1, 100);
+      PollDescriptor entry{listen_fd_, POLLIN, 0};
+      const int ready = pollSockets(&entry, 1, 100);
       if (ready < 0) {
-        return -1;
+        return platform::kInvalidSocket;
       }
       if (ready > 0 && (entry.revents & POLLIN) != 0) {
         return ::accept(listen_fd_, nullptr, nullptr);
       }
     }
-    return -1;
+    return platform::kInvalidSocket;
   }
 
   void serve() {
-    if (listen_fd_ < 0) {
+    if (!platform::isValidSocket(listen_fd_)) {
       return;
     }
-    const int client = acceptClient();
-    if (client < 0) {
+    const platform::SocketHandle client = acceptClient();
+    if (!platform::isValidSocket(client)) {
       return;
     }
-    timeval timeout{2, 0};
-    ::setsockopt(client, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+    setReceiveTimeout(client);
 
     if (mode_ == Mode::CloseImmediately) {
-      ::close(client);
+      platform::closeSocket(client);
       served_ = true;
       return;
     }
@@ -146,17 +177,28 @@ class LoopbackServer {
     } else {
       servePlain(client);
     }
-    ::close(client);
+    platform::closeSocket(client);
   }
 
   // A zero linger timeout turns close() into a reset, so the peer sees an
   // error instead of an orderly shutdown.
-  static void prepareReset(int client) {
+  static void prepareReset(platform::SocketHandle client) {
     linger option{1, 0};
-    ::setsockopt(client, SOL_SOCKET, SO_LINGER, &option, sizeof(option));
+    ::setsockopt(client, SOL_SOCKET, SO_LINGER, reinterpret_cast<const char*>(&option), sizeof(option));
   }
 
-  void servePlain(int client) {
+  // Windows states the receive timeout in milliseconds, POSIX in a timeval.
+  static void setReceiveTimeout(platform::SocketHandle client) {
+#if defined(_WIN32)
+    DWORD timeout = 2000;
+    ::setsockopt(client, SOL_SOCKET, SO_RCVTIMEO, reinterpret_cast<const char*>(&timeout), sizeof(timeout));
+#else
+    timeval timeout{2, 0};
+    ::setsockopt(client, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+#endif
+  }
+
+  void servePlain(platform::SocketHandle client) {
     if (!readRequest(client, nullptr)) {
       return;
     }
@@ -165,12 +207,12 @@ class LoopbackServer {
       served_ = true;
       return;
     }
-    ::send(client, response_.data(), response_.size(), MSG_NOSIGNAL);
+    ::send(client, response_.data(), static_cast<int>(response_.size()), kSendFlags);
     served_ = true;
   }
 
 #if BJORNE_AGENT_HAS_OPENSSL
-  void serveTls(int client) {
+  void serveTls(platform::SocketHandle client) {
     SSL_CTX* context = SSL_CTX_new(TLS_server_method());
     if (context == nullptr) {
       return;
@@ -182,7 +224,7 @@ class LoopbackServer {
     if (ssl == nullptr) {
       return;
     }
-    SSL_set_fd(ssl, client);
+    SSL_set_fd(ssl, static_cast<int>(client));
     if (SSL_accept(ssl) == 1) {
       if (readRequest(client, ssl)) {
         if (mode_ == Mode::TlsResetAfterRead) {
@@ -201,7 +243,7 @@ class LoopbackServer {
 #endif
 
   // One read from either the TLS session or the plain socket.
-  static int readFrom(int client, SSL* ssl, char* buffer, int size) {
+  static int readFrom(platform::SocketHandle client, SSL* ssl, char* buffer, int size) {
 #if BJORNE_AGENT_HAS_OPENSSL
     if (ssl != nullptr) {
       return SSL_read(ssl, buffer, size);
@@ -213,7 +255,7 @@ class LoopbackServer {
   }
 
   // Reads until the headers and the declared body have arrived.
-  bool readRequest(int client, SSL* ssl) {
+  bool readRequest(platform::SocketHandle client, SSL* ssl) {
     std::string data;
     size_t content_length = 0;
     bool have_headers = false;
@@ -284,7 +326,7 @@ class LoopbackServer {
   Mode mode_;
   std::atomic<bool> stop_{false};
   bool served_ = false;
-  int listen_fd_ = -1;
+  platform::SocketHandle listen_fd_ = platform::kInvalidSocket;
   std::string port_;
   std::string request_;
   std::string response_ = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n{}";

@@ -4,9 +4,10 @@
 #include <fstream>
 #include <memory>
 #include <string>
-#include <unistd.h>
 #include <utility>
 #include <vector>
+
+#include "platform/Platform.h"
 
 #include <catch_amalgamated.hpp>
 
@@ -45,7 +46,7 @@ class TempDir {
     // The path carries the process id so that two test binaries running at the
     // same time do not overwrite each other's fixture.
     path_ = std::filesystem::temp_directory_path() /
-            ("bjorne_agent_test_" + std::to_string(::getpid()) + "_" + std::to_string(++counter));
+            ("bjorne_agent_test_" + std::to_string(bjorne_agent::platform::processId()) + "_" + std::to_string(++counter));
     std::filesystem::create_directories(path_);
   }
   ~TempDir() {

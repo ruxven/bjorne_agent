@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+#include "platform/Platform.h"
+
 #include <catch_amalgamated.hpp>
 
 #include "http/LoopbackServer.h"
@@ -56,7 +58,7 @@ bjorne_agent::model::ModelMessage message(const std::string& role, const std::st
 }  // namespace
 
 TEST_CASE("Model client sends auth header and parses content") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse(R"({"choices":[{"message":{"role":"assistant","content":"hello"}}]})"));
   bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
   client.setTools(R"([{"type":"function"}])");
@@ -77,7 +79,7 @@ TEST_CASE("Model client sends auth header and parses content") {
 }
 
 TEST_CASE("Model client parses tool calls") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse(
       R"({"choices":[{"message":{"role":"assistant","content":null,"tool_calls":[{"id":"call_1","type":"function","function":{"name":"read_file","arguments":"{\"path\":\"a.txt\"}"}}]}}]})"));
   bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
@@ -94,7 +96,7 @@ TEST_CASE("Model client parses tool calls") {
 }
 
 TEST_CASE("Model client serializes tool result messages") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse(R"({"choices":[{"message":{"role":"assistant","content":"done"}}]})"));
   bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
 
@@ -112,7 +114,7 @@ TEST_CASE("Model client serializes tool result messages") {
 }
 
 TEST_CASE("Model client reports a missing API key") {
-  ::unsetenv(kApiKeyEnv);
+  bjorne_agent::platform::unsetEnvironmentVariable(kApiKeyEnv);
   auto mock = makeMock(okResponse("{}"));
   bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
 
@@ -125,7 +127,7 @@ TEST_CASE("Model client reports a missing API key") {
 }
 
 TEST_CASE("Model client reports a non-2xx status") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock("HTTP/1.1 500 Internal Server Error\r\n\r\nboom");
   bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
 
@@ -138,7 +140,7 @@ TEST_CASE("Model client reports a non-2xx status") {
 }
 
 TEST_CASE("Model client reports a missing choices array") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse(R"({})"));
   bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
 
@@ -150,7 +152,7 @@ TEST_CASE("Model client reports a missing choices array") {
 }
 
 TEST_CASE("Model client reports a missing message in the choice") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse(R"({"choices":[{"finish_reason":"stop"}]})"));
   bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
 
@@ -162,7 +164,7 @@ TEST_CASE("Model client reports a missing message in the choice") {
 }
 
 TEST_CASE("Model client reports malformed response JSON") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse("not json"));
   bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
 
@@ -174,7 +176,7 @@ TEST_CASE("Model client reports malformed response JSON") {
 }
 
 TEST_CASE("Model client surfaces transport failure") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock("");
   mock->fail = true;
   mock->pending_error = "transport down";
@@ -188,7 +190,7 @@ TEST_CASE("Model client surfaces transport failure") {
 }
 
 TEST_CASE("Model client serializes assistant tool calls") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse(R"({"choices":[{"message":{"role":"assistant","content":"done"}}]})"));
   bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
 
@@ -206,7 +208,7 @@ TEST_CASE("Model client serializes assistant tool calls") {
 }
 
 TEST_CASE("Model client escapes request strings") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse(R"({"choices":[{"message":{"role":"assistant","content":"ok"}}]})"));
   bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test\"model", kApiKeyEnv, mock);
 
@@ -221,7 +223,7 @@ TEST_CASE("Model client escapes request strings") {
 }
 
 TEST_CASE("Model client skips non-object tool call entries") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse(
       R"({"choices":[{"message":{"role":"assistant","content":null,"tool_calls":[42,{"id":"call_1","function":{"name":"read_file","arguments":"{}"}}]}}]})"));
   bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
@@ -236,7 +238,7 @@ TEST_CASE("Model client skips non-object tool call entries") {
 }
 
 TEST_CASE("Model client rejects an endpoint without a scheme") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse("{}"));
   bjorne_agent::model::ModelClient client("api.example.com/v1", "test-model", kApiKeyEnv, mock);
 
@@ -249,7 +251,7 @@ TEST_CASE("Model client rejects an endpoint without a scheme") {
 }
 
 TEST_CASE("Model client rejects an unsupported endpoint scheme") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse("{}"));
   bjorne_agent::model::ModelClient client("ftp://api.example.com/v1", "test-model", kApiKeyEnv, mock);
 
@@ -261,7 +263,7 @@ TEST_CASE("Model client rejects an unsupported endpoint scheme") {
 }
 
 TEST_CASE("Model client uses plain TCP for http endpoints") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   bjorne_agent_test::LoopbackServer server;
   server.setResponse(
       "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n"
@@ -283,7 +285,7 @@ TEST_CASE("Model client uses plain TCP for http endpoints") {
 }
 
 TEST_CASE("Model client passes the endpoint port to the transport") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse(R"({"choices":[{"message":{"role":"assistant","content":"ok"}}]})"));
   bjorne_agent::model::ModelClient client("https://api.example.com:8443/v1", "test-model", kApiKeyEnv, mock);
 
@@ -297,7 +299,7 @@ TEST_CASE("Model client passes the endpoint port to the transport") {
 }
 
 TEST_CASE("Model client defaults the https port to 443") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse(R"({"choices":[{"message":{"role":"assistant","content":"ok"}}]})"));
   bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
 
@@ -311,7 +313,7 @@ TEST_CASE("Model client defaults the https port to 443") {
 
 #if BJORNE_AGENT_HAS_OPENSSL
 TEST_CASE("Model client uses TLS for https endpoints") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   bjorne_agent_test::LoopbackServer server(bjorne_agent_test::LoopbackServer::Mode::Tls);
   server.setResponse(
       "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n"
@@ -340,7 +342,7 @@ TEST_CASE("Model client uses TLS for https endpoints") {
 
 #if !BJORNE_AGENT_HAS_OPENSSL
 TEST_CASE("Model client rejects an https endpoint when built without TLS") {
-  ::setenv(kApiKeyEnv, "test-key", 1);
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv);
 
   bjorne_agent::model::ModelResponse response;

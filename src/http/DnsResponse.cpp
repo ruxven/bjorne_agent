@@ -1,7 +1,14 @@
 #include "http/DnsResponse.h"
 
+#include "platform/Platform.h"
+
+#if defined(_WIN32)
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
 #include <netinet/in.h>
 #include <sys/socket.h>
+#endif
 
 #include <cstring>
 #include <vector>
@@ -76,6 +83,8 @@ bool appendRecord(const unsigned char* data, int size, int offset, unsigned shor
 
 bool parseDnsResponse(const unsigned char* data, int size, unsigned short port,
                       std::vector<ResolvedAddress>& addresses) {
+  // htons is a Winsock call on Windows, so it needs the socket layer started.
+  platform::initializeSockets();
   if (size < kHeaderSize) {
     return false;
   }
