@@ -213,19 +213,56 @@ install(FILES LICENSE
   DESTINATION share/licenses/bjorne_agent
   COMPONENT runtime)
 
-# Packaging for the release job. The archive name carries the project name and
-# version so the uploaded artifacts are unambiguous.
+# Packaging for the release job. The archive name carries the project name,
+# version and target processor so that the uploaded artifacts are unambiguous
+# and a cross build does not overwrite a native one.
 set(CPACK_PACKAGE_NAME "bjorne_agent")
 set(CPACK_PACKAGE_VENDOR "bjorne_agent")
 set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Low dependency AI coding agent")
-set(CPACK_PACKAGE_FILE_NAME "bjorne_agent-${PROJECT_VERSION}-${CMAKE_SYSTEM_NAME}")
+set(CPACK_PACKAGE_FILE_NAME
+  "bjorne_agent-${PROJECT_VERSION}-${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR}")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "bjorne_agent")
 # The Debian and RPM generators refuse to run without a contact address.
 set(CPACK_PACKAGE_CONTACT "Ruxven <ruxven@protonmail.ch>")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Ruxven <ruxven@protonmail.ch>")
 set(CPACK_DEBIAN_PACKAGE_SECTION "devel")
-set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+
+# CPack would otherwise stamp a package with the architecture of the machine
+# that builds it, so a cross built package would claim to be for the build
+# host. The mapping uses the target processor instead. Debian and RPM spell the
+# same architecture differently.
+set(BJORNE_AGENT_DEBIAN_ARCH "")
+set(BJORNE_AGENT_RPM_ARCH "")
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(x86_64|amd64|AMD64)$")
+  set(BJORNE_AGENT_DEBIAN_ARCH amd64)
+  set(BJORNE_AGENT_RPM_ARCH x86_64)
+elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64|arm64)$")
+  set(BJORNE_AGENT_DEBIAN_ARCH arm64)
+  set(BJORNE_AGENT_RPM_ARCH aarch64)
+elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(armv7l|armv7|armhf|arm)$")
+  set(BJORNE_AGENT_DEBIAN_ARCH armhf)
+  set(BJORNE_AGENT_RPM_ARCH armv7hl)
+elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "^(i[3-6]86|x86)$")
+  set(BJORNE_AGENT_DEBIAN_ARCH i386)
+  set(BJORNE_AGENT_RPM_ARCH i686)
+endif()
+
+if(BJORNE_AGENT_DEBIAN_ARCH)
+  set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE ${BJORNE_AGENT_DEBIAN_ARCH})
+endif()
+if(BJORNE_AGENT_RPM_ARCH)
+  set(CPACK_RPM_PACKAGE_ARCHITECTURE ${BJORNE_AGENT_RPM_ARCH})
+endif()
+
+# dpkg-shlibdeps inspects the binaries on the build machine, so it cannot work
+# for a cross build. The cross packages are static anyway, which leaves no
+# shared library dependencies to record.
+if(CMAKE_CROSSCOMPILING)
+  set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS OFF)
+else()
+  set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+endif()
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_VERBATIM_VARIABLES ON)
 set(CPACK_GENERATOR "TGZ;DEB;RPM")

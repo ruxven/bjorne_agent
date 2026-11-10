@@ -235,6 +235,49 @@ jobs:
         path: build_windows/bin/bjorne_agent.exe
         if-no-files-found: error
 
+  linux-arm64-cross:
+    name: Linux ARM64 Cross Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install cross compiler and emulator
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake ninja-build g++-aarch64-linux-gnu qemu-user-static
+
+    - name: Configure CMake
+      # The static build has no dynamic dependencies, so the executable runs
+      # unchanged on a Raspberry Pi 3, 4 or 5 with a 64 bit OS.
+      run: |
+        cmake -S . -B build_arm64 -G Ninja \
+          -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/linux-aarch64.cmake \
+          -DCMAKE_BUILD_TYPE=Release \
+          -DBJORNE_AGENT_OPENSSL=disabled \
+          -DBJORNE_AGENT_STATIC=ON
+
+    - name: Build
+      run: cmake --build build_arm64
+
+    - name: Check the target
+      run: |
+        file build_arm64/bin/bjorne_agent
+        file build_arm64/bin/bjorne_agent | grep -q 'ARM aarch64'
+        file build_arm64/bin/bjorne_agent | grep -q 'statically linked'
+
+    - name: Run tests under qemu
+      # The test binary is static, so qemu needs no sysroot. The shell commands
+      # the tests start are host binaries, which exec directly.
+      run: qemu-aarch64-static build_arm64/bin/bjorne_agent_tests
+
+    - name: Upload executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: bjorne_agent-linux-arm64
+        path: build_arm64/bin/bjorne_agent
+        if-no-files-found: error
+
   # Code Complexity Analysis
   code-complexity:
     name: Code Complexity Analysis

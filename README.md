@@ -137,6 +137,58 @@ A native MSVC build works too, but MSVC rejects the GNU link options, so
 `BJORNE_AGENT_STATIC` is turned off for it and `BJORNE_AGENT_OPENSSL=disabled`
 removes the OpenSSL dependency.
 
+### Cross build for ARM (Raspberry Pi)
+
+Two toolchain files cover the Raspberry Pi. `linux-aarch64.cmake` builds for
+the 64 bit Pi 3, 4 and 5, and `linux-armhf.cmake` builds for the 32 bit Pi 2
+and later:
+
+```sh
+sudo apt-get install g++-aarch64-linux-gnu
+cmake -S . -B build_arm64 -G Ninja \
+  -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/linux-aarch64.cmake \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DBJORNE_AGENT_STATIC=ON
+cmake --build build_arm64
+```
+
+Swap `aarch64` for `armhf` and the compiler package for
+`g++-arm-linux-gnueabihf` for the 32 bit build. The Pi 1, Zero and Zero W are
+ARMv6, which the armhf toolchain does not target by default; add
+`-DCMAKE_CXX_FLAGS="-march=armv6 -mfpu=vfp -mfloat-abi=hard"` or build on the
+Pi itself.
+
+The static build needs no libraries on the target, and the packages record the
+target architecture (`arm64` or `armhf`) rather than the build host's.
+
+A cross build with TLS needs the target OpenSSL. Debian's static `libssl.a` is
+built with zlib and zstd, so the link has to name both, and the OpenSSL paths
+are passed explicitly because the cross sysroot does not contain them:
+
+```sh
+sudo dpkg --add-architecture arm64
+sudo apt-get update
+sudo apt-get install libssl-dev:arm64 zlib1g-dev:arm64 libzstd-dev:arm64
+cmake -S . -B build_arm64 -G Ninja \
+  -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/linux-aarch64.cmake \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DBJORNE_AGENT_STATIC=ON \
+  -DOPENSSL_INCLUDE_DIR=/usr/include \
+  -DOPENSSL_SSL_LIBRARY=/usr/lib/aarch64-linux-gnu/libssl.a \
+  -DOPENSSL_CRYPTO_LIBRARY=/usr/lib/aarch64-linux-gnu/libcrypto.a \
+  -DCMAKE_CXX_STANDARD_LIBRARIES="-lz -lzstd"
+```
+
+For armhf the library directory is `/usr/lib/arm-linux-gnueabihf`.
+
+To run the cross built tests on the build machine, install `qemu-user-static`
+and run the test binary through it. The binary is static, so no sysroot is
+needed:
+
+```sh
+qemu-aarch64-static build_arm64/bin/bjorne_agent_tests
+```
+
 ## Usage
 
 ```
