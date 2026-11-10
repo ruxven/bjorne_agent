@@ -1,41 +1,13 @@
 #include "log/Log.h"
 
-#include <iostream>
-#include <sstream>
 #include <string>
 
 #include <catch_amalgamated.hpp>
 
-namespace {
+#include "log/LogCapture.h"
 
-// The log level is process wide, so every test restores it when it finishes.
-class LevelGuard {
- public:
-  explicit LevelGuard(bjorne_agent::log::Level level) : previous_(bjorne_agent::log::level()) {
-    bjorne_agent::log::setLevel(level);
-  }
-  ~LevelGuard() { bjorne_agent::log::setLevel(previous_); }
-
- private:
-  bjorne_agent::log::Level previous_;
-};
-
-// Redirects std::cerr into a buffer for as long as the guard lives, so a test
-// can read back what the log wrote. The stream is restored on the way out,
-// even when the test fails part way through.
-class CaptureGuard {
- public:
-  CaptureGuard() : original_(std::cerr.rdbuf(buffer_.rdbuf())) {}
-  ~CaptureGuard() { std::cerr.rdbuf(original_); }
-
-  std::string text() const { return buffer_.str(); }
-
- private:
-  std::ostringstream buffer_;
-  std::streambuf* original_;
-};
-
-}  // namespace
+using bjorne_agent_test::CaptureGuard;
+using bjorne_agent_test::LevelGuard;
 
 TEST_CASE("log level starts quiet") {
   // The library must not write to the console unless the binary asks it to.
@@ -116,6 +88,56 @@ TEST_CASE("detail lines need the verbose level") {
   bjorne_agent::log::setLevel(bjorne_agent::log::Level::Verbose);
   bjorne_agent::log::detail("detail line");
   REQUIRE(capture.text().find("detail: detail line") != std::string::npos);
+}
+
+TEST_CASE("block output indents every line under its label") {
+  const LevelGuard guard(bjorne_agent::log::Level::Normal);
+  const CaptureGuard capture;
+
+  bjorne_agent::log::block("thinking", "first line\nsecond line");
+
+  const std::string text = capture.text();
+  REQUIRE(text.find("thinking:\n  first line\n  second line\n") != std::string::npos);
+}
+
+TEST_CASE("block output ignores empty text") {
+  const LevelGuard guard(bjorne_agent::log::Level::Normal);
+  const CaptureGuard capture;
+
+  bjorne_agent::log::block("thinking", "");
+
+  REQUIRE(capture.text().empty());
+}
+
+TEST_CASE("block output is hidden below the normal level") {
+  const LevelGuard guard(bjorne_agent::log::Level::Quiet);
+  const CaptureGuard capture;
+
+  bjorne_agent::log::block("thinking", "hidden");
+
+  REQUIRE(capture.text().empty());
+}
+
+TEST_CASE("block output cuts long text and says how much was left out") {
+  const LevelGuard guard(bjorne_agent::log::Level::Normal);
+  const CaptureGuard capture;
+
+  bjorne_agent::log::block("result", "abcdef", 3);
+
+  const std::string text = capture.text();
+  REQUIRE(text.find("  abc\n") != std::string::npos);
+  REQUIRE(text.find("[3 more characters]") != std::string::npos);
+}
+
+TEST_CASE("block output drops the carriage return of a CRLF line") {
+  const LevelGuard guard(bjorne_agent::log::Level::Normal);
+  const CaptureGuard capture;
+
+  bjorne_agent::log::block("result", "one\r\ntwo");
+
+  const std::string text = capture.text();
+  REQUIRE(text.find("  one\n  two\n") != std::string::npos);
+  REQUIRE(text.find('\r') == std::string::npos);
 }
 
 TEST_CASE("seconds format as a short string") {

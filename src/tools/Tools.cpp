@@ -150,9 +150,14 @@ ToolRegistry::ToolRegistry(std::string workspace) : workspace_(std::move(workspa
 
 ToolResult ToolRegistry::execute(const std::string& name, const std::string& arguments) const {
   log::progress("Running tool: " + name);
+  // The arguments say what the tool is about to do: the command for run_shell,
+  // the path and content for a write. Showing them before the call runs is what
+  // lets a user follow along instead of seeing only the tool name.
+  log::block("arguments", arguments, 1000);
   const ToolResult result = dispatch(name, arguments);
   if (result.ok) {
     log::detail("Tool " + name + " returned " + std::to_string(result.output.size()) + " bytes");
+    log::block("result", result.output, 2000);
   } else {
     log::fail("Tool " + name + " failed: " + result.output);
   }

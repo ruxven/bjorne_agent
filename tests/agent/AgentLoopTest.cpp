@@ -11,10 +11,14 @@
 
 #include <catch_amalgamated.hpp>
 
+#include "log/LogCapture.h"
+
 namespace {
 
 using bjorne_agent::model::ModelMessage;
 using bjorne_agent::model::ModelResponse;
+using bjorne_agent_test::CaptureGuard;
+using bjorne_agent_test::LevelGuard;
 
 class MockModelBackend final : public bjorne_agent::model::ModelBackend {
  public:
@@ -86,7 +90,7 @@ ModelResponse toolResponse(const std::string& name, const std::string& arguments
 
 TEST_CASE("Agent loop returns the final response") {
   auto backend = std::make_shared<MockModelBackend>();
-  backend->responses.push_back(ModelResponse{"done", {}});
+  backend->responses.push_back(ModelResponse{"done", {}, {}});
   const auto loop = makeLoop(backend, "");
 
   std::string result;
@@ -108,7 +112,7 @@ TEST_CASE("Agent loop executes tool calls and continues") {
 
   auto backend = std::make_shared<MockModelBackend>();
   backend->responses.push_back(toolResponse("read_file", R"({"path":"note.txt"})"));
-  backend->responses.push_back(ModelResponse{"finished", {}});
+  backend->responses.push_back(ModelResponse{"finished", {}, {}});
   const auto loop = makeLoop(backend, dir.str());
 
   std::string result;
@@ -128,7 +132,7 @@ TEST_CASE("Agent loop executes tool calls and continues") {
 TEST_CASE("Agent loop reports tool errors and continues") {
   auto backend = std::make_shared<MockModelBackend>();
   backend->responses.push_back(toolResponse("missing_tool", "{}"));
-  backend->responses.push_back(ModelResponse{"finished", {}});
+  backend->responses.push_back(ModelResponse{"finished", {}, {}});
   const auto loop = makeLoop(backend, "");
 
   std::string result;
@@ -138,6 +142,74 @@ TEST_CASE("Agent loop reports tool errors and continues") {
   REQUIRE(result == "finished");
   REQUIRE(backend->seen[1][3].role == "tool");
   REQUIRE(backend->seen[1][3].content == "Error: unknown tool: missing_tool");
+}
+
+TEST_CASE("Agent loop shows the model's reasoning and narration before a tool runs") {
+  const LevelGuard guard(bjorne_agent::log::Level::Normal);
+  const CaptureGuard capture;
+
+  auto backend = std::make_shared<MockModelBackend>();
+  ModelResponse first;
+  first.reasoning = "I should try the tool first.";
+  first.content = "Trying a tool now.";
+  first.tool_calls.push_back(bjorne_agent::model::ToolCall{"call_1", "missing_tool", "{}"});
+  backend->responses.push_back(first);
+  backend->responses.push_back(ModelResponse{"finished", {}, {}});
+  const auto loop = makeLoop(backend, "");
+
+  std::string result;
+  std::string error;
+  REQUIRE(loop->run("go", result, error));
+  REQUIRE(result == "finished");
+
+  const std::string text = capture.text();
+  REQUIRE(text.find("thinking:\n  I should try the tool first.") != std::string::npos);
+  REQUIRE(text.find("assistant:\n  Trying a tool now.") != std::string::npos);
+  REQUIRE(text.find("arguments:\n  {}") != std::string::npos);
+  // The narration is printed before the tool it introduces runs.
+  REQUIRE(text.find("Trying a tool now.") < text.find("Running tool: missing_tool"));
+}
+
+TEST_CASE("Agent loop shows a successful tool result") {
+  const LevelGuard guard(bjorne_agent::log::Level::Normal);
+  const CaptureGuard capture;
+
+  TempDir dir;
+  std::ofstream(dir.str() + "/note.txt") << "hello";
+  auto backend = std::make_shared<MockModelBackend>();
+  backend->responses.push_back(toolResponse("read_file", R"({"path":"note.txt"})"));
+  backend->responses.push_back(ModelResponse{"finished", {}, {}});
+  const auto loop = makeLoop(backend, dir.str());
+
+  std::string result;
+  std::string error;
+  REQUIRE(loop->run("read the note", result, error));
+
+  const std::string text = capture.text();
+  REQUIRE(text.find("arguments:\n  {\"path\":\"note.txt\"}") != std::string::npos);
+  REQUIRE(text.find("result:\n  hello") != std::string::npos);
+}
+
+TEST_CASE("Agent loop shows final reasoning but leaves the answer to stdout") {
+  const LevelGuard guard(bjorne_agent::log::Level::Normal);
+  const CaptureGuard capture;
+
+  auto backend = std::make_shared<MockModelBackend>();
+  ModelResponse finalResponse;
+  finalResponse.reasoning = "The task is done.";
+  finalResponse.content = "the final answer";
+  backend->responses.push_back(finalResponse);
+  const auto loop = makeLoop(backend, "");
+
+  std::string result;
+  std::string error;
+  REQUIRE(loop->run("finish", result, error));
+  REQUIRE(result == "the final answer");
+
+  const std::string text = capture.text();
+  REQUIRE(text.find("thinking:\n  The task is done.") != std::string::npos);
+  // The final answer is written once, to stdout, by the caller.
+  REQUIRE(text.find("the final answer") == std::string::npos);
 }
 
 TEST_CASE("Agent loop stops on model error") {
@@ -167,7 +239,7 @@ TEST_CASE("Agent loop stops at the iteration cap") {
 
 TEST_CASE("Agent loop stops when the context cannot be trimmed") {
   auto backend = std::make_shared<MockModelBackend>();
-  backend->responses.push_back(ModelResponse{"never used", {}});
+  backend->responses.push_back(ModelResponse{"never used", {}, {}});
 
   bjorne_agent::agent::AgentLoopConfig config;
   config.system_prompt = "You are a test agent.";

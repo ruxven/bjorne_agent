@@ -60,6 +60,15 @@ bool AgentLoop::run(const std::string& task, std::string& result, std::string& e
       log::fail(error);
       return false;
     }
+    // Show what the model is thinking before anything it asked for runs. The
+    // final answer goes to stdout, so its content is not repeated here; a
+    // reasoning trace is always shown, including on the final turn.
+    if (!response.reasoning.empty()) {
+      log::block("thinking", response.reasoning);
+    }
+    if (!response.tool_calls.empty() && !response.content.empty()) {
+      log::block("assistant", response.content);
+    }
     if (response.tool_calls.empty()) {
       log::progress("Model returned a final response");
       result = response.content;

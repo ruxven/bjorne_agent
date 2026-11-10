@@ -78,6 +78,46 @@ TEST_CASE("Model client sends auth header and parses content") {
   REQUIRE(mock->last_request.find("\"content\":\"hi\"") != std::string::npos);
 }
 
+TEST_CASE("Model client parses reasoning_content") {
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
+  auto mock = makeMock(okResponse(
+      R"({"choices":[{"message":{"role":"assistant","content":"answer","reasoning_content":"step by step"}}]})"));
+  bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
+
+  bjorne_agent::model::ModelResponse response;
+  std::string error;
+  const std::vector<bjorne_agent::model::ModelMessage> messages = {message("user", "hi")};
+  REQUIRE(client.respond(messages, response, error));
+  REQUIRE(response.content == "answer");
+  REQUIRE(response.reasoning == "step by step");
+}
+
+TEST_CASE("Model client parses reasoning under its other field name") {
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
+  auto mock = makeMock(okResponse(
+      R"({"choices":[{"message":{"role":"assistant","content":"answer","reasoning":"thinking"}}]})"));
+  bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
+
+  bjorne_agent::model::ModelResponse response;
+  std::string error;
+  const std::vector<bjorne_agent::model::ModelMessage> messages = {message("user", "hi")};
+  REQUIRE(client.respond(messages, response, error));
+  REQUIRE(response.reasoning == "thinking");
+}
+
+TEST_CASE("Model client ignores a reasoning field that is not a string") {
+  bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
+  auto mock = makeMock(okResponse(
+      R"({"choices":[{"message":{"role":"assistant","content":"answer","reasoning":{"unexpected":true}}}]})"));
+  bjorne_agent::model::ModelClient client("https://api.example.com/v1", "test-model", kApiKeyEnv, mock);
+
+  bjorne_agent::model::ModelResponse response;
+  std::string error;
+  const std::vector<bjorne_agent::model::ModelMessage> messages = {message("user", "hi")};
+  REQUIRE(client.respond(messages, response, error));
+  REQUIRE(response.reasoning.empty());
+}
+
 TEST_CASE("Model client parses tool calls") {
   bjorne_agent::platform::setEnvironmentVariable(kApiKeyEnv, "test-key");
   auto mock = makeMock(okResponse(

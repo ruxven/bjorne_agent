@@ -142,6 +142,15 @@ bool parseChatResponse(const std::string& body, ModelResponse& out, std::string&
   if (content != nullptr && content->isString()) {
     out.content = content->string;
   }
+  // Reasoning models disagree on the field name: DeepSeek and its clones use
+  // reasoning_content, OpenRouter uses reasoning. Both are a plain string.
+  const json::Value* reasoning = message.find("reasoning_content");
+  if (reasoning == nullptr || !reasoning->isString()) {
+    reasoning = message.find("reasoning");
+  }
+  if (reasoning != nullptr && reasoning->isString()) {
+    out.reasoning = reasoning->string;
+  }
   parseToolCalls(message, out.tool_calls);
   return true;
 }

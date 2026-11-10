@@ -11,8 +11,12 @@
 #include <catch_amalgamated.hpp>
 
 #include "json/Json.h"
+#include "log/LogCapture.h"
 
 namespace {
+
+using bjorne_agent_test::CaptureGuard;
+using bjorne_agent_test::LevelGuard;
 
 class TempDir {
  public:
@@ -38,6 +42,22 @@ class TempDir {
 };
 
 }  // namespace
+
+TEST_CASE("execute reports the tool input and a successful result") {
+  const LevelGuard guard(bjorne_agent::log::Level::Normal);
+  const CaptureGuard capture;
+
+  TempDir dir;
+  std::ofstream(dir.str() + "/hello.txt") << "hello";
+  const bjorne_agent::tools::ToolRegistry registry(dir.str());
+
+  const bjorne_agent::tools::ToolResult result = registry.execute("read_file", R"({"path":"hello.txt"})");
+  REQUIRE(result.ok);
+
+  const std::string text = capture.text();
+  REQUIRE(text.find("arguments:\n  {\"path\":\"hello.txt\"}") != std::string::npos);
+  REQUIRE(text.find("result:\n  hello") != std::string::npos);
+}
 
 TEST_CASE("read_file returns file content") {
   TempDir dir;

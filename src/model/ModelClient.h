@@ -26,6 +26,9 @@ struct ModelMessage {
 struct ModelResponse {
   std::string content;
   std::vector<ToolCall> tool_calls;
+  // Separate reasoning trace some models return alongside the answer. The field
+  // is last so that existing aggregate initializers keep their meaning.
+  std::string reasoning;
 };
 
 // Seam for the agent loop. Real deployments use ModelClient. Tests substitute

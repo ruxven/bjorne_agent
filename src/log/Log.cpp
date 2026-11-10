@@ -1,5 +1,6 @@
 #include "log/Log.h"
 
+#include <algorithm>
 #include <chrono>
 #include <cstdio>
 #include <iostream>
@@ -65,6 +66,33 @@ void fail(const std::string& message) {
     return;
   }
   write("error", message);
+}
+
+void block(const std::string& label, const std::string& text, std::size_t limit) {
+  if (g_level < Level::Normal || text.empty()) {
+    return;
+  }
+  std::cerr << "[bjorne_agent " << formatSeconds(elapsedSeconds()) << "] " << label << ":\n";
+  const std::size_t shown = std::min(text.size(), limit);
+  std::size_t pos = 0;
+  while (pos < shown) {
+    std::size_t lineEnd = text.find('\n', pos);
+    if (lineEnd == std::string::npos || lineEnd > shown) {
+      lineEnd = shown;
+    }
+    std::string line = text.substr(pos, lineEnd - pos);
+    // A CRLF from a tool result would otherwise leave a stray carriage return
+    // that overwrites the start of the line on a terminal.
+    if (!line.empty() && line.back() == '\r') {
+      line.pop_back();
+    }
+    std::cerr << "  " << line << "\n";
+    pos = lineEnd + 1;
+  }
+  if (shown < text.size()) {
+    std::cerr << "  ... [" << (text.size() - shown) << " more characters]\n";
+  }
+  std::cerr.flush();
 }
 
 double elapsedSeconds() {

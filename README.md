@@ -225,7 +225,7 @@ The final answer goes to standard output. Progress goes to standard error, so
 | Level | Shows |
 | --- | --- |
 | `quiet` | Nothing. Errors that end the run still print. |
-| `normal` | Each step: config load, model selection, iteration count, request, tool calls, completion. |
+| `normal` | Each step: config load, model selection, iteration count, request, the model's reasoning and narration, each tool's arguments and result, completion. |
 | `verbose` | Adds the endpoint internals: DNS resolution, TCP connect, TLS handshake, certificate verification, response size. |
 
 Set the level with `--verbose` or `--quiet`, or with the `BJORNE_AGENT_LOG`
@@ -237,7 +237,26 @@ BJORNE_AGENT_LOG=quiet bjorne_agent config.json "what is in this repository"
 ```
 
 Every progress line is stamped with the elapsed time, so a run that stalls on
-a slow endpoint shows how long it has been waiting and where.
+a slow endpoint shows how long it has been waiting and where. The model's own
+words appear as indented `thinking` and `assistant` blocks, and each tool call
+shows its arguments and a preview of its result:
+
+```text
+[bjorne_agent 3.1s] thinking:
+  The user wants proof the shell works.
+  I should echo a word and read the output.
+[bjorne_agent 3.1s] assistant:
+  I will run a command to check the shell.
+[bjorne_agent 3.1s] info: Running tool: run_shell
+[bjorne_agent 3.1s] arguments:
+  {"command": "echo hello"}
+[bjorne_agent 3.2s] result:
+  hello
+```
+
+Long reasoning and tool output are cut at a few thousand characters, with a
+note that says how much was left out. The final answer still goes to stdout
+only, so piping the answer stays clean.
 
 ### Exit codes
 

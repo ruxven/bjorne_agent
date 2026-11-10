@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include <string>
 
 namespace bjorne_agent {
@@ -31,6 +32,13 @@ void detail(const std::string& message);
 // Error line. Shown at Normal and Verbose. Errors that end the run are also
 // printed by the caller, so this reports the ones that do not stop the run.
 void fail(const std::string& message);
+
+// A labelled block of text, such as the model's own words or a tool payload.
+// The label goes on its own line and every text line is indented under it, so
+// a multi-line answer stays readable next to the progress lines. Shown at
+// Normal and Verbose; empty text is ignored. Text longer than `limit` is cut,
+// and a final line says how many characters were left out.
+void block(const std::string& label, const std::string& text, std::size_t limit = 4000);
 
 // Seconds since the first log call. Used to stamp lines so a stalled run
 // shows where it stopped.
