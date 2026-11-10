@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['handling_0',['Error Handling',['../md_SPEC_8LOOP.html#autotoc_md59',1,'']]],
+  ['handling_0',['Error Handling',['../md_SPEC_8LOOP.html#autotoc_md60',1,'']]],
   ['harness_1',['harness',['../md_DESIGN.html',1,'Design: C++ Agent Harness'],['../md_ROADMAP.html',1,'ROADMAP: C++ Agent Harness'],['../md_SPEC.html',1,'SPEC: C++ Agent Harness']]],
   ['harness_20configuration_20specification_2',['SPEC.CONFIG: C++ Agent Harness Configuration Specification',['../md_SPEC_8CONFIG.html',1,'']]],
   ['headers_3',['headers',['../structbjorne__agent_1_1http_1_1HttpRequest.html#a026c135a1397ac94f4f6280aa6e1dd60',1,'bjorne_agent::http::HttpRequest']]],

@@ -178,7 +178,33 @@ Cross build for Windows</h2>
 <div class="line">cmake --build build_windows</div>
 </div><!-- fragment --><p>The executable lands in <code>build_windows/bin/bjorne_agent.exe</code>.</p>
 <p>A native MSVC build works too, but MSVC rejects the GNU link options, so <code>BJORNE_AGENT_STATIC</code> is turned off for it and <code>BJORNE_AGENT_OPENSSL=disabled</code> removes the OpenSSL dependency.</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Cross build for ARM (Raspberry Pi)</h2>
+<p>Two toolchain files cover the Raspberry Pi. <code>linux-aarch64.cmake</code> builds for the 64 bit Pi 3, 4 and 5, and <code>linux-armhf.cmake</code> builds for the 32 bit Pi 2 and later:</p>
+<div class="fragment"><div class="line">sudo apt-get install g++-aarch64-linux-gnu</div>
+<div class="line">cmake -S . -B build_arm64 -G Ninja \</div>
+<div class="line">  -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/linux-aarch64.cmake \</div>
+<div class="line">  -DCMAKE_BUILD_TYPE=Release \</div>
+<div class="line">  -DBJORNE_AGENT_STATIC=ON</div>
+<div class="line">cmake --build build_arm64</div>
+</div><!-- fragment --><p>Swap <code>aarch64</code> for <code>armhf</code> and the compiler package for <code>g++-arm-linux-gnueabihf</code> for the 32 bit build. The Pi 1, Zero and Zero W are ARMv6, which the armhf toolchain does not target by default; add <code>-DCMAKE_CXX_FLAGS="-march=armv6 -mfpu=vfp -mfloat-abi=hard"</code> or build on the Pi itself.</p>
+<p>The static build needs no libraries on the target, and the packages record the target architecture (<code>arm64</code> or <code>armhf</code>) rather than the build host's.</p>
+<p>A cross build with TLS needs the target OpenSSL. Debian's static <code>libssl.a</code> is built with zlib and zstd, so the link has to name both, and the OpenSSL paths are passed explicitly because the cross sysroot does not contain them:</p>
+<div class="fragment"><div class="line">sudo dpkg --add-architecture arm64</div>
+<div class="line">sudo apt-get update</div>
+<div class="line">sudo apt-get install libssl-dev:arm64 zlib1g-dev:arm64 libzstd-dev:arm64</div>
+<div class="line">cmake -S . -B build_arm64 -G Ninja \</div>
+<div class="line">  -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/linux-aarch64.cmake \</div>
+<div class="line">  -DCMAKE_BUILD_TYPE=Release \</div>
+<div class="line">  -DBJORNE_AGENT_STATIC=ON \</div>
+<div class="line">  -DOPENSSL_INCLUDE_DIR=/usr/include \</div>
+<div class="line">  -DOPENSSL_SSL_LIBRARY=/usr/lib/aarch64-linux-gnu/libssl.a \</div>
+<div class="line">  -DOPENSSL_CRYPTO_LIBRARY=/usr/lib/aarch64-linux-gnu/libcrypto.a \</div>
+<div class="line">  -DCMAKE_CXX_STANDARD_LIBRARIES=&quot;-lz -lzstd&quot;</div>
+</div><!-- fragment --><p>For armhf the library directory is <code>/usr/lib/arm-linux-gnueabihf</code>.</p>
+<p>To run the cross built tests on the build machine, install <code>qemu-user-static</code> and run the test binary through it. The binary is static, so no sysroot is needed:</p>
+<div class="fragment"><div class="line">qemu-aarch64-static build_arm64/bin/bjorne_agent_tests</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
 Usage</h1>
 <div class="fragment"><div class="line">bjorne_agent [--verbose|--quiet] [config] [task]</div>
 </div><!-- fragment --><p>The config path and the task are both optional, and the binary works out which is which.</p>
@@ -201,7 +227,7 @@ Usage</h1>
 </ol>
 <p>The project local file wins, so a repository can carry its own settings without touching the user configuration. When no candidate exists, the run stops and names every path it checked.</p>
 <p>The final answer goes to standard output. Progress goes to standard error, so <code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> "task" &gt; answer.txt</code> keeps only the answer.</p>
-<h2><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Output levels</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -217,7 +243,7 @@ Output levels</h2>
 <div class="fragment"><div class="line">bjorne_agent --verbose config.json &quot;what is in this repository&quot;</div>
 <div class="line">BJORNE_AGENT_LOG=quiet bjorne_agent config.json &quot;what is in this repository&quot;</div>
 </div><!-- fragment --><p>Every progress line is stamped with the elapsed time, so a run that stalls on a slow endpoint shows how long it has been waiting and where.</p>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 Exit codes</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -227,14 +253,14 @@ Exit codes</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>1</code>   </td><td class="markdownTableBodyNone">The config failed to load, no model was configured, the compression prompt could not be read, the task was empty, or the model or the loop failed.   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Setting up a config</h2>
 <p><code>setup.sh</code> asks for the settings and writes both a config and a <code>.env</code>:</p>
 <div class="fragment"><div class="line">./setup.sh</div>
 </div><!-- fragment --><p>It writes to <code>./.bjorne_agent/bjorne_agent.json</code> or <code>~/.config/bjorne_agent/bjorne_agent.json</code>, the same two paths the binary searches, and puts a <code>.env</code> beside the config with the API key variable stubbed out. Fill in the key and source it:</p>
 <div class="fragment"><div class="line">source .bjorne_agent/.env</div>
 <div class="line">bjorne_agent &quot;hello&quot;</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md11"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md12"></a>
 Configuration</h1>
 <p>The config is JSON with <code>snake_case</code> keys. <code>config/bjorne_agent.example.json</code> is a complete example.</p>
 <div class="fragment"><div class="line">{</div>
@@ -259,7 +285,7 @@ Configuration</h1>
 <div class="line">    }</div>
 <div class="line">  ]</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md13"></a>
 Agent</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -269,7 +295,7 @@ Agent</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>workspace</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone">Root for tool operations. Relative tool paths resolve against it.   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Model</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -299,12 +325,12 @@ Model</h2>
 </table>
 <p>The endpoint scheme picks the transport. <code>https</code> uses TLS, <code>http</code> uses plain TCP, which is what a local model such as llama.cpp needs. A host may carry an explicit port, as in <code><a href="http://127.0.0.1:11434/v1">http://127.0.0.1:11434/v1</a></code>. IPv6 hosts use brackets, as in <code><a href="http://">http://</a>[::1]:8080/v1</code>.</p>
 <p>A relative <code>compression_prompt_path</code> resolves against the directory holding the config file, not the working directory. When the key is absent, the compression instruction is <code>Summarize the conversation</code>.</p>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 TLS</h2>
 <p>Certificate verification is on by default. The chain is checked against the system trust store, and the expected hostname is the <code>hostname</code> key when present, otherwise the host from the endpoint. A rejected certificate ends the run with the reason, for example <code>Certificate verification failed: self-signed certificate</code>.</p>
 <p><code>ignore_self_signed</code> turns off both the chain check and the hostname check. Use it only against a host with a self-signed certificate. The API key travels over this connection, so a build that trusts arbitrary certificates can hand the key to a wrong peer.</p>
 <p>Set <code>hostname</code> when the endpoint host is an address or an internal name but the certificate carries a different name.</p>
-<h1><a class="anchor" id="autotoc_md15"></a>
+<h1><a class="anchor" id="autotoc_md16"></a>
 Tools</h1>
 <p>The model requests tools as JSON function calls. The set is fixed.</p>
 <table class="markdownTable">
@@ -320,7 +346,7 @@ Tools</h1>
 <td class="markdownTableBodyNone"><code>run_shell</code>   </td><td class="markdownTableBodyNone"><code>command</code>   </td><td class="markdownTableBodyNone">Runs a shell command in the workspace. Output is capped at 256 KiB and marked when truncated.   </td></tr>
 </table>
 <p>Relative paths resolve against <code>agent.workspace</code>. A path that traverses a parent directory is rejected. A tool that fails does not stop the loop: the error becomes tool result text and the model decides what to do next.</p>
-<h1><a class="anchor" id="autotoc_md16"></a>
+<h1><a class="anchor" id="autotoc_md17"></a>
 Containers</h1>
 <p><code>container/README.md</code> covers the podman work: the three build environments and the runtime image.</p>
 <p>The build environments are a fully static musl build, a dynamic glibc build with shared OpenSSL, and a no-TLS build. The script builds, tests, and installs inside the container and leaves the artifacts on the host.</p>
@@ -345,7 +371,7 @@ Containers</h1>
 <div class="line">  -v &quot;$PWD:/workspace&quot; \</div>
 <div class="line">  bjorne_agent &quot;your task&quot;</div>
 </div><!-- fragment --><p>A relative <code>compression_prompt_path</code> resolves against the directory holding the config file, so a config mounted outside <code>/etc/bjorne_agent</code> needs the absolute path <code>/usr/local/share/bjorne_agent/prompts/compression.md</code>.</p>
-<h1><a class="anchor" id="autotoc_md17"></a>
+<h1><a class="anchor" id="autotoc_md18"></a>
 Development</h1>
 <p>Run the tests:</p>
 <div class="fragment"><div class="line">cmake --build build</div>
@@ -375,7 +401,7 @@ Development</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code><a class="el" href="ROADMAP_8md.html">ROADMAP.md</a></code>   </td><td class="markdownTableBodyNone">What is done and what is next.   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md18"></a>
+<h1><a class="anchor" id="autotoc_md19"></a>
 License</h1>
 <p>MIT. See [LICENSE](LICENSE).</p>
 <p>The vendored Catch2 sources under <code>third_party/catch2/</code> carry their own license, Boost Software License 1.0. They are used for the test binary only and are not part of the shipped artifact. </p>

@@ -93,11 +93,11 @@ $(document).ready(function(){initNavTree('md_SPEC.html',''); initResizable(); })
   <div class="headertitle"><div class="title">SPEC: C++ Agent Harness</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md19"></a> </p>
-<h1><a class="anchor" id="autotoc_md20"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md20"></a> </p>
+<h1><a class="anchor" id="autotoc_md21"></a>
 Purpose</h1>
 <p>The project creates an agent harness in C++ with minimal dependencies. The goal is a binary and a config file that a docker or podman container can receive and run inside with a minimum of effort. The approach stands apart from general purpose harnesses built on Python, Node, or Rust, which pull large external dependency trees online.</p>
-<h1><a class="anchor" id="autotoc_md21"></a>
+<h1><a class="anchor" id="autotoc_md22"></a>
 Goals</h1>
 <ul>
 <li>Statically link the binary where possible.</li>
@@ -105,7 +105,7 @@ Goals</h1>
 <li>Ship a binary plus a config file for container use.</li>
 <li>Cover model calls, tool execution, and context handling.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md22"></a>
+<h1><a class="anchor" id="autotoc_md23"></a>
 Version One Scope</h1>
 <ul>
 <li>Deliver a vertical slice: task in, model call, tools, result out.</li>
@@ -114,7 +114,7 @@ Version One Scope</h1>
 <li>No plugin system.</li>
 <li>No broad command line surface.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md23"></a>
+<h1><a class="anchor" id="autotoc_md24"></a>
 Language and Toolchain</h1>
 <ul>
 <li>C++20 or later, with version one targeting C++20.</li>
@@ -123,35 +123,35 @@ Language and Toolchain</h1>
 <li>musl for a true static binary. Static glibc is possible but brings warnings and licensing baggage.</li>
 <li>Strip symbols at build time.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md24"></a>
+<h1><a class="anchor" id="autotoc_md25"></a>
 Dependencies</h1>
 <ul>
 <li>No third party runtime libraries.</li>
 <li>JSON: hand rolled parser. The config shape is small enough.</li>
 <li>HTTP: hand rolled client. A static musl binary has no libcurl. The model API is plain REST over HTTPS, so a minimal HTTP/1.1 client plus TLS covers the need.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md25"></a>
+<h1><a class="anchor" id="autotoc_md26"></a>
 Configuration</h1>
-<h2><a class="anchor" id="autotoc_md26"></a>
+<h2><a class="anchor" id="autotoc_md27"></a>
 Format</h2>
 <p>JSON. Hand rolled parser. snake_case keys.</p>
-<h2><a class="anchor" id="autotoc_md27"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 Location</h2>
 <p>A path given on the command line names the config file. Without one, the run searches <code>./.bjorne_agent/bjorne_agent.json</code> and then <code>$XDG_CONFIG_HOME/bjorne_agent/bjorne_agent.json</code>, which defaults to <code>~/.config/bjorne_agent/bjorne_agent.json</code>. The project local file wins. When no candidate exists, the run stops and names every path it checked.</p>
-<h2><a class="anchor" id="autotoc_md28"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 Top level</h2>
 <ul>
 <li>version: integer, starts at one.</li>
 <li>agent: object.</li>
 <li>models: array of objects.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md30"></a>
 Agent</h2>
 <ul>
 <li>system_prompt: string.</li>
 <li>workspace: string.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md31"></a>
 Model</h2>
 <ul>
 <li>provider: string, for example openai-compatible.</li>
@@ -163,7 +163,7 @@ Model</h2>
 <li>api_key_env: string, environment variable name holding the key. The key itself stays out of the file.</li>
 <li>priority: integer. Lower value means higher preference. Priority one is the first choice, priority two is the second, priority three is the third, priority thirty is the thirtieth.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md31"></a>
+<h1><a class="anchor" id="autotoc_md32"></a>
 Context Management</h1>
 <ul>
 <li>Default overflow strategy: truncate.</li>
@@ -172,7 +172,7 @@ Context Management</h1>
 <li>A customized instruction comes from a markdown file referenced by configuration, combined with the binary and the config file. The default compression prompt is "Summarize the conversation". A user-configured markdown file can override.</li>
 <li>Compression timing, earlier or later, is per model, because models differ in context performance.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md32"></a>
+<h1><a class="anchor" id="autotoc_md33"></a>
 Build and TLS</h1>
 <ul>
 <li>CMake option for OpenSSL: static, shared, or disabled. Static is the default. <code>BJORNE_AGENT_TLS=none</code> also disables TLS; either switch removes OpenSSL from the link.</li>
@@ -184,7 +184,7 @@ Build and TLS</h1>
 <li>An unresolvable host produces a <code>DNS resolution failed</code> error naming the reason. It never crashes the process.</li>
 <li>FIPS note: a static OpenSSL build may not include the FIPS approved provider. This matters on FIPS systems.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md33"></a>
+<h1><a class="anchor" id="autotoc_md34"></a>
 Container</h1>
 <ul>
 <li>Base image: scratch or minimal distroless. With a fully static binary, scratch is the target.</li>
@@ -193,13 +193,13 @@ Container</h1>
 </ul>
 <p>The runtime image is <code>scratch</code>. The config arrives as a mount at <code>/etc/bjorne_agent/bjorne_agent.json</code>, which is the default value of the <code>BJORNE_AGENT_CONFIG</code> environment variable, or through <code>BJORNE_AGENT_CONFIG</code> naming any other path. The API key arrives through the environment variable the config names. The workspace arrives as a volume mount.</p>
 <p>The image carries three things beyond the binary, each because a tool needs it: a CA bundle, because the TLS transport verifies the peer against the system trust store; busybox, because the <code>run_shell</code> tool calls <code>popen</code>, which runs a shell; and a passwd file, because scratch has no account database and the image must not run as root.</p>
-<h1><a class="anchor" id="autotoc_md34"></a>
+<h1><a class="anchor" id="autotoc_md35"></a>
 Next Steps</h1>
 <ul>
 <li>The configuration and agent loop specifications are finished and the implementation is complete through Phase 3.</li>
 <li>Deployment: publish the runtime image and verify it against the supported endpoints.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md35"></a>
+<h1><a class="anchor" id="autotoc_md36"></a>
 Open Questions</h1>
 <ul>
 <li>Priority ordering: lower number means higher preference and earlier attempt. One is first, two is second, three is third, thirty is thirtieth.</li>

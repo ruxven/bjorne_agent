@@ -2,17 +2,17 @@ var searchData=
 [
   ['main_0',['main',['../main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main.cpp']]],
   ['main_2ecpp_1',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['management_2',['management',['../md_SPEC.html#autotoc_md31',1,'Context Management'],['../md_SPEC_8LOOP.html#autotoc_md58',1,'Context Management'],['../md_SPEC_8CONFIG.html#autotoc_md45',1,'Context Management']]],
-  ['manager_3',['Context Manager',['../md_DESIGN.html#autotoc_md68',1,'']]],
-  ['mapping_4',['Fulfilment Mapping',['../md_DESIGN.html#autotoc_md71',1,'']]],
+  ['management_2',['management',['../md_SPEC.html#autotoc_md32',1,'Context Management'],['../md_SPEC_8LOOP.html#autotoc_md59',1,'Context Management'],['../md_SPEC_8CONFIG.html#autotoc_md46',1,'Context Management']]],
+  ['manager_3',['Context Manager',['../md_DESIGN.html#autotoc_md69',1,'']]],
+  ['mapping_4',['Fulfilment Mapping',['../md_DESIGN.html#autotoc_md72',1,'']]],
   ['max_5fiterations_5',['max_iterations',['../structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a2faf3dd28d46ff81abbada61a766f590',1,'bjorne_agent::agent::AgentLoopConfig']]],
   ['max_5ftokens_6',['max_tokens',['../structbjorne__agent_1_1config_1_1ModelConfig.html#a97d2799c79f8af98717ce08647bccbe8',1,'bjorne_agent::config::ModelConfig::max_tokens'],['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a2b4b0c2f0988f0df3f76d15c337d875b',1,'bjorne_agent::context::ContextManagerConfig::max_tokens']]],
-  ['mcp_7',['Phase E: MCP',['../md_ROADMAP.html#autotoc_md86',1,'']]],
+  ['mcp_7',['Phase E: MCP',['../md_ROADMAP.html#autotoc_md87',1,'']]],
   ['method_8',['method',['../structbjorne__agent_1_1http_1_1HttpRequest.html#ab9694bd53a8d6b00dee9a7cd79c75334',1,'bjorne_agent::http::HttpRequest']]],
-  ['mode_9',['Phase F: ACP client mode',['../md_ROADMAP.html#autotoc_md87',1,'']]],
-  ['model_10',['model',['../structbjorne__agent_1_1config_1_1ModelConfig.html#a80a9cb3eb121aa3f3e43695e2eae1d12',1,'bjorne_agent::config::ModelConfig::model'],['../structbjorne__agent_1_1model_1_1ModelClientOptions.html#afb5a105140f748ba3af0d0aa879fc9e9',1,'bjorne_agent::model::ModelClientOptions::model'],['../md_README.html#autotoc_md13',1,'Model'],['../md_SPEC.html#autotoc_md30',1,'Model']]],
-  ['model_20call_11',['Model Call',['../md_SPEC_8LOOP.html#autotoc_md54',1,'']]],
-  ['model_20client_12',['Model Client',['../md_DESIGN.html#autotoc_md67',1,'']]],
+  ['mode_9',['Phase F: ACP client mode',['../md_ROADMAP.html#autotoc_md88',1,'']]],
+  ['model_10',['model',['../structbjorne__agent_1_1config_1_1ModelConfig.html#a80a9cb3eb121aa3f3e43695e2eae1d12',1,'bjorne_agent::config::ModelConfig::model'],['../structbjorne__agent_1_1model_1_1ModelClientOptions.html#afb5a105140f748ba3af0d0aa879fc9e9',1,'bjorne_agent::model::ModelClientOptions::model'],['../md_README.html#autotoc_md14',1,'Model'],['../md_SPEC.html#autotoc_md31',1,'Model']]],
+  ['model_20call_11',['Model Call',['../md_SPEC_8LOOP.html#autotoc_md55',1,'']]],
+  ['model_20client_12',['Model Client',['../md_DESIGN.html#autotoc_md68',1,'']]],
   ['modelbackend_13',['ModelBackend',['../classbjorne__agent_1_1model_1_1ModelBackend.html',1,'bjorne_agent::model']]],
   ['modelclient_14',['modelclient',['../classbjorne__agent_1_1model_1_1ModelClient.html#a5f527459b41c84ce5e1968270694e1e9',1,'bjorne_agent::model::ModelClient::ModelClient(ModelClientOptions options)'],['../classbjorne__agent_1_1model_1_1ModelClient.html#a4edd98a83c0495ffa700ddb35d22f7e1',1,'bjorne_agent::model::ModelClient::ModelClient(const std::string &amp;endpoint, const std::string &amp;model, const std::string &amp;api_key_env, std::shared_ptr&lt; http::HttpTransport &gt; transport=nullptr)'],['../classbjorne__agent_1_1model_1_1ModelClient.html',1,'bjorne_agent::model::ModelClient']]],
   ['modelclient_2ecpp_15',['ModelClient.cpp',['../ModelClient_8cpp.html',1,'']]],
@@ -21,5 +21,5 @@ var searchData=
   ['modelconfig_18',['ModelConfig',['../structbjorne__agent_1_1config_1_1ModelConfig.html',1,'bjorne_agent::config']]],
   ['modelmessage_19',['ModelMessage',['../structbjorne__agent_1_1model_1_1ModelMessage.html',1,'bjorne_agent::model']]],
   ['modelresponse_20',['ModelResponse',['../structbjorne__agent_1_1model_1_1ModelResponse.html',1,'bjorne_agent::model']]],
-  ['models_21',['models',['../structbjorne__agent_1_1config_1_1Config.html#aa356c460e5d2f1efb75f7c17a71a4cdb',1,'bjorne_agent::config::Config::models'],['../md_SPEC_8CONFIG.html#autotoc_md43',1,'Models']]]
+  ['models_21',['models',['../structbjorne__agent_1_1config_1_1Config.html#aa356c460e5d2f1efb75f7c17a71a4cdb',1,'bjorne_agent::config::Config::models'],['../md_SPEC_8CONFIG.html#autotoc_md44',1,'Models']]]
 ];

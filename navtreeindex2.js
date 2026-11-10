@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html#ab99629283a6a982082fb3cbd07f50a02":[6,0,0,4,4,0,0],
 "structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html#af910c2025d93fff29c58d31b72c6f23d":[7,0,0,4,4,0,1],
 "structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html#af910c2025d93fff29c58d31b72c6f23d":[6,0,0,4,4,0,1],
 "structbjorne__agent_1_1http_1_1ResolvedAddress.html":[6,0,0,4,6],
