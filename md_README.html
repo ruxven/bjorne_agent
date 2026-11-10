@@ -235,14 +235,25 @@ Output levels</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>quiet</code>   </td><td class="markdownTableBodyNone">Nothing. Errors that end the run still print.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>normal</code>   </td><td class="markdownTableBodyNone">Each step: config load, model selection, iteration count, request, tool calls, completion.    </td></tr>
+<td class="markdownTableBodyNone"><code>normal</code>   </td><td class="markdownTableBodyNone">Each step: config load, model selection, iteration count, request, the model's reasoning and narration, each tool's arguments and result, completion.    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>verbose</code>   </td><td class="markdownTableBodyNone">Adds the endpoint internals: DNS resolution, TCP connect, TLS handshake, certificate verification, response size.   </td></tr>
 </table>
 <p>Set the level with <code>--verbose</code> or <code>--quiet</code>, or with the <code>BJORNE_AGENT_LOG</code> environment variable. A command line flag wins over the variable.</p>
 <div class="fragment"><div class="line">bjorne_agent --verbose config.json &quot;what is in this repository&quot;</div>
 <div class="line">BJORNE_AGENT_LOG=quiet bjorne_agent config.json &quot;what is in this repository&quot;</div>
-</div><!-- fragment --><p>Every progress line is stamped with the elapsed time, so a run that stalls on a slow endpoint shows how long it has been waiting and where.</p>
+</div><!-- fragment --><p>Every progress line is stamped with the elapsed time, so a run that stalls on a slow endpoint shows how long it has been waiting and where. The model's own words appear as indented <code>thinking</code> and <code>assistant</code> blocks, and each tool call shows its arguments and a preview of its result:</p>
+<div class="fragment"><div class="line">[bjorne_agent 3.1s] thinking:</div>
+<div class="line">  The user wants proof the shell works.</div>
+<div class="line">  I should echo a word and read the output.</div>
+<div class="line">[bjorne_agent 3.1s] assistant:</div>
+<div class="line">  I will run a command to check the shell.</div>
+<div class="line">[bjorne_agent 3.1s] info: Running tool: run_shell</div>
+<div class="line">[bjorne_agent 3.1s] arguments:</div>
+<div class="line">  {&quot;command&quot;: &quot;echo hello&quot;}</div>
+<div class="line">[bjorne_agent 3.2s] result:</div>
+<div class="line">  hello</div>
+</div><!-- fragment --><p>Long reasoning and tool output are cut at a few thousand characters, with a note that says how much was left out. The final answer still goes to stdout only, so piping the answer stays clean.</p>
 <h2><a class="anchor" id="autotoc_md10"></a>
 Exit codes</h2>
 <table class="markdownTable">

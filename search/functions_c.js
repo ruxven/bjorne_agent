@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['request_0',['request',['../classbjorne__agent_1_1http_1_1HttpClient.html#a846e18faebd19cd04461f23ebaf3a582',1,'bjorne_agent::http::HttpClient']]],
-  ['resolvehost_1',['resolveHost',['../namespacebjorne__agent_1_1http.html#a04d1001f2945eb2a0996234dbdcb4984',1,'bjorne_agent::http']]],
-  ['resolveinvocation_2',['resolveInvocation',['../namespacebjorne__agent_1_1cli.html#aa1235dd11e2a7d18f116983f4261468a',1,'bjorne_agent::cli']]],
-  ['respond_3',['respond',['../classbjorne__agent_1_1model_1_1ModelBackend.html#a7928168c672e16f7064536aeef09263d',1,'bjorne_agent::model::ModelBackend::respond()'],['../classbjorne__agent_1_1model_1_1ModelClient.html#a219985f3e4f6e00f1a68957b4bca8061',1,'bjorne_agent::model::ModelClient::respond()']]],
-  ['run_4',['run',['../classbjorne__agent_1_1agent_1_1AgentLoop.html#af2930aa5a10e285f985295c3f5e59bf9',1,'bjorne_agent::agent::AgentLoop']]]
+  ['parse_0',['parse',['../namespacebjorne__agent_1_1json.html#aef0d1ee272eb61b0dff732e64b4ef9f4',1,'bjorne_agent::json']]],
+  ['parsednsresponse_1',['parseDnsResponse',['../namespacebjorne__agent_1_1http.html#a87e983bcb4a09fd86132d8fc45cf44d8',1,'bjorne_agent::http']]],
+  ['parselevel_2',['parseLevel',['../namespacebjorne__agent_1_1log.html#a84b2fcbd9acdd6ec069955643f3fbd18',1,'bjorne_agent::log']]],
+  ['parseurl_3',['parseUrl',['../namespacebjorne__agent_1_1http.html#a1de187c402c3d5009043ffb8c2c2bbeb',1,'bjorne_agent::http']]],
+  ['processid_4',['processId',['../namespacebjorne__agent_1_1platform.html#a871058d68e6b1db37c803a9c9489aeca',1,'bjorne_agent::platform']]],
+  ['progress_5',['progress',['../namespacebjorne__agent_1_1log.html#a490e68ceb9168265077a796c4b171f3c',1,'bjorne_agent::log']]]
 ];

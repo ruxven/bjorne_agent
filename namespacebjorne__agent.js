@@ -18,6 +18,7 @@ var namespacebjorne__agent =
       [ "progress", "namespacebjorne__agent_1_1log.html#a490e68ceb9168265077a796c4b171f3c", null ],
       [ "detail", "namespacebjorne__agent_1_1log.html#a0ff48feb76157f6e4083c16a9e45410a", null ],
       [ "fail", "namespacebjorne__agent_1_1log.html#a8ec83f58909a3ae68360f80f3173645b", null ],
+      [ "block", "namespacebjorne__agent_1_1log.html#a10859fdc0e0c6955e01814eeebfeb465", null ],
       [ "elapsedSeconds", "namespacebjorne__agent_1_1log.html#aa98eb282dd86ab30c0750f9a66d53b05", null ],
       [ "formatSeconds", "namespacebjorne__agent_1_1log.html#a991ad1ccdd8820623175b5800ba18e48", null ]
     ] ],

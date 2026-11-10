@@ -27,6 +27,6 @@ var searchData=
   ['steps_24',['Next Steps',['../md_SPEC.html#autotoc_md35',1,'']]],
   ['stopping_20conditions_25',['Stopping Conditions',['../md_SPEC_8LOOP.html#autotoc_md58',1,'']]],
   ['storage_26',['storage',['../structbjorne__agent_1_1http_1_1ResolvedAddress.html#acbfdc8f8c526b9784589b6c3198f8359',1,'bjorne_agent::http::ResolvedAddress']]],
-  ['string_27',['string',['../classbjorne__agent_1_1json_1_1Value.html#aa7cfa8cda2757f6369bc45f4e4d7d11e',1,'bjorne_agent::json::Value::string'],['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8a27118326006d3829667a400ad23d5d98',1,'bjorne_agent::json::Value::String']]],
+  ['string_27',['string',['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8a27118326006d3829667a400ad23d5d98',1,'bjorne_agent::json::Value::String'],['../classbjorne__agent_1_1json_1_1Value.html#aa7cfa8cda2757f6369bc45f4e4d7d11e',1,'bjorne_agent::json::Value::string']]],
   ['system_5fprompt_28',['system_prompt',['../structbjorne__agent_1_1config_1_1AgentConfig.html#a50a70bd0583c32d53ce56a9a89b05d00',1,'bjorne_agent::config::AgentConfig::system_prompt'],['../structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a320eae916a5c916d82cdd71ea705399b',1,'bjorne_agent::agent::AgentLoopConfig::system_prompt']]]
 ];

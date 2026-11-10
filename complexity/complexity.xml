@@ -24,11 +24,11 @@
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::run( const std :: string &amp; task , std :: string &amp; result , std :: string &amp; error) at src/agent/AgentLoop.cpp:48">
 			<value>4</value>
-			<value>27</value>
-			<value>5</value>
+			<value>33</value>
+			<value>8</value>
 		</item>
-		<average label="NCSS" value="14.75"/>
-		<average label="CCN" value="2.75"/>
+		<average label="NCSS" value="16.25"/>
+		<average label="CCN" value="3.5"/>
 		<item name="bjorne_agent::tools::parseArguments( const std :: string &amp; arguments , json :: Value &amp; out) at src/tools/Tools.cpp:27">
 			<value>5</value>
 			<value>8</value>
@@ -81,48 +81,48 @@
 		</item>
 		<item name="bjorne_agent::tools::ToolRegistry::execute( const std :: string &amp; name , const std :: string &amp; arguments) const at src/tools/Tools.cpp:151">
 			<value>15</value>
-			<value>10</value>
+			<value>12</value>
 			<value>2</value>
 		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::dispatch( const std :: string &amp; name , const std :: string &amp; arguments) const at src/tools/Tools.cpp:162">
+		<item name="bjorne_agent::tools::ToolRegistry::dispatch( const std :: string &amp; name , const std :: string &amp; arguments) const at src/tools/Tools.cpp:167">
 			<value>16</value>
 			<value>15</value>
 			<value>5</value>
 		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::resolvePath( const std :: string &amp; path , std :: string &amp; error) const at src/tools/Tools.cpp:178">
+		<item name="bjorne_agent::tools::ToolRegistry::resolvePath( const std :: string &amp; path , std :: string &amp; error) const at src/tools/Tools.cpp:183">
 			<value>17</value>
 			<value>19</value>
 			<value>6</value>
 		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::readFile( const std :: string &amp; arguments) const at src/tools/Tools.cpp:198">
+		<item name="bjorne_agent::tools::ToolRegistry::readFile( const std :: string &amp; arguments) const at src/tools/Tools.cpp:203">
 			<value>18</value>
 			<value>22</value>
 			<value>5</value>
 		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::writeFile( const std :: string &amp; arguments) const at src/tools/Tools.cpp:221">
+		<item name="bjorne_agent::tools::ToolRegistry::writeFile( const std :: string &amp; arguments) const at src/tools/Tools.cpp:226">
 			<value>19</value>
 			<value>33</value>
 			<value>8</value>
 		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::editFile( const std :: string &amp; arguments) const at src/tools/Tools.cpp:255">
+		<item name="bjorne_agent::tools::ToolRegistry::editFile( const std :: string &amp; arguments) const at src/tools/Tools.cpp:260">
 			<value>20</value>
 			<value>45</value>
 			<value>10</value>
 		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::runShell( const std :: string &amp; arguments) const at src/tools/Tools.cpp:301">
+		<item name="bjorne_agent::tools::ToolRegistry::runShell( const std :: string &amp; arguments) const at src/tools/Tools.cpp:306">
 			<value>21</value>
 			<value>46</value>
 			<value>12</value>
 		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::definitionsJson() at src/tools/Tools.cpp:353">
+		<item name="bjorne_agent::tools::ToolRegistry::definitionsJson() at src/tools/Tools.cpp:358">
 			<value>22</value>
 			<value>8</value>
 			<value>1</value>
 		</item>
-		<average label="NCSS" value="15.727272727272727"/>
-		<average label="CCN" value="4.454545454545454"/>
-		<average label="NCSS" value="15.727272727272727"/>
-		<average label="CCN" value="4.454545454545454"/>
+		<average label="NCSS" value="16.09090909090909"/>
+		<average label="CCN" value="4.590909090909091"/>
+		<average label="NCSS" value="16.09090909090909"/>
+		<average label="CCN" value="4.590909090909091"/>
 		<item name="bjorne_agent::platform::initializeSockets() at src/platform/Platform.h:42">
 			<value>23</value>
 			<value>7</value>
@@ -223,10 +223,10 @@
 			<value>4</value>
 			<value>2</value>
 		</item>
-		<average label="NCSS" value="10.166666666666666"/>
-		<average label="CCN" value="2.9761904761904763"/>
-		<average label="NCSS" value="10.166666666666666"/>
-		<average label="CCN" value="2.9761904761904763"/>
+		<average label="NCSS" value="10.357142857142858"/>
+		<average label="CCN" value="3.0476190476190474"/>
+		<average label="NCSS" value="10.357142857142858"/>
+		<average label="CCN" value="3.0476190476190474"/>
 		<item name="bjorne_agent::http::allDigits( const std :: string &amp; text) at src/http/Url.cpp:10">
 			<value>43</value>
 			<value>11</value>
@@ -247,12 +247,12 @@
 			<value>32</value>
 			<value>8</value>
 		</item>
-		<average label="NCSS" value="11.08695652173913"/>
-		<average label="CCN" value="3.3043478260869565"/>
-		<average label="NCSS" value="11.08695652173913"/>
-		<average label="CCN" value="3.3043478260869565"/>
-		<average label="NCSS" value="11.08695652173913"/>
-		<average label="CCN" value="3.3043478260869565"/>
+		<average label="NCSS" value="11.26086956521739"/>
+		<average label="CCN" value="3.369565217391304"/>
+		<average label="NCSS" value="11.26086956521739"/>
+		<average label="CCN" value="3.369565217391304"/>
+		<average label="NCSS" value="11.26086956521739"/>
+		<average label="CCN" value="3.369565217391304"/>
 		<item name="bjorne_agent::http::readU16( const unsigned char * data) at src/http/DnsResponse.cpp:26">
 			<value>47</value>
 			<value>3</value>
@@ -273,10 +273,10 @@
 			<value>25</value>
 			<value>8</value>
 		</item>
-		<average label="NCSS" value="11.7"/>
-		<average label="CCN" value="3.5"/>
-		<average label="NCSS" value="11.7"/>
-		<average label="CCN" value="3.5"/>
+		<average label="NCSS" value="11.86"/>
+		<average label="CCN" value="3.56"/>
+		<average label="NCSS" value="11.86"/>
+		<average label="CCN" value="3.56"/>
 		<item name="bjorne_agent::http::parsePort( const std :: string &amp; port , unsigned short &amp; value) at src/http/Resolver.cpp:40">
 			<value>51</value>
 			<value>20</value>
@@ -332,8 +332,8 @@
 			<value>21</value>
 			<value>5</value>
 		</item>
-		<average label="NCSS" value="12.754098360655737"/>
-		<average label="CCN" value="3.7704918032786887"/>
+		<average label="NCSS" value="12.885245901639344"/>
+		<average label="CCN" value="3.819672131147541"/>
 		<item name="bjorne_agent::http::ignoreSigPipe() at src/http/HttpClient.cpp:60">
 			<value>62</value>
 			<value>10</value>
@@ -444,10 +444,10 @@
 			<value>30</value>
 			<value>8</value>
 		</item>
-		<average label="NCSS" value="14.048192771084338"/>
-		<average label="CCN" value="3.9397590361445785"/>
-		<average label="NCSS" value="14.048192771084338"/>
-		<average label="CCN" value="3.9397590361445785"/>
+		<average label="NCSS" value="14.144578313253012"/>
+		<average label="CCN" value="3.9759036144578315"/>
+		<average label="NCSS" value="14.144578313253012"/>
+		<average label="CCN" value="3.9759036144578315"/>
 		<item name="bjorne_agent::context::ContextManager::ContextManager( ContextManagerConfig config , CompressionHandler compression) at src/context/ContextManager.cpp:9">
 			<value>84</value>
 			<value>2</value>
@@ -488,10 +488,10 @@
 			<value>29</value>
 			<value>6</value>
 		</item>
-		<average label="NCSS" value="13.747252747252746"/>
-		<average label="CCN" value="3.8461538461538463"/>
-		<average label="NCSS" value="13.747252747252746"/>
-		<average label="CCN" value="3.8461538461538463"/>
+		<average label="NCSS" value="13.835164835164836"/>
+		<average label="CCN" value="3.879120879120879"/>
+		<average label="NCSS" value="13.835164835164836"/>
+		<average label="CCN" value="3.879120879120879"/>
 		<item name="bjorne_agent::model::escapeJson( const std :: string &amp; text) at src/model/ModelClient.cpp:21">
 			<value>92</value>
 			<value>23</value>
@@ -519,31 +519,31 @@
 		</item>
 		<item name="bjorne_agent::model::parseChatResponse( const std :: string &amp; body , ModelResponse &amp; out , std :: string &amp; error) at src/model/ModelClient.cpp:121">
 			<value>97</value>
-			<value>27</value>
-			<value>8</value>
+			<value>34</value>
+			<value>12</value>
 		</item>
-		<item name="bjorne_agent::model::ModelClient::ModelClient( ModelClientOptions options) at src/model/ModelClient.cpp:151">
+		<item name="bjorne_agent::model::ModelClient::ModelClient( ModelClientOptions options) at src/model/ModelClient.cpp:160">
 			<value>98</value>
 			<value>7</value>
 			<value>1</value>
 		</item>
-		<item name="bjorne_agent::model::ModelClient::ModelClient( const std :: string &amp; endpoint , const std :: string &amp; model , const std :: string &amp; api_key_env , std :: shared_ptr&lt;http::HttpTransport&gt; transport) at src/model/ModelClient.cpp:159">
+		<item name="bjorne_agent::model::ModelClient::ModelClient( const std :: string &amp; endpoint , const std :: string &amp; model , const std :: string &amp; api_key_env , std :: shared_ptr&lt;http::HttpTransport&gt; transport) at src/model/ModelClient.cpp:168">
 			<value>99</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
-		<item name="bjorne_agent::model::ModelClient::respond( const std :: vector&lt;ModelMessage&gt; &amp; messages , ModelResponse &amp; out , std :: string &amp; error) at src/model/ModelClient.cpp:163">
+		<item name="bjorne_agent::model::ModelClient::respond( const std :: vector&lt;ModelMessage&gt; &amp; messages , ModelResponse &amp; out , std :: string &amp; error) at src/model/ModelClient.cpp:172">
 			<value>100</value>
 			<value>52</value>
 			<value>10</value>
 		</item>
-		<item name="bjorne_agent::model::ModelClient::setTools( const std :: string &amp; tools_json) at src/model/ModelClient.cpp:224">
+		<item name="bjorne_agent::model::ModelClient::setTools( const std :: string &amp; tools_json) at src/model/ModelClient.cpp:233">
 			<value>101</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
-		<average label="NCSS" value="14.207920792079207"/>
-		<average label="CCN" value="4.00990099009901"/>
+		<average label="NCSS" value="14.356435643564357"/>
+		<average label="CCN" value="4.079207920792079"/>
 		<item name="bjorne_agent::json::Parser::Parser( const std :: string &amp; text) at src/json/Json.cpp:14">
 			<value>102</value>
 			<value>1</value>
@@ -614,8 +614,8 @@
 			<value>4</value>
 			<value>1</value>
 		</item>
-		<average label="NCSS" value="14.669565217391304"/>
-		<average label="CCN" value="4.260869565217392"/>
+		<average label="NCSS" value="14.8"/>
+		<average label="CCN" value="4.321739130434783"/>
 		<item name="bjorne_agent::json::Value::isObject() const at src/json/Json.h:25">
 			<value>116</value>
 			<value>1</value>
@@ -656,226 +656,231 @@
 			<value>3</value>
 			<value>1</value>
 		</item>
-		<average label="NCSS" value="13.869918699186991"/>
-		<average label="CCN" value="4.065040650406504"/>
-		<average label="NCSS" value="13.869918699186991"/>
-		<average label="CCN" value="4.065040650406504"/>
-		<item name="bjorne_agent::log::write( const char * kind , const std :: string &amp; message) at src/log/Log.cpp:18">
+		<average label="NCSS" value="13.991869918699187"/>
+		<average label="CCN" value="4.121951219512195"/>
+		<average label="NCSS" value="13.991869918699187"/>
+		<average label="CCN" value="4.121951219512195"/>
+		<item name="bjorne_agent::log::write( const char * kind , const std :: string &amp; message) at src/log/Log.cpp:19">
 			<value>124</value>
 			<value>4</value>
 			<value>1</value>
 		</item>
-		<item name="bjorne_agent::log::setLevel( Level level) at src/log/Log.cpp:25">
+		<item name="bjorne_agent::log::setLevel( Level level) at src/log/Log.cpp:26">
 			<value>125</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
-		<item name="bjorne_agent::log::level() at src/log/Log.cpp:29">
+		<item name="bjorne_agent::log::level() at src/log/Log.cpp:30">
 			<value>126</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
-		<item name="bjorne_agent::log::parseLevel( const std :: string &amp; name , Level &amp; out) at src/log/Log.cpp:33">
+		<item name="bjorne_agent::log::parseLevel( const std :: string &amp; name , Level &amp; out) at src/log/Log.cpp:34">
 			<value>127</value>
 			<value>15</value>
 			<value>4</value>
 		</item>
-		<item name="bjorne_agent::log::progress( const std :: string &amp; message) at src/log/Log.cpp:49">
+		<item name="bjorne_agent::log::progress( const std :: string &amp; message) at src/log/Log.cpp:50">
 			<value>128</value>
 			<value>6</value>
 			<value>2</value>
 		</item>
-		<item name="bjorne_agent::log::detail( const std :: string &amp; message) at src/log/Log.cpp:56">
+		<item name="bjorne_agent::log::detail( const std :: string &amp; message) at src/log/Log.cpp:57">
 			<value>129</value>
 			<value>6</value>
 			<value>2</value>
 		</item>
-		<item name="bjorne_agent::log::fail( const std :: string &amp; message) at src/log/Log.cpp:63">
+		<item name="bjorne_agent::log::fail( const std :: string &amp; message) at src/log/Log.cpp:64">
 			<value>130</value>
 			<value>6</value>
 			<value>2</value>
 		</item>
-		<item name="bjorne_agent::log::elapsedSeconds() at src/log/Log.cpp:70">
+		<item name="bjorne_agent::log::block( const std :: string &amp; label , const std :: string &amp; text , std :: size_t limit) at src/log/Log.cpp:71">
 			<value>131</value>
+			<value>24</value>
+			<value>9</value>
+		</item>
+		<item name="bjorne_agent::log::elapsedSeconds() at src/log/Log.cpp:98">
+			<value>132</value>
 			<value>4</value>
 			<value>1</value>
 		</item>
-		<item name="bjorne_agent::log::formatSeconds( double seconds) at src/log/Log.cpp:75">
-			<value>132</value>
+		<item name="bjorne_agent::log::formatSeconds( double seconds) at src/log/Log.cpp:103">
+			<value>133</value>
 			<value>8</value>
 			<value>3</value>
 		</item>
-		<average label="NCSS" value="13.340909090909092"/>
-		<average label="CCN" value="3.9166666666666665"/>
-		<average label="NCSS" value="13.340909090909092"/>
-		<average label="CCN" value="3.9166666666666665"/>
+		<average label="NCSS" value="13.533834586466165"/>
+		<average label="CCN" value="4.007518796992481"/>
+		<average label="NCSS" value="13.533834586466165"/>
+		<average label="CCN" value="4.007518796992481"/>
 		<item name="bjorne_agent::cli::namesAnExistingFile( const std :: string &amp; path) at src/cli/Invocation.cpp:15">
-			<value>133</value>
+			<value>134</value>
 			<value>4</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::cli::resolveInvocation( const std :: vector&lt;std::string&gt; &amp; arguments , Invocation &amp; out , std :: string &amp; error) at src/cli/Invocation.cpp:22">
-			<value>134</value>
+			<value>135</value>
 			<value>24</value>
 			<value>5</value>
 		</item>
-		<average label="NCSS" value="13.350746268656716"/>
-		<average label="CCN" value="3.91044776119403"/>
+		<average label="NCSS" value="13.540740740740741"/>
+		<average label="CCN" value="4.0"/>
 		<item name="bjorne_agent::config::isPathSeparator( char c) at src/config/ConfigPaths.cpp:20">
-			<value>135</value>
+			<value>136</value>
 			<value>4</value>
 			<value>3</value>
 		</item>
 		<item name="bjorne_agent::config::isAbsolutePath( const std :: string &amp; path) at src/config/ConfigPaths.cpp:30">
-			<value>136</value>
+			<value>137</value>
 			<value>13</value>
 			<value>8</value>
 		</item>
 		<item name="bjorne_agent::config::joinPath( const std :: string &amp; base , const std :: string &amp; rest) at src/config/ConfigPaths.cpp:48">
-			<value>137</value>
+			<value>138</value>
 			<value>9</value>
 			<value>3</value>
 		</item>
 		<item name="bjorne_agent::config::userConfigPath() at src/config/ConfigPaths.cpp:62">
-			<value>138</value>
+			<value>139</value>
 			<value>19</value>
 			<value>10</value>
 		</item>
 		<item name="bjorne_agent::config::trimmed( const std :: string &amp; value) at src/config/ConfigPaths.cpp:88">
-			<value>139</value>
+			<value>140</value>
 			<value>8</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::config::environmentConfigPath() at src/config/ConfigPaths.cpp:99">
-			<value>140</value>
+			<value>141</value>
 			<value>7</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::config::defaultConfigPaths() at src/config/ConfigPaths.cpp:107">
-			<value>141</value>
+			<value>142</value>
 			<value>9</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::config::findDefaultConfig( std :: string &amp; error) at src/config/ConfigPaths.cpp:117">
-			<value>142</value>
+			<value>143</value>
 			<value>24</value>
 			<value>8</value>
 		</item>
-		<average label="NCSS" value="13.253521126760564"/>
-		<average label="CCN" value="3.9577464788732395"/>
-		<average label="NCSS" value="13.253521126760564"/>
-		<average label="CCN" value="3.9577464788732395"/>
+		<average label="NCSS" value="13.433566433566433"/>
+		<average label="CCN" value="4.041958041958042"/>
+		<average label="NCSS" value="13.433566433566433"/>
+		<average label="CCN" value="4.041958041958042"/>
 		<item name="bjorne_agent::config::getString( const json :: Value &amp; object , const std :: string &amp; key , std :: string &amp; out) at src/config/Config.cpp:13">
-			<value>143</value>
-			<value>8</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::config::getNumber( const json :: Value &amp; object , const std :: string &amp; key , long long &amp; out) at src/config/Config.cpp:22">
 			<value>144</value>
 			<value>8</value>
 			<value>3</value>
 		</item>
-		<item name="bjorne_agent::config::loadAgent( const json :: Value &amp; root , AgentConfig &amp; agent) at src/config/Config.cpp:31">
+		<item name="bjorne_agent::config::getNumber( const json :: Value &amp; object , const std :: string &amp; key , long long &amp; out) at src/config/Config.cpp:22">
 			<value>145</value>
 			<value>8</value>
 			<value>3</value>
 		</item>
-		<item name="bjorne_agent::config::loadModel( const json :: Value &amp; entry , ModelConfig &amp; model) at src/config/Config.cpp:40">
+		<item name="bjorne_agent::config::loadAgent( const json :: Value &amp; root , AgentConfig &amp; agent) at src/config/Config.cpp:31">
 			<value>146</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::config::loadModel( const json :: Value &amp; entry , ModelConfig &amp; model) at src/config/Config.cpp:40">
+			<value>147</value>
 			<value>22</value>
 			<value>7</value>
 		</item>
 		<item name="bjorne_agent::config::loadModels( const json :: Value &amp; root , std :: vector&lt;ModelConfig&gt; &amp; out) at src/config/Config.cpp:63">
-			<value>147</value>
+			<value>148</value>
 			<value>14</value>
 			<value>5</value>
 		</item>
 		<item name="bjorne_agent::config::load( const std :: string &amp; path , Config &amp; out , std :: string &amp; error) at src/config/Config.cpp:80">
-			<value>148</value>
+			<value>149</value>
 			<value>33</value>
 			<value>7</value>
 		</item>
-		<average label="NCSS" value="13.344594594594595"/>
-		<average label="CCN" value="3.9864864864864864"/>
-		<average label="NCSS" value="13.344594594594595"/>
-		<average label="CCN" value="3.9864864864864864"/>
+		<average label="NCSS" value="13.516778523489933"/>
+		<average label="CCN" value="4.067114093959732"/>
+		<average label="NCSS" value="13.516778523489933"/>
+		<average label="CCN" value="4.067114093959732"/>
 		<item name="readStdin() at src/main.cpp:24">
-			<value>149</value>
+			<value>150</value>
 			<value>5</value>
 			<value>1</value>
 		</item>
 		<item name="readTextFile( const std :: string &amp; path , std :: string &amp; out) at src/main.cpp:30">
-			<value>150</value>
+			<value>151</value>
 			<value>10</value>
 			<value>2</value>
 		</item>
 		<item name="isPathSeparator( char c) at src/main.cpp:43">
-			<value>151</value>
+			<value>152</value>
 			<value>4</value>
 			<value>3</value>
 		</item>
 		<item name="isAbsolutePath( const std :: string &amp; path) at src/main.cpp:53">
-			<value>152</value>
+			<value>153</value>
 			<value>13</value>
 			<value>8</value>
 		</item>
 		<item name="lastPathSeparator( const std :: string &amp; path) at src/main.cpp:69">
-			<value>153</value>
+			<value>154</value>
 			<value>4</value>
 			<value>2</value>
 		</item>
 		<item name="resolveAgainstConfig( const std :: string &amp; configPath , const std :: string &amp; path) at src/main.cpp:77">
-			<value>154</value>
+			<value>155</value>
 			<value>10</value>
 			<value>4</value>
 		</item>
 		<item name="selectModel( const std :: vector&lt;bjorne_agent::config::ModelConfig&gt; &amp; models) at src/main.cpp:88">
-			<value>155</value>
+			<value>156</value>
 			<value>10</value>
 			<value>2</value>
 		</item>
 		<item name="usage() at src/main.cpp:99">
-			<value>156</value>
+			<value>157</value>
 			<value>9</value>
 			<value>1</value>
 		</item>
 		<item name="parseFlags( int argc , char ** argv , int &amp; first , bjorne_agent :: log :: Level &amp; level , bool &amp; levelSet) at src/main.cpp:112">
-			<value>157</value>
+			<value>158</value>
 			<value>20</value>
 			<value>8</value>
 		</item>
 		<item name="applyLogEnvironment( bjorne_agent :: log :: Level &amp; level , bool &amp; levelSet) at src/main.cpp:134">
-			<value>158</value>
+			<value>159</value>
 			<value>12</value>
 			<value>3</value>
 		</item>
 		<item name="resolveLogLevel( int argc , char ** argv , int &amp; first , bjorne_agent :: log :: Level &amp; level) at src/main.cpp:151">
-			<value>159</value>
+			<value>160</value>
 			<value>17</value>
 			<value>5</value>
 		</item>
 		<item name="buildContextConfig( const std :: string &amp; configPath , const bjorne_agent :: config :: ModelConfig &amp; model , bjorne_agent :: context :: ContextManagerConfig &amp; contextConfig) at src/main.cpp:176">
-			<value>160</value>
+			<value>161</value>
 			<value>19</value>
 			<value>3</value>
 		</item>
 		<item name="makeCompressionHandler( const std :: shared_ptr&lt;bjorne_agent::model::ModelClient&gt; &amp; model) at src/main.cpp:199">
-			<value>161</value>
+			<value>162</value>
 			<value>18</value>
 			<value>2</value>
 		</item>
 		<item name="positionalArguments( int argc , char ** argv , int first) at src/main.cpp:219">
-			<value>162</value>
+			<value>163</value>
 			<value>7</value>
 			<value>2</value>
 		</item>
 		<item name="main( int argc , char ** argv) at src/main.cpp:229">
-			<value>163</value>
+			<value>164</value>
 			<value>74</value>
 			<value>12</value>
 		</item>
-		<average label="NCSS" value="13.539877300613497"/>
-		<average label="CCN" value="3.9754601226993866"/>
+		<average label="NCSS" value="13.695121951219512"/>
+		<average label="CCN" value="4.048780487804878"/>
 	</measure>
 	<measure type="File">
 		<labels>
@@ -892,13 +897,13 @@
 		</item>
 		<item name="src/agent/AgentLoop.cpp">
 			<value>2</value>
-			<value>68</value>
-			<value>11</value>
+			<value>74</value>
+			<value>14</value>
 			<value>4</value>
 		</item>
 		<item name="src/tools/Tools.cpp">
 			<value>3</value>
-			<value>307</value>
+			<value>309</value>
 			<value>87</value>
 			<value>18</value>
 		</item>
@@ -976,14 +981,14 @@
 		</item>
 		<item name="src/model/ModelClient.h">
 			<value>16</value>
-			<value>53</value>
+			<value>54</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
 		<item name="src/model/ModelClient.cpp">
 			<value>17</value>
-			<value>202</value>
-			<value>55</value>
+			<value>209</value>
+			<value>59</value>
 			<value>10</value>
 		</item>
 		<item name="src/json/Json.cpp">
@@ -1000,15 +1005,15 @@
 		</item>
 		<item name="src/log/Log.h">
 			<value>20</value>
-			<value>14</value>
+			<value>16</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
 		<item name="src/log/Log.cpp">
 			<value>21</value>
-			<value>67</value>
-			<value>17</value>
-			<value>9</value>
+			<value>92</value>
+			<value>26</value>
+			<value>10</value>
 		</item>
 		<item name="src/cli/Invocation.h">
 			<value>22</value>
@@ -1052,14 +1057,14 @@
 			<value>58</value>
 			<value>15</value>
 		</item>
-		<average label="NCSS" value="99.03571428571429"/>
-		<average label="CCN" value="23.142857142857142"/>
-		<average label="Functions" value="5.821428571428571"/>
-		<sum label="NCSS" value="2773"/>
-		<sum label="CCN" value="648"/>
-		<sum label="Functions" value="163"/>
-		<average label="NCSS" value="13.539877300613497"/>
-		<average label="CCN" value="3.9754601226993866"/>
+		<average label="NCSS" value="100.57142857142857"/>
+		<average label="CCN" value="23.714285714285715"/>
+		<average label="Functions" value="5.857142857142857"/>
+		<sum label="NCSS" value="2816"/>
+		<sum label="CCN" value="664"/>
+		<sum label="Functions" value="164"/>
+		<average label="NCSS" value="13.695121951219512"/>
+		<average label="CCN" value="4.048780487804878"/>
 	</measure>
 </cppncss>
 

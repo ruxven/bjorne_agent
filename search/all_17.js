@@ -20,5 +20,5 @@ var searchData=
   ['transport_17',['transport',['../structbjorne__agent_1_1model_1_1ModelClientOptions.html#a071b7327fc45b8526ea7d703837a2e09',1,'bjorne_agent::model::ModelClientOptions']]],
   ['trim_18',['trim',['../classbjorne__agent_1_1context_1_1ContextManager.html#aa588c897cb31abf6afbdcb6f383c6e53',1,'bjorne_agent::context::ContextManager']]],
   ['truncate_19',['Truncate',['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a228a635684d0dc4bd7a4bc34d62f2073aa8156810bfee2bd2b44765b9e91db3bd',1,'bjorne_agent::context::ContextManagerConfig']]],
-  ['type_20',['type',['../classbjorne__agent_1_1json_1_1Value.html#a4d3ed5ad1c4b97f2705645e9e7df419a',1,'bjorne_agent::json::Value::type'],['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8',1,'bjorne_agent::json::Value::Type']]]
+  ['type_20',['type',['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8',1,'bjorne_agent::json::Value::Type'],['../classbjorne__agent_1_1json_1_1Value.html#a4d3ed5ad1c4b97f2705645e9e7df419a',1,'bjorne_agent::json::Value::type']]]
 ];

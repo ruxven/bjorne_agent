@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['parse_0',['parse',['../namespacebjorne__agent_1_1json.html#aef0d1ee272eb61b0dff732e64b4ef9f4',1,'bjorne_agent::json']]],
-  ['parsednsresponse_1',['parseDnsResponse',['../namespacebjorne__agent_1_1http.html#a87e983bcb4a09fd86132d8fc45cf44d8',1,'bjorne_agent::http']]],
-  ['parselevel_2',['parseLevel',['../namespacebjorne__agent_1_1log.html#a84b2fcbd9acdd6ec069955643f3fbd18',1,'bjorne_agent::log']]],
-  ['parseurl_3',['parseUrl',['../namespacebjorne__agent_1_1http.html#a1de187c402c3d5009043ffb8c2c2bbeb',1,'bjorne_agent::http']]],
-  ['processid_4',['processId',['../namespacebjorne__agent_1_1platform.html#a871058d68e6b1db37c803a9c9489aeca',1,'bjorne_agent::platform']]],
-  ['progress_5',['progress',['../namespacebjorne__agent_1_1log.html#a490e68ceb9168265077a796c4b171f3c',1,'bjorne_agent::log']]]
+  ['openssltransport_0',['openssltransport',['../classbjorne__agent_1_1http_1_1OpenSslTransport.html#a3f8bbf799f758f6a6f3db3ec8cb7d931',1,'bjorne_agent::http::OpenSslTransport::OpenSslTransport()=default'],['../classbjorne__agent_1_1http_1_1OpenSslTransport.html#a9a70a9546c36af408fd4efd5605d1b27',1,'bjorne_agent::http::OpenSslTransport::OpenSslTransport(Options options)']]],
+  ['operator_5b_5d_1',['operator[]',['../classbjorne__agent_1_1json_1_1Value.html#a502236c15f6164bde1577f6d63b0720b',1,'bjorne_agent::json::Value']]]
 ];
