@@ -33,6 +33,10 @@ The project creates an agent harness in C++ with minimal dependencies. The goal 
 - JSON: hand rolled parser. The config shape is small enough.
 - HTTP: hand rolled client. A static musl binary has no libcurl. The model API is plain REST over HTTPS, so a minimal HTTP/1.1 client plus TLS covers the need.
 
+## Command Line
+
+Reserved verbs: `init`, `run`, `sessions`, `resume`. The bare form is `run`, so `bjorne_agent [config] [task]` and `bjorne_agent run [config] [task]` do the same thing. A first positional argument that matches a reserved verb exactly is a command, so a task that begins with one is passed after `run`: `bjorne_agent run "init the project"`. `--help` prints the usage for the selected command and needs no config file. `--` ends flag parsing.
+
 ## Configuration
 
 ### Format

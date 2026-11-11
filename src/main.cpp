@@ -96,42 +96,9 @@ const bjorne_agent::config::ModelConfig* selectModel(const std::vector<bjorne_ag
   return &*best;
 }
 
-void usage() {
-  std::cerr << "Usage: bjorne_agent [--verbose|--quiet] [config] [task]\n"
-            << "  --verbose  report each step of the run on stderr\n"
-            << "  --quiet    suppress progress output\n"
-            << "  BJORNE_AGENT_LOG=quiet|normal|verbose sets the same level\n"
-            << "Without a config path, the run uses BJORNE_AGENT_CONFIG when it is set,\n"
-            << "then searches ./.bjorne_agent/bjorne_agent.json and\n"
-            << "$XDG_CONFIG_HOME/bjorne_agent/bjorne_agent.json, in that order.\n";
-}
-
-// Parses the leading flags. The remaining arguments are the config path and
-// the optional task. The requested level is returned through `level` so the
-// caller can decide the precedence between flags and the environment.
-int parseFlags(int argc, char** argv, int& first, bjorne_agent::log::Level& level, bool& levelSet) {
-  first = 1;
-  while (first < argc) {
-    const std::string argument = argv[first];
-    if (argument == "--verbose" || argument == "-v") {
-      level = bjorne_agent::log::Level::Verbose;
-      levelSet = true;
-    } else if (argument == "--quiet" || argument == "-q") {
-      level = bjorne_agent::log::Level::Quiet;
-      levelSet = true;
-    } else if (argument == "--help" || argument == "-h") {
-      usage();
-      return 2;
-    } else {
-      break;
-    }
-    ++first;
-  }
-  return 0;
-}
-
-// Reads BJORNE_AGENT_LOG. Returns false when the variable holds an unknown level.
-bool applyLogEnvironment(bjorne_agent::log::Level& level, bool& levelSet) {
+// Reads BJORNE_AGENT_LOG into the level. Returns false when the variable holds
+// an unknown level.
+bool applyLogEnvironment(bjorne_agent::log::Level& level) {
   std::string configured;
   if (!bjorne_agent::platform::getEnvironmentVariable("BJORNE_AGENT_LOG", configured)) {
     return true;
@@ -140,34 +107,7 @@ bool applyLogEnvironment(bjorne_agent::log::Level& level, bool& levelSet) {
     std::cerr << "Unknown BJORNE_AGENT_LOG level: " << configured << "\n";
     return false;
   }
-  levelSet = true;
   return true;
-}
-
-// Resolves the log level from the flags and the environment, then applies it.
-// A command line flag wins over the environment variable. Returns 0 to
-// continue, 2 when help was printed, and 1 when the environment holds an
-// unknown level.
-int resolveLogLevel(int argc, char** argv, int& first, bjorne_agent::log::Level& level) {
-  bool flagSet = false;
-  const int flagStatus = parseFlags(argc, argv, first, level, flagSet);
-  if (flagStatus == 2) {
-    return 2;
-  }
-
-  bjorne_agent::log::Level environmentLevel = bjorne_agent::log::Level::Normal;
-  bool environmentSet = false;
-  if (!applyLogEnvironment(environmentLevel, environmentSet)) {
-    return 1;
-  }
-  if (environmentSet && !flagSet) {
-    level = environmentLevel;
-  }
-
-  // The library starts quiet so that embedding it produces no output. The
-  // binary wants the user to see what it is doing, so it defaults to normal.
-  bjorne_agent::log::setLevel(level);
-  return 0;
 }
 
 // Fills in the context configuration and loads the compression prompt. The
@@ -215,35 +155,10 @@ bjorne_agent::context::CompressionHandler makeCompressionHandler(const std::shar
   };
 }
 
-// The positional arguments, in order, without the leading flags.
-std::vector<std::string> positionalArguments(int argc, char** argv, int first) {
-  std::vector<std::string> arguments;
-  for (int index = first; index < argc; ++index) {
-    arguments.emplace_back(argv[index]);
-  }
-  return arguments;
-}
-
-}  // namespace
-
-int main(int argc, char** argv) {
-  int first = 1;
-  bjorne_agent::log::Level level = bjorne_agent::log::Level::Normal;
-  const int logStatus = resolveLogLevel(argc, argv, first, level);
-  if (logStatus == 2) {
-    return 0;
-  }
-  if (logStatus != 0) {
-    return 1;
-  }
-
-  bjorne_agent::cli::Invocation invocation;
+// Runs one task: loads the config, builds the model, context and tools, and
+// prints the final answer. Returns 0 on success and 1 after reporting an error.
+int runTask(const bjorne_agent::cli::Invocation& invocation) {
   std::string error;
-  if (!bjorne_agent::cli::resolveInvocation(positionalArguments(argc, argv, first), invocation, error)) {
-    bjorne_agent::log::fail(error);
-    std::cerr << error << "\n";
-    return 1;
-  }
   const std::string& configPath = invocation.configPath;
   bjorne_agent::log::progress("Loading config: " + configPath);
 
@@ -274,7 +189,7 @@ int main(int argc, char** argv) {
   // standard input.
   std::string task = invocation.taskFromArgument ? invocation.task : readStdin();
   if (task.empty()) {
-    usage();
+    std::cerr << bjorne_agent::cli::usage();
     return 1;
   }
   bjorne_agent::log::progress("Task: " + task);
@@ -310,4 +225,46 @@ int main(int argc, char** argv) {
   bjorne_agent::log::progress("Done");
   std::cout << result << "\n";
   return 0;
+}
+
+}  // namespace
+
+int main(int argc, char** argv) {
+  std::vector<std::string> arguments;
+  for (int index = 1; index < argc; ++index) {
+    arguments.emplace_back(argv[index]);
+  }
+
+  bjorne_agent::cli::Invocation invocation;
+  std::string error;
+  if (!bjorne_agent::cli::parse(arguments, invocation, error)) {
+    bjorne_agent::log::fail(error);
+    std::cerr << error << "\n";
+    return 1;
+  }
+
+  if (invocation.help) {
+    if (invocation.commandSet) {
+      std::cout << bjorne_agent::cli::usage(invocation.command);
+    } else {
+      std::cout << bjorne_agent::cli::usage();
+    }
+    return 0;
+  }
+
+  // A command line flag wins over the environment variable. The library starts
+  // quiet so that embedding it produces no output; the binary defaults to
+  // normal so the user sees what it is doing.
+  bjorne_agent::log::Level level = invocation.levelSet ? invocation.level : bjorne_agent::log::Level::Normal;
+  if (!invocation.levelSet && !applyLogEnvironment(level)) {
+    return 1;
+  }
+  bjorne_agent::log::setLevel(level);
+
+  if (invocation.command != bjorne_agent::cli::Command::Run) {
+    std::cerr << "The '" << bjorne_agent::cli::commandName(invocation.command) << "' command is not implemented yet.\n";
+    return 1;
+  }
+
+  return runTask(invocation);
 }

@@ -192,10 +192,15 @@ qemu-aarch64-static build_arm64/bin/bjorne_agent_tests
 ## Usage
 
 ```
-bjorne_agent [--verbose|--quiet] [config] [task]
+bjorne_agent [options] [config] [task]
+bjorne_agent [options] run [config] [task]
+bjorne_agent [options] init
+bjorne_agent [options] sessions
+bjorne_agent [options] resume <session>
 ```
 
-The config path and the task are both optional, and the binary works out
+`run` is the default, so the bare form and the spelled out form do the same
+thing. The config path and the task are both optional, and the binary works out
 which is which.
 
 | Invocation | Config | Task |
@@ -206,7 +211,33 @@ which is which.
 | `bjorne_agent` | discovered | standard input |
 
 A single argument that names an existing file is the config path. Anything
-else is the task. With no config path, the binary searches:
+else is the task.
+
+### Commands
+
+| Command | Purpose |
+| --- | --- |
+| `run` | Run a task. The default when no command is given. |
+| `init` | Create a config file. Not implemented yet. |
+| `sessions` | List stored sessions. Not implemented yet. |
+| `resume` | Continue a stored session. Not implemented yet. |
+
+The verbs are reserved. A task that begins with one has to be passed after
+`run`, or it is read as that command:
+
+```sh
+bjorne_agent run "init the project"
+```
+
+`--help` and `-h` print the usage. After a command they print that command's
+help. Help needs no config file. `--` ends flag parsing, so a task that begins
+with a dash can still be passed:
+
+```sh
+bjorne_agent -- "--not-an-option"
+```
+
+With no config path, the binary searches:
 
 1. `./.bjorne_agent/bjorne_agent.json`, the project local file
 2. `$XDG_CONFIG_HOME/bjorne_agent/bjorne_agent.json`, the user level file. When
@@ -262,8 +293,8 @@ only, so piping the answer stays clean.
 
 | Code | Meaning |
 | --- | --- |
-| `0` | The run produced an answer. |
-| `1` | The config failed to load, no model was configured, the compression prompt could not be read, the task was empty, or the model or the loop failed. |
+| `0` | The run produced an answer, or help was printed. |
+| `1` | The command line was invalid, the command is not implemented yet, the config failed to load, no model was configured, the compression prompt could not be read, the task was empty, or the model or the loop failed. |
 
 ### Setting up a config
 
