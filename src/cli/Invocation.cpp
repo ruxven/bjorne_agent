@@ -164,6 +164,15 @@ bool parseCommandArguments(const std::vector<std::string>& positional, Invocatio
 }  // namespace
 
 bool parse(const std::vector<std::string>& arguments, Invocation& out, std::string& error) {
+  // An empty command line is a usage error. The task has to be named, or come
+  // from standard input with an explicit config path, so the bare binary never
+  // sits waiting on a terminal.
+  if (arguments.empty()) {
+    out.showUsage = true;
+    error = "No task or command given";
+    return false;
+  }
+
   std::vector<std::string> positional;
   if (!parseFlags(arguments, out, positional, error)) {
     return false;
@@ -200,6 +209,7 @@ std::string usage() {
          "       bjorne_agent [options] resume <session>\n"
          "\n"
          "Run a task. With no task argument the task comes from standard input.\n"
+         "With no arguments at all, print this usage and exit.\n"
          "\n"
          "Commands:\n"
          "  run       Run a task (the default when no command is given)\n"
@@ -229,7 +239,8 @@ std::string usage(Command command) {
              "\n"
              "Run a task. The command is the default, so the bare form\n"
              "`bjorne_agent [config] [task]` does the same thing. With no task\n"
-             "argument the task comes from standard input.\n"
+             "argument the task comes from standard input. An empty command line\n"
+             "is a usage error.\n"
              "\n"
              "Options:\n"
              "  -h, --help     Show this help and exit\n"

@@ -240,6 +240,9 @@ int main(int argc, char** argv) {
   if (!bjorne_agent::cli::parse(arguments, invocation, error)) {
     bjorne_agent::log::fail(error);
     std::cerr << error << "\n";
+    if (invocation.showUsage) {
+      std::cerr << "\n" << bjorne_agent::cli::usage();
+    }
     return 1;
   }
 

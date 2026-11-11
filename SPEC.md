@@ -35,7 +35,7 @@ The project creates an agent harness in C++ with minimal dependencies. The goal 
 
 ## Command Line
 
-Reserved verbs: `init`, `run`, `sessions`, `resume`. The bare form is `run`, so `bjorne_agent [config] [task]` and `bjorne_agent run [config] [task]` do the same thing. A first positional argument that matches a reserved verb exactly is a command, so a task that begins with one is passed after `run`: `bjorne_agent run "init the project"`. `--help` prints the usage for the selected command and needs no config file. `--` ends flag parsing.
+Reserved verbs: `init`, `run`, `sessions`, `resume`. The bare form is `run`, so `bjorne_agent [config] [task]` and `bjorne_agent run [config] [task]` do the same thing. A first positional argument that matches a reserved verb exactly is a command, so a task that begins with one is passed after `run`: `bjorne_agent run "init the project"`. `--help` prints the usage for the selected command and needs no config file. `--` ends flag parsing. An empty command line is an error: the binary prints the usage and exits `1`.
 
 ## Configuration
 

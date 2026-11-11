@@ -200,18 +200,18 @@ bjorne_agent [options] resume <session>
 ```
 
 `run` is the default, so the bare form and the spelled out form do the same
-thing. The config path and the task are both optional, and the binary works out
-which is which.
+thing. The config path and the task are both optional once the command line
+names one of them, and the binary works out which is which.
 
 | Invocation | Config | Task |
 | --- | --- | --- |
 | `bjorne_agent config.json "fix the tests"` | `config.json` | `fix the tests` |
 | `bjorne_agent "fix the tests"` | discovered | `fix the tests` |
 | `bjorne_agent config.json` | `config.json` | standard input |
-| `bjorne_agent` | discovered | standard input |
 
 A single argument that names an existing file is the config path. Anything
-else is the task.
+else is the task. Running the binary with no arguments at all is an error: it
+prints the usage and exits `1` instead of waiting on a terminal for a task.
 
 ### Commands
 

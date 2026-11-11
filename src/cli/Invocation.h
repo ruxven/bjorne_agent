@@ -27,6 +27,9 @@ struct Invocation {
   // `bjorne_agent run` and show the top level help for the first.
   bool commandSet = false;
   bool help = false;
+  // True when a parse failure should be followed by the usage text. Set for an
+  // empty command line, which is a usage error rather than a broken config.
+  bool showUsage = false;
   bool levelSet = false;
   log::Level level = log::Level::Normal;
 };
@@ -41,8 +44,8 @@ struct Invocation {
 // Flags may appear before or after the subcommand. `--` ends flag parsing, so
 // a task that begins with a dash can still be passed.
 //
-// Returns false on an unknown option, too many arguments, or a missing config
-// file, with the reason in error.
+// Returns false on an empty command line, an unknown option, too many
+// arguments, or a missing config file, with the reason in error.
 bool parse(const std::vector<std::string>& arguments, Invocation& out, std::string& error);
 
 // The name of a command as the user types it.

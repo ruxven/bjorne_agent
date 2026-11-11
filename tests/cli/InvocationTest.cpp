@@ -164,19 +164,16 @@ TEST_CASE("one argument naming no file is the task") {
   REQUIRE(invocation.taskFromArgument);
 }
 
-TEST_CASE("no arguments take the config from the search and the task from stdin") {
+TEST_CASE("no arguments is a usage error") {
   const EnvironmentGuard guard;
   TestSetup setup;
   writeFile(userConfig(setup.dir));
 
   bjorne_agent::cli::Invocation invocation;
   std::string error;
-  REQUIRE(bjorne_agent::cli::parse({}, invocation, error));
-  REQUIRE(invocation.command == bjorne_agent::cli::Command::Run);
-  REQUIRE_FALSE(invocation.commandSet);
-  REQUIRE(invocation.configPath == userConfig(setup.dir));
-  REQUIRE(invocation.task.empty());
-  REQUIRE_FALSE(invocation.taskFromArgument);
+  REQUIRE_FALSE(bjorne_agent::cli::parse({}, invocation, error));
+  REQUIRE(invocation.showUsage);
+  REQUIRE(!error.empty());
 }
 
 TEST_CASE("resolution fails when no config file exists") {
@@ -185,7 +182,7 @@ TEST_CASE("resolution fails when no config file exists") {
 
   bjorne_agent::cli::Invocation invocation;
   std::string error;
-  REQUIRE_FALSE(bjorne_agent::cli::parse({}, invocation, error));
+  REQUIRE_FALSE(bjorne_agent::cli::parse({"run"}, invocation, error));
   REQUIRE(invocation.configPath.empty());
   REQUIRE(!error.empty());
 }
