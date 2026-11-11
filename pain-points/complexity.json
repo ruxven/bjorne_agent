@@ -1315,18 +1315,18 @@
       },
       {
         "name": "bjorne_agent::cli::parse",
-        "cyclomatic_complexity": 3,
+        "cyclomatic_complexity": 4,
         "start_line": 166,
-        "end_line": 179,
-        "nloc": 11,
-        "token_count": 83,
+        "end_line": 188,
+        "nloc": 16,
+        "token_count": 106,
         "parameter_count": 3
       },
       {
         "name": "bjorne_agent::cli::commandName",
         "cyclomatic_complexity": 5,
-        "start_line": 181,
-        "end_line": 193,
+        "start_line": 190,
+        "end_line": 202,
         "nloc": 13,
         "token_count": 48,
         "parameter_count": 1
@@ -1334,19 +1334,19 @@
       {
         "name": "bjorne_agent::cli::usage",
         "cyclomatic_complexity": 1,
-        "start_line": 195,
-        "end_line": 223,
-        "nloc": 29,
-        "token_count": 34,
+        "start_line": 204,
+        "end_line": 233,
+        "nloc": 30,
+        "token_count": 35,
         "parameter_count": 0
       },
       {
         "name": "bjorne_agent::cli::usage",
         "cyclomatic_complexity": 5,
-        "start_line": 225,
-        "end_line": 256,
-        "nloc": 32,
-        "token_count": 69,
+        "start_line": 235,
+        "end_line": 267,
+        "nloc": 33,
+        "token_count": 70,
         "parameter_count": 1
       }
     ]
@@ -1591,11 +1591,11 @@
       },
       {
         "name": "main",
-        "cyclomatic_complexity": 9,
+        "cyclomatic_complexity": 10,
         "start_line": 232,
-        "end_line": 270,
-        "nloc": 31,
-        "token_count": 247,
+        "end_line": 273,
+        "nloc": 34,
+        "token_count": 271,
         "parameter_count": 2
       }
     ]

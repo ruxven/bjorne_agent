@@ -140,10 +140,10 @@
       34     12    203      4      34 bjorne_agent::cli::parseFlags@87-120@src/cli/Invocation.cpp
       14      3     93      2      14 bjorne_agent::cli::selectCommand@124-137@src/cli/Invocation.cpp
       24      8    148      3      24 bjorne_agent::cli::parseCommandArguments@139-162@src/cli/Invocation.cpp
-      11      3     83      3      14 bjorne_agent::cli::parse@166-179@src/cli/Invocation.cpp
-      13      5     48      1      13 bjorne_agent::cli::commandName@181-193@src/cli/Invocation.cpp
-      29      1     34      0      29 bjorne_agent::cli::usage@195-223@src/cli/Invocation.cpp
-      32      5     69      1      32 bjorne_agent::cli::usage@225-256@src/cli/Invocation.cpp
+      16      4    106      3      23 bjorne_agent::cli::parse@166-188@src/cli/Invocation.cpp
+      13      5     48      1      13 bjorne_agent::cli::commandName@190-202@src/cli/Invocation.cpp
+      30      1     35      0      30 bjorne_agent::cli::usage@204-233@src/cli/Invocation.cpp
+      33      5     70      1      33 bjorne_agent::cli::usage@235-267@src/cli/Invocation.cpp
        4      3     21      1       7 bjorne_agent::config::isPathSeparator@20-26@src/config/ConfigPaths.cpp
       13      8     92      1      15 bjorne_agent::config::isAbsolutePath@30-44@src/config/ConfigPaths.cpp
        9      3     56      2       9 bjorne_agent::config::joinPath@48-56@src/config/ConfigPaths.cpp
@@ -169,7 +169,7 @@
       19      3    143      3      20 buildContextConfig@116-135@src/main.cpp
       18      2    164      1      18 makeCompressionHandler@139-156@src/main.cpp
       59      9    534      1      69 runTask@160-228@src/main.cpp
-      31      9    247      2      39 main@232-270@src/main.cpp
+      34     10    271      2      42 main@232-273@src/main.cpp
 28 file analyzed.
 ==============================================================
 NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
@@ -195,17 +195,17 @@ NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
      40       2.4     1.2       19.4         8     src/json/Json.h
      16       0.0     0.0        0.0         0     src/log/Log.h
      92       7.9     2.6       56.4        10     src/log/Log.cpp
-     23       0.0     0.0        0.0         0     src/cli/Invocation.h
-    220      20.8     5.0       98.3        10     src/cli/Invocation.cpp
+     24       0.0     0.0        0.0         0     src/cli/Invocation.h
+    227      21.5     5.1      100.8        10     src/cli/Invocation.cpp
     107      11.6     4.8       77.4         8     src/config/ConfigPaths.cpp
      29       0.0     0.0        0.0         0     src/config/Config.h
     103      15.5     4.7      123.7         6     src/config/Config.cpp
       9       0.0     0.0        0.0         0     src/config/ConfigPaths.h
-    215      16.2     4.0      129.6        12     src/main.cpp
+    218      16.4     4.1      131.6        12     src/main.cpp
 
 ============================================================================================================
 No thresholds exceeded (cyclomatic_complexity > 15 or length > 100 or nloc > 1000000 or parameter_count > 5)
 ==========================================================================================
 Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt
 ------------------------------------------------------------------------------------------
-      2969      14.1     4.1      104.5      169            0      0.00    0.00
+      2980      14.2     4.1      104.8      169            0      0.00    0.00

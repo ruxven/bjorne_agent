@@ -746,26 +746,26 @@
 		</item>
 		<item name="bjorne_agent::cli::parse( const std :: vector&lt;std::string&gt; &amp; arguments , Invocation &amp; out , std :: string &amp; error) at src/cli/Invocation.cpp:166">
 			<value>140</value>
-			<value>11</value>
-			<value>3</value>
+			<value>16</value>
+			<value>4</value>
 		</item>
-		<item name="bjorne_agent::cli::commandName( Command command) at src/cli/Invocation.cpp:181">
+		<item name="bjorne_agent::cli::commandName( Command command) at src/cli/Invocation.cpp:190">
 			<value>141</value>
 			<value>13</value>
 			<value>5</value>
 		</item>
-		<item name="bjorne_agent::cli::usage() at src/cli/Invocation.cpp:195">
+		<item name="bjorne_agent::cli::usage() at src/cli/Invocation.cpp:204">
 			<value>142</value>
-			<value>29</value>
+			<value>30</value>
 			<value>1</value>
 		</item>
-		<item name="bjorne_agent::cli::usage( Command command) at src/cli/Invocation.cpp:225">
+		<item name="bjorne_agent::cli::usage( Command command) at src/cli/Invocation.cpp:235">
 			<value>143</value>
-			<value>32</value>
+			<value>33</value>
 			<value>5</value>
 		</item>
-		<average label="NCSS" value="14.041958041958042"/>
-		<average label="CCN" value="4.076923076923077"/>
+		<average label="NCSS" value="14.090909090909092"/>
+		<average label="CCN" value="4.083916083916084"/>
 		<item name="bjorne_agent::config::isPathSeparator( char c) at src/config/ConfigPaths.cpp:20">
 			<value>144</value>
 			<value>4</value>
@@ -806,10 +806,10 @@
 			<value>24</value>
 			<value>8</value>
 		</item>
-		<average label="NCSS" value="13.913907284768213"/>
-		<average label="CCN" value="4.112582781456954"/>
-		<average label="NCSS" value="13.913907284768213"/>
-		<average label="CCN" value="4.112582781456954"/>
+		<average label="NCSS" value="13.960264900662251"/>
+		<average label="CCN" value="4.119205298013245"/>
+		<average label="NCSS" value="13.960264900662251"/>
+		<average label="CCN" value="4.119205298013245"/>
 		<item name="bjorne_agent::config::getString( const json :: Value &amp; object , const std :: string &amp; key , std :: string &amp; out) at src/config/Config.cpp:13">
 			<value>152</value>
 			<value>8</value>
@@ -840,10 +840,10 @@
 			<value>33</value>
 			<value>7</value>
 		</item>
-		<average label="NCSS" value="13.97452229299363"/>
-		<average label="CCN" value="4.13375796178344"/>
-		<average label="NCSS" value="13.97452229299363"/>
-		<average label="CCN" value="4.13375796178344"/>
+		<average label="NCSS" value="14.019108280254777"/>
+		<average label="CCN" value="4.140127388535032"/>
+		<average label="NCSS" value="14.019108280254777"/>
+		<average label="CCN" value="4.140127388535032"/>
 		<item name="readStdin() at src/main.cpp:24">
 			<value>158</value>
 			<value>5</value>
@@ -901,11 +901,11 @@
 		</item>
 		<item name="main( int argc , char ** argv) at src/main.cpp:232">
 			<value>169</value>
-			<value>31</value>
-			<value>9</value>
+			<value>34</value>
+			<value>10</value>
 		</item>
-		<average label="NCSS" value="14.1301775147929"/>
-		<average label="CCN" value="4.124260355029586"/>
+		<average label="NCSS" value="14.189349112426035"/>
+		<average label="CCN" value="4.136094674556213"/>
 	</measure>
 	<measure type="File">
 		<labels>
@@ -1042,14 +1042,14 @@
 		</item>
 		<item name="src/cli/Invocation.h">
 			<value>22</value>
-			<value>23</value>
+			<value>24</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
 		<item name="src/cli/Invocation.cpp">
 			<value>23</value>
-			<value>220</value>
-			<value>50</value>
+			<value>227</value>
+			<value>51</value>
 			<value>10</value>
 		</item>
 		<item name="src/config/ConfigPaths.cpp">
@@ -1078,18 +1078,18 @@
 		</item>
 		<item name="src/main.cpp">
 			<value>28</value>
-			<value>215</value>
-			<value>48</value>
+			<value>218</value>
+			<value>49</value>
 			<value>12</value>
 		</item>
-		<average label="NCSS" value="106.03571428571429"/>
-		<average label="CCN" value="24.892857142857142"/>
+		<average label="NCSS" value="106.42857142857143"/>
+		<average label="CCN" value="24.964285714285715"/>
 		<average label="Functions" value="6.035714285714286"/>
-		<sum label="NCSS" value="2969"/>
-		<sum label="CCN" value="697"/>
+		<sum label="NCSS" value="2980"/>
+		<sum label="CCN" value="699"/>
 		<sum label="Functions" value="169"/>
-		<average label="NCSS" value="14.1301775147929"/>
-		<average label="CCN" value="4.124260355029586"/>
+		<average label="NCSS" value="14.189349112426035"/>
+		<average label="CCN" value="4.136094674556213"/>
 	</measure>
 </cppncss>
 

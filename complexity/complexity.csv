@@ -138,10 +138,10 @@ NLOC,CCN,token,PARAM,length,location,file,function,long_name,start,end
 34,12,203,4,34,"bjorne_agent::cli::parseFlags@87-120@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::parseFlags","bjorne_agent::cli::parseFlags( const std :: vector<std::string> & arguments , Invocation & out , std :: vector<std::string> & positional , std :: string & error)",87,120
 14,3,93,2,14,"bjorne_agent::cli::selectCommand@124-137@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::selectCommand","bjorne_agent::cli::selectCommand( std :: vector<std::string> & positional , Invocation & out)",124,137
 24,8,148,3,24,"bjorne_agent::cli::parseCommandArguments@139-162@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::parseCommandArguments","bjorne_agent::cli::parseCommandArguments( const std :: vector<std::string> & positional , Invocation & out , std :: string & error)",139,162
-11,3,83,3,14,"bjorne_agent::cli::parse@166-179@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::parse","bjorne_agent::cli::parse( const std :: vector<std::string> & arguments , Invocation & out , std :: string & error)",166,179
-13,5,48,1,13,"bjorne_agent::cli::commandName@181-193@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::commandName","bjorne_agent::cli::commandName( Command command)",181,193
-29,1,34,0,29,"bjorne_agent::cli::usage@195-223@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::usage","bjorne_agent::cli::usage()",195,223
-32,5,69,1,32,"bjorne_agent::cli::usage@225-256@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::usage","bjorne_agent::cli::usage( Command command)",225,256
+16,4,106,3,23,"bjorne_agent::cli::parse@166-188@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::parse","bjorne_agent::cli::parse( const std :: vector<std::string> & arguments , Invocation & out , std :: string & error)",166,188
+13,5,48,1,13,"bjorne_agent::cli::commandName@190-202@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::commandName","bjorne_agent::cli::commandName( Command command)",190,202
+30,1,35,0,30,"bjorne_agent::cli::usage@204-233@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::usage","bjorne_agent::cli::usage()",204,233
+33,5,70,1,33,"bjorne_agent::cli::usage@235-267@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::usage","bjorne_agent::cli::usage( Command command)",235,267
 4,3,21,1,7,"bjorne_agent::config::isPathSeparator@20-26@src/config/ConfigPaths.cpp","src/config/ConfigPaths.cpp","bjorne_agent::config::isPathSeparator","bjorne_agent::config::isPathSeparator( char c)",20,26
 13,8,92,1,15,"bjorne_agent::config::isAbsolutePath@30-44@src/config/ConfigPaths.cpp","src/config/ConfigPaths.cpp","bjorne_agent::config::isAbsolutePath","bjorne_agent::config::isAbsolutePath( const std :: string & path)",30,44
 9,3,56,2,9,"bjorne_agent::config::joinPath@48-56@src/config/ConfigPaths.cpp","src/config/ConfigPaths.cpp","bjorne_agent::config::joinPath","bjorne_agent::config::joinPath( const std :: string & base , const std :: string & rest)",48,56
@@ -167,4 +167,4 @@ NLOC,CCN,token,PARAM,length,location,file,function,long_name,start,end
 19,3,143,3,20,"buildContextConfig@116-135@src/main.cpp","src/main.cpp","buildContextConfig","buildContextConfig( const std :: string & configPath , const bjorne_agent :: config :: ModelConfig & model , bjorne_agent :: context :: ContextManagerConfig & contextConfig)",116,135
 18,2,164,1,18,"makeCompressionHandler@139-156@src/main.cpp","src/main.cpp","makeCompressionHandler","makeCompressionHandler( const std :: shared_ptr<bjorne_agent::model::ModelClient> & model)",139,156
 59,9,534,1,69,"runTask@160-228@src/main.cpp","src/main.cpp","runTask","runTask( const bjorne_agent :: cli :: Invocation & invocation)",160,228
-31,9,247,2,39,"main@232-270@src/main.cpp","src/main.cpp","main","main( int argc , char ** argv)",232,270
+34,10,271,2,42,"main@232-273@src/main.cpp","src/main.cpp","main","main( int argc , char ** argv)",232,273

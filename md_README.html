@@ -211,7 +211,7 @@ Usage</h1>
 <div class="line">bjorne_agent [options] init</div>
 <div class="line">bjorne_agent [options] sessions</div>
 <div class="line">bjorne_agent [options] resume &lt;session&gt;</div>
-</div><!-- fragment --><p><code>run</code> is the default, so the bare form and the spelled out form do the same thing. The config path and the task are both optional, and the binary works out which is which.</p>
+</div><!-- fragment --><p><code>run</code> is the default, so the bare form and the spelled out form do the same thing. The config path and the task are both optional once the command line names one of them, and the binary works out which is which.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Invocation   </th><th class="markdownTableHeadNone">Config   </th><th class="markdownTableHeadNone">Task    </th></tr>
@@ -220,11 +220,9 @@ Usage</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> "fix the tests"</code>   </td><td class="markdownTableBodyNone">discovered   </td><td class="markdownTableBodyNone"><code>fix the tests</code>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> config.json</code>   </td><td class="markdownTableBodyNone"><code>config.json</code>   </td><td class="markdownTableBodyNone">standard input    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a></code>   </td><td class="markdownTableBodyNone">discovered   </td><td class="markdownTableBodyNone">standard input   </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> config.json</code>   </td><td class="markdownTableBodyNone"><code>config.json</code>   </td><td class="markdownTableBodyNone">standard input   </td></tr>
 </table>
-<p>A single argument that names an existing file is the config path. Anything else is the task.</p>
+<p>A single argument that names an existing file is the config path. Anything else is the task. Running the binary with no arguments at all is an error: it prints the usage and exits <code>1</code> instead of waiting on a terminal for a task.</p>
 <h2><a class="anchor" id="autotoc_md9"></a>
 Commands</h2>
 <table class="markdownTable">

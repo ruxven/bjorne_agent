@@ -132,7 +132,7 @@ Dependencies</h1>
 </ul>
 <h1><a class="anchor" id="autotoc_md27"></a>
 Command Line</h1>
-<p>Reserved verbs: <code>init</code>, <code>run</code>, <code>sessions</code>, <code>resume</code>. The bare form is <code>run</code>, so <code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> [config] [task]</code> and <code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> run [config] [task]</code> do the same thing. A first positional argument that matches a reserved verb exactly is a command, so a task that begins with one is passed after <code>run</code>: <code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> run "init the project"</code>. <code>--help</code> prints the usage for the selected command and needs no config file. <code>--</code> ends flag parsing.</p>
+<p>Reserved verbs: <code>init</code>, <code>run</code>, <code>sessions</code>, <code>resume</code>. The bare form is <code>run</code>, so <code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> [config] [task]</code> and <code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> run [config] [task]</code> do the same thing. A first positional argument that matches a reserved verb exactly is a command, so a task that begins with one is passed after <code>run</code>: <code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> run "init the project"</code>. <code>--help</code> prints the usage for the selected command and needs no config file. <code>--</code> ends flag parsing. An empty command line is an error: the binary prints the usage and exits <code>1</code>.</p>
 <h1><a class="anchor" id="autotoc_md28"></a>
 Configuration</h1>
 <h2><a class="anchor" id="autotoc_md29"></a>

@@ -45,16 +45,16 @@
     "function_coverage": [
       {
         "line_start": 166,
-        "line_end": 179,
-        "line_count": 11,
-        "line_hit": 11,
-        "branch_count": 4,
-        "branch_hit": 4,
+        "line_end": 188,
+        "line_count": 16,
+        "line_hit": 16,
+        "branch_count": 6,
+        "branch_hit": 6,
         "function_name": "_ZN12bjorne_agent3cli5parseERKSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS7_EERNS0_10InvocationERS7_"
       },
       {
-        "line_start": 181,
-        "line_end": 193,
+        "line_start": 190,
+        "line_end": 202,
         "line_count": 13,
         "line_hit": 12,
         "branch_count": 10,
@@ -62,19 +62,19 @@
         "function_name": "_ZN12bjorne_agent3cli11commandNameENS0_7CommandE"
       },
       {
-        "line_start": 195,
-        "line_end": 223,
-        "line_count": 29,
-        "line_hit": 29,
+        "line_start": 204,
+        "line_end": 233,
+        "line_count": 30,
+        "line_hit": 30,
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "_ZN12bjorne_agent3cli5usageB5cxx11Ev"
       },
       {
-        "line_start": 225,
-        "line_end": 256,
-        "line_count": 32,
-        "line_hit": 31,
+        "line_start": 235,
+        "line_end": 267,
+        "line_count": 33,
+        "line_hit": 32,
         "branch_count": 10,
         "branch_hit": 9,
         "function_name": "_ZN12bjorne_agent3cli5usageB5cxx11ENS0_7CommandE"
@@ -1696,16 +1696,16 @@
       },
       {
         "line_start": 167,
-        "line_end": 180,
-        "line_count": 13,
-        "line_hit": 13,
+        "line_end": 177,
+        "line_count": 10,
+        "line_hit": 10,
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "InvocationTest.cpp:_ZL22CATCH2_INTERNAL_TEST_6v"
       },
       {
-        "line_start": 182,
-        "line_end": 191,
+        "line_start": 179,
+        "line_end": 188,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -1713,8 +1713,8 @@
         "function_name": "InvocationTest.cpp:_ZL22CATCH2_INTERNAL_TEST_8v"
       },
       {
-        "line_start": 193,
-        "line_end": 205,
+        "line_start": 190,
+        "line_end": 202,
         "line_count": 12,
         "line_hit": 12,
         "branch_count": 0,
@@ -1722,8 +1722,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_10v"
       },
       {
-        "line_start": 207,
-        "line_end": 219,
+        "line_start": 204,
+        "line_end": 216,
         "line_count": 12,
         "line_hit": 12,
         "branch_count": 0,
@@ -1731,8 +1731,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_12v"
       },
       {
-        "line_start": 221,
-        "line_end": 232,
+        "line_start": 218,
+        "line_end": 229,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
@@ -1740,8 +1740,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_14v"
       },
       {
-        "line_start": 234,
-        "line_end": 244,
+        "line_start": 231,
+        "line_end": 241,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -1749,8 +1749,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_16v"
       },
       {
-        "line_start": 246,
-        "line_end": 255,
+        "line_start": 243,
+        "line_end": 252,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -1758,8 +1758,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_18v"
       },
       {
-        "line_start": 257,
-        "line_end": 267,
+        "line_start": 254,
+        "line_end": 264,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -1767,8 +1767,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_20v"
       },
       {
-        "line_start": 269,
-        "line_end": 277,
+        "line_start": 266,
+        "line_end": 274,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -1776,8 +1776,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_22v"
       },
       {
-        "line_start": 279,
-        "line_end": 287,
+        "line_start": 276,
+        "line_end": 284,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -1785,8 +1785,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_24v"
       },
       {
-        "line_start": 289,
-        "line_end": 298,
+        "line_start": 286,
+        "line_end": 295,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -1794,8 +1794,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_26v"
       },
       {
-        "line_start": 300,
-        "line_end": 312,
+        "line_start": 297,
+        "line_end": 309,
         "line_count": 12,
         "line_hit": 12,
         "branch_count": 0,
@@ -1803,8 +1803,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_28v"
       },
       {
-        "line_start": 314,
-        "line_end": 324,
+        "line_start": 311,
+        "line_end": 321,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -1812,8 +1812,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_30v"
       },
       {
-        "line_start": 326,
-        "line_end": 336,
+        "line_start": 323,
+        "line_end": 333,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -1821,8 +1821,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_32v"
       },
       {
-        "line_start": 338,
-        "line_end": 349,
+        "line_start": 335,
+        "line_end": 346,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
@@ -1830,8 +1830,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_34v"
       },
       {
-        "line_start": 351,
-        "line_end": 361,
+        "line_start": 348,
+        "line_end": 358,
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 0,
@@ -1839,8 +1839,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_36v"
       },
       {
-        "line_start": 363,
-        "line_end": 372,
+        "line_start": 360,
+        "line_end": 369,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -1848,8 +1848,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_38v"
       },
       {
-        "line_start": 374,
-        "line_end": 382,
+        "line_start": 371,
+        "line_end": 379,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -1857,8 +1857,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_40v"
       },
       {
-        "line_start": 384,
-        "line_end": 393,
+        "line_start": 381,
+        "line_end": 390,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -1866,8 +1866,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_42v"
       },
       {
-        "line_start": 395,
-        "line_end": 403,
+        "line_start": 392,
+        "line_end": 400,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -1875,8 +1875,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_44v"
       },
       {
-        "line_start": 405,
-        "line_end": 413,
+        "line_start": 402,
+        "line_end": 410,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 2,
@@ -1884,8 +1884,8 @@
         "function_name": "InvocationTest.cpp:_ZL23CATCH2_INTERNAL_TEST_46v"
       },
       {
-        "line_start": 415,
-        "line_end": 421,
+        "line_start": 412,
+        "line_end": 418,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
