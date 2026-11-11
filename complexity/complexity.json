@@ -1269,13 +1269,85 @@
         "parameter_count": 1
       },
       {
-        "name": "bjorne_agent::cli::resolveInvocation",
+        "name": "bjorne_agent::cli::reservedVerb",
         "cyclomatic_complexity": 5,
-        "start_line": 22,
-        "end_line": 51,
-        "nloc": 24,
-        "token_count": 169,
+        "start_line": 23,
+        "end_line": 41,
+        "nloc": 19,
+        "token_count": 86,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::cli::resolveRun",
+        "cyclomatic_complexity": 6,
+        "start_line": 50,
+        "end_line": 83,
+        "nloc": 28,
+        "token_count": 188,
         "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::cli::parseFlags",
+        "cyclomatic_complexity": 12,
+        "start_line": 87,
+        "end_line": 120,
+        "nloc": 34,
+        "token_count": 203,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::cli::selectCommand",
+        "cyclomatic_complexity": 3,
+        "start_line": 124,
+        "end_line": 137,
+        "nloc": 14,
+        "token_count": 93,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::cli::parseCommandArguments",
+        "cyclomatic_complexity": 8,
+        "start_line": 139,
+        "end_line": 162,
+        "nloc": 24,
+        "token_count": 148,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::cli::parse",
+        "cyclomatic_complexity": 3,
+        "start_line": 166,
+        "end_line": 179,
+        "nloc": 11,
+        "token_count": 83,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::cli::commandName",
+        "cyclomatic_complexity": 5,
+        "start_line": 181,
+        "end_line": 193,
+        "nloc": 13,
+        "token_count": 48,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::cli::usage",
+        "cyclomatic_complexity": 1,
+        "start_line": 195,
+        "end_line": 223,
+        "nloc": 29,
+        "token_count": 34,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::cli::usage",
+        "cyclomatic_complexity": 5,
+        "start_line": 225,
+        "end_line": 256,
+        "nloc": 32,
+        "token_count": 69,
+        "parameter_count": 1
       }
     ]
   },
@@ -1482,46 +1554,19 @@
         "parameter_count": 1
       },
       {
-        "name": "usage",
-        "cyclomatic_complexity": 1,
-        "start_line": 99,
-        "end_line": 107,
-        "nloc": 9,
-        "token_count": 30,
-        "parameter_count": 0
-      },
-      {
-        "name": "parseFlags",
-        "cyclomatic_complexity": 8,
-        "start_line": 112,
-        "end_line": 131,
-        "nloc": 20,
-        "token_count": 134,
-        "parameter_count": 5
-      },
-      {
         "name": "applyLogEnvironment",
         "cyclomatic_complexity": 3,
-        "start_line": 134,
-        "end_line": 145,
-        "nloc": 12,
-        "token_count": 79,
-        "parameter_count": 2
-      },
-      {
-        "name": "resolveLogLevel",
-        "cyclomatic_complexity": 5,
-        "start_line": 151,
-        "end_line": 171,
-        "nloc": 17,
-        "token_count": 116,
-        "parameter_count": 4
+        "start_line": 101,
+        "end_line": 111,
+        "nloc": 11,
+        "token_count": 71,
+        "parameter_count": 1
       },
       {
         "name": "buildContextConfig",
         "cyclomatic_complexity": 3,
-        "start_line": 176,
-        "end_line": 195,
+        "start_line": 116,
+        "end_line": 135,
         "nloc": 19,
         "token_count": 143,
         "parameter_count": 3
@@ -1529,28 +1574,28 @@
       {
         "name": "makeCompressionHandler",
         "cyclomatic_complexity": 2,
-        "start_line": 199,
-        "end_line": 216,
+        "start_line": 139,
+        "end_line": 156,
         "nloc": 18,
         "token_count": 164,
         "parameter_count": 1
       },
       {
-        "name": "positionalArguments",
-        "cyclomatic_complexity": 2,
-        "start_line": 219,
-        "end_line": 225,
-        "nloc": 7,
-        "token_count": 53,
-        "parameter_count": 3
+        "name": "runTask",
+        "cyclomatic_complexity": 9,
+        "start_line": 160,
+        "end_line": 228,
+        "nloc": 59,
+        "token_count": 534,
+        "parameter_count": 1
       },
       {
         "name": "main",
-        "cyclomatic_complexity": 12,
-        "start_line": 229,
-        "end_line": 313,
-        "nloc": 74,
-        "token_count": 634,
+        "cyclomatic_complexity": 9,
+        "start_line": 232,
+        "end_line": 270,
+        "nloc": 31,
+        "token_count": 247,
         "parameter_count": 2
       }
     ]

@@ -93,17 +93,17 @@ $(document).ready(function(){initNavTree('md_SPEC_8CONFIG.html',''); initResizab
   <div class="headertitle"><div class="title">SPEC.CONFIG: C++ Agent Harness Configuration Specification</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md37"></a> </p>
-<h1><a class="anchor" id="autotoc_md38"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md39"></a> </p>
+<h1><a class="anchor" id="autotoc_md40"></a>
 Purpose</h1>
 <p>This document specifies the configuration file for the C++ agent harness. The file is JSON. The parser is hand rolled. Keys use snake_case.</p>
-<h1><a class="anchor" id="autotoc_md39"></a>
+<h1><a class="anchor" id="autotoc_md41"></a>
 Scope</h1>
 <p>The configuration file defines the agent behavior and the model list used by the agent loop.</p>
-<h1><a class="anchor" id="autotoc_md40"></a>
+<h1><a class="anchor" id="autotoc_md42"></a>
 Overview</h1>
 <p>The configuration file has three top level sections: version, agent, and models.</p>
-<h1><a class="anchor" id="autotoc_md41"></a>
+<h1><a class="anchor" id="autotoc_md43"></a>
 Config File Location</h1>
 <p>A path given on the command line is used as it is. Without one, the run reads the BJORNE_AGENT_CONFIG environment variable. When that variable holds a path, the run uses it as the config path and skips the search. A variable that holds only whitespace counts as unset. A variable that names a file that is not there stops the run and names both the variable and the path, because the caller asked for that file.</p>
 <p>Without the environment variable, the run searches these locations in order and takes the first that exists:</p>
@@ -113,20 +113,20 @@ Config File Location</h1>
 </ul>
 <p>The project local file wins, so a repository can carry its own settings without touching the user configuration. When no candidate exists, the run stops and names every path it checked.</p>
 <p>The environment variable is the path a container uses. The config is mounted at a path the search does not know about, so the variable names it.</p>
-<h1><a class="anchor" id="autotoc_md42"></a>
+<h1><a class="anchor" id="autotoc_md44"></a>
 Top Level</h1>
 <ul>
 <li>version: integer. Starts at one. Marks the schema revision.</li>
 <li>agent: object. Holds agent behavior fields.</li>
 <li>models: array. Holds model entries.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md43"></a>
+<h1><a class="anchor" id="autotoc_md45"></a>
 Agent</h1>
 <ul>
 <li>system_prompt: string. Instruction content sent to the model.</li>
 <li>workspace: string. Workspace root for tool operations.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md44"></a>
+<h1><a class="anchor" id="autotoc_md46"></a>
 Models</h1>
 <p>Each entry in the models array:</p>
 <ul>
@@ -143,11 +143,11 @@ Models</h1>
 <li>hostname: string, optional. The name sent in the TLS SNI extension and matched against the peer certificate. When absent, the host from the endpoint is used. Set it when the endpoint host is an address or an internal name but the certificate carries a different name.</li>
 </ul>
 <p>Priority semantics: priority one is the first choice, priority two is the second, priority three is the third, priority thirty is the thirtieth.</p>
-<h1><a class="anchor" id="autotoc_md45"></a>
+<h1><a class="anchor" id="autotoc_md47"></a>
 TLS</h1>
 <p>Certificate verification is on by default. The chain is checked against the system trust store, and the expected hostname is the <code>hostname</code> key when present, otherwise the endpoint host. A rejected certificate ends the run with the verification reason, for example "Certificate verification failed: self-signed certificate".</p>
 <p>Turning <code>ignore_self_signed</code> on skips both the chain check and the hostname check. The API key travels over this connection, so a build that trusts arbitrary certificates can hand the key to a wrong peer.</p>
-<h1><a class="anchor" id="autotoc_md46"></a>
+<h1><a class="anchor" id="autotoc_md48"></a>
 Context Management</h1>
 <ul>
 <li>Default overflow strategy: truncate.</li>
@@ -155,7 +155,7 @@ Context Management</h1>
 <li>Compression timing is per model, because models differ in context performance.</li>
 <li>Compression instruction: the default prompt is "Summarize the conversation". A customized instruction may be better. The customized instruction comes from a markdown file referenced by configuration, combined with the binary and the config file. The user can configure more specific behavior in the markdown file.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md47"></a>
+<h1><a class="anchor" id="autotoc_md49"></a>
 Decisions</h1>
 <ul>
 <li>Config format: JSON, hand rolled parser, snake_case.</li>
@@ -165,12 +165,12 @@ Decisions</h1>
 <li>Compression instruction source: markdown file referenced by configuration, combined with the binary and the config file. The default compression prompt is "Summarize the conversation". A user-configured markdown file can override.</li>
 <li>Certificate verification: on by default. <code>ignore_self_signed</code> turns it off, and <code>hostname</code> sets the name used for SNI and for the certificate hostname check.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md48"></a>
+<h1><a class="anchor" id="autotoc_md50"></a>
 Open Questions</h1>
 <ul>
 <li>None. The mechanism for customized compression instructions is resolved. See Decisions.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md49"></a>
+<h1><a class="anchor" id="autotoc_md51"></a>
 Status</h1>
 <ul>
 <li>Configuration specification. The compression instruction mechanism is resolved. This file is the working output. </li>

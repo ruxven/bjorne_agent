@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['truncate_0',['Truncate',['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a228a635684d0dc4bd7a4bc34d62f2073aa8156810bfee2bd2b44765b9e91db3bd',1,'bjorne_agent::context::ContextManagerConfig']]]
+  ['resume_0',['Resume',['../namespacebjorne__agent_1_1cli.html#af3439404a9a79b847d8f06aed44b547eaf1cefec9e2196c672a622347f1fbc325',1,'bjorne_agent::cli']]],
+  ['run_1',['Run',['../namespacebjorne__agent_1_1cli.html#af3439404a9a79b847d8f06aed44b547eac5301693c4e792bcd5a479ef38fb8f8d',1,'bjorne_agent::cli']]]
 ];

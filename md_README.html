@@ -206,8 +206,12 @@ Cross build for ARM (Raspberry Pi)</h2>
 <div class="fragment"><div class="line">qemu-aarch64-static build_arm64/bin/bjorne_agent_tests</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
 Usage</h1>
-<div class="fragment"><div class="line">bjorne_agent [--verbose|--quiet] [config] [task]</div>
-</div><!-- fragment --><p>The config path and the task are both optional, and the binary works out which is which.</p>
+<div class="fragment"><div class="line">bjorne_agent [options] [config] [task]</div>
+<div class="line">bjorne_agent [options] run [config] [task]</div>
+<div class="line">bjorne_agent [options] init</div>
+<div class="line">bjorne_agent [options] sessions</div>
+<div class="line">bjorne_agent [options] resume &lt;session&gt;</div>
+</div><!-- fragment --><p><code>run</code> is the default, so the bare form and the spelled out form do the same thing. The config path and the task are both optional, and the binary works out which is which.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Invocation   </th><th class="markdownTableHeadNone">Config   </th><th class="markdownTableHeadNone">Task    </th></tr>
@@ -220,14 +224,33 @@ Usage</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a></code>   </td><td class="markdownTableBodyNone">discovered   </td><td class="markdownTableBodyNone">standard input   </td></tr>
 </table>
-<p>A single argument that names an existing file is the config path. Anything else is the task. With no config path, the binary searches:</p>
+<p>A single argument that names an existing file is the config path. Anything else is the task.</p>
+<h2><a class="anchor" id="autotoc_md9"></a>
+Commands</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Command   </th><th class="markdownTableHeadNone">Purpose    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>run</code>   </td><td class="markdownTableBodyNone">Run a task. The default when no command is given.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>init</code>   </td><td class="markdownTableBodyNone">Create a config file. Not implemented yet.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>sessions</code>   </td><td class="markdownTableBodyNone">List stored sessions. Not implemented yet.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>resume</code>   </td><td class="markdownTableBodyNone">Continue a stored session. Not implemented yet.   </td></tr>
+</table>
+<p>The verbs are reserved. A task that begins with one has to be passed after <code>run</code>, or it is read as that command:</p>
+<div class="fragment"><div class="line">bjorne_agent run &quot;init the project&quot;</div>
+</div><!-- fragment --><p><code>--help</code> and <code>-h</code> print the usage. After a command they print that command's help. Help needs no config file. <code>--</code> ends flag parsing, so a task that begins with a dash can still be passed:</p>
+<div class="fragment"><div class="line">bjorne_agent -- &quot;--not-an-option&quot;</div>
+</div><!-- fragment --><p>With no config path, the binary searches:</p>
 <ol type="1">
 <li><code>./.bjorne_agent/bjorne_agent.json</code>, the project local file</li>
 <li><code>$XDG_CONFIG_HOME/bjorne_agent/bjorne_agent.json</code>, the user level file. When <code>XDG_CONFIG_HOME</code> is unset or relative, the path is <code>~/.config/bjorne_agent/bjorne_agent.json</code>.</li>
 </ol>
 <p>The project local file wins, so a repository can carry its own settings without touching the user configuration. When no candidate exists, the run stops and names every path it checked.</p>
 <p>The final answer goes to standard output. Progress goes to standard error, so <code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> "task" &gt; answer.txt</code> keeps only the answer.</p>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 Output levels</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -254,24 +277,24 @@ Output levels</h2>
 <div class="line">[bjorne_agent 3.2s] result:</div>
 <div class="line">  hello</div>
 </div><!-- fragment --><p>Long reasoning and tool output are cut at a few thousand characters, with a note that says how much was left out. The final answer still goes to stdout only, so piping the answer stays clean.</p>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Exit codes</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Code   </th><th class="markdownTableHeadNone">Meaning    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>0</code>   </td><td class="markdownTableBodyNone">The run produced an answer.    </td></tr>
+<td class="markdownTableBodyNone"><code>0</code>   </td><td class="markdownTableBodyNone">The run produced an answer, or help was printed.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>1</code>   </td><td class="markdownTableBodyNone">The config failed to load, no model was configured, the compression prompt could not be read, the task was empty, or the model or the loop failed.   </td></tr>
+<td class="markdownTableBodyNone"><code>1</code>   </td><td class="markdownTableBodyNone">The command line was invalid, the command is not implemented yet, the config failed to load, no model was configured, the compression prompt could not be read, the task was empty, or the model or the loop failed.   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md12"></a>
 Setting up a config</h2>
 <p><code>setup.sh</code> asks for the settings and writes both a config and a <code>.env</code>:</p>
 <div class="fragment"><div class="line">./setup.sh</div>
 </div><!-- fragment --><p>It writes to <code>./.bjorne_agent/bjorne_agent.json</code> or <code>~/.config/bjorne_agent/bjorne_agent.json</code>, the same two paths the binary searches, and puts a <code>.env</code> beside the config with the API key variable stubbed out. Fill in the key and source it:</p>
 <div class="fragment"><div class="line">source .bjorne_agent/.env</div>
 <div class="line">bjorne_agent &quot;hello&quot;</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md12"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md13"></a>
 Configuration</h1>
 <p>The config is JSON with <code>snake_case</code> keys. <code>config/bjorne_agent.example.json</code> is a complete example.</p>
 <div class="fragment"><div class="line">{</div>
@@ -296,7 +319,7 @@ Configuration</h1>
 <div class="line">    }</div>
 <div class="line">  ]</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md13"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md14"></a>
 Agent</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -306,7 +329,7 @@ Agent</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>workspace</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone">Root for tool operations. Relative tool paths resolve against it.   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 Model</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -336,12 +359,12 @@ Model</h2>
 </table>
 <p>The endpoint scheme picks the transport. <code>https</code> uses TLS, <code>http</code> uses plain TCP, which is what a local model such as llama.cpp needs. A host may carry an explicit port, as in <code><a href="http://127.0.0.1:11434/v1">http://127.0.0.1:11434/v1</a></code>. IPv6 hosts use brackets, as in <code><a href="http://">http://</a>[::1]:8080/v1</code>.</p>
 <p>A relative <code>compression_prompt_path</code> resolves against the directory holding the config file, not the working directory. When the key is absent, the compression instruction is <code>Summarize the conversation</code>.</p>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 TLS</h2>
 <p>Certificate verification is on by default. The chain is checked against the system trust store, and the expected hostname is the <code>hostname</code> key when present, otherwise the host from the endpoint. A rejected certificate ends the run with the reason, for example <code>Certificate verification failed: self-signed certificate</code>.</p>
 <p><code>ignore_self_signed</code> turns off both the chain check and the hostname check. Use it only against a host with a self-signed certificate. The API key travels over this connection, so a build that trusts arbitrary certificates can hand the key to a wrong peer.</p>
 <p>Set <code>hostname</code> when the endpoint host is an address or an internal name but the certificate carries a different name.</p>
-<h1><a class="anchor" id="autotoc_md16"></a>
+<h1><a class="anchor" id="autotoc_md17"></a>
 Tools</h1>
 <p>The model requests tools as JSON function calls. The set is fixed.</p>
 <table class="markdownTable">
@@ -357,7 +380,7 @@ Tools</h1>
 <td class="markdownTableBodyNone"><code>run_shell</code>   </td><td class="markdownTableBodyNone"><code>command</code>   </td><td class="markdownTableBodyNone">Runs a shell command in the workspace. Output is capped at 256 KiB and marked when truncated.   </td></tr>
 </table>
 <p>Relative paths resolve against <code>agent.workspace</code>. A path that traverses a parent directory is rejected. A tool that fails does not stop the loop: the error becomes tool result text and the model decides what to do next.</p>
-<h1><a class="anchor" id="autotoc_md17"></a>
+<h1><a class="anchor" id="autotoc_md18"></a>
 Containers</h1>
 <p><code>container/README.md</code> covers the podman work: the three build environments and the runtime image.</p>
 <p>The build environments are a fully static musl build, a dynamic glibc build with shared OpenSSL, and a no-TLS build. The script builds, tests, and installs inside the container and leaves the artifacts on the host.</p>
@@ -382,7 +405,7 @@ Containers</h1>
 <div class="line">  -v &quot;$PWD:/workspace&quot; \</div>
 <div class="line">  bjorne_agent &quot;your task&quot;</div>
 </div><!-- fragment --><p>A relative <code>compression_prompt_path</code> resolves against the directory holding the config file, so a config mounted outside <code>/etc/bjorne_agent</code> needs the absolute path <code>/usr/local/share/bjorne_agent/prompts/compression.md</code>.</p>
-<h1><a class="anchor" id="autotoc_md18"></a>
+<h1><a class="anchor" id="autotoc_md19"></a>
 Development</h1>
 <p>Run the tests:</p>
 <div class="fragment"><div class="line">cmake --build build</div>
@@ -412,7 +435,7 @@ Development</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code><a class="el" href="ROADMAP_8md.html">ROADMAP.md</a></code>   </td><td class="markdownTableBodyNone">What is done and what is next.   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md19"></a>
+<h1><a class="anchor" id="autotoc_md20"></a>
 License</h1>
 <p>MIT. See [LICENSE](LICENSE).</p>
 <p>The vendored Catch2 sources under <code>third_party/catch2/</code> carry their own license, Boost Software License 1.0. They are used for the test binary only and are not part of the shipped artifact. </p>

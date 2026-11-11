@@ -133,7 +133,15 @@ NLOC,CCN,token,PARAM,length,location,file,function,long_name,start,end
 4,1,38,0,4,"bjorne_agent::log::elapsedSeconds@98-101@src/log/Log.cpp","src/log/Log.cpp","bjorne_agent::log::elapsedSeconds","bjorne_agent::log::elapsedSeconds()",98,101
 8,3,60,1,8,"bjorne_agent::log::formatSeconds@103-110@src/log/Log.cpp","src/log/Log.cpp","bjorne_agent::log::formatSeconds","bjorne_agent::log::formatSeconds( double seconds)",103,110
 4,2,31,1,4,"bjorne_agent::cli::namesAnExistingFile@15-18@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::namesAnExistingFile","bjorne_agent::cli::namesAnExistingFile( const std :: string & path)",15,18
-24,5,169,3,30,"bjorne_agent::cli::resolveInvocation@22-51@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::resolveInvocation","bjorne_agent::cli::resolveInvocation( const std :: vector<std::string> & arguments , Invocation & out , std :: string & error)",22,51
+19,5,86,2,19,"bjorne_agent::cli::reservedVerb@23-41@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::reservedVerb","bjorne_agent::cli::reservedVerb( const std :: string & value , Command & out)",23,41
+28,6,188,3,34,"bjorne_agent::cli::resolveRun@50-83@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::resolveRun","bjorne_agent::cli::resolveRun( const std :: vector<std::string> & positional , Invocation & out , std :: string & error)",50,83
+34,12,203,4,34,"bjorne_agent::cli::parseFlags@87-120@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::parseFlags","bjorne_agent::cli::parseFlags( const std :: vector<std::string> & arguments , Invocation & out , std :: vector<std::string> & positional , std :: string & error)",87,120
+14,3,93,2,14,"bjorne_agent::cli::selectCommand@124-137@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::selectCommand","bjorne_agent::cli::selectCommand( std :: vector<std::string> & positional , Invocation & out)",124,137
+24,8,148,3,24,"bjorne_agent::cli::parseCommandArguments@139-162@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::parseCommandArguments","bjorne_agent::cli::parseCommandArguments( const std :: vector<std::string> & positional , Invocation & out , std :: string & error)",139,162
+11,3,83,3,14,"bjorne_agent::cli::parse@166-179@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::parse","bjorne_agent::cli::parse( const std :: vector<std::string> & arguments , Invocation & out , std :: string & error)",166,179
+13,5,48,1,13,"bjorne_agent::cli::commandName@181-193@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::commandName","bjorne_agent::cli::commandName( Command command)",181,193
+29,1,34,0,29,"bjorne_agent::cli::usage@195-223@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::usage","bjorne_agent::cli::usage()",195,223
+32,5,69,1,32,"bjorne_agent::cli::usage@225-256@src/cli/Invocation.cpp","src/cli/Invocation.cpp","bjorne_agent::cli::usage","bjorne_agent::cli::usage( Command command)",225,256
 4,3,21,1,7,"bjorne_agent::config::isPathSeparator@20-26@src/config/ConfigPaths.cpp","src/config/ConfigPaths.cpp","bjorne_agent::config::isPathSeparator","bjorne_agent::config::isPathSeparator( char c)",20,26
 13,8,92,1,15,"bjorne_agent::config::isAbsolutePath@30-44@src/config/ConfigPaths.cpp","src/config/ConfigPaths.cpp","bjorne_agent::config::isAbsolutePath","bjorne_agent::config::isAbsolutePath( const std :: string & path)",30,44
 9,3,56,2,9,"bjorne_agent::config::joinPath@48-56@src/config/ConfigPaths.cpp","src/config/ConfigPaths.cpp","bjorne_agent::config::joinPath","bjorne_agent::config::joinPath( const std :: string & base , const std :: string & rest)",48,56
@@ -155,11 +163,8 @@ NLOC,CCN,token,PARAM,length,location,file,function,long_name,start,end
 4,2,27,1,7,"lastPathSeparator@69-75@src/main.cpp","src/main.cpp","lastPathSeparator","lastPathSeparator( const std :: string & path)",69,75
 10,4,74,2,10,"resolveAgainstConfig@77-86@src/main.cpp","src/main.cpp","resolveAgainstConfig","resolveAgainstConfig( const std :: string & configPath , const std :: string & path)",77,86
 10,2,90,1,10,"selectModel@88-97@src/main.cpp","src/main.cpp","selectModel","selectModel( const std :: vector<bjorne_agent::config::ModelConfig> & models)",88,97
-9,1,30,0,9,"usage@99-107@src/main.cpp","src/main.cpp","usage","usage()",99,107
-20,8,134,5,20,"parseFlags@112-131@src/main.cpp","src/main.cpp","parseFlags","parseFlags( int argc , char ** argv , int & first , bjorne_agent :: log :: Level & level , bool & levelSet)",112,131
-12,3,79,2,12,"applyLogEnvironment@134-145@src/main.cpp","src/main.cpp","applyLogEnvironment","applyLogEnvironment( bjorne_agent :: log :: Level & level , bool & levelSet)",134,145
-17,5,116,4,21,"resolveLogLevel@151-171@src/main.cpp","src/main.cpp","resolveLogLevel","resolveLogLevel( int argc , char ** argv , int & first , bjorne_agent :: log :: Level & level)",151,171
-19,3,143,3,20,"buildContextConfig@176-195@src/main.cpp","src/main.cpp","buildContextConfig","buildContextConfig( const std :: string & configPath , const bjorne_agent :: config :: ModelConfig & model , bjorne_agent :: context :: ContextManagerConfig & contextConfig)",176,195
-18,2,164,1,18,"makeCompressionHandler@199-216@src/main.cpp","src/main.cpp","makeCompressionHandler","makeCompressionHandler( const std :: shared_ptr<bjorne_agent::model::ModelClient> & model)",199,216
-7,2,53,3,7,"positionalArguments@219-225@src/main.cpp","src/main.cpp","positionalArguments","positionalArguments( int argc , char ** argv , int first)",219,225
-74,12,634,2,85,"main@229-313@src/main.cpp","src/main.cpp","main","main( int argc , char ** argv)",229,313
+11,3,71,1,11,"applyLogEnvironment@101-111@src/main.cpp","src/main.cpp","applyLogEnvironment","applyLogEnvironment( bjorne_agent :: log :: Level & level)",101,111
+19,3,143,3,20,"buildContextConfig@116-135@src/main.cpp","src/main.cpp","buildContextConfig","buildContextConfig( const std :: string & configPath , const bjorne_agent :: config :: ModelConfig & model , bjorne_agent :: context :: ContextManagerConfig & contextConfig)",116,135
+18,2,164,1,18,"makeCompressionHandler@139-156@src/main.cpp","src/main.cpp","makeCompressionHandler","makeCompressionHandler( const std :: shared_ptr<bjorne_agent::model::ModelClient> & model)",139,156
+59,9,534,1,69,"runTask@160-228@src/main.cpp","src/main.cpp","runTask","runTask( const bjorne_agent :: cli :: Invocation & invocation)",160,228
+31,9,247,2,39,"main@232-270@src/main.cpp","src/main.cpp","main","main( int argc , char ** argv)",232,270

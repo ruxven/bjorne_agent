@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['overflowstrategy_0',['OverflowStrategy',['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a228a635684d0dc4bd7a4bc34d62f2073',1,'bjorne_agent::context::ContextManagerConfig']]]
+  ['level_0',['Level',['../namespacebjorne__agent_1_1log.html#ac923e7d2faae3eab1a1a3bfa3cd7d947',1,'bjorne_agent::log']]]
 ];
