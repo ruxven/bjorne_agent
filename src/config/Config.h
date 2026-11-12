@@ -1,5 +1,6 @@
 #pragma once
 
+#include <map>
 #include <string>
 #include <vector>
 
@@ -23,12 +24,24 @@ namespace config {
 struct AgentConfig {
   std::string system_prompt;
   std::string workspace;
+  std::string skills_path;
+  std::string session_dir;
+  bool interactive = false;
+};
+
+// One stdio MCP server. The command and its arguments are spawned as a child
+// process; the environment entries are added to the inherited environment.
+struct McpServerConfig {
+  std::string command;
+  std::vector<std::string> args;
+  std::map<std::string, std::string> env;
 };
 
 struct Config {
   long long version = 0;
   AgentConfig agent;
   std::vector<ModelConfig> models;
+  std::map<std::string, McpServerConfig> mcp_servers;
 };
 
 bool load(const std::string& path, Config& out, std::string& error);

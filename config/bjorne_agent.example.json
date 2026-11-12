@@ -2,7 +2,10 @@
   "version": 1,
   "agent": {
     "system_prompt": "You are a coding agent. Help the user with their task.",
-    "workspace": "/workspace"
+    "workspace": "/workspace",
+    "skills_path": "",
+    "session_dir": "",
+    "interactive": false
   },
   "models": [
     {
@@ -18,5 +21,6 @@
       "ignore_self_signed": false,
       "hostname": ""
     }
-  ]
+  ],
+  "mcp_servers": {}
 }

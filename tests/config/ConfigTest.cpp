@@ -141,3 +141,68 @@ TEST_CASE("Config loader skips non object model entries and keeps numeric defaul
   REQUIRE(config.models.front().max_tokens == 0);
   REQUIRE(config.models.front().temperature == 0.0);
 }
+
+TEST_CASE("Config loader reads the agent extension fields") {
+  std::string error;
+  bjorne_agent::config::Config config = loadConfig(
+      R"({
+        "version": 1,
+        "agent": {
+          "system_prompt": "Be brief",
+          "workspace": "/workspace",
+          "skills_path": "/opt/skills",
+          "session_dir": "/sessions",
+          "interactive": true
+        }
+      })",
+      error);
+
+  REQUIRE(error.empty());
+  REQUIRE(config.agent.skills_path == "/opt/skills");
+  REQUIRE(config.agent.session_dir == "/sessions");
+  REQUIRE(config.agent.interactive);
+}
+
+TEST_CASE("Config loader defaults the agent extension fields") {
+  std::string error;
+  bjorne_agent::config::Config config = loadConfig(R"({"version": 1, "agent": {"system_prompt": "Be brief"}})", error);
+
+  REQUIRE(error.empty());
+  REQUIRE(config.agent.skills_path.empty());
+  REQUIRE(config.agent.session_dir.empty());
+  REQUIRE_FALSE(config.agent.interactive);
+}
+
+TEST_CASE("Config loader reads MCP servers") {
+  std::string error;
+  bjorne_agent::config::Config config = loadConfig(
+      R"({
+        "version": 1,
+        "mcp_servers": {
+          "filesystem": {
+            "command": "mcp-filesystem",
+            "args": ["--root", "/tmp", 7],
+            "env": {"TOKEN": "abc", "BAD": 1}
+          },
+          "broken": "not-an-object"
+        }
+      })",
+      error);
+
+  REQUIRE(error.empty());
+  REQUIRE(config.mcp_servers.size() == 1);
+  const bjorne_agent::config::McpServerConfig& server = config.mcp_servers.at("filesystem");
+  REQUIRE(server.command == "mcp-filesystem");
+  REQUIRE(server.args == std::vector<std::string>{"--root", "/tmp"});
+  REQUIRE(server.env.size() == 1);
+  REQUIRE(server.env.at("TOKEN") == "abc");
+}
+
+TEST_CASE("Config loader ignores a non object mcp_servers field") {
+  std::string error;
+  bjorne_agent::config::Config config =
+      loadConfig(R"({"version": 1, "mcp_servers": ["nope"]})", error);
+
+  REQUIRE(error.empty());
+  REQUIRE(config.mcp_servers.empty());
+}

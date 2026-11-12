@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <sstream>
+#include <utility>
 
 namespace bjorne_agent {
 namespace config {
@@ -28,6 +29,15 @@ bool getNumber(const json::Value& object, const std::string& key, long long& out
   return true;
 }
 
+bool getBoolean(const json::Value& object, const std::string& key, bool& out) {
+  const json::Value* value = object.find(key);
+  if (value == nullptr || !value->isBoolean()) {
+    return false;
+  }
+  out = value->boolean;
+  return true;
+}
+
 void loadAgent(const json::Value& root, AgentConfig& agent) {
   const json::Value* node = root.find("agent");
   if (node == nullptr || !node->isObject()) {
@@ -35,6 +45,9 @@ void loadAgent(const json::Value& root, AgentConfig& agent) {
   }
   getString(*node, "system_prompt", agent.system_prompt);
   getString(*node, "workspace", agent.workspace);
+  getString(*node, "skills_path", agent.skills_path);
+  getString(*node, "session_dir", agent.session_dir);
+  getBoolean(*node, "interactive", agent.interactive);
 }
 
 void loadModel(const json::Value& entry, ModelConfig& model) {
@@ -75,6 +88,37 @@ void loadModels(const json::Value& root, std::vector<ModelConfig>& out) {
   }
 }
 
+void loadMcpServers(const json::Value& root, std::map<std::string, McpServerConfig>& out) {
+  const json::Value* servers = root.find("mcp_servers");
+  if (servers == nullptr || !servers->isObject()) {
+    return;
+  }
+  for (const auto& [name, entry] : servers->object) {
+    if (!entry.isObject()) {
+      continue;
+    }
+    McpServerConfig server;
+    getString(entry, "command", server.command);
+    const json::Value* args = entry.find("args");
+    if (args != nullptr && args->isArray()) {
+      for (const json::Value& arg : args->array) {
+        if (arg.isString()) {
+          server.args.push_back(arg.string);
+        }
+      }
+    }
+    const json::Value* env = entry.find("env");
+    if (env != nullptr && env->isObject()) {
+      for (const auto& [key, value] : env->object) {
+        if (value.isString()) {
+          server.env[key] = value.string;
+        }
+      }
+    }
+    out[name] = std::move(server);
+  }
+}
+
 }  // namespace
 
 bool load(const std::string& path, Config& out, std::string& error) {
@@ -110,6 +154,7 @@ bool load(const std::string& path, Config& out, std::string& error) {
 
   loadAgent(root, out.agent);
   loadModels(root, out.models);
+  loadMcpServers(root, out.mcp_servers);
   return true;
 }
 
