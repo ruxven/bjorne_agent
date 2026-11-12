@@ -1,5 +1,7 @@
 #include "json/Json.h"
 
+#include <cmath>
+#include <cstdio>
 #include <cstdlib>
 #include <stdexcept>
 #include <string>
@@ -282,7 +284,115 @@ class Parser {
   }
 };
 
+constexpr size_t kMaxWriteDepth = 128;
+
+void writeString(const std::string& text, std::string& out) {
+  static const char kHex[] = "0123456789abcdef";
+  out.push_back('"');
+  for (const char c : text) {
+    const unsigned char byte = static_cast<unsigned char>(c);
+    switch (c) {
+      case '"': out += "\\\""; break;
+      case '\\': out += "\\\\"; break;
+      case '\b': out += "\\b"; break;
+      case '\f': out += "\\f"; break;
+      case '\n': out += "\\n"; break;
+      case '\r': out += "\\r"; break;
+      case '\t': out += "\\t"; break;
+      default:
+        if (byte < 0x20) {
+          out += "\\u00";
+          out.push_back(kHex[byte >> 4]);
+          out.push_back(kHex[byte & 0x0F]);
+        } else {
+          out.push_back(c);
+        }
+        break;
+    }
+  }
+  out.push_back('"');
+}
+
+void writeNumber(double number, std::string& out) {
+  if (!std::isfinite(number)) {
+    throw std::runtime_error("Cannot serialize a non-finite JSON number");
+  }
+  // Print an integral value without a decimal point. The range keeps the
+  // conversion to long long well defined; larger values fall through to the
+  // general format, which still produces valid JSON.
+  if (number == std::floor(number) && std::fabs(number) < 9.0e15) {
+    char buffer[32];
+    const int written = std::snprintf(buffer, sizeof(buffer), "%lld", static_cast<long long>(number));
+    if (written < 0 || static_cast<size_t>(written) >= sizeof(buffer)) {
+      throw std::runtime_error("Cannot format a JSON number");
+    }
+    out += buffer;
+    return;
+  }
+  char buffer[32];
+  // %.17g round-trips every double, so parsing the text returns the same value.
+  const int written = std::snprintf(buffer, sizeof(buffer), "%.17g", number);
+  if (written < 0 || static_cast<size_t>(written) >= sizeof(buffer)) {
+    throw std::runtime_error("Cannot format a JSON number");
+  }
+  out += buffer;
+}
+
+void writeValue(const Value& value, std::string& out, size_t depth) {
+  if (depth > kMaxWriteDepth) {
+    throw std::runtime_error("JSON nesting too deep");
+  }
+  switch (value.type) {
+    case Value::Type::Null:
+      out += "null";
+      break;
+    case Value::Type::Boolean:
+      out += value.boolean ? "true" : "false";
+      break;
+    case Value::Type::Number:
+      writeNumber(value.number, out);
+      break;
+    case Value::Type::String:
+      writeString(value.string, out);
+      break;
+    case Value::Type::Array: {
+      out.push_back('[');
+      bool first = true;
+      for (const Value& entry : value.array) {
+        if (!first) {
+          out.push_back(',');
+        }
+        first = false;
+        writeValue(entry, out, depth + 1);
+      }
+      out.push_back(']');
+      break;
+    }
+    case Value::Type::Object: {
+      out.push_back('{');
+      bool first = true;
+      for (const auto& [key, entry] : value.object) {
+        if (!first) {
+          out.push_back(',');
+        }
+        first = false;
+        writeString(key, out);
+        out.push_back(':');
+        writeValue(entry, out, depth + 1);
+      }
+      out.push_back('}');
+      break;
+    }
+  }
+}
+
 }  // namespace
+
+std::string write(const Value& value) {
+  std::string out;
+  writeValue(value, out, 0);
+  return out;
+}
 
 Value parse(const std::string& text) {
   Parser parser(text);

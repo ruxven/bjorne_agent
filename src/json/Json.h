@@ -47,5 +47,10 @@ class Value {
 
 Value parse(const std::string& text);
 
+// Serializes a value to compact JSON. Strings are escaped, so the result never
+// contains a control character or an unescaped quote. A non-finite number is an
+// error, because JSON has no representation for it.
+std::string write(const Value& value);
+
 }  // namespace json
 }  // namespace bjorne_agent

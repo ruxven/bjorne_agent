@@ -1,11 +1,14 @@
 #include "json/Json.h"
 
+#include <cmath>
+#include <limits>
 #include <string>
 
 #include <catch_amalgamated.hpp>
 
 using bjorne_agent::json::Value;
 using bjorne_agent::json::parse;
+using bjorne_agent::json::write;
 
 TEST_CASE("JSON parser parses flat objects") {
   const Value root = bjorne_agent::json::parse("{\"version\":1,\"name\":\"bjorne_agent\"}");
@@ -172,4 +175,97 @@ TEST_CASE("JSON parser rejects malformed unicode escapes") {
   REQUIRE_THROWS_WITH(bjorne_agent::json::parse("\"\\ud83d\\u0041\""), "Invalid low surrogate in JSON string");
   REQUIRE_THROWS_WITH(bjorne_agent::json::parse("\"\\u12\""), "Truncated JSON unicode escape");
   REQUIRE_THROWS_WITH(bjorne_agent::json::parse("\"\\u12zz\""), "Invalid JSON unicode escape");
+}
+
+TEST_CASE("JSON writer serializes scalars") {
+  const Value nothing;
+  REQUIRE(write(nothing) == "null");
+
+  Value truthy;
+  truthy.type = Value::Type::Boolean;
+  truthy.boolean = true;
+  REQUIRE(write(truthy) == "true");
+  truthy.boolean = false;
+  REQUIRE(write(truthy) == "false");
+
+  Value number;
+  number.type = Value::Type::Number;
+  number.number = 42.0;
+  REQUIRE(write(number) == "42");
+  number.number = -7.0;
+  REQUIRE(write(number) == "-7");
+  number.number = 3.5;
+  REQUIRE(write(number) == "3.5");
+  number.number = -0.25;
+  REQUIRE(write(number) == "-0.25");
+}
+
+TEST_CASE("JSON writer escapes strings and keys") {
+  Value text;
+  text.type = Value::Type::String;
+  text.string = "a\"b\\c\nd\te";
+  text.string.push_back('\x01');
+  REQUIRE(write(text) == "\"a\\\"b\\\\c\\nd\\te\\u0001\"");
+
+  Value object;
+  object.type = Value::Type::Object;
+  Value value;
+  value.type = Value::Type::String;
+  value.string = "v";
+  object.object["a\nb"] = value;
+  REQUIRE(write(object) == "{\"a\\nb\":\"v\"}");
+}
+
+TEST_CASE("JSON writer serializes containers in key order") {
+  Value array;
+  array.type = Value::Type::Array;
+  Value first;
+  first.type = Value::Type::Number;
+  first.number = 1;
+  Value second;
+  second.type = Value::Type::String;
+  second.string = "two";
+  array.array.push_back(first);
+  array.array.push_back(second);
+  array.array.push_back(Value{});
+  REQUIRE(write(array) == "[1,\"two\",null]");
+
+  Value object;
+  object.type = Value::Type::Object;
+  object.object["b"] = first;
+  object.object["a"] = second;
+  REQUIRE(write(object) == "{\"a\":\"two\",\"b\":1}");
+
+  REQUIRE(write(parse("{}")) == "{}");
+  REQUIRE(write(parse("[]")) == "[]");
+}
+
+TEST_CASE("JSON writer round trips a parsed document") {
+  const std::string text =
+      R"({"agent":{"name":"bjorne_agent","tags":["a",1,2.5,true,null]},"empty":{},"list":[]})";
+  const std::string first = write(parse(text));
+  REQUIRE(write(parse(first)) == first);
+  REQUIRE(parse(first).find("agent") != nullptr);
+}
+
+TEST_CASE("JSON writer rejects non finite numbers") {
+  Value number;
+  number.type = Value::Type::Number;
+  number.number = std::numeric_limits<double>::infinity();
+  REQUIRE_THROWS_WITH(write(number), "Cannot serialize a non-finite JSON number");
+  number.number = std::numeric_limits<double>::quiet_NaN();
+  REQUIRE_THROWS_WITH(write(number), "Cannot serialize a non-finite JSON number");
+}
+
+TEST_CASE("JSON writer rejects deeply nested values") {
+  Value root;
+  root.type = Value::Type::Array;
+  Value* current = &root;
+  for (int i = 0; i < 130; ++i) {
+    Value child;
+    child.type = Value::Type::Array;
+    current->array.push_back(child);
+    current = &current->array.back();
+  }
+  REQUIRE_THROWS_WITH(write(root), "JSON nesting too deep");
 }
