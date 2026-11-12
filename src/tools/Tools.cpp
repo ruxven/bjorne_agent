@@ -144,9 +144,101 @@ FILE* openShellPipe(const std::string& command) {
 #endif
 }
 
+json::Value stringNode(const std::string& text) {
+  json::Value value;
+  value.type = json::Value::Type::String;
+  value.string = text;
+  return value;
+}
+
+json::Value objectNode() {
+  json::Value value;
+  value.type = json::Value::Type::Object;
+  return value;
+}
+
+json::Value arrayNode() {
+  json::Value value;
+  value.type = json::Value::Type::Array;
+  return value;
+}
+
+// Builds the JSON schema for a tool whose arguments are all strings.
+json::Value parameterSchema(const std::vector<std::pair<std::string, std::string>>& properties,
+                            const std::vector<std::string>& required) {
+  json::Value propertyNodes = objectNode();
+  for (const auto& property : properties) {
+    json::Value spec = objectNode();
+    spec.object["type"] = stringNode("string");
+    spec.object["description"] = stringNode(property.second);
+    propertyNodes.object[property.first] = std::move(spec);
+  }
+  json::Value requiredNodes = arrayNode();
+  for (const std::string& name : required) {
+    requiredNodes.array.push_back(stringNode(name));
+  }
+  json::Value parameters = objectNode();
+  parameters.object["type"] = stringNode("object");
+  parameters.object["properties"] = std::move(propertyNodes);
+  parameters.object["required"] = std::move(requiredNodes);
+  return parameters;
+}
+
+ToolDefinition readFileDefinition() {
+  return {"read_file", "Read a file from the workspace.", parameterSchema({{"path", "File path."}}, {"path"})};
+}
+
+ToolDefinition writeFileDefinition() {
+  return {"write_file",
+          "Write a file in the workspace.",
+          parameterSchema({{"path", "File path."}, {"content", "File content."}}, {"path", "content"})};
+}
+
+ToolDefinition editFileDefinition() {
+  return {"edit_file",
+          "Replace the first occurrence of text in a file.",
+          parameterSchema({{"path", "File path."}, {"old", "Text to replace."}, {"new", "Replacement text."}},
+                          {"path", "old", "new"})};
+}
+
+ToolDefinition runShellDefinition() {
+  return {"run_shell", "Run a shell command in the workspace.", parameterSchema({{"command", "Command to run."}}, {"command"})};
+}
+
 }  // namespace
 
-ToolRegistry::ToolRegistry(std::string workspace) : workspace_(std::move(workspace)) {}
+ToolRegistry::ToolRegistry(std::string workspace) : workspace_(std::move(workspace)) { registerBuiltins(); }
+
+void ToolRegistry::registerBuiltins() {
+  registerTool(readFileDefinition(), [this](const std::string& arguments) { return readFile(arguments); });
+  registerTool(writeFileDefinition(), [this](const std::string& arguments) { return writeFile(arguments); });
+  registerTool(editFileDefinition(), [this](const std::string& arguments) { return editFile(arguments); });
+  registerTool(runShellDefinition(), [this](const std::string& arguments) { return runShell(arguments); });
+}
+
+void ToolRegistry::registerTool(ToolDefinition definition, ToolHandler handler) {
+  if (definition.name.empty() || !handler) {
+    return;
+  }
+  Entry entry;
+  entry.definition = std::move(definition);
+  entry.handler = std::move(handler);
+  const std::string name = entry.definition.name;
+  tools_[name] = std::move(entry);
+}
+
+bool ToolRegistry::removeTool(const std::string& name) { return tools_.erase(name) > 0; }
+
+bool ToolRegistry::hasTool(const std::string& name) const { return tools_.contains(name); }
+
+std::vector<std::string> ToolRegistry::toolNames() const {
+  std::vector<std::string> names;
+  names.reserve(tools_.size());
+  for (const auto& entry : tools_) {
+    names.push_back(entry.first);
+  }
+  return names;
+}
 
 ToolResult ToolRegistry::execute(const std::string& name, const std::string& arguments) const {
   log::progress("Running tool: " + name);
@@ -154,7 +246,9 @@ ToolResult ToolRegistry::execute(const std::string& name, const std::string& arg
   // the path and content for a write. Showing them before the call runs is what
   // lets a user follow along instead of seeing only the tool name.
   log::block("arguments", arguments, 1000);
-  const ToolResult result = dispatch(name, arguments);
+  const auto it = tools_.find(name);
+  const ToolResult result =
+      it == tools_.end() ? ToolResult{false, "unknown tool: " + name} : it->second.handler(arguments);
   if (result.ok) {
     log::detail("Tool " + name + " returned " + std::to_string(result.output.size()) + " bytes");
     log::block("result", result.output, 2000);
@@ -162,22 +256,6 @@ ToolResult ToolRegistry::execute(const std::string& name, const std::string& arg
     log::fail("Tool " + name + " failed: " + result.output);
   }
   return result;
-}
-
-ToolResult ToolRegistry::dispatch(const std::string& name, const std::string& arguments) const {
-  if (name == "read_file") {
-    return readFile(arguments);
-  }
-  if (name == "write_file") {
-    return writeFile(arguments);
-  }
-  if (name == "edit_file") {
-    return editFile(arguments);
-  }
-  if (name == "run_shell") {
-    return runShell(arguments);
-  }
-  return {false, "unknown tool: " + name};
 }
 
 std::string ToolRegistry::resolvePath(const std::string& path, std::string& error) const {
@@ -355,13 +433,20 @@ ToolResult ToolRegistry::runShell(const std::string& arguments) const {
   return {false, output + "\nexit code " + std::to_string(code)};
 }
 
-std::string ToolRegistry::definitionsJson() {
-  return R"json([
-    {"type":"function","function":{"name":"read_file","description":"Read a file from the workspace.","parameters":{"type":"object","properties":{"path":{"type":"string","description":"File path."}},"required":["path"]}}},
-    {"type":"function","function":{"name":"write_file","description":"Write a file in the workspace.","parameters":{"type":"object","properties":{"path":{"type":"string","description":"File path."},"content":{"type":"string","description":"File content."}},"required":["path","content"]}}},
-    {"type":"function","function":{"name":"edit_file","description":"Replace the first occurrence of text in a file.","parameters":{"type":"object","properties":{"path":{"type":"string","description":"File path."},"old":{"type":"string","description":"Text to replace."},"new":{"type":"string","description":"Replacement text."}},"required":["path","old","new"]}}},
-    {"type":"function","function":{"name":"run_shell","description":"Run a shell command in the workspace.","parameters":{"type":"object","properties":{"command":{"type":"string","description":"Command to run."}},"required":["command"]}}}
-  ])json";
+std::string ToolRegistry::definitionsJson() const {
+  json::Value definitions = arrayNode();
+  for (const auto& [name, entry] : tools_) {
+    json::Value function = objectNode();
+    function.object["name"] = stringNode(name);
+    function.object["description"] = stringNode(entry.definition.description);
+    function.object["parameters"] = entry.definition.parameters;
+
+    json::Value definition = objectNode();
+    definition.object["type"] = stringNode("function");
+    definition.object["function"] = std::move(function);
+    definitions.array.push_back(std::move(definition));
+  }
+  return json::write(definitions);
 }
 
 }  // namespace tools

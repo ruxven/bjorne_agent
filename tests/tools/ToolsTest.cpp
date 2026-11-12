@@ -243,8 +243,10 @@ TEST_CASE("tools report filesystem errors") {
   REQUIRE(edit.output == "cannot write file: readonly.txt");
 }
 
-TEST_CASE("tool definitions are valid JSON with the four tools") {
-  const std::string definitions = bjorne_agent::tools::ToolRegistry::definitionsJson();
+TEST_CASE("tool definitions are valid JSON with the four built-ins") {
+  TempDir dir;
+  const bjorne_agent::tools::ToolRegistry registry(dir.str());
+  const std::string definitions = registry.definitionsJson();
   const bjorne_agent::json::Value root = bjorne_agent::json::parse(definitions);
   REQUIRE(root.isArray());
   REQUIRE(root.array.size() == 4);
@@ -257,6 +259,79 @@ TEST_CASE("tool definitions are valid JSON with the four tools") {
     REQUIRE(name != nullptr);
     REQUIRE(name->isString());
     names.push_back(name->string);
+
+    const bjorne_agent::json::Value* parameters = function->find("parameters");
+    REQUIRE(parameters != nullptr);
+    REQUIRE(parameters->isObject());
   }
-  REQUIRE(names == std::vector<std::string>{"read_file", "write_file", "edit_file", "run_shell"});
+  REQUIRE(names == std::vector<std::string>{"edit_file", "read_file", "run_shell", "write_file"});
+}
+
+TEST_CASE("tool registry registers a custom tool") {
+  TempDir dir;
+  bjorne_agent::tools::ToolRegistry registry(dir.str());
+
+  bjorne_agent::tools::ToolDefinition definition;
+  definition.name = "echo";
+  definition.description = "Echo the arguments.";
+  definition.parameters = bjorne_agent::json::parse(R"({"type":"object","properties":{}})");
+  registry.registerTool(definition, [](const std::string& arguments) {
+    return bjorne_agent::tools::ToolResult{true, "echo:" + arguments};
+  });
+
+  REQUIRE(registry.hasTool("echo"));
+  REQUIRE(registry.toolNames() == std::vector<std::string>{"echo", "edit_file", "read_file", "run_shell", "write_file"});
+  REQUIRE(registry.execute("echo", "hi").output == "echo:hi");
+
+  const bjorne_agent::json::Value root = bjorne_agent::json::parse(registry.definitionsJson());
+  REQUIRE(root.array.size() == 5);
+  for (const bjorne_agent::json::Value& entry : root.array) {
+    const bjorne_agent::json::Value* function = entry.find("function");
+    REQUIRE(function != nullptr);
+    const bjorne_agent::json::Value* name = function->find("name");
+    REQUIRE(name != nullptr);
+    if (name->string == "echo") {
+      REQUIRE(function->find("description")->string == "Echo the arguments.");
+    }
+  }
+}
+
+TEST_CASE("tool registry overrides a built-in by name") {
+  TempDir dir;
+  bjorne_agent::tools::ToolRegistry registry(dir.str());
+
+  bjorne_agent::tools::ToolDefinition definition;
+  definition.name = "read_file";
+  definition.description = "Read a file, but differently.";
+  definition.parameters = bjorne_agent::json::parse(R"({"type":"object","properties":{}})");
+  registry.registerTool(definition,
+                        [](const std::string&) { return bjorne_agent::tools::ToolResult{true, "overridden"}; });
+
+  REQUIRE(registry.execute("read_file", R"({"path":"ignored"})").output == "overridden");
+
+  const bjorne_agent::json::Value root = bjorne_agent::json::parse(registry.definitionsJson());
+  REQUIRE(root.array.size() == 4);
+  for (const bjorne_agent::json::Value& entry : root.array) {
+    const bjorne_agent::json::Value* function = entry.find("function");
+    REQUIRE(function != nullptr);
+    const bjorne_agent::json::Value* name = function->find("name");
+    REQUIRE(name != nullptr);
+    if (name->string == "read_file") {
+      REQUIRE(function->find("description")->string == "Read a file, but differently.");
+    }
+  }
+}
+
+TEST_CASE("tool registry removes a tool") {
+  TempDir dir;
+  bjorne_agent::tools::ToolRegistry registry(dir.str());
+
+  REQUIRE(registry.removeTool("run_shell"));
+  REQUIRE_FALSE(registry.removeTool("run_shell"));
+  REQUIRE_FALSE(registry.hasTool("run_shell"));
+  REQUIRE(registry.execute("run_shell", R"({"command":"true"})").output == "unknown tool: run_shell");
+
+  const bjorne_agent::json::Value root = bjorne_agent::json::parse(registry.definitionsJson());
+  REQUIRE(root.array.size() == 3);
+  REQUIRE(registry.toolNames() == std::vector<std::string>{"edit_file", "read_file", "write_file"});
 }

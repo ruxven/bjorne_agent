@@ -206,10 +206,10 @@ int runTask(const bjorne_agent::cli::Invocation& invocation) {
   modelOptions.ignore_self_signed = selected->ignore_self_signed;
   modelOptions.hostname = selected->hostname;
   auto model = std::make_shared<bjorne_agent::model::ModelClient>(std::move(modelOptions));
-  model->setTools(bjorne_agent::tools::ToolRegistry::definitionsJson());
 
   auto context = std::make_shared<bjorne_agent::context::ContextManager>(contextConfig, makeCompressionHandler(model));
   auto tools = std::make_shared<bjorne_agent::tools::ToolRegistry>(config.agent.workspace);
+  model->setTools(tools->definitionsJson());
 
   bjorne_agent::agent::AgentLoopConfig loopConfig;
   loopConfig.system_prompt = config.agent.system_prompt;
