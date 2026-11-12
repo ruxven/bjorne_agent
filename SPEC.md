@@ -52,11 +52,15 @@ A path given on the command line names the config file. Without one, the run sea
 - version: integer, starts at one.
 - agent: object.
 - models: array of objects.
+- mcp_servers: object, optional. Each key is a server name; each value is an object with `command` (string), `args` (array of strings, optional), and `env` (object of strings, optional).
 
 ### Agent
 
 - system_prompt: string.
 - workspace: string.
+- skills_path: string, optional. Directory holding `skills/<name>/SKILL.md`.
+- session_dir: string, optional. Directory for persisted sessions; empty disables persistence.
+- interactive: boolean, optional, defaults to false. Enables the console interaction channel.
 
 ### Model
 

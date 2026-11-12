@@ -18,7 +18,7 @@ The entry point resolves the config file and the task from the command line, loa
 
 ### Configuration
 
-The configuration loader implements the configuration specification. It reads JSON, uses a hand written parser, and uses snake_case keys. It validates the version, agent section, and models array.
+The configuration loader implements the configuration specification. It reads JSON, uses a hand written parser, and uses snake_case keys. It validates the version, agent section, and models array. The agent section also carries `skills_path`, `session_dir`, and `interactive`, and the top level carries an `mcp_servers` map of stdio server definitions. The loader reads those fields now so later phases consume a stable configuration shape.
 
 The config path search lives in its own module, separate from the loader, because finding the file and reading the file are different jobs.
 
@@ -47,6 +47,10 @@ The loop stops when the model returns a final response without tool calls. The l
 ### Tool Layer
 
 The tool layer provides the minimal set from the baseline specification: read file, write file, edit file, run shell command. Tool results feed back into the context.
+
+The registry is dynamic. The four built-ins are registered first. A caller may add a tool, replace one by name, or remove one, and the definitions sent to the model are derived from whatever is registered. The built-in schemas are values assembled in code and serialized by the JSON writer rather than string concatenation. That registration path is what a configuration override or an MCP server uses later; name resolution is by map lookup, so a later registration wins over an earlier one.
+
+The JSON layer has both a parser and a writer. The writer emits compact JSON, escapes strings so a message never contains an embedded newline, prints integral numbers without a decimal point, and rejects a non-finite number because JSON cannot represent one.
 
 ## Fulfilment Mapping
 

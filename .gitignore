@@ -13,6 +13,7 @@ coverage-reports*
 complexity-reports
 .codegraph
 coverage.json
+complexity.json
 html
 __pycache__/
 *.pyc

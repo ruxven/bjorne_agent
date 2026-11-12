@@ -323,7 +323,10 @@ complete example.
   "version": 1,
   "agent": {
     "system_prompt": "You are a coding agent. Help the user with their task.",
-    "workspace": "/workspace"
+    "workspace": "/workspace",
+    "skills_path": "",
+    "session_dir": "",
+    "interactive": false
   },
   "models": [
     {
@@ -339,7 +342,8 @@ complete example.
       "ignore_self_signed": false,
       "hostname": ""
     }
-  ]
+  ],
+  "mcp_servers": {}
 }
 ```
 
@@ -349,6 +353,9 @@ complete example.
 | --- | --- | --- |
 | `system_prompt` | string | Instruction content sent to the model. |
 | `workspace` | string | Root for tool operations. Relative tool paths resolve against it. |
+| `skills_path` | string, optional | Directory holding `skills/<name>/SKILL.md`. Reserved for the skills phase. |
+| `session_dir` | string, optional | Directory for persisted sessions. Empty keeps the one-shot behaviour. Reserved for the session phase. |
+| `interactive` | boolean, optional | Defaults to `false`. Enables the console interaction channel when it is implemented. |
 
 ### Model
 
@@ -375,6 +382,30 @@ A relative `compression_prompt_path` resolves against the directory holding
 the config file, not the working directory. When the key is absent, the
 compression instruction is `Summarize the conversation`.
 
+### MCP servers
+
+`mcp_servers` maps a server name to a stdio server definition. The loader reads
+the block now so the configuration stays stable; no server is started yet.
+
+| Key | Type | Meaning |
+| --- | --- | --- |
+| `command` | string | Executable to spawn. |
+| `args` | array of strings, optional | Arguments passed to the command. |
+| `env` | object of strings, optional | Variables added to the inherited environment. |
+
+```json
+"mcp_servers": {
+  "filesystem": {
+    "command": "mcp-filesystem",
+    "args": ["--root", "/workspace"],
+    "env": {"LOG_LEVEL": "warn"}
+  }
+}
+```
+
+Tools from a server will appear as `mcp__<server>__<tool>`, so they cannot
+collide with a built-in.
+
 ### TLS
 
 Certificate verification is on by default. The chain is checked against the
@@ -393,7 +424,9 @@ the certificate carries a different name.
 
 ## Tools
 
-The model requests tools as JSON function calls. The set is fixed.
+The model requests tools as JSON function calls. The registry starts with four
+built-ins and can add, replace, or remove a tool by name before the definitions
+are sent to the model.
 
 | Tool | Arguments | Behavior |
 | --- | --- | --- |

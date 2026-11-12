@@ -40,13 +40,13 @@ dynamic tool set. The configuration gains `agent.skills_path`, `agent.session_di
 
 ### Phase A: Foundation
 
-- [ ] Subcommand dispatch. Reserved verbs: `init`, `run`, `sessions`, `resume`. The bare form stays
+- [x] Subcommand dispatch. Reserved verbs: `init`, `run`, `sessions`, `resume`. The bare form stays
   valid, and a task that begins with a reserved word is spelled `bjorne_agent run "init the project"`.
-- [ ] JSON writer for `json::Value`, which today has the full type set but no serializer. The tool
+- [x] JSON writer for `json::Value`, which today has the full type set but no serializer. The tool
   schema builder in `Tools.cpp` should use it instead of string concatenation.
-- [ ] Dynamic tool set. `ToolRegistry::definitionsJson` becomes an instance method and the tool
+- [x] Dynamic tool set. `ToolRegistry::definitionsJson` becomes an instance method and the tool
   list is assembled at runtime from the configuration plus the registered extensions.
-- [ ] Configuration extension for the new fields.
+- [x] Configuration extension for the new fields.
 
 ### Phase B: Context fragments
 
