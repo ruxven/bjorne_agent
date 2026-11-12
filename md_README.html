@@ -299,7 +299,10 @@ Configuration</h1>
 <div class="line">  &quot;version&quot;: 1,</div>
 <div class="line">  &quot;agent&quot;: {</div>
 <div class="line">    &quot;system_prompt&quot;: &quot;You are a coding agent. Help the user with their task.&quot;,</div>
-<div class="line">    &quot;workspace&quot;: &quot;/workspace&quot;</div>
+<div class="line">    &quot;workspace&quot;: &quot;/workspace&quot;,</div>
+<div class="line">    &quot;skills_path&quot;: &quot;&quot;,</div>
+<div class="line">    &quot;session_dir&quot;: &quot;&quot;,</div>
+<div class="line">    &quot;interactive&quot;: false</div>
 <div class="line">  },</div>
 <div class="line">  &quot;models&quot;: [</div>
 <div class="line">    {</div>
@@ -315,7 +318,8 @@ Configuration</h1>
 <div class="line">      &quot;ignore_self_signed&quot;: false,</div>
 <div class="line">      &quot;hostname&quot;: &quot;&quot;</div>
 <div class="line">    }</div>
-<div class="line">  ]</div>
+<div class="line">  ],</div>
+<div class="line">  &quot;mcp_servers&quot;: {}</div>
 <div class="line">}</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md14"></a>
 Agent</h2>
@@ -325,7 +329,13 @@ Agent</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>system_prompt</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone">Instruction content sent to the model.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>workspace</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone">Root for tool operations. Relative tool paths resolve against it.   </td></tr>
+<td class="markdownTableBodyNone"><code>workspace</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone">Root for tool operations. Relative tool paths resolve against it.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>skills_path</code>   </td><td class="markdownTableBodyNone">string, optional   </td><td class="markdownTableBodyNone">Directory holding <code>skills/&lt;name&gt;/SKILL.md</code>. Reserved for the skills phase.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>session_dir</code>   </td><td class="markdownTableBodyNone">string, optional   </td><td class="markdownTableBodyNone">Directory for persisted sessions. Empty keeps the one-shot behaviour. Reserved for the session phase.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>interactive</code>   </td><td class="markdownTableBodyNone">boolean, optional   </td><td class="markdownTableBodyNone">Defaults to <code>false</code>. Enables the console interaction channel when it is implemented.   </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md15"></a>
 Model</h2>
@@ -358,13 +368,34 @@ Model</h2>
 <p>The endpoint scheme picks the transport. <code>https</code> uses TLS, <code>http</code> uses plain TCP, which is what a local model such as llama.cpp needs. A host may carry an explicit port, as in <code><a href="http://127.0.0.1:11434/v1">http://127.0.0.1:11434/v1</a></code>. IPv6 hosts use brackets, as in <code><a href="http://">http://</a>[::1]:8080/v1</code>.</p>
 <p>A relative <code>compression_prompt_path</code> resolves against the directory holding the config file, not the working directory. When the key is absent, the compression instruction is <code>Summarize the conversation</code>.</p>
 <h2><a class="anchor" id="autotoc_md16"></a>
+MCP servers</h2>
+<p><code>mcp_servers</code> maps a server name to a stdio server definition. The loader reads the block now so the configuration stays stable; no server is started yet.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Key   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Meaning    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>command</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone">Executable to spawn.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>args</code>   </td><td class="markdownTableBodyNone">array of strings, optional   </td><td class="markdownTableBodyNone">Arguments passed to the command.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>env</code>   </td><td class="markdownTableBodyNone">object of strings, optional   </td><td class="markdownTableBodyNone">Variables added to the inherited environment.   </td></tr>
+</table>
+<div class="fragment"><div class="line">&quot;mcp_servers&quot;: {</div>
+<div class="line">  &quot;filesystem&quot;: {</div>
+<div class="line">    &quot;command&quot;: &quot;mcp-filesystem&quot;,</div>
+<div class="line">    &quot;args&quot;: [&quot;--root&quot;, &quot;/workspace&quot;],</div>
+<div class="line">    &quot;env&quot;: {&quot;LOG_LEVEL&quot;: &quot;warn&quot;}</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>Tools from a server will appear as <code>mcp__&lt;server&gt;__&lt;tool&gt;</code>, so they cannot collide with a built-in.</p>
+<h2><a class="anchor" id="autotoc_md17"></a>
 TLS</h2>
 <p>Certificate verification is on by default. The chain is checked against the system trust store, and the expected hostname is the <code>hostname</code> key when present, otherwise the host from the endpoint. A rejected certificate ends the run with the reason, for example <code>Certificate verification failed: self-signed certificate</code>.</p>
 <p><code>ignore_self_signed</code> turns off both the chain check and the hostname check. Use it only against a host with a self-signed certificate. The API key travels over this connection, so a build that trusts arbitrary certificates can hand the key to a wrong peer.</p>
 <p>Set <code>hostname</code> when the endpoint host is an address or an internal name but the certificate carries a different name.</p>
-<h1><a class="anchor" id="autotoc_md17"></a>
+<h1><a class="anchor" id="autotoc_md18"></a>
 Tools</h1>
-<p>The model requests tools as JSON function calls. The set is fixed.</p>
+<p>The model requests tools as JSON function calls. The registry starts with four built-ins and can add, replace, or remove a tool by name before the definitions are sent to the model.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Tool   </th><th class="markdownTableHeadNone">Arguments   </th><th class="markdownTableHeadNone">Behavior    </th></tr>
@@ -378,7 +409,7 @@ Tools</h1>
 <td class="markdownTableBodyNone"><code>run_shell</code>   </td><td class="markdownTableBodyNone"><code>command</code>   </td><td class="markdownTableBodyNone">Runs a shell command in the workspace. Output is capped at 256 KiB and marked when truncated.   </td></tr>
 </table>
 <p>Relative paths resolve against <code>agent.workspace</code>. A path that traverses a parent directory is rejected. A tool that fails does not stop the loop: the error becomes tool result text and the model decides what to do next.</p>
-<h1><a class="anchor" id="autotoc_md18"></a>
+<h1><a class="anchor" id="autotoc_md19"></a>
 Containers</h1>
 <p><code>container/README.md</code> covers the podman work: the three build environments and the runtime image.</p>
 <p>The build environments are a fully static musl build, a dynamic glibc build with shared OpenSSL, and a no-TLS build. The script builds, tests, and installs inside the container and leaves the artifacts on the host.</p>
@@ -403,7 +434,7 @@ Containers</h1>
 <div class="line">  -v &quot;$PWD:/workspace&quot; \</div>
 <div class="line">  bjorne_agent &quot;your task&quot;</div>
 </div><!-- fragment --><p>A relative <code>compression_prompt_path</code> resolves against the directory holding the config file, so a config mounted outside <code>/etc/bjorne_agent</code> needs the absolute path <code>/usr/local/share/bjorne_agent/prompts/compression.md</code>.</p>
-<h1><a class="anchor" id="autotoc_md19"></a>
+<h1><a class="anchor" id="autotoc_md20"></a>
 Development</h1>
 <p>Run the tests:</p>
 <div class="fragment"><div class="line">cmake --build build</div>
@@ -433,7 +464,7 @@ Development</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code><a class="el" href="ROADMAP_8md.html">ROADMAP.md</a></code>   </td><td class="markdownTableBodyNone">What is done and what is next.   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md20"></a>
+<h1><a class="anchor" id="autotoc_md21"></a>
 License</h1>
 <p>MIT. See [LICENSE](LICENSE).</p>
 <p>The vendored Catch2 sources under <code>third_party/catch2/</code> carry their own license, Boost Software License 1.0. They are used for the test binary only and are not part of the shipped artifact. </p>

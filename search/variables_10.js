@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['workspace_0',['workspace',['../structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a39790b2ac405c3698adeed4980083878',1,'bjorne_agent::agent::AgentLoopConfig::workspace'],['../structbjorne__agent_1_1config_1_1AgentConfig.html#a675705bdd921462bf42d4e4f5687e4f0',1,'bjorne_agent::config::AgentConfig::workspace']]]
+  ['version_0',['version',['../structbjorne__agent_1_1config_1_1Config.html#a7f7188332e74107cfbffdebcdccba5ca',1,'bjorne_agent::config::Config']]]
 ];

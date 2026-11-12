@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['object_0',['object',['../classbjorne__agent_1_1json_1_1Value.html#a5cf3a67a10e1f3ea614fe295872c7c9a',1,'bjorne_agent::json::Value']]],
-  ['ok_1',['ok',['../structbjorne__agent_1_1tools_1_1ToolResult.html#a3e74617481b63e57dd0f578e5c712251',1,'bjorne_agent::tools::ToolResult']]],
-  ['output_2',['output',['../structbjorne__agent_1_1tools_1_1ToolResult.html#ad3b9f5d3f7b7336c251316509f825beb',1,'bjorne_agent::tools::ToolResult']]],
-  ['overflow_5fstrategy_3',['overflow_strategy',['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a2767ec1f9a88d38c4ca41f7db2bf1cc7',1,'bjorne_agent::context::ContextManagerConfig']]]
+  ['name_0',['name',['../structbjorne__agent_1_1model_1_1ToolCall.html#a349b9c0c6b99bc6b240fc42200c5c4ce',1,'bjorne_agent::model::ToolCall::name'],['../structbjorne__agent_1_1tools_1_1ToolDefinition.html#aed65d8d74ff9a7e06924edd206e5e6bc',1,'bjorne_agent::tools::ToolDefinition::name']]],
+  ['number_1',['number',['../classbjorne__agent_1_1json_1_1Value.html#a888f441ce6828b01ec0955b765c7dd8f',1,'bjorne_agent::json::Value']]]
 ];

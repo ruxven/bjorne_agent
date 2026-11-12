@@ -11,6 +11,7 @@ var annotated_dup =
       [ "config", "namespacebjorne__agent_1_1config.html", [
         [ "AgentConfig", "structbjorne__agent_1_1config_1_1AgentConfig.html", "structbjorne__agent_1_1config_1_1AgentConfig" ],
         [ "Config", "structbjorne__agent_1_1config_1_1Config.html", "structbjorne__agent_1_1config_1_1Config" ],
+        [ "McpServerConfig", "structbjorne__agent_1_1config_1_1McpServerConfig.html", "structbjorne__agent_1_1config_1_1McpServerConfig" ],
         [ "ModelConfig", "structbjorne__agent_1_1config_1_1ModelConfig.html", "structbjorne__agent_1_1config_1_1ModelConfig" ]
       ] ],
       [ "context", "namespacebjorne__agent_1_1context.html", [
@@ -40,6 +41,7 @@ var annotated_dup =
         [ "ToolCall", "structbjorne__agent_1_1model_1_1ToolCall.html", "structbjorne__agent_1_1model_1_1ToolCall" ]
       ] ],
       [ "tools", "namespacebjorne__agent_1_1tools.html", [
+        [ "ToolDefinition", "structbjorne__agent_1_1tools_1_1ToolDefinition.html", "structbjorne__agent_1_1tools_1_1ToolDefinition" ],
         [ "ToolRegistry", "classbjorne__agent_1_1tools_1_1ToolRegistry.html", "classbjorne__agent_1_1tools_1_1ToolRegistry" ],
         [ "ToolResult", "structbjorne__agent_1_1tools_1_1ToolResult.html", "structbjorne__agent_1_1tools_1_1ToolResult" ]
       ] ]

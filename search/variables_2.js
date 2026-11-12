@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['command_0',['command',['../structbjorne__agent_1_1cli_1_1Invocation.html#a30d2c1ddd25419477405888e2efcf97f',1,'bjorne_agent::cli::Invocation']]],
+  ['command_0',['command',['../structbjorne__agent_1_1cli_1_1Invocation.html#a30d2c1ddd25419477405888e2efcf97f',1,'bjorne_agent::cli::Invocation::command'],['../structbjorne__agent_1_1config_1_1McpServerConfig.html#a37afef0670d470c8fcb8d4623ee90932',1,'bjorne_agent::config::McpServerConfig::command']]],
   ['commandset_1',['commandSet',['../structbjorne__agent_1_1cli_1_1Invocation.html#a425265102777cbef658e43725b8dad13',1,'bjorne_agent::cli::Invocation']]],
   ['compression_5fprompt_2',['compression_prompt',['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a049145b7fb232650f4e85e55a1c975ed',1,'bjorne_agent::context::ContextManagerConfig']]],
   ['compression_5fprompt_5fpath_3',['compression_prompt_path',['../structbjorne__agent_1_1config_1_1ModelConfig.html#a5f161c29101a445bc0f0d0ed1751a739',1,'bjorne_agent::config::ModelConfig']]],

@@ -14,6 +14,7 @@ var hierarchy =
       [ "bjorne_agent::http::PlainTcpTransport", "classbjorne__agent_1_1http_1_1PlainTcpTransport.html", null ]
     ] ],
     [ "bjorne_agent::cli::Invocation", "structbjorne__agent_1_1cli_1_1Invocation.html", null ],
+    [ "bjorne_agent::config::McpServerConfig", "structbjorne__agent_1_1config_1_1McpServerConfig.html", null ],
     [ "bjorne_agent::model::ModelBackend", "classbjorne__agent_1_1model_1_1ModelBackend.html", [
       [ "bjorne_agent::model::ModelClient", "classbjorne__agent_1_1model_1_1ModelClient.html", null ]
     ] ],
@@ -25,6 +26,7 @@ var hierarchy =
     [ "bjorne_agent::http::ResolvedAddress", "structbjorne__agent_1_1http_1_1ResolvedAddress.html", null ],
     [ "bjorne_agent::http::ResolverOptions", "structbjorne__agent_1_1http_1_1ResolverOptions.html", null ],
     [ "bjorne_agent::model::ToolCall", "structbjorne__agent_1_1model_1_1ToolCall.html", null ],
+    [ "bjorne_agent::tools::ToolDefinition", "structbjorne__agent_1_1tools_1_1ToolDefinition.html", null ],
     [ "bjorne_agent::tools::ToolRegistry", "classbjorne__agent_1_1tools_1_1ToolRegistry.html", null ],
     [ "bjorne_agent::tools::ToolResult", "structbjorne__agent_1_1tools_1_1ToolResult.html", null ],
     [ "bjorne_agent::http::Url", "structbjorne__agent_1_1http_1_1Url.html", null ],
