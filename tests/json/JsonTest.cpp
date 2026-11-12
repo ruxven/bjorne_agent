@@ -198,6 +198,8 @@ TEST_CASE("JSON writer serializes scalars") {
   REQUIRE(write(number) == "3.5");
   number.number = -0.25;
   REQUIRE(write(number) == "-0.25");
+  number.number = 1000000000000000.0;
+  REQUIRE(write(number) == "1000000000000000");
 }
 
 TEST_CASE("JSON writer escapes strings and keys") {

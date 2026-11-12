@@ -317,20 +317,11 @@ void writeNumber(double number, std::string& out) {
   if (!std::isfinite(number)) {
     throw std::runtime_error("Cannot serialize a non-finite JSON number");
   }
-  // Print an integral value without a decimal point. The range keeps the
-  // conversion to long long well defined; larger values fall through to the
-  // general format, which still produces valid JSON.
-  if (number == std::floor(number) && std::fabs(number) < 9.0e15) {
-    char buffer[32];
-    const int written = std::snprintf(buffer, sizeof(buffer), "%lld", static_cast<long long>(number));
-    if (written < 0 || static_cast<size_t>(written) >= sizeof(buffer)) {
-      throw std::runtime_error("Cannot format a JSON number");
-    }
-    out += buffer;
-    return;
-  }
-  char buffer[32];
   // %.17g round-trips every double, so parsing the text returns the same value.
+  // It also omits the fractional part of an integral value without a comparison
+  // against floor: 42.0 becomes 42 and 3.5 stays 3.5. Values large enough to
+  // need exponent notation, such as 1e+17, are still valid JSON.
+  char buffer[32];
   const int written = std::snprintf(buffer, sizeof(buffer), "%.17g", number);
   if (written < 0 || static_cast<size_t>(written) >= sizeof(buffer)) {
     throw std::runtime_error("Cannot format a JSON number");
