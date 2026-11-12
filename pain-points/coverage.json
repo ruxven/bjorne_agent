@@ -755,8 +755,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/src/json/Json.cpp",
     "function_coverage": [
       {
-        "line_start": 391,
-        "line_end": 395,
+        "line_start": 382,
+        "line_end": 386,
         "line_count": 5,
         "line_hit": 5,
         "branch_count": 0,
@@ -764,8 +764,8 @@
         "function_name": "_ZN12bjorne_agent4json5writeB5cxx11ERKNS0_5ValueE"
       },
       {
-        "line_start": 397,
-        "line_end": 400,
+        "line_start": 388,
+        "line_end": 391,
         "line_count": 4,
         "line_hit": 4,
         "branch_count": 0,
@@ -773,8 +773,8 @@
         "function_name": "_ZN12bjorne_agent4json5parseERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 341,
-        "line_end": 387,
+        "line_start": 332,
+        "line_end": 378,
         "line_count": 47,
         "line_hit": 45,
         "branch_count": 26,
@@ -783,11 +783,11 @@
       },
       {
         "line_start": 316,
-        "line_end": 339,
-        "line_count": 20,
-        "line_hit": 16,
-        "branch_count": 14,
-        "branch_hit": 9,
+        "line_end": 330,
+        "line_count": 11,
+        "line_hit": 9,
+        "branch_count": 6,
+        "branch_hit": 4,
         "function_name": "Json.cpp:_ZN12bjorne_agent4json12_GLOBAL__N_111writeNumberEdRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
@@ -3478,16 +3478,16 @@
       },
       {
         "line_start": 180,
-        "line_end": 201,
-        "line_count": 20,
-        "line_hit": 20,
+        "line_end": 203,
+        "line_count": 22,
+        "line_hit": 22,
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "JsonTest.cpp:_ZL23CATCH2_INTERNAL_TEST_32v"
       },
       {
-        "line_start": 203,
-        "line_end": 217,
+        "line_start": 205,
+        "line_end": 219,
         "line_count": 14,
         "line_hit": 14,
         "branch_count": 0,
@@ -3495,8 +3495,8 @@
         "function_name": "JsonTest.cpp:_ZL23CATCH2_INTERNAL_TEST_34v"
       },
       {
-        "line_start": 219,
-        "line_end": 241,
+        "line_start": 221,
+        "line_end": 243,
         "line_count": 21,
         "line_hit": 21,
         "branch_count": 0,
@@ -3504,8 +3504,8 @@
         "function_name": "JsonTest.cpp:_ZL23CATCH2_INTERNAL_TEST_36v"
       },
       {
-        "line_start": 243,
-        "line_end": 249,
+        "line_start": 245,
+        "line_end": 251,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
@@ -3513,8 +3513,8 @@
         "function_name": "JsonTest.cpp:_ZL23CATCH2_INTERNAL_TEST_38v"
       },
       {
-        "line_start": 251,
-        "line_end": 258,
+        "line_start": 253,
+        "line_end": 260,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -3522,8 +3522,8 @@
         "function_name": "JsonTest.cpp:_ZL23CATCH2_INTERNAL_TEST_40v"
       },
       {
-        "line_start": 260,
-        "line_end": 271,
+        "line_start": 262,
+        "line_end": 273,
         "line_count": 12,
         "line_hit": 12,
         "branch_count": 2,
@@ -14493,6 +14493,51 @@
         "line_hit": 0,
         "branch_count": 0,
         "branch_hit": 0,
+        "function_name": "_ZN5CatcheqIRA17_KcEENSt9enable_ifIXsr6Detail11conjunctionINS_6Detail16is_eq_comparableIRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEET_vEESt8negationINS_16capture_by_valueINSt9remove_cvINSt16remove_referenceISF_E4typeEE4typeEEEEEE5valueENS_10BinaryExprISE_RKSF_EEE4typeEONS_7ExprLhsISE_EEOSF_"
+      },
+      {
+        "line_start": 5326,
+        "line_end": 5326,
+        "line_count": 0,
+        "line_hit": 0,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZN5Catch10BinaryExprIRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERA17_KcEC2EbS8_NS_9StringRefESB_"
+      },
+      {
+        "line_start": 5319,
+        "line_end": 5319,
+        "line_count": 0,
+        "line_hit": 0,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZNK5Catch10BinaryExprIRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERA17_KcE29streamReconstructedExpressionERSo"
+      },
+      {
+        "line_start": 2565,
+        "line_end": 2565,
+        "line_count": 0,
+        "line_hit": 0,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZN5Catch6Detail9stringifyIA17_cEENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKT_"
+      },
+      {
+        "line_start": 2631,
+        "line_end": 2631,
+        "line_count": 0,
+        "line_hit": 0,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "_ZN5Catch11StringMakerIA17_cvE7convertB5cxx11EPKc"
+      },
+      {
+        "line_start": 5418,
+        "line_end": 5418,
+        "line_count": 0,
+        "line_hit": 0,
+        "branch_count": 0,
+        "branch_hit": 0,
         "function_name": "_ZN5CatcheqIRA22_KcEENSt9enable_ifIXsr6Detail11conjunctionINS_6Detail16is_eq_comparableIRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEET_vEESt8negationINS_16capture_by_valueINSt9remove_cvINSt16remove_referenceISF_E4typeEE4typeEEEEEE5valueENS_10BinaryExprISE_RKSF_EEE4typeEONS_7ExprLhsISE_EEOSF_"
       },
       {
@@ -16251,24 +16296,6 @@
         "function_name": "_ZNK5Catch10BinaryExprIRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERA17_KcE29streamReconstructedExpressionERSo"
       },
       {
-        "line_start": 2565,
-        "line_end": 2565,
-        "line_count": 0,
-        "line_hit": 0,
-        "branch_count": 0,
-        "branch_hit": 0,
-        "function_name": "_ZN5Catch6Detail9stringifyIA17_cEENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKT_"
-      },
-      {
-        "line_start": 2631,
-        "line_end": 2631,
-        "line_count": 0,
-        "line_hit": 0,
-        "branch_count": 0,
-        "branch_hit": 0,
-        "function_name": "_ZN5Catch11StringMakerIA17_cvE7convertB5cxx11EPKc"
-      },
-      {
         "line_start": 5418,
         "line_end": 5418,
         "line_count": 0,
@@ -17572,33 +17599,6 @@
         "branch_count": 0,
         "branch_hit": 0,
         "function_name": "_ZN5Catch7ExprLhsIRKN12bjorne_agent7context20ContextManagerConfig16OverflowStrategyEEC2ES6_"
-      },
-      {
-        "line_start": 5418,
-        "line_end": 5418,
-        "line_count": 0,
-        "line_hit": 0,
-        "branch_count": 0,
-        "branch_hit": 0,
-        "function_name": "_ZN5CatcheqIRA17_KcEENSt9enable_ifIXsr6Detail11conjunctionINS_6Detail16is_eq_comparableIRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEET_vEESt8negationINS_16capture_by_valueINSt9remove_cvINSt16remove_referenceISF_E4typeEE4typeEEEEEE5valueENS_10BinaryExprISE_RKSF_EEE4typeEONS_7ExprLhsISE_EEOSF_"
-      },
-      {
-        "line_start": 5326,
-        "line_end": 5326,
-        "line_count": 0,
-        "line_hit": 0,
-        "branch_count": 0,
-        "branch_hit": 0,
-        "function_name": "_ZN5Catch10BinaryExprIRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERA17_KcEC2EbS8_NS_9StringRefESB_"
-      },
-      {
-        "line_start": 5319,
-        "line_end": 5319,
-        "line_count": 0,
-        "line_hit": 0,
-        "branch_count": 0,
-        "branch_hit": 0,
-        "function_name": "_ZNK5Catch10BinaryExprIRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERA17_KcE29streamReconstructedExpressionERSo"
       },
       {
         "line_start": 5418,

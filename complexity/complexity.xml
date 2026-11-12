@@ -7,933 +7,933 @@
 			<label>NCSS</label>
 			<label>CCN</label>
 		</labels>
-		<item name="bjorne_agent::cli::namesAnExistingFile( const std :: string &amp; path) at src/cli/Invocation.cpp:15">
-			<value>1</value>
-			<value>4</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::cli::reservedVerb( const std :: string &amp; value , Command &amp; out) at src/cli/Invocation.cpp:23">
-			<value>2</value>
-			<value>19</value>
-			<value>5</value>
-		</item>
-		<item name="bjorne_agent::cli::resolveRun( const std :: vector&lt;std::string&gt; &amp; positional , Invocation &amp; out , std :: string &amp; error) at src/cli/Invocation.cpp:50">
-			<value>3</value>
-			<value>28</value>
-			<value>6</value>
-		</item>
-		<item name="bjorne_agent::cli::parseFlags( const std :: vector&lt;std::string&gt; &amp; arguments , Invocation &amp; out , std :: vector&lt;std::string&gt; &amp; positional , std :: string &amp; error) at src/cli/Invocation.cpp:87">
-			<value>4</value>
-			<value>34</value>
-			<value>12</value>
-		</item>
-		<item name="bjorne_agent::cli::selectCommand( std :: vector&lt;std::string&gt; &amp; positional , Invocation &amp; out) at src/cli/Invocation.cpp:124">
-			<value>5</value>
-			<value>14</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::cli::parseCommandArguments( const std :: vector&lt;std::string&gt; &amp; positional , Invocation &amp; out , std :: string &amp; error) at src/cli/Invocation.cpp:139">
-			<value>6</value>
-			<value>24</value>
-			<value>8</value>
-		</item>
-		<item name="bjorne_agent::cli::parse( const std :: vector&lt;std::string&gt; &amp; arguments , Invocation &amp; out , std :: string &amp; error) at src/cli/Invocation.cpp:166">
-			<value>7</value>
-			<value>16</value>
-			<value>4</value>
-		</item>
-		<item name="bjorne_agent::cli::commandName( Command command) at src/cli/Invocation.cpp:190">
-			<value>8</value>
-			<value>13</value>
-			<value>5</value>
-		</item>
-		<item name="bjorne_agent::cli::usage() at src/cli/Invocation.cpp:204">
-			<value>9</value>
-			<value>30</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::cli::usage( Command command) at src/cli/Invocation.cpp:235">
-			<value>10</value>
-			<value>33</value>
-			<value>5</value>
-		</item>
-		<average label="NCSS" value="21.5"/>
-		<average label="CCN" value="5.1"/>
-		<item name="bjorne_agent::platform::initializeSockets() at src/platform/Platform.h:42">
-			<value>11</value>
-			<value>7</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::isValidSocket( SocketHandle handle) at src/platform/Platform.h:50">
-			<value>12</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::getEnvironmentVariable( const std :: string &amp; name , std :: string &amp; out) at src/platform/Platform.h:56">
-			<value>13</value>
-			<value>13</value>
-			<value>4</value>
-		</item>
-		<item name="bjorne_agent::platform::setEnvironmentVariable( const std :: string &amp; name , const std :: string &amp; value) at src/platform/Platform.h:70">
-			<value>14</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::unsetEnvironmentVariable( const std :: string &amp; name) at src/platform/Platform.h:74">
-			<value>15</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::processId() at src/platform/Platform.h:79">
-			<value>16</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::closeSocket( SocketHandle handle) at src/platform/Platform.h:83">
-			<value>17</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::addressToBinary( int family , const char * text , * address) at src/platform/Platform.h:89">
-			<value>18</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::addressToText( int family , const * address , char * buffer , std :: size_t size) at src/platform/Platform.h:94">
-			<value>19</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::addressErrorMessage( int code) at src/platform/Platform.h:100">
-			<value>20</value>
-			<value>4</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::platform::initializeSockets() at src/platform/Platform.h:126">
-			<value>21</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::isValidSocket( SocketHandle handle) at src/platform/Platform.h:130">
-			<value>22</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::getEnvironmentVariable( const std :: string &amp; name , std :: string &amp; out) at src/platform/Platform.h:136">
-			<value>23</value>
-			<value>8</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::platform::setEnvironmentVariable( const std :: string &amp; name , const std :: string &amp; value) at src/platform/Platform.h:145">
-			<value>24</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::unsetEnvironmentVariable( const std :: string &amp; name) at src/platform/Platform.h:149">
-			<value>25</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::processId() at src/platform/Platform.h:153">
-			<value>26</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::closeSocket( SocketHandle handle) at src/platform/Platform.h:157">
-			<value>27</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::addressToBinary( int family , const char * text , * address) at src/platform/Platform.h:161">
-			<value>28</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::addressToText( int family , const * address , char * buffer , std :: size_t size) at src/platform/Platform.h:165">
-			<value>29</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::addressErrorMessage( int code) at src/platform/Platform.h:169">
-			<value>30</value>
-			<value>4</value>
-			<value>2</value>
-		</item>
-		<average label="NCSS" value="9.866666666666667"/>
-		<average label="CCN" value="2.6"/>
-		<average label="NCSS" value="9.866666666666667"/>
-		<average label="CCN" value="2.6"/>
-		<item name="bjorne_agent::tools::parseArguments( const std :: string &amp; arguments , json :: Value &amp; out) at src/tools/Tools.cpp:27">
-			<value>31</value>
-			<value>8</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::tools::argString( const json :: Value &amp; object , const std :: string &amp; key , std :: string &amp; out) at src/tools/Tools.cpp:36">
-			<value>32</value>
-			<value>8</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::tools::isPathSeparator( char c) at src/tools/Tools.cpp:47">
-			<value>33</value>
-			<value>4</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::tools::nextPathSeparator( const std :: string &amp; path , size_t start) at src/tools/Tools.cpp:55">
-			<value>34</value>
-			<value>8</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::tools::isAbsolutePath( const std :: string &amp; path) at src/tools/Tools.cpp:66">
-			<value>35</value>
-			<value>13</value>
-			<value>8</value>
-		</item>
-		<item name="bjorne_agent::tools::hasParentTraversal( const std :: string &amp; path) at src/tools/Tools.cpp:82">
-			<value>36</value>
-			<value>12</value>
-			<value>4</value>
-		</item>
-		<item name="bjorne_agent::tools::shellQuote( const std :: string &amp; text) at src/tools/Tools.cpp:95">
-			<value>37</value>
-			<value>22</value>
-			<value>6</value>
-		</item>
-		<item name="bjorne_agent::tools::shellExitCode( FILE * pipe) at src/tools/Tools.cpp:126">
-			<value>38</value>
-			<value>9</value>
-			<value>5</value>
-		</item>
-		<item name="bjorne_agent::tools::openShellPipe( const std :: string &amp; command) at src/tools/Tools.cpp:139">
-			<value>39</value>
-			<value>4</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::tools::stringNode( const std :: string &amp; text) at src/tools/Tools.cpp:147">
-			<value>40</value>
-			<value>6</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::tools::objectNode() at src/tools/Tools.cpp:154">
-			<value>41</value>
-			<value>5</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::tools::arrayNode() at src/tools/Tools.cpp:160">
-			<value>42</value>
-			<value>5</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::tools::parameterSchema( const std :: vector&lt;std::pair&lt;std::string,std::string&gt;&gt; &amp; properties , const std :: vector&lt;std::string&gt; &amp; required) at src/tools/Tools.cpp:167">
-			<value>43</value>
-			<value>19</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::tools::readFileDefinition() at src/tools/Tools.cpp:187">
-			<value>44</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::tools::writeFileDefinition() at src/tools/Tools.cpp:191">
-			<value>45</value>
-			<value>5</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::tools::editFileDefinition() at src/tools/Tools.cpp:197">
-			<value>46</value>
-			<value>6</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::tools::runShellDefinition() at src/tools/Tools.cpp:204">
-			<value>47</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::ToolRegistry( std :: string workspace) at src/tools/Tools.cpp:210">
-			<value>48</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::registerBuiltins() at src/tools/Tools.cpp:212">
-			<value>49</value>
-			<value>6</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::registerTool( ToolDefinition definition , ToolHandler handler) at src/tools/Tools.cpp:219">
-			<value>50</value>
-			<value>10</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::removeTool( const std :: string &amp; name) at src/tools/Tools.cpp:230">
-			<value>51</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::hasTool( const std :: string &amp; name) const at src/tools/Tools.cpp:232">
-			<value>52</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::toolNames() const at src/tools/Tools.cpp:234">
-			<value>53</value>
-			<value>8</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::execute( const std :: string &amp; name , const std :: string &amp; arguments) const at src/tools/Tools.cpp:243">
-			<value>54</value>
-			<value>14</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::resolvePath( const std :: string &amp; path , std :: string &amp; error) const at src/tools/Tools.cpp:261">
-			<value>55</value>
-			<value>19</value>
-			<value>6</value>
-		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::readFile( const std :: string &amp; arguments) const at src/tools/Tools.cpp:281">
-			<value>56</value>
-			<value>22</value>
-			<value>5</value>
-		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::writeFile( const std :: string &amp; arguments) const at src/tools/Tools.cpp:304">
-			<value>57</value>
-			<value>33</value>
-			<value>8</value>
-		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::editFile( const std :: string &amp; arguments) const at src/tools/Tools.cpp:338">
-			<value>58</value>
-			<value>45</value>
-			<value>10</value>
-		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::runShell( const std :: string &amp; arguments) const at src/tools/Tools.cpp:384">
-			<value>59</value>
-			<value>46</value>
-			<value>12</value>
-		</item>
-		<item name="bjorne_agent::tools::ToolRegistry::definitionsJson() const at src/tools/Tools.cpp:436">
-			<value>60</value>
-			<value>14</value>
-			<value>2</value>
-		</item>
-		<average label="NCSS" value="10.933333333333334"/>
-		<average label="CCN" value="3.0"/>
-		<average label="NCSS" value="10.933333333333334"/>
-		<average label="CCN" value="3.0"/>
-		<item name="bjorne_agent::log::write( const char * kind , const std :: string &amp; message) at src/log/Log.cpp:19">
-			<value>61</value>
-			<value>4</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::log::setLevel( Level level) at src/log/Log.cpp:26">
-			<value>62</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::log::level() at src/log/Log.cpp:30">
-			<value>63</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::log::parseLevel( const std :: string &amp; name , Level &amp; out) at src/log/Log.cpp:34">
-			<value>64</value>
-			<value>15</value>
-			<value>4</value>
-		</item>
-		<item name="bjorne_agent::log::progress( const std :: string &amp; message) at src/log/Log.cpp:50">
-			<value>65</value>
-			<value>6</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::log::detail( const std :: string &amp; message) at src/log/Log.cpp:57">
-			<value>66</value>
-			<value>6</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::log::fail( const std :: string &amp; message) at src/log/Log.cpp:64">
-			<value>67</value>
-			<value>6</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::log::block( const std :: string &amp; label , const std :: string &amp; text , std :: size_t limit) at src/log/Log.cpp:71">
-			<value>68</value>
-			<value>24</value>
-			<value>9</value>
-		</item>
-		<item name="bjorne_agent::log::elapsedSeconds() at src/log/Log.cpp:98">
-			<value>69</value>
-			<value>4</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::log::formatSeconds( double seconds) at src/log/Log.cpp:103">
-			<value>70</value>
-			<value>8</value>
-			<value>3</value>
-		</item>
-		<average label="NCSS" value="10.5"/>
-		<average label="CCN" value="2.942857142857143"/>
-		<item name="bjorne_agent::http::readU16( const unsigned char * data) at src/http/DnsResponse.cpp:26">
-			<value>71</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::http::skipName( const unsigned char * data , int size , int offset) at src/http/DnsResponse.cpp:33">
-			<value>72</value>
-			<value>14</value>
-			<value>5</value>
-		</item>
-		<item name="bjorne_agent::http::appendRecord( const unsigned char * data , int size , int offset , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses) at src/http/DnsResponse.cpp:48">
-			<value>73</value>
-			<value>33</value>
-			<value>9</value>
-		</item>
-		<item name="bjorne_agent::http::parseDnsResponse( const unsigned char * data , int size , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses) at src/http/DnsResponse.cpp:84">
-			<value>74</value>
-			<value>25</value>
-			<value>8</value>
-		</item>
-		<average label="NCSS" value="10.945945945945946"/>
-		<average label="CCN" value="3.0945945945945947"/>
-		<average label="NCSS" value="10.945945945945946"/>
-		<average label="CCN" value="3.0945945945945947"/>
-		<average label="NCSS" value="10.945945945945946"/>
-		<average label="CCN" value="3.0945945945945947"/>
-		<item name="bjorne_agent::http::parsePort( const std :: string &amp; port , unsigned short &amp; value) at src/http/Resolver.cpp:40">
-			<value>75</value>
-			<value>20</value>
-			<value>7</value>
-		</item>
-		<item name="bjorne_agent::http::withoutBrackets( const std :: string &amp; host) at src/http/Resolver.cpp:63">
-			<value>76</value>
-			<value>6</value>
-			<value>4</value>
-		</item>
-		<item name="bjorne_agent::http::numericAddress( const std :: string &amp; host , unsigned short port , ResolvedAddress &amp; out) at src/http/Resolver.cpp:70">
-			<value>77</value>
-			<value>20</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::http::readFile( const std :: string &amp; path , std :: string &amp; contents) at src/http/Resolver.cpp:93">
-			<value>78</value>
-			<value>20</value>
-			<value>5</value>
-		</item>
-		<item name="bjorne_agent::http::splitFields( const std :: string &amp; line) at src/http/Resolver.cpp:114">
-			<value>79</value>
-			<value>17</value>
-			<value>7</value>
-		</item>
-		<item name="bjorne_agent::http::hostsLineMatches( const std :: string &amp; line , const std :: string &amp; host , std :: string &amp; address) at src/http/Resolver.cpp:133">
-			<value>80</value>
-			<value>14</value>
-			<value>5</value>
-		</item>
-		<item name="bjorne_agent::http::lookupHosts( const std :: string &amp; path , const std :: string &amp; host , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses) at src/http/Resolver.cpp:148">
-			<value>81</value>
-			<value>22</value>
-			<value>7</value>
-		</item>
-		<item name="bjorne_agent::http::queryDns( const std :: string &amp; host , int type , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses) at src/http/Resolver.cpp:171">
-			<value>82</value>
-			<value>8</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::http::resolveStub( const std :: string &amp; host , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses , std :: string &amp; error , const ResolverOptions &amp; options) at src/http/Resolver.cpp:180">
-			<value>83</value>
-			<value>18</value>
-			<value>5</value>
-		</item>
-		<item name="bjorne_agent::http::resolveWithGetaddrinfo( const std :: string &amp; host , const std :: string &amp; port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses , std :: string &amp; error) at src/http/Resolver.cpp:201">
-			<value>84</value>
-			<value>27</value>
-			<value>5</value>
-		</item>
-		<item name="bjorne_agent::http::resolveHost( const std :: string &amp; host , const std :: string &amp; port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses , std :: string &amp; error , const ResolverOptions &amp; options) at src/http/Resolver.cpp:233">
-			<value>85</value>
-			<value>21</value>
-			<value>5</value>
-		</item>
-		<average label="NCSS" value="11.8"/>
-		<average label="CCN" value="3.3411764705882354"/>
-		<average label="NCSS" value="11.8"/>
-		<average label="CCN" value="3.3411764705882354"/>
-		<item name="bjorne_agent::http::ignoreSigPipe() at src/http/HttpClient.cpp:60">
-			<value>86</value>
-			<value>10</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::http::findHeader( const std :: string &amp; headers , const std :: string &amp; name) at src/http/HttpClient.cpp:76">
-			<value>87</value>
-			<value>30</value>
-			<value>7</value>
-		</item>
-		<item name="bjorne_agent::http::parseChunkSize( const std :: string &amp; raw , size_t &amp; pos , size_t &amp; size , std :: string &amp; error) at src/http/HttpClient.cpp:108">
-			<value>88</value>
-			<value>34</value>
-			<value>11</value>
-		</item>
-		<item name="bjorne_agent::http::decodeChunked( const std :: string &amp; raw , std :: string &amp; out , std :: string &amp; error) at src/http/HttpClient.cpp:146">
-			<value>89</value>
-			<value>24</value>
-			<value>7</value>
-		</item>
-		<item name="bjorne_agent::http::readBody( const std :: string &amp; headers , const std :: string &amp; raw , std :: string &amp; out , std :: string &amp; error) at src/http/HttpClient.cpp:173">
-			<value>90</value>
-			<value>22</value>
-			<value>7</value>
-		</item>
-		<item name="bjorne_agent::http::buildRequest( const HttpRequest &amp; request) at src/http/HttpClient.cpp:198">
-			<value>91</value>
-			<value>13</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::http::connectToHost( const std :: string &amp; host , const std :: string &amp; port , std :: string &amp; error) at src/http/HttpClient.cpp:214">
-			<value>92</value>
-			<value>28</value>
-			<value>6</value>
-		</item>
-		<item name="bjorne_agent::http::readAllPlain( platform :: SocketHandle fd , std :: string &amp; data , std :: string &amp; error) at src/http/HttpClient.cpp:243">
-			<value>93</value>
-			<value>15</value>
-			<value>4</value>
-		</item>
-		<item name="bjorne_agent::http::tlsError( std :: string &amp; error) at src/http/HttpClient.cpp:260">
-			<value>94</value>
-			<value>6</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::http::readAllTls( SSL * ssl , std :: string &amp; data , std :: string &amp; error) at src/http/HttpClient.cpp:267">
-			<value>95</value>
-			<value>15</value>
-			<value>4</value>
-		</item>
-		<item name="bjorne_agent::http::closeTransport( SSL * ssl , platform :: SocketHandle fd) at src/http/HttpClient.cpp:283">
-			<value>96</value>
-			<value>4</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::http::configureTlsSession( SSL * ssl , const std :: string &amp; host , const OpenSslTransport :: Options &amp; options , std :: string &amp; sniHost , std :: string &amp; error) at src/http/HttpClient.cpp:290">
-			<value>97</value>
-			<value>17</value>
-			<value>6</value>
-		</item>
-		<item name="bjorne_agent::http::handshakeTls( SSL * ssl , const std :: string &amp; sniHost , bool ignoreSelfSigned , std :: string &amp; error) at src/http/HttpClient.cpp:313">
-			<value>98</value>
-			<value>25</value>
-			<value>6</value>
-		</item>
-		<item name="bjorne_agent::http::writeTlsRequest( SSL * ssl , const std :: string &amp; request , std :: string &amp; error) at src/http/HttpClient.cpp:342">
-			<value>99</value>
-			<value>13</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::http::OpenSslTransport::OpenSslTransport( Options options) at src/http/HttpClient.cpp:359">
-			<value>100</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::http::OpenSslTransport::send( const std :: string &amp; request , const std :: string &amp; host , const std :: string &amp; port , std :: string &amp; response , std :: string &amp; error) at src/http/HttpClient.cpp:361">
-			<value>101</value>
-			<value>62</value>
-			<value>10</value>
-		</item>
-		<item name="bjorne_agent::http::PlainTcpTransport::send( const std :: string &amp; request , const std :: string &amp; host , const std :: string &amp; port , std :: string &amp; response , std :: string &amp; error) at src/http/HttpClient.cpp:438">
-			<value>102</value>
-			<value>29</value>
-			<value>5</value>
-		</item>
-		<item name="bjorne_agent::http::HttpClient::createOpenSsl() at src/http/HttpClient.cpp:471">
-			<value>103</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::http::HttpClient::createOpenSsl( OpenSslTransport :: Options options) at src/http/HttpClient.cpp:475">
-			<value>104</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::http::HttpClient::createPlainTcp() at src/http/HttpClient.cpp:479">
-			<value>105</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::http::HttpClient::HttpClient( std :: shared_ptr&lt;HttpTransport&gt; transport) at src/http/HttpClient.cpp:483">
-			<value>106</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::http::HttpClient::request( const HttpRequest &amp; request , HttpResponse &amp; out , std :: string &amp; error) at src/http/HttpClient.cpp:485">
-			<value>107</value>
-			<value>30</value>
-			<value>8</value>
-		</item>
-		<average label="NCSS" value="13.0"/>
-		<average label="CCN" value="3.560747663551402"/>
-		<average label="NCSS" value="13.0"/>
-		<average label="CCN" value="3.560747663551402"/>
-		<item name="bjorne_agent::http::allDigits( const std :: string &amp; text) at src/http/Url.cpp:10">
-			<value>108</value>
-			<value>11</value>
-			<value>5</value>
-		</item>
-		<item name="bjorne_agent::http::splitAuthority( const std :: string &amp; authority , Url &amp; url , std :: string &amp; error) at src/http/Url.cpp:25">
-			<value>109</value>
-			<value>39</value>
-			<value>11</value>
-		</item>
-		<item name="bjorne_agent::http::isDefaultPort( const std :: string &amp; port) at src/http/Url.cpp:69">
-			<value>110</value>
-			<value>1</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::http::parseUrl( const std :: string &amp; text , Url &amp; out , std :: string &amp; error) at src/http/Url.cpp:71">
-			<value>111</value>
-			<value>32</value>
-			<value>8</value>
-		</item>
-		<average label="NCSS" value="13.27927927927928"/>
-		<average label="CCN" value="3.675675675675676"/>
-		<item name="bjorne_agent::json::Parser::Parser( const std :: string &amp; text) at src/json/Json.cpp:16">
-			<value>112</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::json::Parser::parse() at src/json/Json.cpp:18">
-			<value>113</value>
-			<value>8</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::json::Parser::peek() const at src/json/Json.cpp:31">
-			<value>114</value>
-			<value>6</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::json::Parser::skipWhitespace() at src/json/Json.cpp:38">
-			<value>115</value>
-			<value>10</value>
-			<value>6</value>
-		</item>
-		<item name="bjorne_agent::json::Parser::advanceLiteral( const char * literal) at src/json/Json.cpp:49">
-			<value>116</value>
-			<value>7</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::json::Parser::parseValue( size_t depth) at src/json/Json.cpp:57">
-			<value>117</value>
-			<value>44</value>
-			<value>11</value>
-		</item>
-		<item name="bjorne_agent::json::Parser::parseObject( size_t depth) at src/json/Json.cpp:102">
-			<value>118</value>
-			<value>35</value>
-			<value>7</value>
-		</item>
-		<item name="bjorne_agent::json::Parser::parseArray( size_t depth) at src/json/Json.cpp:138">
-			<value>119</value>
-			<value>25</value>
-			<value>5</value>
-		</item>
-		<item name="bjorne_agent::json::Parser::appendUtf8( std :: string &amp; out , unsigned int code) at src/json/Json.cpp:165">
-			<value>120</value>
-			<value>17</value>
-			<value>4</value>
-		</item>
-		<item name="bjorne_agent::json::Parser::readHex4() at src/json/Json.cpp:184">
-			<value>121</value>
-			<value>21</value>
-			<value>9</value>
-		</item>
-		<item name="bjorne_agent::json::Parser::parseUnicodeEscape( std :: string &amp; out) at src/json/Json.cpp:209">
-			<value>122</value>
-			<value>18</value>
-			<value>10</value>
-		</item>
-		<item name="bjorne_agent::json::Parser::parseString() at src/json/Json.cpp:228">
-			<value>123</value>
-			<value>41</value>
-			<value>15</value>
-		</item>
-		<item name="bjorne_agent::json::Parser::parseNumber() at src/json/Json.cpp:270">
-			<value>124</value>
-			<value>15</value>
-			<value>10</value>
-		</item>
-		<item name="bjorne_agent::json::writeString( const std :: string &amp; text , std :: string &amp; out) at src/json/Json.cpp:289">
-			<value>125</value>
-			<value>26</value>
-			<value>10</value>
-		</item>
-		<item name="bjorne_agent::json::writeNumber( double number , std :: string &amp; out) at src/json/Json.cpp:316">
-			<value>126</value>
-			<value>20</value>
-			<value>8</value>
-		</item>
-		<item name="bjorne_agent::json::writeValue( const Value &amp; value , std :: string &amp; out , size_t depth) at src/json/Json.cpp:341">
-			<value>127</value>
-			<value>47</value>
-			<value>13</value>
-		</item>
-		<item name="bjorne_agent::json::write( const Value &amp; value) at src/json/Json.cpp:391">
-			<value>128</value>
-			<value>5</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::json::parse( const std :: string &amp; text) at src/json/Json.cpp:397">
-			<value>129</value>
-			<value>4</value>
-			<value>1</value>
-		</item>
-		<average label="NCSS" value="14.13953488372093"/>
-		<average label="CCN" value="4.069767441860465"/>
-		<item name="bjorne_agent::json::Value::isObject() const at src/json/Json.h:25">
-			<value>130</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::json::Value::isArray() const at src/json/Json.h:26">
-			<value>131</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::json::Value::isString() const at src/json/Json.h:27">
-			<value>132</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::json::Value::isNumber() const at src/json/Json.h:28">
-			<value>133</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::json::Value::isBoolean() const at src/json/Json.h:29">
-			<value>134</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::json::Value::isNull() const at src/json/Json.h:30">
-			<value>135</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::json::Value::find( const std :: string &amp; key) const at src/json/Json.h:32">
-			<value>136</value>
-			<value>10</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::json::Value::operator [ ]( const std :: string &amp; key) const at src/json/Json.h:43">
-			<value>137</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<average label="NCSS" value="13.452554744525548"/>
-		<average label="CCN" value="3.9051094890510947"/>
-		<item name="bjorne_agent::context::ContextManager::ContextManager( ContextManagerConfig config , CompressionHandler compression) at src/context/ContextManager.cpp:9">
-			<value>138</value>
-			<value>2</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::context::ContextManager::config() const at src/context/ContextManager.cpp:12">
-			<value>139</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::context::ContextManager::compressionHandler() const at src/context/ContextManager.cpp:14">
-			<value>140</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::context::ContextManager::tokenCountOf( const model :: ModelMessage &amp; message) const at src/context/ContextManager.cpp:16">
-			<value>141</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::context::ContextManager::estimateTokens( const std :: vector&lt;model::ModelMessage&gt; &amp; messages) const at src/context/ContextManager.cpp:21">
-			<value>142</value>
-			<value>7</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::context::ContextManager::trim( const std :: vector&lt;model::ModelMessage&gt; &amp; messages , std :: vector&lt;model::ModelMessage&gt; &amp; out , std :: string &amp; error) const at src/context/ContextManager.cpp:29">
-			<value>143</value>
-			<value>15</value>
-			<value>4</value>
-		</item>
-		<item name="bjorne_agent::context::ContextManager::truncate( const std :: vector&lt;model::ModelMessage&gt; &amp; messages , long long context_window , std :: vector&lt;model::ModelMessage&gt; &amp; out , std :: string &amp; error) const at src/context/ContextManager.cpp:45">
-			<value>144</value>
-			<value>27</value>
-			<value>7</value>
-		</item>
-		<item name="bjorne_agent::context::ContextManager::compress( const std :: vector&lt;model::ModelMessage&gt; &amp; messages , std :: vector&lt;model::ModelMessage&gt; &amp; out , std :: string &amp; error) const at src/context/ContextManager.cpp:73">
-			<value>145</value>
-			<value>29</value>
-			<value>6</value>
-		</item>
-		<average label="NCSS" value="13.296551724137931"/>
-		<average label="CCN" value="3.8482758620689657"/>
-		<average label="NCSS" value="13.296551724137931"/>
-		<average label="CCN" value="3.8482758620689657"/>
 		<item name="bjorne_agent::agent::AgentLoop::AgentLoop( AgentLoopConfig config , std :: shared_ptr&lt;model::ModelBackend&gt; model , std :: shared_ptr&lt;context::ContextManager&gt; context , std :: shared_ptr&lt;tools::ToolRegistry&gt; tools) at src/agent/AgentLoop.cpp:12">
-			<value>146</value>
+			<value>1</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::buildContext( const std :: string &amp; task) const at src/agent/AgentLoop.cpp:16">
-			<value>147</value>
+			<value>2</value>
 			<value>14</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::appendToolTurn( const model :: ModelResponse &amp; response , std :: vector&lt;model::ModelMessage&gt; &amp; messages) const at src/agent/AgentLoop.cpp:31">
-			<value>148</value>
+			<value>3</value>
 			<value>15</value>
 			<value>3</value>
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::run( const std :: string &amp; task , std :: string &amp; result , std :: string &amp; error) at src/agent/AgentLoop.cpp:48">
-			<value>149</value>
+			<value>4</value>
 			<value>33</value>
 			<value>8</value>
 		</item>
-		<average label="NCSS" value="13.375838926174497"/>
-		<average label="CCN" value="3.838926174496644"/>
-		<average label="NCSS" value="13.375838926174497"/>
-		<average label="CCN" value="3.838926174496644"/>
-		<item name="bjorne_agent::config::isPathSeparator( char c) at src/config/ConfigPaths.cpp:20">
-			<value>150</value>
+		<average label="NCSS" value="16.25"/>
+		<average label="CCN" value="3.5"/>
+		<item name="bjorne_agent::tools::parseArguments( const std :: string &amp; arguments , json :: Value &amp; out) at src/tools/Tools.cpp:27">
+			<value>5</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::tools::argString( const json :: Value &amp; object , const std :: string &amp; key , std :: string &amp; out) at src/tools/Tools.cpp:36">
+			<value>6</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::tools::isPathSeparator( char c) at src/tools/Tools.cpp:47">
+			<value>7</value>
 			<value>4</value>
 			<value>3</value>
 		</item>
-		<item name="bjorne_agent::config::isAbsolutePath( const std :: string &amp; path) at src/config/ConfigPaths.cpp:30">
-			<value>151</value>
+		<item name="bjorne_agent::tools::nextPathSeparator( const std :: string &amp; path , size_t start) at src/tools/Tools.cpp:55">
+			<value>8</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::tools::isAbsolutePath( const std :: string &amp; path) at src/tools/Tools.cpp:66">
+			<value>9</value>
 			<value>13</value>
 			<value>8</value>
 		</item>
-		<item name="bjorne_agent::config::joinPath( const std :: string &amp; base , const std :: string &amp; rest) at src/config/ConfigPaths.cpp:48">
-			<value>152</value>
+		<item name="bjorne_agent::tools::hasParentTraversal( const std :: string &amp; path) at src/tools/Tools.cpp:82">
+			<value>10</value>
+			<value>12</value>
+			<value>4</value>
+		</item>
+		<item name="bjorne_agent::tools::shellQuote( const std :: string &amp; text) at src/tools/Tools.cpp:95">
+			<value>11</value>
+			<value>22</value>
+			<value>6</value>
+		</item>
+		<item name="bjorne_agent::tools::shellExitCode( FILE * pipe) at src/tools/Tools.cpp:126">
+			<value>12</value>
 			<value>9</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::tools::openShellPipe( const std :: string &amp; command) at src/tools/Tools.cpp:139">
+			<value>13</value>
+			<value>4</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::tools::stringNode( const std :: string &amp; text) at src/tools/Tools.cpp:147">
+			<value>14</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::tools::objectNode() at src/tools/Tools.cpp:154">
+			<value>15</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::tools::arrayNode() at src/tools/Tools.cpp:160">
+			<value>16</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::tools::parameterSchema( const std :: vector&lt;std::pair&lt;std::string,std::string&gt;&gt; &amp; properties , const std :: vector&lt;std::string&gt; &amp; required) at src/tools/Tools.cpp:167">
+			<value>17</value>
+			<value>19</value>
 			<value>3</value>
 		</item>
-		<item name="bjorne_agent::config::userConfigPath() at src/config/ConfigPaths.cpp:62">
-			<value>153</value>
+		<item name="bjorne_agent::tools::readFileDefinition() at src/tools/Tools.cpp:187">
+			<value>18</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::tools::writeFileDefinition() at src/tools/Tools.cpp:191">
 			<value>19</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::tools::editFileDefinition() at src/tools/Tools.cpp:197">
+			<value>20</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::tools::runShellDefinition() at src/tools/Tools.cpp:204">
+			<value>21</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::tools::ToolRegistry::ToolRegistry( std :: string workspace) at src/tools/Tools.cpp:210">
+			<value>22</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::tools::ToolRegistry::registerBuiltins() at src/tools/Tools.cpp:212">
+			<value>23</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::tools::ToolRegistry::registerTool( ToolDefinition definition , ToolHandler handler) at src/tools/Tools.cpp:219">
+			<value>24</value>
+			<value>10</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::tools::ToolRegistry::removeTool( const std :: string &amp; name) at src/tools/Tools.cpp:230">
+			<value>25</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::tools::ToolRegistry::hasTool( const std :: string &amp; name) const at src/tools/Tools.cpp:232">
+			<value>26</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::tools::ToolRegistry::toolNames() const at src/tools/Tools.cpp:234">
+			<value>27</value>
+			<value>8</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::tools::ToolRegistry::execute( const std :: string &amp; name , const std :: string &amp; arguments) const at src/tools/Tools.cpp:243">
+			<value>28</value>
+			<value>14</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::tools::ToolRegistry::resolvePath( const std :: string &amp; path , std :: string &amp; error) const at src/tools/Tools.cpp:261">
+			<value>29</value>
+			<value>19</value>
+			<value>6</value>
+		</item>
+		<item name="bjorne_agent::tools::ToolRegistry::readFile( const std :: string &amp; arguments) const at src/tools/Tools.cpp:281">
+			<value>30</value>
+			<value>22</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::tools::ToolRegistry::writeFile( const std :: string &amp; arguments) const at src/tools/Tools.cpp:304">
+			<value>31</value>
+			<value>33</value>
+			<value>8</value>
+		</item>
+		<item name="bjorne_agent::tools::ToolRegistry::editFile( const std :: string &amp; arguments) const at src/tools/Tools.cpp:338">
+			<value>32</value>
+			<value>45</value>
 			<value>10</value>
 		</item>
-		<item name="bjorne_agent::config::trimmed( const std :: string &amp; value) at src/config/ConfigPaths.cpp:88">
-			<value>154</value>
-			<value>8</value>
+		<item name="bjorne_agent::tools::ToolRegistry::runShell( const std :: string &amp; arguments) const at src/tools/Tools.cpp:384">
+			<value>33</value>
+			<value>46</value>
+			<value>12</value>
+		</item>
+		<item name="bjorne_agent::tools::ToolRegistry::definitionsJson() const at src/tools/Tools.cpp:436">
+			<value>34</value>
+			<value>14</value>
 			<value>2</value>
 		</item>
-		<item name="bjorne_agent::config::environmentConfigPath() at src/config/ConfigPaths.cpp:99">
-			<value>155</value>
+		<average label="NCSS" value="12.5"/>
+		<average label="CCN" value="3.411764705882353"/>
+		<average label="NCSS" value="12.5"/>
+		<average label="CCN" value="3.411764705882353"/>
+		<item name="bjorne_agent::platform::initializeSockets() at src/platform/Platform.h:42">
+			<value>35</value>
 			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::isValidSocket( SocketHandle handle) at src/platform/Platform.h:50">
+			<value>36</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::getEnvironmentVariable( const std :: string &amp; name , std :: string &amp; out) at src/platform/Platform.h:56">
+			<value>37</value>
+			<value>13</value>
+			<value>4</value>
+		</item>
+		<item name="bjorne_agent::platform::setEnvironmentVariable( const std :: string &amp; name , const std :: string &amp; value) at src/platform/Platform.h:70">
+			<value>38</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::unsetEnvironmentVariable( const std :: string &amp; name) at src/platform/Platform.h:74">
+			<value>39</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::processId() at src/platform/Platform.h:79">
+			<value>40</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::closeSocket( SocketHandle handle) at src/platform/Platform.h:83">
+			<value>41</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::addressToBinary( int family , const char * text , * address) at src/platform/Platform.h:89">
+			<value>42</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::addressToText( int family , const * address , char * buffer , std :: size_t size) at src/platform/Platform.h:94">
+			<value>43</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::addressErrorMessage( int code) at src/platform/Platform.h:100">
+			<value>44</value>
+			<value>4</value>
 			<value>2</value>
 		</item>
-		<item name="bjorne_agent::config::defaultConfigPaths() at src/config/ConfigPaths.cpp:107">
-			<value>156</value>
-			<value>9</value>
+		<item name="bjorne_agent::platform::initializeSockets() at src/platform/Platform.h:126">
+			<value>45</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::isValidSocket( SocketHandle handle) at src/platform/Platform.h:130">
+			<value>46</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::getEnvironmentVariable( const std :: string &amp; name , std :: string &amp; out) at src/platform/Platform.h:136">
+			<value>47</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::platform::setEnvironmentVariable( const std :: string &amp; name , const std :: string &amp; value) at src/platform/Platform.h:145">
+			<value>48</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::unsetEnvironmentVariable( const std :: string &amp; name) at src/platform/Platform.h:149">
+			<value>49</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::processId() at src/platform/Platform.h:153">
+			<value>50</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::closeSocket( SocketHandle handle) at src/platform/Platform.h:157">
+			<value>51</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::addressToBinary( int family , const char * text , * address) at src/platform/Platform.h:161">
+			<value>52</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::addressToText( int family , const * address , char * buffer , std :: size_t size) at src/platform/Platform.h:165">
+			<value>53</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::addressErrorMessage( int code) at src/platform/Platform.h:169">
+			<value>54</value>
+			<value>4</value>
 			<value>2</value>
 		</item>
-		<item name="bjorne_agent::config::findDefaultConfig( std :: string &amp; error) at src/config/ConfigPaths.cpp:117">
-			<value>157</value>
-			<value>24</value>
-			<value>8</value>
-		</item>
-		<average label="NCSS" value="13.286624203821656"/>
-		<average label="CCN" value="3.8853503184713376"/>
-		<average label="NCSS" value="13.286624203821656"/>
-		<average label="CCN" value="3.8853503184713376"/>
-		<item name="bjorne_agent::config::getString( const json :: Value &amp; object , const std :: string &amp; key , std :: string &amp; out) at src/config/Config.cpp:14">
-			<value>158</value>
-			<value>8</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::config::getNumber( const json :: Value &amp; object , const std :: string &amp; key , long long &amp; out) at src/config/Config.cpp:23">
-			<value>159</value>
-			<value>8</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::config::getBoolean( const json :: Value &amp; object , const std :: string &amp; key , bool &amp; out) at src/config/Config.cpp:32">
-			<value>160</value>
-			<value>8</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::config::loadAgent( const json :: Value &amp; root , AgentConfig &amp; agent) at src/config/Config.cpp:41">
-			<value>161</value>
+		<average label="NCSS" value="9.37037037037037"/>
+		<average label="CCN" value="2.6481481481481484"/>
+		<average label="NCSS" value="9.37037037037037"/>
+		<average label="CCN" value="2.6481481481481484"/>
+		<item name="bjorne_agent::http::allDigits( const std :: string &amp; text) at src/http/Url.cpp:10">
+			<value>55</value>
 			<value>11</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::http::splitAuthority( const std :: string &amp; authority , Url &amp; url , std :: string &amp; error) at src/http/Url.cpp:25">
+			<value>56</value>
+			<value>39</value>
+			<value>11</value>
+		</item>
+		<item name="bjorne_agent::http::isDefaultPort( const std :: string &amp; port) at src/http/Url.cpp:69">
+			<value>57</value>
+			<value>1</value>
 			<value>3</value>
 		</item>
-		<item name="bjorne_agent::config::loadModel( const json :: Value &amp; entry , ModelConfig &amp; model) at src/config/Config.cpp:53">
-			<value>162</value>
-			<value>22</value>
-			<value>7</value>
+		<item name="bjorne_agent::http::parseUrl( const std :: string &amp; text , Url &amp; out , std :: string &amp; error) at src/http/Url.cpp:71">
+			<value>58</value>
+			<value>32</value>
+			<value>8</value>
 		</item>
-		<item name="bjorne_agent::config::loadModels( const json :: Value &amp; root , std :: vector&lt;ModelConfig&gt; &amp; out) at src/config/Config.cpp:76">
-			<value>163</value>
+		<average label="NCSS" value="10.155172413793103"/>
+		<average label="CCN" value="2.9310344827586206"/>
+		<average label="NCSS" value="10.155172413793103"/>
+		<average label="CCN" value="2.9310344827586206"/>
+		<average label="NCSS" value="10.155172413793103"/>
+		<average label="CCN" value="2.9310344827586206"/>
+		<item name="bjorne_agent::http::readU16( const unsigned char * data) at src/http/DnsResponse.cpp:26">
+			<value>59</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::http::skipName( const unsigned char * data , int size , int offset) at src/http/DnsResponse.cpp:33">
+			<value>60</value>
 			<value>14</value>
 			<value>5</value>
 		</item>
-		<item name="bjorne_agent::config::loadMcpServers( const json :: Value &amp; root , std :: map&lt;std::string,McpServerConfig&gt; &amp; out) at src/config/Config.cpp:91">
-			<value>164</value>
-			<value>30</value>
-			<value>13</value>
+		<item name="bjorne_agent::http::appendRecord( const unsigned char * data , int size , int offset , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses) at src/http/DnsResponse.cpp:48">
+			<value>61</value>
+			<value>33</value>
+			<value>9</value>
 		</item>
-		<item name="bjorne_agent::config::load( const std :: string &amp; path , Config &amp; out , std :: string &amp; error) at src/config/Config.cpp:124">
-			<value>165</value>
-			<value>34</value>
+		<item name="bjorne_agent::http::parseDnsResponse( const unsigned char * data , int size , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses) at src/http/DnsResponse.cpp:84">
+			<value>62</value>
+			<value>25</value>
+			<value>8</value>
+		</item>
+		<average label="NCSS" value="10.709677419354838"/>
+		<average label="CCN" value="3.1129032258064515"/>
+		<average label="NCSS" value="10.709677419354838"/>
+		<average label="CCN" value="3.1129032258064515"/>
+		<item name="bjorne_agent::http::parsePort( const std :: string &amp; port , unsigned short &amp; value) at src/http/Resolver.cpp:40">
+			<value>63</value>
+			<value>20</value>
 			<value>7</value>
 		</item>
-		<average label="NCSS" value="13.460606060606061"/>
-		<average label="CCN" value="3.963636363636364"/>
-		<average label="NCSS" value="13.460606060606061"/>
-		<average label="CCN" value="3.963636363636364"/>
-		<average label="NCSS" value="13.460606060606061"/>
-		<average label="CCN" value="3.963636363636364"/>
+		<item name="bjorne_agent::http::withoutBrackets( const std :: string &amp; host) at src/http/Resolver.cpp:63">
+			<value>64</value>
+			<value>6</value>
+			<value>4</value>
+		</item>
+		<item name="bjorne_agent::http::numericAddress( const std :: string &amp; host , unsigned short port , ResolvedAddress &amp; out) at src/http/Resolver.cpp:70">
+			<value>65</value>
+			<value>20</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::http::readFile( const std :: string &amp; path , std :: string &amp; contents) at src/http/Resolver.cpp:93">
+			<value>66</value>
+			<value>20</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::http::splitFields( const std :: string &amp; line) at src/http/Resolver.cpp:114">
+			<value>67</value>
+			<value>17</value>
+			<value>7</value>
+		</item>
+		<item name="bjorne_agent::http::hostsLineMatches( const std :: string &amp; line , const std :: string &amp; host , std :: string &amp; address) at src/http/Resolver.cpp:133">
+			<value>68</value>
+			<value>14</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::http::lookupHosts( const std :: string &amp; path , const std :: string &amp; host , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses) at src/http/Resolver.cpp:148">
+			<value>69</value>
+			<value>22</value>
+			<value>7</value>
+		</item>
+		<item name="bjorne_agent::http::queryDns( const std :: string &amp; host , int type , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses) at src/http/Resolver.cpp:171">
+			<value>70</value>
+			<value>8</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::http::resolveStub( const std :: string &amp; host , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses , std :: string &amp; error , const ResolverOptions &amp; options) at src/http/Resolver.cpp:180">
+			<value>71</value>
+			<value>18</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::http::resolveWithGetaddrinfo( const std :: string &amp; host , const std :: string &amp; port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses , std :: string &amp; error) at src/http/Resolver.cpp:201">
+			<value>72</value>
+			<value>27</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::http::resolveHost( const std :: string &amp; host , const std :: string &amp; port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses , std :: string &amp; error , const ResolverOptions &amp; options) at src/http/Resolver.cpp:233">
+			<value>73</value>
+			<value>21</value>
+			<value>5</value>
+		</item>
+		<average label="NCSS" value="11.73972602739726"/>
+		<average label="CCN" value="3.3972602739726026"/>
+		<item name="bjorne_agent::http::ignoreSigPipe() at src/http/HttpClient.cpp:60">
+			<value>74</value>
+			<value>10</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::http::findHeader( const std :: string &amp; headers , const std :: string &amp; name) at src/http/HttpClient.cpp:76">
+			<value>75</value>
+			<value>30</value>
+			<value>7</value>
+		</item>
+		<item name="bjorne_agent::http::parseChunkSize( const std :: string &amp; raw , size_t &amp; pos , size_t &amp; size , std :: string &amp; error) at src/http/HttpClient.cpp:108">
+			<value>76</value>
+			<value>34</value>
+			<value>11</value>
+		</item>
+		<item name="bjorne_agent::http::decodeChunked( const std :: string &amp; raw , std :: string &amp; out , std :: string &amp; error) at src/http/HttpClient.cpp:146">
+			<value>77</value>
+			<value>24</value>
+			<value>7</value>
+		</item>
+		<item name="bjorne_agent::http::readBody( const std :: string &amp; headers , const std :: string &amp; raw , std :: string &amp; out , std :: string &amp; error) at src/http/HttpClient.cpp:173">
+			<value>78</value>
+			<value>22</value>
+			<value>7</value>
+		</item>
+		<item name="bjorne_agent::http::buildRequest( const HttpRequest &amp; request) at src/http/HttpClient.cpp:198">
+			<value>79</value>
+			<value>13</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::http::connectToHost( const std :: string &amp; host , const std :: string &amp; port , std :: string &amp; error) at src/http/HttpClient.cpp:214">
+			<value>80</value>
+			<value>28</value>
+			<value>6</value>
+		</item>
+		<item name="bjorne_agent::http::readAllPlain( platform :: SocketHandle fd , std :: string &amp; data , std :: string &amp; error) at src/http/HttpClient.cpp:243">
+			<value>81</value>
+			<value>15</value>
+			<value>4</value>
+		</item>
+		<item name="bjorne_agent::http::tlsError( std :: string &amp; error) at src/http/HttpClient.cpp:260">
+			<value>82</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::http::readAllTls( SSL * ssl , std :: string &amp; data , std :: string &amp; error) at src/http/HttpClient.cpp:267">
+			<value>83</value>
+			<value>15</value>
+			<value>4</value>
+		</item>
+		<item name="bjorne_agent::http::closeTransport( SSL * ssl , platform :: SocketHandle fd) at src/http/HttpClient.cpp:283">
+			<value>84</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::http::configureTlsSession( SSL * ssl , const std :: string &amp; host , const OpenSslTransport :: Options &amp; options , std :: string &amp; sniHost , std :: string &amp; error) at src/http/HttpClient.cpp:290">
+			<value>85</value>
+			<value>17</value>
+			<value>6</value>
+		</item>
+		<item name="bjorne_agent::http::handshakeTls( SSL * ssl , const std :: string &amp; sniHost , bool ignoreSelfSigned , std :: string &amp; error) at src/http/HttpClient.cpp:313">
+			<value>86</value>
+			<value>25</value>
+			<value>6</value>
+		</item>
+		<item name="bjorne_agent::http::writeTlsRequest( SSL * ssl , const std :: string &amp; request , std :: string &amp; error) at src/http/HttpClient.cpp:342">
+			<value>87</value>
+			<value>13</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::http::OpenSslTransport::OpenSslTransport( Options options) at src/http/HttpClient.cpp:359">
+			<value>88</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::http::OpenSslTransport::send( const std :: string &amp; request , const std :: string &amp; host , const std :: string &amp; port , std :: string &amp; response , std :: string &amp; error) at src/http/HttpClient.cpp:361">
+			<value>89</value>
+			<value>62</value>
+			<value>10</value>
+		</item>
+		<item name="bjorne_agent::http::PlainTcpTransport::send( const std :: string &amp; request , const std :: string &amp; host , const std :: string &amp; port , std :: string &amp; response , std :: string &amp; error) at src/http/HttpClient.cpp:438">
+			<value>90</value>
+			<value>29</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::http::HttpClient::createOpenSsl() at src/http/HttpClient.cpp:471">
+			<value>91</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::http::HttpClient::createOpenSsl( OpenSslTransport :: Options options) at src/http/HttpClient.cpp:475">
+			<value>92</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::http::HttpClient::createPlainTcp() at src/http/HttpClient.cpp:479">
+			<value>93</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::http::HttpClient::HttpClient( std :: shared_ptr&lt;HttpTransport&gt; transport) at src/http/HttpClient.cpp:483">
+			<value>94</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::http::HttpClient::request( const HttpRequest &amp; request , HttpResponse &amp; out , std :: string &amp; error) at src/http/HttpClient.cpp:485">
+			<value>95</value>
+			<value>30</value>
+			<value>8</value>
+		</item>
+		<average label="NCSS" value="13.105263157894736"/>
+		<average label="CCN" value="3.6315789473684212"/>
+		<average label="NCSS" value="13.105263157894736"/>
+		<average label="CCN" value="3.6315789473684212"/>
+		<item name="bjorne_agent::context::ContextManager::ContextManager( ContextManagerConfig config , CompressionHandler compression) at src/context/ContextManager.cpp:9">
+			<value>96</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::context::ContextManager::config() const at src/context/ContextManager.cpp:12">
+			<value>97</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::context::ContextManager::compressionHandler() const at src/context/ContextManager.cpp:14">
+			<value>98</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::context::ContextManager::tokenCountOf( const model :: ModelMessage &amp; message) const at src/context/ContextManager.cpp:16">
+			<value>99</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::context::ContextManager::estimateTokens( const std :: vector&lt;model::ModelMessage&gt; &amp; messages) const at src/context/ContextManager.cpp:21">
+			<value>100</value>
+			<value>7</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::context::ContextManager::trim( const std :: vector&lt;model::ModelMessage&gt; &amp; messages , std :: vector&lt;model::ModelMessage&gt; &amp; out , std :: string &amp; error) const at src/context/ContextManager.cpp:29">
+			<value>101</value>
+			<value>15</value>
+			<value>4</value>
+		</item>
+		<item name="bjorne_agent::context::ContextManager::truncate( const std :: vector&lt;model::ModelMessage&gt; &amp; messages , long long context_window , std :: vector&lt;model::ModelMessage&gt; &amp; out , std :: string &amp; error) const at src/context/ContextManager.cpp:45">
+			<value>102</value>
+			<value>27</value>
+			<value>7</value>
+		</item>
+		<item name="bjorne_agent::context::ContextManager::compress( const std :: vector&lt;model::ModelMessage&gt; &amp; messages , std :: vector&lt;model::ModelMessage&gt; &amp; out , std :: string &amp; error) const at src/context/ContextManager.cpp:73">
+			<value>103</value>
+			<value>29</value>
+			<value>6</value>
+		</item>
+		<average label="NCSS" value="12.912621359223301"/>
+		<average label="CCN" value="3.5728155339805827"/>
+		<average label="NCSS" value="12.912621359223301"/>
+		<average label="CCN" value="3.5728155339805827"/>
 		<item name="bjorne_agent::model::escapeJson( const std :: string &amp; text) at src/model/ModelClient.cpp:21">
-			<value>166</value>
+			<value>104</value>
 			<value>23</value>
 			<value>8</value>
 		</item>
 		<item name="bjorne_agent::model::toolCallJson( const ToolCall &amp; call) at src/model/ModelClient.cpp:45">
-			<value>167</value>
+			<value>105</value>
 			<value>7</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::model::messageJson( const ModelMessage &amp; message) at src/model/ModelClient.cpp:53">
-			<value>168</value>
+			<value>106</value>
 			<value>18</value>
 			<value>6</value>
 		</item>
 		<item name="bjorne_agent::model::requestBodyJson( const std :: string &amp; model , const std :: vector&lt;ModelMessage&gt; &amp; messages , const std :: string &amp; toolsJson) at src/model/ModelClient.cpp:72">
-			<value>169</value>
+			<value>107</value>
 			<value>16</value>
 			<value>4</value>
 		</item>
 		<item name="bjorne_agent::model::parseToolCalls( const json :: Value &amp; message , std :: vector&lt;ToolCall&gt; &amp; out) at src/model/ModelClient.cpp:89">
-			<value>170</value>
+			<value>108</value>
 			<value>30</value>
 			<value>14</value>
 		</item>
 		<item name="bjorne_agent::model::parseChatResponse( const std :: string &amp; body , ModelResponse &amp; out , std :: string &amp; error) at src/model/ModelClient.cpp:121">
-			<value>171</value>
+			<value>109</value>
 			<value>34</value>
 			<value>12</value>
 		</item>
 		<item name="bjorne_agent::model::ModelClient::ModelClient( ModelClientOptions options) at src/model/ModelClient.cpp:160">
-			<value>172</value>
+			<value>110</value>
 			<value>7</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::model::ModelClient::ModelClient( const std :: string &amp; endpoint , const std :: string &amp; model , const std :: string &amp; api_key_env , std :: shared_ptr&lt;http::HttpTransport&gt; transport) at src/model/ModelClient.cpp:168">
-			<value>173</value>
+			<value>111</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::model::ModelClient::respond( const std :: vector&lt;ModelMessage&gt; &amp; messages , ModelResponse &amp; out , std :: string &amp; error) at src/model/ModelClient.cpp:172">
-			<value>174</value>
+			<value>112</value>
 			<value>52</value>
 			<value>10</value>
 		</item>
 		<item name="bjorne_agent::model::ModelClient::setTools( const std :: string &amp; tools_json) at src/model/ModelClient.cpp:233">
-			<value>175</value>
+			<value>113</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
-		<average label="NCSS" value="13.782857142857143"/>
-		<average label="CCN" value="4.074285714285714"/>
+		<average label="NCSS" value="13.460176991150442"/>
+		<average label="CCN" value="3.7787610619469025"/>
+		<item name="bjorne_agent::json::Parser::Parser( const std :: string &amp; text) at src/json/Json.cpp:16">
+			<value>114</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::json::Parser::parse() at src/json/Json.cpp:18">
+			<value>115</value>
+			<value>8</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::json::Parser::peek() const at src/json/Json.cpp:31">
+			<value>116</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::json::Parser::skipWhitespace() at src/json/Json.cpp:38">
+			<value>117</value>
+			<value>10</value>
+			<value>6</value>
+		</item>
+		<item name="bjorne_agent::json::Parser::advanceLiteral( const char * literal) at src/json/Json.cpp:49">
+			<value>118</value>
+			<value>7</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::json::Parser::parseValue( size_t depth) at src/json/Json.cpp:57">
+			<value>119</value>
+			<value>44</value>
+			<value>11</value>
+		</item>
+		<item name="bjorne_agent::json::Parser::parseObject( size_t depth) at src/json/Json.cpp:102">
+			<value>120</value>
+			<value>35</value>
+			<value>7</value>
+		</item>
+		<item name="bjorne_agent::json::Parser::parseArray( size_t depth) at src/json/Json.cpp:138">
+			<value>121</value>
+			<value>25</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::json::Parser::appendUtf8( std :: string &amp; out , unsigned int code) at src/json/Json.cpp:165">
+			<value>122</value>
+			<value>17</value>
+			<value>4</value>
+		</item>
+		<item name="bjorne_agent::json::Parser::readHex4() at src/json/Json.cpp:184">
+			<value>123</value>
+			<value>21</value>
+			<value>9</value>
+		</item>
+		<item name="bjorne_agent::json::Parser::parseUnicodeEscape( std :: string &amp; out) at src/json/Json.cpp:209">
+			<value>124</value>
+			<value>18</value>
+			<value>10</value>
+		</item>
+		<item name="bjorne_agent::json::Parser::parseString() at src/json/Json.cpp:228">
+			<value>125</value>
+			<value>41</value>
+			<value>15</value>
+		</item>
+		<item name="bjorne_agent::json::Parser::parseNumber() at src/json/Json.cpp:270">
+			<value>126</value>
+			<value>15</value>
+			<value>10</value>
+		</item>
+		<item name="bjorne_agent::json::writeString( const std :: string &amp; text , std :: string &amp; out) at src/json/Json.cpp:289">
+			<value>127</value>
+			<value>26</value>
+			<value>10</value>
+		</item>
+		<item name="bjorne_agent::json::writeNumber( double number , std :: string &amp; out) at src/json/Json.cpp:316">
+			<value>128</value>
+			<value>11</value>
+			<value>4</value>
+		</item>
+		<item name="bjorne_agent::json::writeValue( const Value &amp; value , std :: string &amp; out , size_t depth) at src/json/Json.cpp:332">
+			<value>129</value>
+			<value>47</value>
+			<value>13</value>
+		</item>
+		<item name="bjorne_agent::json::write( const Value &amp; value) at src/json/Json.cpp:382">
+			<value>130</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::json::parse( const std :: string &amp; text) at src/json/Json.cpp:388">
+			<value>131</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="14.213740458015268"/>
+		<average label="CCN" value="4.122137404580153"/>
+		<item name="bjorne_agent::json::Value::isObject() const at src/json/Json.h:25">
+			<value>132</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::json::Value::isArray() const at src/json/Json.h:26">
+			<value>133</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::json::Value::isString() const at src/json/Json.h:27">
+			<value>134</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::json::Value::isNumber() const at src/json/Json.h:28">
+			<value>135</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::json::Value::isBoolean() const at src/json/Json.h:29">
+			<value>136</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::json::Value::isNull() const at src/json/Json.h:30">
+			<value>137</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::json::Value::find( const std :: string &amp; key) const at src/json/Json.h:32">
+			<value>138</value>
+			<value>10</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::json::Value::operator [ ]( const std :: string &amp; key) const at src/json/Json.h:43">
+			<value>139</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="13.532374100719425"/>
+		<average label="CCN" value="3.9568345323741005"/>
+		<average label="NCSS" value="13.532374100719425"/>
+		<average label="CCN" value="3.9568345323741005"/>
+		<item name="bjorne_agent::log::write( const char * kind , const std :: string &amp; message) at src/log/Log.cpp:19">
+			<value>140</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::log::setLevel( Level level) at src/log/Log.cpp:26">
+			<value>141</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::log::level() at src/log/Log.cpp:30">
+			<value>142</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::log::parseLevel( const std :: string &amp; name , Level &amp; out) at src/log/Log.cpp:34">
+			<value>143</value>
+			<value>15</value>
+			<value>4</value>
+		</item>
+		<item name="bjorne_agent::log::progress( const std :: string &amp; message) at src/log/Log.cpp:50">
+			<value>144</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::log::detail( const std :: string &amp; message) at src/log/Log.cpp:57">
+			<value>145</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::log::fail( const std :: string &amp; message) at src/log/Log.cpp:64">
+			<value>146</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::log::block( const std :: string &amp; label , const std :: string &amp; text , std :: size_t limit) at src/log/Log.cpp:71">
+			<value>147</value>
+			<value>24</value>
+			<value>9</value>
+		</item>
+		<item name="bjorne_agent::log::elapsedSeconds() at src/log/Log.cpp:98">
+			<value>148</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::log::formatSeconds( double seconds) at src/log/Log.cpp:103">
+			<value>149</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<average label="NCSS" value="13.154362416107382"/>
+		<average label="CCN" value="3.865771812080537"/>
+		<average label="NCSS" value="13.154362416107382"/>
+		<average label="CCN" value="3.865771812080537"/>
+		<item name="bjorne_agent::cli::namesAnExistingFile( const std :: string &amp; path) at src/cli/Invocation.cpp:15">
+			<value>150</value>
+			<value>4</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::cli::reservedVerb( const std :: string &amp; value , Command &amp; out) at src/cli/Invocation.cpp:23">
+			<value>151</value>
+			<value>19</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::cli::resolveRun( const std :: vector&lt;std::string&gt; &amp; positional , Invocation &amp; out , std :: string &amp; error) at src/cli/Invocation.cpp:50">
+			<value>152</value>
+			<value>28</value>
+			<value>6</value>
+		</item>
+		<item name="bjorne_agent::cli::parseFlags( const std :: vector&lt;std::string&gt; &amp; arguments , Invocation &amp; out , std :: vector&lt;std::string&gt; &amp; positional , std :: string &amp; error) at src/cli/Invocation.cpp:87">
+			<value>153</value>
+			<value>34</value>
+			<value>12</value>
+		</item>
+		<item name="bjorne_agent::cli::selectCommand( std :: vector&lt;std::string&gt; &amp; positional , Invocation &amp; out) at src/cli/Invocation.cpp:124">
+			<value>154</value>
+			<value>14</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::cli::parseCommandArguments( const std :: vector&lt;std::string&gt; &amp; positional , Invocation &amp; out , std :: string &amp; error) at src/cli/Invocation.cpp:139">
+			<value>155</value>
+			<value>24</value>
+			<value>8</value>
+		</item>
+		<item name="bjorne_agent::cli::parse( const std :: vector&lt;std::string&gt; &amp; arguments , Invocation &amp; out , std :: string &amp; error) at src/cli/Invocation.cpp:166">
+			<value>156</value>
+			<value>16</value>
+			<value>4</value>
+		</item>
+		<item name="bjorne_agent::cli::commandName( Command command) at src/cli/Invocation.cpp:190">
+			<value>157</value>
+			<value>13</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::cli::usage() at src/cli/Invocation.cpp:204">
+			<value>158</value>
+			<value>30</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::cli::usage( Command command) at src/cli/Invocation.cpp:235">
+			<value>159</value>
+			<value>33</value>
+			<value>5</value>
+		</item>
+		<average label="NCSS" value="13.679245283018869"/>
+		<average label="CCN" value="3.943396226415094"/>
+		<item name="bjorne_agent::config::isPathSeparator( char c) at src/config/ConfigPaths.cpp:20">
+			<value>160</value>
+			<value>4</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::config::isAbsolutePath( const std :: string &amp; path) at src/config/ConfigPaths.cpp:30">
+			<value>161</value>
+			<value>13</value>
+			<value>8</value>
+		</item>
+		<item name="bjorne_agent::config::joinPath( const std :: string &amp; base , const std :: string &amp; rest) at src/config/ConfigPaths.cpp:48">
+			<value>162</value>
+			<value>9</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::config::userConfigPath() at src/config/ConfigPaths.cpp:62">
+			<value>163</value>
+			<value>19</value>
+			<value>10</value>
+		</item>
+		<item name="bjorne_agent::config::trimmed( const std :: string &amp; value) at src/config/ConfigPaths.cpp:88">
+			<value>164</value>
+			<value>8</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::config::environmentConfigPath() at src/config/ConfigPaths.cpp:99">
+			<value>165</value>
+			<value>7</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::config::defaultConfigPaths() at src/config/ConfigPaths.cpp:107">
+			<value>166</value>
+			<value>9</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::config::findDefaultConfig( std :: string &amp; error) at src/config/ConfigPaths.cpp:117">
+			<value>167</value>
+			<value>24</value>
+			<value>8</value>
+		</item>
+		<average label="NCSS" value="13.580838323353293"/>
+		<average label="CCN" value="3.9820359281437128"/>
+		<average label="NCSS" value="13.580838323353293"/>
+		<average label="CCN" value="3.9820359281437128"/>
+		<item name="bjorne_agent::config::getString( const json :: Value &amp; object , const std :: string &amp; key , std :: string &amp; out) at src/config/Config.cpp:14">
+			<value>168</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::config::getNumber( const json :: Value &amp; object , const std :: string &amp; key , long long &amp; out) at src/config/Config.cpp:23">
+			<value>169</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::config::getBoolean( const json :: Value &amp; object , const std :: string &amp; key , bool &amp; out) at src/config/Config.cpp:32">
+			<value>170</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::config::loadAgent( const json :: Value &amp; root , AgentConfig &amp; agent) at src/config/Config.cpp:41">
+			<value>171</value>
+			<value>11</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::config::loadModel( const json :: Value &amp; entry , ModelConfig &amp; model) at src/config/Config.cpp:53">
+			<value>172</value>
+			<value>22</value>
+			<value>7</value>
+		</item>
+		<item name="bjorne_agent::config::loadModels( const json :: Value &amp; root , std :: vector&lt;ModelConfig&gt; &amp; out) at src/config/Config.cpp:76">
+			<value>173</value>
+			<value>14</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::config::loadMcpServers( const json :: Value &amp; root , std :: map&lt;std::string,McpServerConfig&gt; &amp; out) at src/config/Config.cpp:91">
+			<value>174</value>
+			<value>30</value>
+			<value>13</value>
+		</item>
+		<item name="bjorne_agent::config::load( const std :: string &amp; path , Config &amp; out , std :: string &amp; error) at src/config/Config.cpp:124">
+			<value>175</value>
+			<value>34</value>
+			<value>7</value>
+		</item>
+		<average label="NCSS" value="13.731428571428571"/>
+		<average label="CCN" value="4.051428571428572"/>
+		<average label="NCSS" value="13.731428571428571"/>
+		<average label="CCN" value="4.051428571428572"/>
 		<item name="readStdin() at src/main.cpp:24">
 			<value>176</value>
 			<value>5</value>
@@ -994,8 +994,8 @@
 			<value>34</value>
 			<value>10</value>
 		</item>
-		<average label="NCSS" value="13.95187165775401"/>
-		<average label="CCN" value="4.074866310160428"/>
+		<average label="NCSS" value="13.903743315508022"/>
+		<average label="CCN" value="4.053475935828877"/>
 	</measure>
 	<measure type="File">
 		<labels>
@@ -1004,23 +1004,23 @@
 			<label>CCN</label>
 			<label>Functions</label>
 		</labels>
-		<item name="src/cli/Invocation.h">
+		<item name="src/agent/AgentLoop.h">
 			<value>1</value>
-			<value>24</value>
+			<value>28</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
-		<item name="src/cli/Invocation.cpp">
+		<item name="src/agent/AgentLoop.cpp">
 			<value>2</value>
-			<value>227</value>
-			<value>51</value>
-			<value>10</value>
+			<value>74</value>
+			<value>14</value>
+			<value>4</value>
 		</item>
-		<item name="src/platform/Platform.h">
+		<item name="src/tools/Tools.cpp">
 			<value>3</value>
-			<value>106</value>
-			<value>27</value>
-			<value>20</value>
+			<value>380</value>
+			<value>102</value>
+			<value>30</value>
 		</item>
 		<item name="src/tools/Tools.h">
 			<value>4</value>
@@ -1028,53 +1028,53 @@
 			<value>0</value>
 			<value>0</value>
 		</item>
-		<item name="src/tools/Tools.cpp">
+		<item name="src/platform/Platform.h">
 			<value>5</value>
-			<value>380</value>
-			<value>102</value>
-			<value>30</value>
+			<value>106</value>
+			<value>27</value>
+			<value>20</value>
 		</item>
-		<item name="src/log/Log.h">
+		<item name="src/http/Resolver.h">
 			<value>6</value>
-			<value>16</value>
+			<value>20</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
-		<item name="src/log/Log.cpp">
+		<item name="src/http/Url.cpp">
 			<value>7</value>
-			<value>92</value>
-			<value>26</value>
-			<value>10</value>
-		</item>
-		<item name="src/http/DnsResponse.cpp">
-			<value>8</value>
-			<value>93</value>
-			<value>23</value>
+			<value>91</value>
+			<value>27</value>
 			<value>4</value>
 		</item>
 		<item name="src/http/DnsResponse.h">
-			<value>9</value>
+			<value>8</value>
 			<value>8</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
 		<item name="src/http/Url.h">
-			<value>10</value>
+			<value>9</value>
 			<value>14</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
-		<item name="src/http/Resolver.cpp">
+		<item name="src/http/DnsResponse.cpp">
+			<value>10</value>
+			<value>93</value>
+			<value>23</value>
+			<value>4</value>
+		</item>
+		<item name="src/http/HttpClient.h">
 			<value>11</value>
+			<value>56</value>
+			<value>0</value>
+			<value>0</value>
+		</item>
+		<item name="src/http/Resolver.cpp">
+			<value>12</value>
 			<value>217</value>
 			<value>55</value>
 			<value>11</value>
-		</item>
-		<item name="src/http/Resolver.h">
-			<value>12</value>
-			<value>20</value>
-			<value>0</value>
-			<value>0</value>
 		</item>
 		<item name="src/http/HttpClient.cpp">
 			<value>13</value>
@@ -1082,70 +1082,70 @@
 			<value>97</value>
 			<value>22</value>
 		</item>
-		<item name="src/http/HttpClient.h">
-			<value>14</value>
-			<value>56</value>
-			<value>0</value>
-			<value>0</value>
-		</item>
-		<item name="src/http/Url.cpp">
-			<value>15</value>
-			<value>91</value>
-			<value>27</value>
-			<value>4</value>
-		</item>
-		<item name="src/json/Json.cpp">
-			<value>16</value>
-			<value>369</value>
-			<value>117</value>
-			<value>18</value>
-		</item>
-		<item name="src/json/Json.h">
-			<value>17</value>
-			<value>41</value>
-			<value>10</value>
-			<value>8</value>
-		</item>
-		<item name="src/context/ContextManager.cpp">
-			<value>18</value>
-			<value>92</value>
-			<value>23</value>
-			<value>8</value>
-		</item>
 		<item name="src/context/ContextManager.h">
-			<value>19</value>
+			<value>14</value>
 			<value>34</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
-		<item name="src/agent/AgentLoop.cpp">
-			<value>20</value>
-			<value>74</value>
-			<value>14</value>
-			<value>4</value>
-		</item>
-		<item name="src/agent/AgentLoop.h">
-			<value>21</value>
-			<value>28</value>
-			<value>0</value>
-			<value>0</value>
-		</item>
-		<item name="src/config/ConfigPaths.cpp">
-			<value>22</value>
-			<value>107</value>
-			<value>38</value>
+		<item name="src/context/ContextManager.cpp">
+			<value>15</value>
+			<value>92</value>
+			<value>23</value>
 			<value>8</value>
 		</item>
-		<item name="src/config/ConfigPaths.h">
-			<value>23</value>
-			<value>9</value>
+		<item name="src/model/ModelClient.h">
+			<value>16</value>
+			<value>54</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
-		<item name="src/config/Config.cpp">
+		<item name="src/model/ModelClient.cpp">
+			<value>17</value>
+			<value>209</value>
+			<value>59</value>
+			<value>10</value>
+		</item>
+		<item name="src/json/Json.cpp">
+			<value>18</value>
+			<value>360</value>
+			<value>113</value>
+			<value>18</value>
+		</item>
+		<item name="src/json/Json.h">
+			<value>19</value>
+			<value>41</value>
+			<value>10</value>
+			<value>8</value>
+		</item>
+		<item name="src/log/Log.h">
+			<value>20</value>
+			<value>16</value>
+			<value>0</value>
+			<value>0</value>
+		</item>
+		<item name="src/log/Log.cpp">
+			<value>21</value>
+			<value>92</value>
+			<value>26</value>
+			<value>10</value>
+		</item>
+		<item name="src/cli/Invocation.h">
+			<value>22</value>
 			<value>24</value>
-			<value>146</value>
-			<value>44</value>
+			<value>0</value>
+			<value>0</value>
+		</item>
+		<item name="src/cli/Invocation.cpp">
+			<value>23</value>
+			<value>227</value>
+			<value>51</value>
+			<value>10</value>
+		</item>
+		<item name="src/config/ConfigPaths.cpp">
+			<value>24</value>
+			<value>107</value>
+			<value>38</value>
 			<value>8</value>
 		</item>
 		<item name="src/config/Config.h">
@@ -1154,17 +1154,17 @@
 			<value>0</value>
 			<value>0</value>
 		</item>
-		<item name="src/model/ModelClient.h">
+		<item name="src/config/Config.cpp">
 			<value>26</value>
-			<value>54</value>
-			<value>0</value>
-			<value>0</value>
+			<value>146</value>
+			<value>44</value>
+			<value>8</value>
 		</item>
-		<item name="src/model/ModelClient.cpp">
+		<item name="src/config/ConfigPaths.h">
 			<value>27</value>
-			<value>209</value>
-			<value>59</value>
-			<value>10</value>
+			<value>9</value>
+			<value>0</value>
+			<value>0</value>
 		</item>
 		<item name="src/main.cpp">
 			<value>28</value>
@@ -1172,14 +1172,14 @@
 			<value>49</value>
 			<value>12</value>
 		</item>
-		<average label="NCSS" value="115.25"/>
-		<average label="CCN" value="27.214285714285715"/>
+		<average label="NCSS" value="114.92857142857143"/>
+		<average label="CCN" value="27.071428571428573"/>
 		<average label="Functions" value="6.678571428571429"/>
-		<sum label="NCSS" value="3227"/>
-		<sum label="CCN" value="762"/>
+		<sum label="NCSS" value="3218"/>
+		<sum label="CCN" value="758"/>
 		<sum label="Functions" value="187"/>
-		<average label="NCSS" value="13.95187165775401"/>
-		<average label="CCN" value="4.074866310160428"/>
+		<average label="NCSS" value="13.903743315508022"/>
+		<average label="CCN" value="4.053475935828877"/>
 	</measure>
 </cppncss>
 
