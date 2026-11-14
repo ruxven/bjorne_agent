@@ -93,20 +93,20 @@ $(document).ready(function(){initNavTree('md_ROADMAP.html',''); initResizable();
   <div class="headertitle"><div class="title">ROADMAP: C++ Agent Harness</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md81"></a> </p>
-<h1><a class="anchor" id="autotoc_md82"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md84"></a> </p>
+<h1><a class="anchor" id="autotoc_md85"></a>
 Phase 1: Specification Development</h1>
 <ul>
 <li>[x] Baseline specification (complete)</li>
 <li>[x] Configuration specification (complete, compression instruction mechanism resolved)</li>
 <li>[x] Agent loop specification (complete draft, error handling closed)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md83"></a>
+<h1><a class="anchor" id="autotoc_md86"></a>
 Phase 2: Design</h1>
 <ul>
 <li>[x] Design document (complete draft, open design items closed)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md84"></a>
+<h1><a class="anchor" id="autotoc_md87"></a>
 Phase 3: Implementation</h1>
 <ul>
 <li>[x] Build the static binary: <code>BJORNE_AGENT_STATIC=ON</code> (default for the deployment modes) links <code>-static</code> and <code>-s</code>; <code>ldd</code> reports no dynamic dependencies.</li>
@@ -125,11 +125,11 @@ Phase 3: Implementation</h1>
 <li>[x] Progress output: the run reports each step on stderr, so a slow or stalled request is visible. Levels come from <code>--verbose</code>, <code>--quiet</code>, and <code>BJORNE_AGENT_LOG</code>.</li>
 <li>[x] Package for container use: the config arrives as a mount at <code>/etc/bjorne_agent/bjorne_agent.json</code> or through the <code>BJORNE_AGENT_CONFIG</code> environment variable, the API key through the variable the config names, and the workspace through a volume mount. The binary is the entrypoint, so the task is the only argument.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md85"></a>
+<h1><a class="anchor" id="autotoc_md88"></a>
 Phase 4: Evolution</h1>
 <p>The agent is currently a one-shot binary: <code>main</code> reads a task, <code>AgentLoop::run</code> holds every message in a local vector, the result is printed, the process exits. The items below assume a long-lived, stateful, interactive agent, so they are sequenced by dependency rather than by appeal.</p>
 <p>Three prerequisites are shared by most of them: a subcommand dispatch, a JSON writer, and a dynamic tool set. The configuration gains <code>agent.skills_path</code>, <code>agent.session_dir</code>, <code>agent.interactive</code>, and an <code>mcp_servers</code> map.</p>
-<h2><a class="anchor" id="autotoc_md86"></a>
+<h2><a class="anchor" id="autotoc_md89"></a>
 Phase A: Foundation</h2>
 <ul>
 <li>[x] Subcommand dispatch. Reserved verbs: <code>init</code>, <code>run</code>, <code>sessions</code>, <code>resume</code>. The bare form stays valid, and a task that begins with a reserved word is spelled <code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> run "init the project"</code>.</li>
@@ -137,14 +137,14 @@ Phase A: Foundation</h2>
 <li>[x] Dynamic tool set. <code>ToolRegistry::definitionsJson</code> becomes an instance method and the tool list is assembled at runtime from the configuration plus the registered extensions.</li>
 <li>[x] Configuration extension for the new fields.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md87"></a>
+<h2><a class="anchor" id="autotoc_md90"></a>
 Phase B: Context fragments</h2>
 <ul>
-<li>[ ] AGENTS.md detection. Search the workspace root and its parents, plus a global <code>~/.config/bjorne_agent/AGENTS.md</code>. Concatenate global first and nearest last, so the most specific instruction lands last in the context, and cap the total size.</li>
-<li>[ ] Skills from a configured directory. The format matches opencode and Claude Code: <code>skills/&lt;name&gt;/SKILL.md</code> with YAML frontmatter carrying <code>name</code> and <code>description</code>, so an existing skills directory works unmodified. Only the name and description pairs go into the system prompt; a <code>load_skill</code> tool returns the full body on demand. The frontmatter needs a minimal <code>key: value</code> scanner rather than a YAML library, to keep the no dependency guarantee.</li>
-<li>[ ] A shared fragment mechanism, so AGENTS.md and skills are both assembled the same way.</li>
+<li>[x] AGENTS.md detection. Search the workspace root and its parents, plus a global <code>~/.config/bjorne_agent/AGENTS.md</code>. Concatenate global first and nearest last, so the most specific instruction lands last in the context, and cap the total size.</li>
+<li>[x] Skills from a configured directory. The format matches opencode and Claude Code: <code>skills/&lt;name&gt;/SKILL.md</code> with YAML frontmatter carrying <code>name</code> and <code>description</code>, so an existing skills directory works unmodified. Only the name and description pairs go into the system prompt; a <code>load_skill</code> tool returns the full body on demand. The frontmatter needs a minimal <code>key: value</code> scanner rather than a YAML library, to keep the no dependency guarantee.</li>
+<li>[x] A shared fragment mechanism, so AGENTS.md and skills are both assembled the same way.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md88"></a>
+<h2><a class="anchor" id="autotoc_md91"></a>
 Phase C: Session persistence</h2>
 <ul>
 <li>[ ] A local session store on a directory, by default a mounted volume. No remote store and no pluggable backend interface.</li>
@@ -154,7 +154,7 @@ Phase C: Session persistence</h2>
 <li>[ ] Repair of dangling tool calls on resume. If the container dies after the model emitted <code>tool_calls</code> but before the tool result was recorded, the stored assistant message has no matching <code>tool</code> response and the API rejects the sequence.</li>
 <li>[ ] Graceful degradation. With no <code>session_dir</code> the persistence is off and the behaviour matches the current one-shot run.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md89"></a>
+<h2><a class="anchor" id="autotoc_md92"></a>
 Phase D: Interaction</h2>
 <ul>
 <li>[ ] A pluggable interaction channel, because in a container stdin is the task and there is no human. The default channel is unavailable and the tool fails fast with a clear message.</li>
@@ -162,7 +162,7 @@ Phase D: Interaction</h2>
 <li>[ ] A request shape of <code>question</code> plus <code>options</code>, so the model can offer a constrained choice and the answer returns as the tool result.</li>
 <li>[ ] Plain prompts rather than a full-screen TUI, which suits a constrained console and keeps the static minimal build.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md90"></a>
+<h2><a class="anchor" id="autotoc_md93"></a>
 Phase E: MCP</h2>
 <ul>
 <li>[ ] A stdio client speaking newline delimited JSON-RPC. No Content-Length framing and no dependencies.</li>
@@ -173,7 +173,7 @@ Phase E: MCP</h2>
 <li>[ ] The server binaries baked into or mounted into the scratch runtime image. This affects the image build and not only the code.</li>
 <li>[ ] The JSON-RPC transport comes from the shared core described below, so the MCP client and the ACP server are not two separate implementations of the same wire format.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md91"></a>
+<h2><a class="anchor" id="autotoc_md94"></a>
 Phase F: ACP client mode</h2>
 <p>The Agent Client Protocol is what puts the agent in front of an editor such as Zed, Neovim or JetBrains. The editor launches the agent as a subprocess and drives it over JSON-RPC 2.0 on stdin and stdout, with messages delimited by newlines.</p>
 <ul>
@@ -193,7 +193,7 @@ Phase F: ACP client mode</h2>
 <li>[ ] Session configuration options expose the configured models, so the user picks the model from the editor the same way the model list is picked today.</li>
 <li>[ ] A conformance check against the ACP test compatibility kit, so the implementation is verified against the protocol rather than against a hand written expectation.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md92"></a>
+<h2><a class="anchor" id="autotoc_md95"></a>
 Shared JSON-RPC core</h2>
 <p>Phase E and Phase F both speak JSON-RPC 2.0 and both need the same transport mechanics. They should share one implementation rather than two.</p>
 <ul>
@@ -201,14 +201,14 @@ Shared JSON-RPC core</h2>
 <li>[ ] One endpoint component with a reader thread, a map of pending requests and a write mutex. It serves both roles, as the client towards an MCP server and the server towards an ACP editor.</li>
 <li>[ ] The JSON writer escapes newlines inside strings, since a protocol message must not contain an embedded newline.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md93"></a>
+<h2><a class="anchor" id="autotoc_md96"></a>
 Tool set customization</h2>
 <ul>
 <li>[ ] The built-in tools stay overridable. The configuration may disable a built-in tool, or replace it with an implementation of the user's own, and the MCP tools sit alongside them in the same namespace.</li>
 <li>[ ] A single resolution order for the tool set: the built-ins, then the configuration overrides, then the MCP tools. A configured override wins over the built-in of the same name, and the resolved set is what the model is shown.</li>
 <li>[ ] Overrides are expressed without a scripting runtime, so the guarantee that the binary links no new dependencies still holds.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md94"></a>
+<h2><a class="anchor" id="autotoc_md97"></a>
 Deliberately out of scope</h2>
 <ul>
 <li>[ ] A full-screen TUI. The dependency surface is large, it breaks the static minimal goal, and a constrained console does not want one.</li>
@@ -218,7 +218,7 @@ Deliberately out of scope</h2>
 <li>[ ] The ACP HTTP and WebSocket transport. The stdio transport is the one the editors use today.</li>
 <li>[ ] Terminal authentication and ACP agent registry registration. The agent authenticates through the API key environment variable and is launched by the editor directly.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md95"></a>
+<h2><a class="anchor" id="autotoc_md98"></a>
 Spec impact</h2>
 <ul>
 <li>[ ] <code><a class="el" href="SPEC_8md.html">SPEC.md</a></code> gains the subcommand semantics, the MCP scope and the ACP mode.</li>
@@ -226,10 +226,10 @@ Spec impact</h2>
 <li>[ ] <code><a class="el" href="SPEC_8LOOP_8md.html">SPEC.LOOP.md</a></code> gains the session lifecycle, the resume semantics, the dangling call repair and the cooperative cancellation.</li>
 <li>[ ] <code><a class="el" href="DESIGN_8md.html">DESIGN.md</a></code> gains the shift from a one-shot to a long-lived stateful agent, along with the fragment mechanism, the interaction channel abstraction, the shared JSON-RPC core and the two protocol roles the agent plays in it.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md96"></a>
+<h1><a class="anchor" id="autotoc_md99"></a>
 Quality Gates</h1>
 <ul>
-<li>[x] Catch2 suite: <code>bjorne_agent_tests</code> (150 cases, 552 assertions with TLS, 148 cases and 556 assertions without TLS).</li>
+<li>[x] Catch2 suite: <code>bjorne_agent_tests</code> (225 cases, 817 assertions with TLS, 219 cases and 801 assertions without TLS).</li>
 <li>[x] Lizard complexity gate: <code>-C 15 -L 100 -a 5</code>, no thresholds exceeded in any configuration.</li>
 <li>[x] Line and function coverage: <code>./run_coverage.sh</code>, reports in <code>bjorne_agent/coverage-reports/</code>. Line coverage is 96% with TLS and 97% in both no TLS configurations, and the function level coverage agrees: 96% with TLS and 97% in both no TLS configurations. Set <code>BJORNE_AGENT_OPENSSL=disabled</code> to measure the no TLS configuration, and add <code>BJORNE_AGENT_STATIC=ON</code> to measure the static one. Below 80% function coverage only the two out-of-line virtual destructors and the TLS transport helpers remain: the TLS handshake and send paths need a peer that completes the session, and the no TLS builds cannot run the OpenSSL constructor and factory at all. Residual line gaps are the OS allocation failures inside the transports and the getaddrinfo success branches that need a live name server.</li>
 <li>[x] Transport tests against a loopback HTTP/TLS server, including read and handshake failure paths.</li>

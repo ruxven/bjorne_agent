@@ -92,7 +92,8 @@ $(document).ready(function(){initNavTree('namespacebjorne__agent_1_1tools.html',
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">bjorne_agent::tools Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -110,6 +111,15 @@ Classes</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a12306154355bf9a749837809aad2fea1" id="r_a12306154355bf9a749837809aad2fea1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1tools.html#a12306154355bf9a749837809aad2fea1">ToolHandler</a> = std::function&lt; <a class="el" href="structbjorne__agent_1_1tools_1_1ToolResult.html">ToolResult</a>(const std::string &amp;arguments)&gt;</td></tr>
 <tr class="separator:a12306154355bf9a749837809aad2fea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a2cf510ec76f7f6fb20316bacfef11b17" id="r_a2cf510ec76f7f6fb20316bacfef11b17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1tools.html#a2cf510ec76f7f6fb20316bacfef11b17">stringParameters</a> (const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;properties, const std::vector&lt; std::string &gt; &amp;required)</td></tr>
+<tr class="separator:a2cf510ec76f7f6fb20316bacfef11b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a567f75a682fdcac685243ef21753af1f" id="r_a567f75a682fdcac685243ef21753af1f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1tools.html#a567f75a682fdcac685243ef21753af1f">parseToolArguments</a> (const std::string &amp;arguments, <a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a> &amp;out)</td></tr>
+<tr class="separator:a567f75a682fdcac685243ef21753af1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa546bc5b0358f22aed3802dd466bcca3" id="r_aa546bc5b0358f22aed3802dd466bcca3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1tools.html#aa546bc5b0358f22aed3802dd466bcca3">toolStringArgument</a> (const <a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a> &amp;arguments, const std::string &amp;key, std::string &amp;out)</td></tr>
+<tr class="separator:aa546bc5b0358f22aed3802dd466bcca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a12306154355bf9a749837809aad2fea1" name="a12306154355bf9a749837809aad2fea1"></a>
@@ -124,7 +134,104 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Tools_8h_source.html#l00027">27</a> of file <a class="el" href="Tools_8h_source.html">Tools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Tools_8h_source.html#l00028">28</a> of file <a class="el" href="Tools_8h_source.html">Tools.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a2cf510ec76f7f6fb20316bacfef11b17" name="a2cf510ec76f7f6fb20316bacfef11b17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cf510ec76f7f6fb20316bacfef11b17">&#9670;&#160;</a></span>stringParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a> bjorne_agent::tools::stringParameters </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>properties</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>required</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Tools_8cpp_source.html#l00172">172</a> of file <a class="el" href="Tools_8cpp_source.html">Tools.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a567f75a682fdcac685243ef21753af1f" name="a567f75a682fdcac685243ef21753af1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a567f75a682fdcac685243ef21753af1f">&#9670;&#160;</a></span>parseToolArguments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool bjorne_agent::tools::parseToolArguments </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>arguments</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a> &amp;&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Tools_8cpp_source.html#l00192">192</a> of file <a class="el" href="Tools_8cpp_source.html">Tools.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aa546bc5b0358f22aed3802dd466bcca3" name="aa546bc5b0358f22aed3802dd466bcca3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa546bc5b0358f22aed3802dd466bcca3">&#9670;&#160;</a></span>toolStringArgument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool bjorne_agent::tools::toolStringArgument </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a> &amp;&#160;</td>
+          <td class="paramname"><em>arguments</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Tools_8cpp_source.html#l00201">201</a> of file <a class="el" href="Tools_8cpp_source.html">Tools.cpp</a>.</p>
 
 </div>
 </div>

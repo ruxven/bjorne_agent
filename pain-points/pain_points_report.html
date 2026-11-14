@@ -85,7 +85,17 @@
     `;s.appendChild(a)}i(t,e){this.dispatchEvent(new CustomEvent(t,{bubbles:true,composed:true,detail:e}))}}customElements.define("dark-mode",a);</script><div style="max-width: 960px; margin: 0 auto 60px auto; padding: 8px;" class="markdown-style">
     <h1 id="developer-pain-point-report"><a class="anchor" aria-hidden="true" tabindex="-1" href="#developer-pain-point-report"><span class="octicon octicon-link"></span></a>Developer Pain Point Report</h1>
     <h2 id="-top-high-risk-functions-complex--untested"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-top-high-risk-functions-complex--untested"><span class="octicon octicon-link"></span></a>🚨 Top High Risk Functions (Complex + Untested)</h2>
-    <p>None detected!</p>
+    <ul>
+      <li><strong><a href="https://github.com/ruxven/bjorne_agent/blob/34c5b67a61d605900c798c1142e6af5ea24ecbe6/src/main.cpp#L179-L281"><code>runTask()</code></a></strong> in <code>src/main.cpp</code>
+        <ul>
+          <li>Score: <strong>10100</strong></li>
+          <li>Complexity: <strong>17</strong> (above threshold value: 15)</li>
+          <li>Branch Coverage: <strong>0.0%</strong> (below threshold value: 80)</li>
+          <li>Line Coverage: <strong>0.0%</strong> (below threshold value: 80)</li>
+          <li>Critical findings: ``</li>
+        </ul>
+      </li>
+    </ul>
     <h2 id="-top-security-risk-functions-prioritized-by-coverage"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-top-security-risk-functions-prioritized-by-coverage"><span class="octicon octicon-link"></span></a>🔒 Top Security Risk Functions (Prioritized by coverage)</h2>
     <p>None detected!</p>
     <script>/*! @uiw/copy-to-clipboard v1.0.12 | MIT (c) 2021 Kenny Wang | https://github.com/uiwjs/copy-to-clipboard.git */

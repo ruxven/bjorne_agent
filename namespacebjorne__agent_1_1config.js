@@ -5,6 +5,7 @@ var namespacebjorne__agent_1_1config =
     [ "McpServerConfig", "structbjorne__agent_1_1config_1_1McpServerConfig.html", "structbjorne__agent_1_1config_1_1McpServerConfig" ],
     [ "ModelConfig", "structbjorne__agent_1_1config_1_1ModelConfig.html", "structbjorne__agent_1_1config_1_1ModelConfig" ],
     [ "load", "namespacebjorne__agent_1_1config.html#ad56b705962a4be07d5e6182a9dcae13e", null ],
+    [ "userConfigDirectory", "namespacebjorne__agent_1_1config.html#a3a5bb54227857447687bb8f2fb90f334", null ],
     [ "environmentConfigPath", "namespacebjorne__agent_1_1config.html#a6097c519f9154b0c3bffa1498b60e038", null ],
     [ "defaultConfigPaths", "namespacebjorne__agent_1_1config.html#af36d427749bcdcfa050c18ea17e5a803", null ],
     [ "findDefaultConfig", "namespacebjorne__agent_1_1config.html#a282cf023a690af1973f41a630403f09e", null ]

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['url_0',['Url',['../structbjorne__agent_1_1http_1_1Url.html',1,'bjorne_agent::http']]]
+  ['skill_0',['Skill',['../structbjorne__agent_1_1skills_1_1Skill.html',1,'bjorne_agent::skills']]],
+  ['skillload_1',['SkillLoad',['../structbjorne__agent_1_1skills_1_1SkillLoad.html',1,'bjorne_agent::skills']]]
 ];

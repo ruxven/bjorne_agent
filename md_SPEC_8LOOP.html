@@ -93,34 +93,34 @@ $(document).ready(function(){initNavTree('md_SPEC_8LOOP.html',''); initResizable
   <div class="headertitle"><div class="title">SPEC.LOOP: Agent Loop Specification</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md53"></a> </p>
-<h1><a class="anchor" id="autotoc_md54"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md55"></a> </p>
+<h1><a class="anchor" id="autotoc_md56"></a>
 Purpose</h1>
 <p>This document specifies the agent loop for the C++ agent harness.</p>
-<h1><a class="anchor" id="autotoc_md55"></a>
+<h1><a class="anchor" id="autotoc_md57"></a>
 Overview</h1>
 <p>The loop takes a task, builds context, calls the model, runs tools, and repeats until it stops.</p>
-<h1><a class="anchor" id="autotoc_md56"></a>
+<h1><a class="anchor" id="autotoc_md58"></a>
 Loop Stages</h1>
-<h2><a class="anchor" id="autotoc_md57"></a>
+<h2><a class="anchor" id="autotoc_md59"></a>
 Context Assembly</h2>
 <p>The loop gathers the system prompt, the task, and the conversation history into one context.</p>
-<h2><a class="anchor" id="autotoc_md58"></a>
+<h2><a class="anchor" id="autotoc_md60"></a>
 Model Call</h2>
 <p>The loop sends the context to the model. The model returns a response. The response may carry tool calls. The response may be a final answer.</p>
-<h2><a class="anchor" id="autotoc_md59"></a>
+<h2><a class="anchor" id="autotoc_md61"></a>
 Tool Execution</h2>
 <p>The loop runs the requested tools. The loop captures results and appends them to the context.</p>
-<h2><a class="anchor" id="autotoc_md60"></a>
+<h2><a class="anchor" id="autotoc_md62"></a>
 Iteration</h2>
 <p>The loop appends the model response and tool results, then returns to the model call.</p>
-<h1><a class="anchor" id="autotoc_md61"></a>
+<h1><a class="anchor" id="autotoc_md63"></a>
 Stopping Conditions</h1>
 <ul>
 <li>The model returns a final response without tool calls.</li>
 <li>The iteration cap is reached.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md62"></a>
+<h1><a class="anchor" id="autotoc_md64"></a>
 Context Management</h1>
 <ul>
 <li>Default overflow strategy: truncate.</li>
@@ -128,14 +128,14 @@ Context Management</h1>
 <li>Compression timing is per model, because models differ in context performance.</li>
 <li>Compression instruction: the default prompt is "Summarize the conversation". A customized instruction may be better. The customized instruction comes from a markdown file referenced by configuration, combined with the binary and the config file. The user can configure more specific behavior in the markdown file.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md63"></a>
+<h1><a class="anchor" id="autotoc_md65"></a>
 Error Handling</h1>
 <p>The loop handles model errors and tool errors.</p>
 <ul>
 <li>Model error: the loop stops and reports the failure.</li>
 <li>Tool error: the tool result carries the error text. The loop appends the result to the context and continues.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md64"></a>
+<h1><a class="anchor" id="autotoc_md66"></a>
 Status</h1>
 <ul>
 <li>Agent loop specification in progress. This file is the working output. </li>

@@ -38,5 +38,6 @@ var namespacebjorne__agent =
       [ "addressErrorMessage", "namespacebjorne__agent_1_1platform.html#ae46cfb3143fb8a6c4f60030389f6938b", null ],
       [ "kInvalidSocket", "namespacebjorne__agent_1_1platform.html#a7637629a7126c10bc79073adb0ae1e7a", null ]
     ] ],
+    [ "skills", "namespacebjorne__agent_1_1skills.html", "namespacebjorne__agent_1_1skills" ],
     [ "tools", "namespacebjorne__agent_1_1tools.html", "namespacebjorne__agent_1_1tools" ]
 ];

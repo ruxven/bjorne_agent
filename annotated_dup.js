@@ -15,8 +15,11 @@ var annotated_dup =
         [ "ModelConfig", "structbjorne__agent_1_1config_1_1ModelConfig.html", "structbjorne__agent_1_1config_1_1ModelConfig" ]
       ] ],
       [ "context", "namespacebjorne__agent_1_1context.html", [
+        [ "AgentsFiles", "structbjorne__agent_1_1context_1_1AgentsFiles.html", "structbjorne__agent_1_1context_1_1AgentsFiles" ],
         [ "ContextManager", "classbjorne__agent_1_1context_1_1ContextManager.html", "classbjorne__agent_1_1context_1_1ContextManager" ],
-        [ "ContextManagerConfig", "structbjorne__agent_1_1context_1_1ContextManagerConfig.html", "structbjorne__agent_1_1context_1_1ContextManagerConfig" ]
+        [ "ContextManagerConfig", "structbjorne__agent_1_1context_1_1ContextManagerConfig.html", "structbjorne__agent_1_1context_1_1ContextManagerConfig" ],
+        [ "Fragment", "structbjorne__agent_1_1context_1_1Fragment.html", "structbjorne__agent_1_1context_1_1Fragment" ],
+        [ "FragmentLimits", "structbjorne__agent_1_1context_1_1FragmentLimits.html", "structbjorne__agent_1_1context_1_1FragmentLimits" ]
       ] ],
       [ "http", "namespacebjorne__agent_1_1http.html", [
         [ "HttpClient", "classbjorne__agent_1_1http_1_1HttpClient.html", "classbjorne__agent_1_1http_1_1HttpClient" ],
@@ -39,6 +42,10 @@ var annotated_dup =
         [ "ModelMessage", "structbjorne__agent_1_1model_1_1ModelMessage.html", "structbjorne__agent_1_1model_1_1ModelMessage" ],
         [ "ModelResponse", "structbjorne__agent_1_1model_1_1ModelResponse.html", "structbjorne__agent_1_1model_1_1ModelResponse" ],
         [ "ToolCall", "structbjorne__agent_1_1model_1_1ToolCall.html", "structbjorne__agent_1_1model_1_1ToolCall" ]
+      ] ],
+      [ "skills", "namespacebjorne__agent_1_1skills.html", [
+        [ "Skill", "structbjorne__agent_1_1skills_1_1Skill.html", "structbjorne__agent_1_1skills_1_1Skill" ],
+        [ "SkillLoad", "structbjorne__agent_1_1skills_1_1SkillLoad.html", "structbjorne__agent_1_1skills_1_1SkillLoad" ]
       ] ],
       [ "tools", "namespacebjorne__agent_1_1tools.html", [
         [ "ToolDefinition", "structbjorne__agent_1_1tools_1_1ToolDefinition.html", "structbjorne__agent_1_1tools_1_1ToolDefinition" ],

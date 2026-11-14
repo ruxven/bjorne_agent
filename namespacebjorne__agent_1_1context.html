@@ -93,6 +93,7 @@ $(document).ready(function(){initNavTree('namespacebjorne__agent_1_1context.html
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">bjorne_agent::context Namespace Reference</div></div>
 </div><!--header-->
@@ -100,15 +101,30 @@ $(document).ready(function(){initNavTree('namespacebjorne__agent_1_1context.html
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbjorne__agent_1_1context_1_1AgentsFiles.html">AgentsFiles</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1context_1_1ContextManager.html">ContextManager</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbjorne__agent_1_1context_1_1ContextManagerConfig.html">ContextManagerConfig</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbjorne__agent_1_1context_1_1Fragment.html">Fragment</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbjorne__agent_1_1context_1_1FragmentLimits.html">FragmentLimits</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a4007de9e84b44e6fb37d595d85316cf9" id="r_a4007de9e84b44e6fb37d595d85316cf9"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1context.html#a4007de9e84b44e6fb37d595d85316cf9">CompressionHandler</a> = std::function&lt; bool(const std::vector&lt; <a class="el" href="structbjorne__agent_1_1model_1_1ModelMessage.html">model::ModelMessage</a> &gt; &amp;messages, const std::string &amp;instruction, std::string &amp;summary, std::string &amp;error)&gt;</td></tr>
 <tr class="separator:a4007de9e84b44e6fb37d595d85316cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ae9dd135a139e5fa5117f908fe9a11c1d" id="r_ae9dd135a139e5fa5117f908fe9a11c1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbjorne__agent_1_1context_1_1AgentsFiles.html">AgentsFiles</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1context.html#ae9dd135a139e5fa5117f908fe9a11c1d">loadAgentsFiles</a> (const std::string &amp;workspace, const std::string &amp;global_config_directory)</td></tr>
+<tr class="separator:ae9dd135a139e5fa5117f908fe9a11c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc4f1e5cda33f7727a0a78f505533832" id="r_acc4f1e5cda33f7727a0a78f505533832"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1context.html#acc4f1e5cda33f7727a0a78f505533832">readFragment</a> (const std::string &amp;path, <a class="el" href="structbjorne__agent_1_1context_1_1Fragment.html">Fragment</a> &amp;out)</td></tr>
+<tr class="separator:acc4f1e5cda33f7727a0a78f505533832"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad51c9d160d037d5879c5190d2cc26436" id="r_ad51c9d160d037d5879c5190d2cc26436"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1context.html#ad51c9d160d037d5879c5190d2cc26436">renderFragments</a> (const std::vector&lt; <a class="el" href="structbjorne__agent_1_1context_1_1Fragment.html">Fragment</a> &gt; &amp;fragments, <a class="el" href="structbjorne__agent_1_1context_1_1FragmentLimits.html">FragmentLimits</a> limits)</td></tr>
+<tr class="separator:ad51c9d160d037d5879c5190d2cc26436"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -129,6 +145,97 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="ContextManager_8h_source.html#l00025">25</a> of file <a class="el" href="ContextManager_8h_source.html">ContextManager.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ae9dd135a139e5fa5117f908fe9a11c1d" name="ae9dd135a139e5fa5117f908fe9a11c1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9dd135a139e5fa5117f908fe9a11c1d">&#9670;&#160;</a></span>loadAgentsFiles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structbjorne__agent_1_1context_1_1AgentsFiles.html">AgentsFiles</a> bjorne_agent::context::loadAgentsFiles </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>workspace</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>global_config_directory</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AgentsFiles_8cpp_source.html#l00045">45</a> of file <a class="el" href="AgentsFiles_8cpp_source.html">AgentsFiles.cpp</a>.</p>
+
+</div>
+</div>
+<a id="acc4f1e5cda33f7727a0a78f505533832" name="acc4f1e5cda33f7727a0a78f505533832"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc4f1e5cda33f7727a0a78f505533832">&#9670;&#160;</a></span>readFragment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool bjorne_agent::context::readFragment </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structbjorne__agent_1_1context_1_1Fragment.html">Fragment</a> &amp;&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Fragments_8cpp_source.html#l00028">28</a> of file <a class="el" href="Fragments_8cpp_source.html">Fragments.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad51c9d160d037d5879c5190d2cc26436" name="ad51c9d160d037d5879c5190d2cc26436"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad51c9d160d037d5879c5190d2cc26436">&#9670;&#160;</a></span>renderFragments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string bjorne_agent::context::renderFragments </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structbjorne__agent_1_1context_1_1Fragment.html">Fragment</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>fragments</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structbjorne__agent_1_1context_1_1FragmentLimits.html">FragmentLimits</a>&#160;</td>
+          <td class="paramname"><em>limits</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Fragments_8cpp_source.html#l00043">43</a> of file <a class="el" href="Fragments_8cpp_source.html">Fragments.cpp</a>.</p>
 
 </div>
 </div>

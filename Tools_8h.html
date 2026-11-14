@@ -93,13 +93,15 @@ $(document).ready(function(){initNavTree('Tools_8h.html',''); initResizable(); }
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Tools.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;functional&gt;</code><br />
 <code>#include &lt;map&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="Json_8h_source.html">json/Json.h</a>&quot;</code><br />
 </div>
@@ -125,6 +127,15 @@ Namespaces</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a12306154355bf9a749837809aad2fea1" id="r_a12306154355bf9a749837809aad2fea1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1tools.html#a12306154355bf9a749837809aad2fea1">bjorne_agent::tools::ToolHandler</a> = std::function&lt; <a class="el" href="structbjorne__agent_1_1tools_1_1ToolResult.html">ToolResult</a>(const std::string &amp;arguments)&gt;</td></tr>
 <tr class="separator:a12306154355bf9a749837809aad2fea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a2cf510ec76f7f6fb20316bacfef11b17" id="r_a2cf510ec76f7f6fb20316bacfef11b17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1tools.html#a2cf510ec76f7f6fb20316bacfef11b17">bjorne_agent::tools::stringParameters</a> (const std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;properties, const std::vector&lt; std::string &gt; &amp;required)</td></tr>
+<tr class="separator:a2cf510ec76f7f6fb20316bacfef11b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a567f75a682fdcac685243ef21753af1f" id="r_a567f75a682fdcac685243ef21753af1f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1tools.html#a567f75a682fdcac685243ef21753af1f">bjorne_agent::tools::parseToolArguments</a> (const std::string &amp;arguments, <a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a> &amp;out)</td></tr>
+<tr class="separator:a567f75a682fdcac685243ef21753af1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa546bc5b0358f22aed3802dd466bcca3" id="r_aa546bc5b0358f22aed3802dd466bcca3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1tools.html#aa546bc5b0358f22aed3802dd466bcca3">bjorne_agent::tools::toolStringArgument</a> (const <a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a> &amp;arguments, const std::string &amp;key, std::string &amp;out)</td></tr>
+<tr class="separator:aa546bc5b0358f22aed3802dd466bcca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
