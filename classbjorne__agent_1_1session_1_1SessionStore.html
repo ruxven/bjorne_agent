@@ -114,6 +114,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9876a3d359e9d62c3d651ee588eb7930"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a837a03b7a0986a2758745a6f4250fa46" id="r_a837a03b7a0986a2758745a6f4250fa46"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1session_1_1SessionStore.html#a837a03b7a0986a2758745a6f4250fa46">load</a> (const std::string &amp;id, <a class="el" href="structbjorne__agent_1_1session_1_1SessionState.html">SessionState</a> &amp;state, std::string &amp;error) const</td></tr>
 <tr class="separator:a837a03b7a0986a2758745a6f4250fa46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f1e298b78be034800d943a9007a734e" id="r_a4f1e298b78be034800d943a9007a734e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1session_1_1SessionStore.html#a4f1e298b78be034800d943a9007a734e">erase</a> (const std::string &amp;id, std::string &amp;error)</td></tr>
+<tr class="separator:a4f1e298b78be034800d943a9007a734e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a229d0aee395ae7617cbf0de2ddf66d13" id="r_a229d0aee395ae7617cbf0de2ddf66d13"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structbjorne__agent_1_1session_1_1SessionSummary.html">SessionSummary</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1session_1_1SessionStore.html#a229d0aee395ae7617cbf0de2ddf66d13">list</a> (std::string &amp;error) const</td></tr>
 <tr class="separator:a229d0aee395ae7617cbf0de2ddf66d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a238da80bc27d70f50dd43f9d27d5a8" id="r_a9a238da80bc27d70f50dd43f9d27d5a8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1session_1_1SessionStore.html#a9a238da80bc27d70f50dd43f9d27d5a8">latest</a> (std::string &amp;error) const</td></tr>
@@ -126,7 +128,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Session_8h_source.html#l00045">45</a> of file <a class="el" href="Session_8h_source.html">Session.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Session_8h_source.html#l00048">48</a> of file <a class="el" href="Session_8h_source.html">Session.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3cf1e1f5f250d10cefafa013167a6d84" name="a3cf1e1f5f250d10cefafa013167a6d84"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3cf1e1f5f250d10cefafa013167a6d84">&#9670;&#160;</a></span>SessionStore()</h2>
@@ -189,7 +191,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Session_8cpp_source.html#l00310">310</a> of file <a class="el" href="Session_8cpp_source.html">Session.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Session_8cpp_source.html#l00318">318</a> of file <a class="el" href="Session_8cpp_source.html">Session.cpp</a>.</p>
 
 </div>
 </div>
@@ -242,7 +244,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Session_8h_source.html#l00054">54</a> of file <a class="el" href="Session_8h_source.html">Session.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Session_8h_source.html#l00057">57</a> of file <a class="el" href="Session_8h_source.html">Session.h</a>.</p>
 
 </div>
 </div>
@@ -272,7 +274,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Session_8cpp_source.html#l00345">345</a> of file <a class="el" href="Session_8cpp_source.html">Session.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Session_8cpp_source.html#l00353">353</a> of file <a class="el" href="Session_8cpp_source.html">Session.cpp</a>.</p>
 
 </div>
 </div>
@@ -302,7 +304,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Session_8cpp_source.html#l00354">354</a> of file <a class="el" href="Session_8cpp_source.html">Session.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Session_8cpp_source.html#l00367">367</a> of file <a class="el" href="Session_8cpp_source.html">Session.cpp</a>.</p>
 
 </div>
 </div>
@@ -338,7 +340,37 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Session_8cpp_source.html#l00363">363</a> of file <a class="el" href="Session_8cpp_source.html">Session.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Session_8cpp_source.html#l00376">376</a> of file <a class="el" href="Session_8cpp_source.html">Session.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a4f1e298b78be034800d943a9007a734e" name="a4f1e298b78be034800d943a9007a734e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f1e298b78be034800d943a9007a734e">&#9670;&#160;</a></span>erase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool bjorne_agent::session::SessionStore::erase </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>error</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Session_8cpp_source.html#l00398">398</a> of file <a class="el" href="Session_8cpp_source.html">Session.cpp</a>.</p>
 
 </div>
 </div>
@@ -358,7 +390,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Session_8cpp_source.html#l00385">385</a> of file <a class="el" href="Session_8cpp_source.html">Session.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Session_8cpp_source.html#l00412">412</a> of file <a class="el" href="Session_8cpp_source.html">Session.cpp</a>.</p>
 
 </div>
 </div>
@@ -378,7 +410,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Session_8cpp_source.html#l00429">429</a> of file <a class="el" href="Session_8cpp_source.html">Session.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Session_8cpp_source.html#l00457">457</a> of file <a class="el" href="Session_8cpp_source.html">Session.cpp</a>.</p>
 
 </div>
 </div>

@@ -7,6 +7,7 @@ var classbjorne__agent_1_1session_1_1SessionStore =
     [ "begin", "classbjorne__agent_1_1session_1_1SessionStore.html#a04aacdd5a322264b32f821a758c94340", null ],
     [ "save", "classbjorne__agent_1_1session_1_1SessionStore.html#a9876a3d359e9d62c3d651ee588eb7930", null ],
     [ "load", "classbjorne__agent_1_1session_1_1SessionStore.html#a837a03b7a0986a2758745a6f4250fa46", null ],
+    [ "erase", "classbjorne__agent_1_1session_1_1SessionStore.html#a4f1e298b78be034800d943a9007a734e", null ],
     [ "list", "classbjorne__agent_1_1session_1_1SessionStore.html#a229d0aee395ae7617cbf0de2ddf66d13", null ],
     [ "latest", "classbjorne__agent_1_1session_1_1SessionStore.html#a9a238da80bc27d70f50dd43f9d27d5a8", null ]
 ];

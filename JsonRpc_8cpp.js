@@ -6,5 +6,6 @@ var JsonRpc_8cpp =
     [ "encodeNotification", "JsonRpc_8cpp.html#ac864a0e00942a74d9795151892ddebff", null ],
     [ "encodeResult", "JsonRpc_8cpp.html#af0f4ba81c83cf64745b9ce2738260ef2", null ],
     [ "encodeError", "JsonRpc_8cpp.html#ad821f57bdfca002e062a8395e9427d6a", null ],
+    [ "encodeError", "JsonRpc_8cpp.html#a48021c6002f22642392ecc15251d4d88", null ],
     [ "parse", "JsonRpc_8cpp.html#a456a508bbf84c9066f9b24077b2c0fb4", null ]
 ];

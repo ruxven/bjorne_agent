@@ -4,5 +4,6 @@ var structbjorne__agent_1_1agent_1_1AgentLoopConfig =
     [ "workspace", "structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a39790b2ac405c3698adeed4980083878", null ],
     [ "max_iterations", "structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a2faf3dd28d46ff81abbada61a766f590", null ],
     [ "history", "structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a1f173b8614b3910c82406706da05abe8", null ],
-    [ "stop_requested", "structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a5595f7681559987862d40e5b0aa0f48b", null ]
+    [ "stop_requested", "structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a5595f7681559987862d40e5b0aa0f48b", null ],
+    [ "permissionGate", "structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a401c14133c1a46d83e581ef2670b05aa", null ]
 ];

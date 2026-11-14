@@ -6,5 +6,6 @@ var namespacebjorne__agent_1_1tools =
     [ "ToolHandler", "namespacebjorne__agent_1_1tools.html#a12306154355bf9a749837809aad2fea1", null ],
     [ "stringParameters", "namespacebjorne__agent_1_1tools.html#a2cf510ec76f7f6fb20316bacfef11b17", null ],
     [ "parseToolArguments", "namespacebjorne__agent_1_1tools.html#a567f75a682fdcac685243ef21753af1f", null ],
-    [ "toolStringArgument", "namespacebjorne__agent_1_1tools.html#aa546bc5b0358f22aed3802dd466bcca3", null ]
+    [ "toolStringArgument", "namespacebjorne__agent_1_1tools.html#aa546bc5b0358f22aed3802dd466bcca3", null ],
+    [ "resolveToolPath", "namespacebjorne__agent_1_1tools.html#a3c6a6a92c5d57afc92ee982262c17289", null ]
 ];

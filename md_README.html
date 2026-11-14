@@ -211,6 +211,7 @@ Usage</h1>
 <div class="line">bjorne_agent [options] init</div>
 <div class="line">bjorne_agent [options] sessions</div>
 <div class="line">bjorne_agent [options] resume [session]</div>
+<div class="line">bjorne_agent [options] acp [config]</div>
 </div><!-- fragment --><p><code>run</code> is the default, so the bare form and the spelled out form do the same thing. The config path and the task are both optional once the command line names one of them, and the binary works out which is which.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -235,7 +236,9 @@ Commands</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>sessions</code>   </td><td class="markdownTableBodyNone">List stored sessions, most recently updated first.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>resume</code>   </td><td class="markdownTableBodyNone">Continue a stored session, or print its answer when it is complete.   </td></tr>
+<td class="markdownTableBodyNone"><code>resume</code>   </td><td class="markdownTableBodyNone">Continue a stored session, or print its answer when it is complete.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>acp</code>   </td><td class="markdownTableBodyNone">Serve the Agent Client Protocol on standard input and standard output.   </td></tr>
 </table>
 <p>The verbs are reserved. A task that begins with one has to be passed after <code>run</code>, or it is read as that command:</p>
 <div class="fragment"><div class="line">bjorne_agent run &quot;init the project&quot;</div>
@@ -311,13 +314,28 @@ Sessions</h2>
 <p>A session whose status is <code>complete</code> prints its stored answer and makes no model call. <code>sessions</code> and <code>resume</code> find the config the same way a run does and take no config path of their own; both require <code>agent.session_dir</code>.</p>
 <p>With <code>session_dir</code> empty there is no persistence and the run is the one-shot behaviour described above.</p>
 <h2><a class="anchor" id="autotoc_md13"></a>
+ACP mode</h2>
+<p><code>acp</code> serves the Agent Client Protocol, which is what puts the agent in front of an editor such as Zed, Neovim or JetBrains. The editor launches the agent as a subprocess and drives it over standard input and standard output:</p>
+<div class="fragment"><div class="line">bjorne_agent acp [config]</div>
+</div><!-- fragment --><p>The wire format is JSON-RPC 2.0 with one message per line, the same codec the MCP client uses. Standard output carries protocol messages only; progress goes to standard error.</p>
+<ul>
+<li><code>initialize</code> negotiates the protocol version and the capabilities. The agent answers with the requested version when it supports it, and with the latest version it supports otherwise.</li>
+<li><code>session/new</code>, <code>session/prompt</code>, <code>session/cancel</code>, <code>session/load</code>, <code>session/resume</code>, <code>session/list</code> and <code>session/delete</code> are the agent side methods. The last three need a <code>session_dir</code>, and the sessions they reach are the same ones <code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> sessions</code> lists.</li>
+<li>The agent calls back into the editor for <code>fs/read_text_file</code>, <code>fs/write_text_file</code>, <code>session/request_permission</code>, <code>elicitation/create</code> and the <code>terminal/*</code> family. The elicitation and terminal tools are only installed when the editor advertises the matching capability.</li>
+<li>The workspace comes from <code>session/new</code> and overrides the configured workspace. The MCP servers the editor supplies override the configured ones for that session.</li>
+<li>The file tools go through the editor when it advertises the file system capability, so an unsaved buffer is reachable, and fall back to the local filesystem when it does not.</li>
+<li>A permission request offers four answers: allow once, allow always, reject once and reject always. "Allow always" is remembered for the rest of the session, so the editor is not asked again about that tool.</li>
+<li><code>session/cancel</code> interrupts a turn that is already running, including a turn that is waiting for a permission answer.</li>
+</ul>
+<p>The draft version two of the protocol is not implemented.</p>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Setting up a config</h2>
 <p><code>setup.sh</code> asks for the settings and writes both a config and a <code>.env</code>:</p>
 <div class="fragment"><div class="line">./setup.sh</div>
 </div><!-- fragment --><p>It writes to <code>./.bjorne_agent/bjorne_agent.json</code> or <code>~/.config/bjorne_agent/bjorne_agent.json</code>, the same two paths the binary searches, and puts a <code>.env</code> beside the config with the API key variable stubbed out. Fill in the key and source it:</p>
 <div class="fragment"><div class="line">source .bjorne_agent/.env</div>
 <div class="line">bjorne_agent &quot;hello&quot;</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md14"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md15"></a>
 Configuration</h1>
 <p>The config is JSON with <code>snake_case</code> keys. <code>config/bjorne_agent.example.json</code> is a complete example.</p>
 <div class="fragment"><div class="line">{</div>
@@ -346,7 +364,7 @@ Configuration</h1>
 <div class="line">  ],</div>
 <div class="line">  &quot;mcp_servers&quot;: {}</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md15"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md16"></a>
 Agent</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -362,7 +380,7 @@ Agent</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>interactive</code>   </td><td class="markdownTableBodyNone">boolean, optional   </td><td class="markdownTableBodyNone">Defaults to <code>false</code>. Enables the console interaction channel when standard input is a terminal.   </td></tr>
 </table>
-<h2><a class="anchor" id="autotoc_md16"></a>
+<h2><a class="anchor" id="autotoc_md17"></a>
 Model</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -392,7 +410,7 @@ Model</h2>
 </table>
 <p>The endpoint scheme picks the transport. <code>https</code> uses TLS, <code>http</code> uses plain TCP, which is what a local model such as llama.cpp needs. A host may carry an explicit port, as in <code><a href="http://127.0.0.1:11434/v1">http://127.0.0.1:11434/v1</a></code>. IPv6 hosts use brackets, as in <code><a href="http://">http://</a>[::1]:8080/v1</code>.</p>
 <p>A relative <code>compression_prompt_path</code> resolves against the directory holding the config file, not the working directory. When the key is absent, the compression instruction is <code>Summarize the conversation</code>.</p>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md18"></a>
 Context fragments</h2>
 <p>Two sources are added to the configured <code>system_prompt</code> before the first model call.</p>
 <p><code>AGENTS.md</code> files are discovered automatically. The search reads the global file <code>~/.config/bjorne_agent/AGENTS.md</code>, then the workspace and every parent directory. The global file comes first and the nearest file last, so the most specific instruction is the last one the model reads. The assembled text is capped at 64 KiB; a file that does not fit is truncated and marked.</p>
@@ -407,7 +425,7 @@ Context fragments</h2>
 <div class="line">---</div>
 <div class="line">Read the commits and group them by change type.</div>
 </div><!-- fragment --><p>Only the name and description go into the system prompt. The model calls the <code>load_skill</code> tool to read the full instructions on demand, which keeps a large skills directory out of the context until one is needed. A skill file without usable frontmatter is skipped with a warning rather than stopping the run.</p>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md19"></a>
 MCP servers</h2>
 <p><code>mcp_servers</code> maps a server name to a stdio server definition. Each server is spawned as a child process at startup and speaks newline delimited JSON-RPC 2.0 over its standard input and output. There is no <code>Content-Length</code> framing.</p>
 <table class="markdownTable">
@@ -440,12 +458,12 @@ MCP servers</h2>
 <div class="line">    &quot;command&quot;: &quot;/usr/local/share/bjorne_agent/mcp/mcp-filesystem&quot;</div>
 <div class="line">  }</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md19"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md20"></a>
 TLS</h2>
 <p>Certificate verification is on by default. The chain is checked against the system trust store, and the expected hostname is the <code>hostname</code> key when present, otherwise the host from the endpoint. A rejected certificate ends the run with the reason, for example <code>Certificate verification failed: self-signed certificate</code>.</p>
 <p><code>ignore_self_signed</code> turns off both the chain check and the hostname check. Use it only against a host with a self-signed certificate. The API key travels over this connection, so a build that trusts arbitrary certificates can hand the key to a wrong peer.</p>
 <p>Set <code>hostname</code> when the endpoint host is an address or an internal name but the certificate carries a different name.</p>
-<h1><a class="anchor" id="autotoc_md20"></a>
+<h1><a class="anchor" id="autotoc_md21"></a>
 Tools</h1>
 <p>The model requests tools as JSON function calls. The registry starts with four built-ins and can add, replace, or remove a tool by name before the definitions are sent to the model.</p>
 <table class="markdownTable">
@@ -466,7 +484,7 @@ Tools</h1>
 </table>
 <p>Relative paths resolve against <code>agent.workspace</code>. A path that traverses a parent directory is rejected. A tool that fails does not stop the loop: the error becomes tool result text and the model decides what to do next.</p>
 <p><code>request_input</code> is always registered, but the channel behind it depends on the configuration. With <code>agent.interactive</code> false, or when standard input is not a terminal, it fails at once with a message that says why instead of waiting for an answer. With <code>agent.interactive</code> true and a terminal on standard input, it prints the question and reads one line. The task must be passed as an argument in that mode, because a task read from standard input consumes the same stream.</p>
-<h1><a class="anchor" id="autotoc_md21"></a>
+<h1><a class="anchor" id="autotoc_md22"></a>
 Containers</h1>
 <p><code>container/README.md</code> covers the podman work: the three build environments and the runtime image.</p>
 <p>The build environments are a fully static musl build, a dynamic glibc build with shared OpenSSL, and a no-TLS build. The script builds, tests, and installs inside the container and leaves the artifacts on the host.</p>
@@ -491,7 +509,7 @@ Containers</h1>
 <div class="line">  -v &quot;$PWD:/workspace&quot; \</div>
 <div class="line">  bjorne_agent &quot;your task&quot;</div>
 </div><!-- fragment --><p>A relative <code>compression_prompt_path</code> resolves against the directory holding the config file, so a config mounted outside <code>/etc/bjorne_agent</code> needs the absolute path <code>/usr/local/share/bjorne_agent/prompts/compression.md</code>.</p>
-<h1><a class="anchor" id="autotoc_md22"></a>
+<h1><a class="anchor" id="autotoc_md23"></a>
 Development</h1>
 <p>Run the tests:</p>
 <div class="fragment"><div class="line">cmake --build build</div>
@@ -521,7 +539,7 @@ Development</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code><a class="el" href="ROADMAP_8md.html">ROADMAP.md</a></code>   </td><td class="markdownTableBodyNone">What is done and what is next.   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md23"></a>
+<h1><a class="anchor" id="autotoc_md24"></a>
 License</h1>
 <p>MIT. See [LICENSE](LICENSE).</p>
 <p>The vendored Catch2 sources under <code>third_party/catch2/</code> carry their own license, Boost Software License 1.0. They are used for the test binary only and are not part of the shipped artifact. </p>

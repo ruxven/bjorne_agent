@@ -1,6 +1,7 @@
 var Endpoint_8h =
 [
     [ "bjorne_agent::jsonrpc::Transport", "classbjorne__agent_1_1jsonrpc_1_1Transport.html", "classbjorne__agent_1_1jsonrpc_1_1Transport" ],
+    [ "bjorne_agent::jsonrpc::RequestOptions", "structbjorne__agent_1_1jsonrpc_1_1RequestOptions.html", "structbjorne__agent_1_1jsonrpc_1_1RequestOptions" ],
     [ "bjorne_agent::jsonrpc::Endpoint", "classbjorne__agent_1_1jsonrpc_1_1Endpoint.html", "classbjorne__agent_1_1jsonrpc_1_1Endpoint" ],
     [ "RequestHandler", "Endpoint_8h.html#abdda357879eb82f302837951d053a2c4", null ],
     [ "NotificationHandler", "Endpoint_8h.html#a1951ff00b6d4b959604adca4acdcacbc", null ],

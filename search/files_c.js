@@ -9,5 +9,7 @@ var searchData=
   ['skills_2eh_6',['Skills.h',['../Skills_8h.html',1,'']]],
   ['spec_2econfig_2emd_7',['SPEC.CONFIG.md',['../SPEC_8CONFIG_8md.html',1,'']]],
   ['spec_2eloop_2emd_8',['SPEC.LOOP.md',['../SPEC_8LOOP_8md.html',1,'']]],
-  ['spec_2emd_9',['SPEC.md',['../SPEC_8md.html',1,'']]]
+  ['spec_2emd_9',['SPEC.md',['../SPEC_8md.html',1,'']]],
+  ['stdiotransport_2ecpp_10',['StdioTransport.cpp',['../StdioTransport_8cpp.html',1,'']]],
+  ['stdiotransport_2eh_11',['StdioTransport.h',['../StdioTransport_8h.html',1,'']]]
 ];

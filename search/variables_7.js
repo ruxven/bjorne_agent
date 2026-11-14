@@ -1,8 +1,13 @@
 var searchData=
 [
-  ['id_0',['id',['../structbjorne__agent_1_1jsonrpc_1_1Message.html#adbd996037e1383c6a746efd603fda4b7',1,'bjorne_agent::jsonrpc::Message::id'],['../structbjorne__agent_1_1model_1_1ToolCall.html#a27b46a344614e32791817a63b36812a5',1,'bjorne_agent::model::ToolCall::id'],['../structbjorne__agent_1_1session_1_1SessionState.html#aaf7d6d45e7bc239adf7887bc87cd4978',1,'bjorne_agent::session::SessionState::id'],['../structbjorne__agent_1_1session_1_1SessionSummary.html#a47c77aeec8964c35a43b5d74e0d1e29d',1,'bjorne_agent::session::SessionSummary::id']]],
-  ['ignore_5fself_5fsigned_1',['ignore_self_signed',['../structbjorne__agent_1_1config_1_1ModelConfig.html#a0a41c5f1506df27d29de14cd23b9bbc3',1,'bjorne_agent::config::ModelConfig::ignore_self_signed'],['../structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html#ab99629283a6a982082fb3cbd07f50a02',1,'bjorne_agent::http::OpenSslTransport::Options::ignore_self_signed'],['../structbjorne__agent_1_1model_1_1ModelClientOptions.html#aca66324f31e456a721023bdb5a7d799d',1,'bjorne_agent::model::ModelClientOptions::ignore_self_signed']]],
-  ['input_5fschema_2',['input_schema',['../structbjorne__agent_1_1mcp_1_1ToolInfo.html#a4809328b0457f80ebd0ff59934a34675',1,'bjorne_agent::mcp::ToolInfo']]],
-  ['instructions_3',['instructions',['../structbjorne__agent_1_1skills_1_1Skill.html#af1a3ac4ea12a6b29b27ae86f97bba5db',1,'bjorne_agent::skills::Skill']]],
-  ['interactive_4',['interactive',['../structbjorne__agent_1_1config_1_1AgentConfig.html#a6c06f359b8df75fdf1a98c1a62357dba',1,'bjorne_agent::config::AgentConfig']]]
+  ['hasdata_0',['hasData',['../structbjorne__agent_1_1jsonrpc_1_1Error.html#adcce6ef3df34c79cad2a3f9e16c7c037',1,'bjorne_agent::jsonrpc::Error']]],
+  ['haserror_1',['hasError',['../structbjorne__agent_1_1jsonrpc_1_1Message.html#a7160682052fb6a7c7810aec739de0659',1,'bjorne_agent::jsonrpc::Message']]],
+  ['hasid_2',['hasId',['../structbjorne__agent_1_1jsonrpc_1_1Message.html#ae177fd1cda26b2fa5562bc0201fb72ac',1,'bjorne_agent::jsonrpc::Message']]],
+  ['hasresult_3',['hasResult',['../structbjorne__agent_1_1jsonrpc_1_1Message.html#a35764fb456c487d72c1aba3ce9040c35',1,'bjorne_agent::jsonrpc::Message']]],
+  ['headers_4',['headers',['../structbjorne__agent_1_1http_1_1HttpRequest.html#a026c135a1397ac94f4f6280aa6e1dd60',1,'bjorne_agent::http::HttpRequest']]],
+  ['help_5',['help',['../structbjorne__agent_1_1cli_1_1Invocation.html#ad4dc04b700fc16911fc6656f3d6361e8',1,'bjorne_agent::cli::Invocation']]],
+  ['history_6',['history',['../structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a1f173b8614b3910c82406706da05abe8',1,'bjorne_agent::agent::AgentLoopConfig']]],
+  ['host_7',['host',['../structbjorne__agent_1_1http_1_1HttpRequest.html#a4ee4923282f38f95b5917bedcdf52c4f',1,'bjorne_agent::http::HttpRequest::host'],['../structbjorne__agent_1_1http_1_1Url.html#a540841d066af58b5beb2f6b65a021e78',1,'bjorne_agent::http::Url::host']]],
+  ['hostname_8',['hostname',['../structbjorne__agent_1_1config_1_1ModelConfig.html#a470b3778c3c291b45eb57758cfec352d',1,'bjorne_agent::config::ModelConfig::hostname'],['../structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html#af910c2025d93fff29c58d31b72c6f23d',1,'bjorne_agent::http::OpenSslTransport::Options::hostname'],['../structbjorne__agent_1_1model_1_1ModelClientOptions.html#a8e36f86be9ed866908761951518fa059',1,'bjorne_agent::model::ModelClientOptions::hostname']]],
+  ['hosts_5fpath_9',['hosts_path',['../structbjorne__agent_1_1http_1_1ResolverOptions.html#adc3f52618fa7d49023b8c2b46bf685c4',1,'bjorne_agent::http::ResolverOptions']]]
 ];

@@ -1,6 +1,14 @@
 var annotated_dup =
 [
     [ "bjorne_agent", "namespacebjorne__agent.html", [
+      [ "acp", "namespacebjorne__agent_1_1acp.html", [
+        [ "AcpChannel", "classbjorne__agent_1_1acp_1_1AcpChannel.html", "classbjorne__agent_1_1acp_1_1AcpChannel" ],
+        [ "AcpServer", "classbjorne__agent_1_1acp_1_1AcpServer.html", "classbjorne__agent_1_1acp_1_1AcpServer" ],
+        [ "PermissionChoice", "structbjorne__agent_1_1acp_1_1PermissionChoice.html", "structbjorne__agent_1_1acp_1_1PermissionChoice" ],
+        [ "RuntimeRequest", "structbjorne__agent_1_1acp_1_1RuntimeRequest.html", "structbjorne__agent_1_1acp_1_1RuntimeRequest" ],
+        [ "SessionRuntime", "structbjorne__agent_1_1acp_1_1SessionRuntime.html", "structbjorne__agent_1_1acp_1_1SessionRuntime" ],
+        [ "StdioTransport", "classbjorne__agent_1_1acp_1_1StdioTransport.html", "classbjorne__agent_1_1acp_1_1StdioTransport" ]
+      ] ],
       [ "agent", "namespacebjorne__agent_1_1agent.html", [
         [ "AgentLoop", "classbjorne__agent_1_1agent_1_1AgentLoop.html", "classbjorne__agent_1_1agent_1_1AgentLoop" ],
         [ "AgentLoopConfig", "structbjorne__agent_1_1agent_1_1AgentLoopConfig.html", "structbjorne__agent_1_1agent_1_1AgentLoopConfig" ],
@@ -46,6 +54,7 @@ var annotated_dup =
         [ "Endpoint", "classbjorne__agent_1_1jsonrpc_1_1Endpoint.html", "classbjorne__agent_1_1jsonrpc_1_1Endpoint" ],
         [ "Error", "structbjorne__agent_1_1jsonrpc_1_1Error.html", "structbjorne__agent_1_1jsonrpc_1_1Error" ],
         [ "Message", "structbjorne__agent_1_1jsonrpc_1_1Message.html", "structbjorne__agent_1_1jsonrpc_1_1Message" ],
+        [ "RequestOptions", "structbjorne__agent_1_1jsonrpc_1_1RequestOptions.html", "structbjorne__agent_1_1jsonrpc_1_1RequestOptions" ],
         [ "Transport", "classbjorne__agent_1_1jsonrpc_1_1Transport.html", "classbjorne__agent_1_1jsonrpc_1_1Transport" ]
       ] ],
       [ "mcp", "namespacebjorne__agent_1_1mcp.html", [

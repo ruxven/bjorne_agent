@@ -116,8 +116,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4379e09bcd9ebb3c3745c823f1c615d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c162850e2b200a2a4a847eaf8f4180c" id="r_a4c162850e2b200a2a4a847eaf8f4180c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1jsonrpc_1_1Endpoint.html#a4c162850e2b200a2a4a847eaf8f4180c">start</a> ()</td></tr>
 <tr class="separator:a4c162850e2b200a2a4a847eaf8f4180c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f8014dabeda73505b2c37c8320a84b1" id="r_a4f8014dabeda73505b2c37c8320a84b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1jsonrpc_1_1Endpoint.html#a4f8014dabeda73505b2c37c8320a84b1">request</a> (const std::string &amp;method, const <a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a> &amp;params, <a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a> &amp;result, std::string &amp;error, int timeout_ms=30000)</td></tr>
-<tr class="separator:a4f8014dabeda73505b2c37c8320a84b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20bb6ae457ba3ee19aabd218f582ff22" id="r_a20bb6ae457ba3ee19aabd218f582ff22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1jsonrpc_1_1Endpoint.html#a20bb6ae457ba3ee19aabd218f582ff22">waitForClose</a> ()</td></tr>
+<tr class="separator:a20bb6ae457ba3ee19aabd218f582ff22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9656f4206510ac093a40794af6ac6cce" id="r_a9656f4206510ac093a40794af6ac6cce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1jsonrpc_1_1Endpoint.html#a9656f4206510ac093a40794af6ac6cce">request</a> (const std::string &amp;method, const <a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a> &amp;params, <a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a> &amp;result, std::string &amp;error, const <a class="el" href="structbjorne__agent_1_1jsonrpc_1_1RequestOptions.html">RequestOptions</a> &amp;options={})</td></tr>
+<tr class="separator:a9656f4206510ac093a40794af6ac6cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c88eea0875e7a355da82bec592c08a6" id="r_a9c88eea0875e7a355da82bec592c08a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1jsonrpc_1_1Endpoint.html#a9c88eea0875e7a355da82bec592c08a6">notify</a> (const std::string &amp;method, const <a class="el" href="classbjorne__agent_1_1json_1_1Value.html">json::Value</a> &amp;params, std::string &amp;error)</td></tr>
 <tr class="separator:a9c88eea0875e7a355da82bec592c08a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9945be7533d3fafcc56a14022ee4295" id="r_ae9945be7533d3fafcc56a14022ee4295"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1jsonrpc_1_1Endpoint.html#ae9945be7533d3fafcc56a14022ee4295">closed</a> () const</td></tr>
@@ -127,7 +129,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Endpoint_8h_source.html#l00047">47</a> of file <a class="el" href="Endpoint_8h_source.html">Endpoint.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Endpoint_8h_source.html#l00058">58</a> of file <a class="el" href="Endpoint_8h_source.html">Endpoint.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a84caf0933be45cfeeb7a94375b972eef" name="a84caf0933be45cfeeb7a94375b972eef"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a84caf0933be45cfeeb7a94375b972eef">&#9670;&#160;</a></span>Endpoint() <span class="overload">[1/2]</span></h2>
@@ -245,7 +247,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00039">39</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00046">46</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
 
 </div>
 </div>
@@ -265,7 +267,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00041">41</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00048">48</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
 
 </div>
 </div>
@@ -284,12 +286,31 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00045">45</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00052">52</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a4f8014dabeda73505b2c37c8320a84b1" name="a4f8014dabeda73505b2c37c8320a84b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f8014dabeda73505b2c37c8320a84b1">&#9670;&#160;</a></span>request()</h2>
+<a id="a20bb6ae457ba3ee19aabd218f582ff22" name="a20bb6ae457ba3ee19aabd218f582ff22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20bb6ae457ba3ee19aabd218f582ff22">&#9670;&#160;</a></span>waitForClose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void bjorne_agent::jsonrpc::Endpoint::waitForClose </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00062">62</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a9656f4206510ac093a40794af6ac6cce" name="a9656f4206510ac093a40794af6ac6cce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9656f4206510ac093a40794af6ac6cce">&#9670;&#160;</a></span>request()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -321,8 +342,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>timeout_ms</em> = <code>30000</code>&#160;</td>
+          <td class="paramtype">const <a class="el" href="structbjorne__agent_1_1jsonrpc_1_1RequestOptions.html">RequestOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>options</em> = <code>{}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -332,7 +353,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00054">54</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00067">67</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
 
 </div>
 </div>
@@ -368,7 +389,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00100">100</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00129">129</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
 
 </div>
 </div>
@@ -387,7 +408,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00104">104</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00133">133</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
 
 </div>
 </div>
@@ -406,7 +427,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00109">109</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Endpoint_8cpp_source.html#l00138">138</a> of file <a class="el" href="Endpoint_8cpp_source.html">Endpoint.cpp</a>.</p>
 
 </div>
 </div>

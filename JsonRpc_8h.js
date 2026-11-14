@@ -8,6 +8,7 @@ var JsonRpc_8h =
     [ "encodeNotification", "JsonRpc_8h.html#ac864a0e00942a74d9795151892ddebff", null ],
     [ "encodeResult", "JsonRpc_8h.html#af0f4ba81c83cf64745b9ce2738260ef2", null ],
     [ "encodeError", "JsonRpc_8h.html#ad821f57bdfca002e062a8395e9427d6a", null ],
+    [ "encodeError", "JsonRpc_8h.html#a48021c6002f22642392ecc15251d4d88", null ],
     [ "parse", "JsonRpc_8h.html#a456a508bbf84c9066f9b24077b2c0fb4", null ],
     [ "kParseError", "JsonRpc_8h.html#a8f5cb589a5eaea93db9e444ac1efb54c", null ],
     [ "kInvalidRequest", "JsonRpc_8h.html#ac6f2aefc22811e67e9a57d736b3acc81", null ],

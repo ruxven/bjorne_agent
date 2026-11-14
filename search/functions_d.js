@@ -5,6 +5,9 @@ var searchData=
   ['parselevel_2',['parseLevel',['../namespacebjorne__agent_1_1log.html#a84b2fcbd9acdd6ec069955643f3fbd18',1,'bjorne_agent::log']]],
   ['parsetoolarguments_3',['parseToolArguments',['../namespacebjorne__agent_1_1tools.html#a567f75a682fdcac685243ef21753af1f',1,'bjorne_agent::tools']]],
   ['parseurl_4',['parseUrl',['../namespacebjorne__agent_1_1http.html#a1de187c402c3d5009043ffb8c2c2bbeb',1,'bjorne_agent::http']]],
-  ['processid_5',['processId',['../namespacebjorne__agent_1_1platform.html#a871058d68e6b1db37c803a9c9489aeca',1,'bjorne_agent::platform']]],
-  ['progress_6',['progress',['../namespacebjorne__agent_1_1log.html#a490e68ceb9168265077a796c4b171f3c',1,'bjorne_agent::log']]]
+  ['permissionchoiceforlabel_5',['permissionChoiceForLabel',['../namespacebjorne__agent_1_1acp.html#ab1c32ec55cd8bb741ff6176c5baf16e1',1,'bjorne_agent::acp']]],
+  ['permissionchoices_6',['permissionChoices',['../namespacebjorne__agent_1_1acp.html#a4c4b912b1e0f6e16c6625b465cd1cd5a',1,'bjorne_agent::acp']]],
+  ['permissionrequest_7',['permissionRequest',['../namespacebjorne__agent_1_1acp.html#a49e2d778893c2c76137d98f59ad832f2',1,'bjorne_agent::acp']]],
+  ['processid_8',['processId',['../namespacebjorne__agent_1_1platform.html#a871058d68e6b1db37c803a9c9489aeca',1,'bjorne_agent::platform']]],
+  ['progress_9',['progress',['../namespacebjorne__agent_1_1log.html#a490e68ceb9168265077a796c4b171f3c',1,'bjorne_agent::log']]]
 ];

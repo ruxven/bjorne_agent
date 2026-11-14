@@ -114,8 +114,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5f527459b41c84ce5e1968270694e1e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4edd98a83c0495ffa700ddb35d22f7e1" id="r_a4edd98a83c0495ffa700ddb35d22f7e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1model_1_1ModelClient.html#a4edd98a83c0495ffa700ddb35d22f7e1">ModelClient</a> (const std::string &amp;endpoint, const std::string &amp;model, const std::string &amp;api_key_env, std::shared_ptr&lt; <a class="el" href="classbjorne__agent_1_1http_1_1HttpTransport.html">http::HttpTransport</a> &gt; transport=nullptr)</td></tr>
 <tr class="separator:a4edd98a83c0495ffa700ddb35d22f7e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3c5bdb861b473d109d005b070ea6265" id="r_ae3c5bdb861b473d109d005b070ea6265"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1model_1_1ModelClient.html#ae3c5bdb861b473d109d005b070ea6265">setTools</a> (const std::string &amp;tools_json)</td></tr>
-<tr class="separator:ae3c5bdb861b473d109d005b070ea6265"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcbf1306fa550777d6f9b63f3852318e" id="r_adcbf1306fa550777d6f9b63f3852318e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1model_1_1ModelClient.html#adcbf1306fa550777d6f9b63f3852318e">setTools</a> (const std::string &amp;tools_json) override</td></tr>
+<tr class="separator:adcbf1306fa550777d6f9b63f3852318e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a219985f3e4f6e00f1a68957b4bca8061" id="r_a219985f3e4f6e00f1a68957b4bca8061"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1model_1_1ModelClient.html#a219985f3e4f6e00f1a68957b4bca8061">respond</a> (const std::vector&lt; <a class="el" href="structbjorne__agent_1_1model_1_1ModelMessage.html">ModelMessage</a> &gt; &amp;messages, <a class="el" href="structbjorne__agent_1_1model_1_1ModelResponse.html">ModelResponse</a> &amp;out, std::string &amp;error) override</td></tr>
 <tr class="separator:a219985f3e4f6e00f1a68957b4bca8061"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classbjorne__agent_1_1model_1_1ModelBackend"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classbjorne__agent_1_1model_1_1ModelBackend')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classbjorne__agent_1_1model_1_1ModelBackend.html">bjorne_agent::model::ModelBackend</a></td></tr>
@@ -124,7 +124,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="ModelClient_8h_source.html#l00053">53</a> of file <a class="el" href="ModelClient_8h_source.html">ModelClient.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ModelClient_8h_source.html#l00058">58</a> of file <a class="el" href="ModelClient_8h_source.html">ModelClient.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5f527459b41c84ce5e1968270694e1e9" name="a5f527459b41c84ce5e1968270694e1e9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5f527459b41c84ce5e1968270694e1e9">&#9670;&#160;</a></span>ModelClient() <span class="overload">[1/2]</span></h2>
@@ -197,11 +197,14 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae3c5bdb861b473d109d005b070ea6265" name="ae3c5bdb861b473d109d005b070ea6265"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3c5bdb861b473d109d005b070ea6265">&#9670;&#160;</a></span>setTools()</h2>
+<a id="adcbf1306fa550777d6f9b63f3852318e" name="adcbf1306fa550777d6f9b63f3852318e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcbf1306fa550777d6f9b63f3852318e">&#9670;&#160;</a></span>setTools()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void bjorne_agent::model::ModelClient::setTools </td>
@@ -211,7 +214,14 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="classbjorne__agent_1_1model_1_1ModelBackend.html#a7ce469129dd714a090543f722de9704f">bjorne_agent::model::ModelBackend</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="ModelClient_8cpp_source.html#l00233">233</a> of file <a class="el" href="ModelClient_8cpp_source.html">ModelClient.cpp</a>.</p>
 

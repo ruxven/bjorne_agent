@@ -11,11 +11,11 @@
       20     11    156      1      20 bjorne_agent::mcp::contentText@67-86@src/mcp/McpClient.cpp
        3      1     27      2       3 bjorne_agent::mcp::toolName@90-92@src/mcp/McpClient.cpp
       13      2    104      1      16 bjorne_agent::mcp::Client::Client@94-109@src/mcp/McpClient.cpp
-      18      3    146      1      19 bjorne_agent::mcp::Client::initialize@111-129@src/mcp/McpClient.cpp
-      19      6    138      3      19 bjorne_agent::mcp::Client::fetchToolPage@131-149@src/mcp/McpClient.cpp
+      18      3    151      1      19 bjorne_agent::mcp::Client::initialize@111-129@src/mcp/McpClient.cpp
+      19      6    143      3      19 bjorne_agent::mcp::Client::fetchToolPage@131-149@src/mcp/McpClient.cpp
       27     12    211      2      27 bjorne_agent::mcp::Client::appendTools@151-177@src/mcp/McpClient.cpp
       18      6    144      2      19 bjorne_agent::mcp::Client::listTools@179-197@src/mcp/McpClient.cpp
-      36     10    255      5      39 bjorne_agent::mcp::Client::callTool@199-237@src/mcp/McpClient.cpp
+      36     10    260      5      39 bjorne_agent::mcp::Client::callTool@199-237@src/mcp/McpClient.cpp
        1      1     15      0       1 bjorne_agent::mcp::Client::closed@239-239@src/mcp/McpClient.cpp
        2      1     36      2       2 bjorne_agent::mcp::Server::Server@241-242@src/mcp/McpClient.cpp
        1      1     11      0       1 bjorne_agent::mcp::Server::~Server@244-244@src/mcp/McpClient.cpp
@@ -41,6 +41,7 @@
       15      4    111      3      15 bjorne_agent::context::ContextManager::trim@29-43@src/context/ContextManager.cpp
       27      7    270      4      27 bjorne_agent::context::ContextManager::truncate@45-71@src/context/ContextManager.cpp
       29      6    174      3      29 bjorne_agent::context::ContextManager::compress@73-101@src/context/ContextManager.cpp
+       1      1     16      1       1 bjorne_agent::model::ModelBackend::setTools@44-44@src/model/ModelClient.h
       23      8    153      1      23 bjorne_agent::model::escapeJson@21-43@src/model/ModelClient.cpp
        7      2     75      1       7 bjorne_agent::model::toolCallJson@45-51@src/model/ModelClient.cpp
       18      6    153      1      18 bjorne_agent::model::messageJson@53-70@src/model/ModelClient.cpp
@@ -94,16 +95,18 @@
       12     10     95      1      12 bjorne_agent::session::isValidSessionId@267-278@src/session/Session.cpp
        7      1     95      0       7 bjorne_agent::session::generateSessionId@280-286@src/session/Session.cpp
       16      5    122      1      19 bjorne_agent::session::formatTimestamp@288-306@src/session/Session.cpp
-       1      1     21      1       1 bjorne_agent::session::SessionStore::SessionStore@308-308@src/session/Session.cpp
-      29      9    191      2      30 bjorne_agent::session::SessionStore::open@310-339@src/session/Session.cpp
-       3      1     36      1       3 bjorne_agent::session::SessionStore::pathFor@341-343@src/session/Session.cpp
-       8      2     58      2       8 bjorne_agent::session::SessionStore::begin@345-352@src/session/Session.cpp
-       8      2     65      2       8 bjorne_agent::session::SessionStore::save@354-361@src/session/Session.cpp
-      17      4    104      3      21 bjorne_agent::session::SessionStore::load@363-383@src/session/Session.cpp
-      40     11    339      1      43 bjorne_agent::session::SessionStore::list@385-427@src/session/Session.cpp
-       7      3     57      1       7 bjorne_agent::session::SessionStore::latest@429-435@src/session/Session.cpp
-      31      9    285      1      37 bjorne_agent::session::repairDanglingToolCalls@437-473@src/session/Session.cpp
-       1      1      9      0       1 bjorne_agent::session::SessionStore::directory@54-54@src/session/Session.h
+       7      2     56      1       7 bjorne_agent::session::formatIsoTimestamp@308-314@src/session/Session.cpp
+       1      1     21      1       1 bjorne_agent::session::SessionStore::SessionStore@316-316@src/session/Session.cpp
+      29      9    191      2      30 bjorne_agent::session::SessionStore::open@318-347@src/session/Session.cpp
+       3      1     36      1       3 bjorne_agent::session::SessionStore::pathFor@349-351@src/session/Session.cpp
+      10      3     70      2      13 bjorne_agent::session::SessionStore::begin@353-365@src/session/Session.cpp
+       8      2     65      2       8 bjorne_agent::session::SessionStore::save@367-374@src/session/Session.cpp
+      17      4    104      3      21 bjorne_agent::session::SessionStore::load@376-396@src/session/Session.cpp
+      13      3     83      2      13 bjorne_agent::session::SessionStore::erase@398-410@src/session/Session.cpp
+      41     11    347      1      44 bjorne_agent::session::SessionStore::list@412-455@src/session/Session.cpp
+       7      3     57      1       7 bjorne_agent::session::SessionStore::latest@457-463@src/session/Session.cpp
+      31      9    285      1      37 bjorne_agent::session::repairDanglingToolCalls@465-501@src/session/Session.cpp
+       1      1      9      0       1 bjorne_agent::session::SessionStore::directory@57-57@src/session/Session.h
        4      3     21      1       7 bjorne_agent::tools::isPathSeparator@29-35@src/tools/Tools.cpp
        8      3     56      2       8 bjorne_agent::tools::nextPathSeparator@37-44@src/tools/Tools.cpp
       13      8     92      1      15 bjorne_agent::tools::isAbsolutePath@48-62@src/tools/Tools.cpp
@@ -121,19 +124,20 @@
       19      3    194      2      19 bjorne_agent::tools::stringParameters@172-190@src/tools/Tools.cpp
        8      3     57      2       8 bjorne_agent::tools::parseToolArguments@192-199@src/tools/Tools.cpp
        8      3     65      3       8 bjorne_agent::tools::toolStringArgument@201-208@src/tools/Tools.cpp
-       1      1     25      1       1 bjorne_agent::tools::ToolRegistry::ToolRegistry@210-210@src/tools/Tools.cpp
-       6      1    115      0       6 bjorne_agent::tools::ToolRegistry::registerBuiltins@212-217@src/tools/Tools.cpp
-      10      3     78      2      10 bjorne_agent::tools::ToolRegistry::registerTool@219-228@src/tools/Tools.cpp
-       1      1     23      1       1 bjorne_agent::tools::ToolRegistry::removeTool@230-230@src/tools/Tools.cpp
-       1      1     22      1       1 bjorne_agent::tools::ToolRegistry::hasTool@232-232@src/tools/Tools.cpp
-       8      2     52      0       8 bjorne_agent::tools::ToolRegistry::toolNames@234-241@src/tools/Tools.cpp
-      14      3    150      2      17 bjorne_agent::tools::ToolRegistry::execute@243-259@src/tools/Tools.cpp
-      19      6    105      2      19 bjorne_agent::tools::ToolRegistry::resolvePath@261-279@src/tools/Tools.cpp
-      22      5    152      1      22 bjorne_agent::tools::ToolRegistry::readFile@281-302@src/tools/Tools.cpp
-      33      8    237      1      33 bjorne_agent::tools::ToolRegistry::writeFile@304-336@src/tools/Tools.cpp
-      45     10    315      1      45 bjorne_agent::tools::ToolRegistry::editFile@338-382@src/tools/Tools.cpp
-      46     12    308      1      51 bjorne_agent::tools::ToolRegistry::runShell@384-434@src/tools/Tools.cpp
-      14      2    139      0      15 bjorne_agent::tools::ToolRegistry::definitionsJson@436-450@src/tools/Tools.cpp
+      19      6    109      3      19 bjorne_agent::tools::resolveToolPath@210-228@src/tools/Tools.cpp
+       1      1     25      1       1 bjorne_agent::tools::ToolRegistry::ToolRegistry@230-230@src/tools/Tools.cpp
+       6      1    115      0       6 bjorne_agent::tools::ToolRegistry::registerBuiltins@232-237@src/tools/Tools.cpp
+      10      3     78      2      10 bjorne_agent::tools::ToolRegistry::registerTool@239-248@src/tools/Tools.cpp
+       1      1     23      1       1 bjorne_agent::tools::ToolRegistry::removeTool@250-250@src/tools/Tools.cpp
+       1      1     22      1       1 bjorne_agent::tools::ToolRegistry::hasTool@252-252@src/tools/Tools.cpp
+       8      2     52      0       8 bjorne_agent::tools::ToolRegistry::toolNames@254-261@src/tools/Tools.cpp
+      14      3    150      2      17 bjorne_agent::tools::ToolRegistry::execute@263-279@src/tools/Tools.cpp
+       3      1     30      2       3 bjorne_agent::tools::ToolRegistry::resolvePath@281-283@src/tools/Tools.cpp
+      22      5    152      1      22 bjorne_agent::tools::ToolRegistry::readFile@285-306@src/tools/Tools.cpp
+      33      8    237      1      33 bjorne_agent::tools::ToolRegistry::writeFile@308-340@src/tools/Tools.cpp
+      45     10    315      1      45 bjorne_agent::tools::ToolRegistry::editFile@342-386@src/tools/Tools.cpp
+      46     12    308      1      51 bjorne_agent::tools::ToolRegistry::runShell@388-438@src/tools/Tools.cpp
+      14      2    139      0      15 bjorne_agent::tools::ToolRegistry::definitionsJson@440-454@src/tools/Tools.cpp
       13      3     83      2      13 bjorne_agent::skills::readFile@19-31@src/skills/Skills.cpp
        8      2     67      1       8 bjorne_agent::skills::trim@33-40@src/skills/Skills.cpp
       10      6     86      1      10 bjorne_agent::skills::unquote@42-51@src/skills/Skills.cpp
@@ -150,30 +154,35 @@
        5      1     29      0       5 bjorne_agent::jsonrpc::envelope@35-39@src/jsonrpc/JsonRpc.cpp
       12      4     81      3      12 bjorne_agent::jsonrpc::readId@41-52@src/jsonrpc/JsonRpc.cpp
       12      5     88      3      12 bjorne_agent::jsonrpc::parseParams@54-65@src/jsonrpc/JsonRpc.cpp
-      20      7    160      3      20 bjorne_agent::jsonrpc::parseError@67-86@src/jsonrpc/JsonRpc.cpp
-      17      6    146      3      17 bjorne_agent::jsonrpc::parseCall@89-105@src/jsonrpc/JsonRpc.cpp
-      28      7    175      3      29 bjorne_agent::jsonrpc::parseResponse@108-136@src/jsonrpc/JsonRpc.cpp
-       3      1     20      1       3 bjorne_agent::jsonrpc::numberId@140-142@src/jsonrpc/JsonRpc.cpp
-       3      1     17      1       3 bjorne_agent::jsonrpc::stringId@144-146@src/jsonrpc/JsonRpc.cpp
-       7      1     72      3       7 bjorne_agent::jsonrpc::encodeRequest@148-154@src/jsonrpc/JsonRpc.cpp
-       6      1     56      2       6 bjorne_agent::jsonrpc::encodeNotification@156-161@src/jsonrpc/JsonRpc.cpp
-       6      1     53      2       6 bjorne_agent::jsonrpc::encodeResult@163-168@src/jsonrpc/JsonRpc.cpp
-       9      1     95      3      10 bjorne_agent::jsonrpc::encodeError@170-179@src/jsonrpc/JsonRpc.cpp
-      22      7    160      3      22 bjorne_agent::jsonrpc::parse@181-202@src/jsonrpc/JsonRpc.cpp
+      24      8    195      3      24 bjorne_agent::jsonrpc::parseError@67-90@src/jsonrpc/JsonRpc.cpp
+      17      6    146      3      17 bjorne_agent::jsonrpc::parseCall@93-109@src/jsonrpc/JsonRpc.cpp
+      28      7    175      3      29 bjorne_agent::jsonrpc::parseResponse@112-140@src/jsonrpc/JsonRpc.cpp
+       3      1     20      1       3 bjorne_agent::jsonrpc::numberId@144-146@src/jsonrpc/JsonRpc.cpp
+       3      1     17      1       3 bjorne_agent::jsonrpc::stringId@148-150@src/jsonrpc/JsonRpc.cpp
+       7      1     72      3       7 bjorne_agent::jsonrpc::encodeRequest@152-158@src/jsonrpc/JsonRpc.cpp
+       6      1     56      2       6 bjorne_agent::jsonrpc::encodeNotification@160-165@src/jsonrpc/JsonRpc.cpp
+       6      1     53      2       6 bjorne_agent::jsonrpc::encodeResult@167-172@src/jsonrpc/JsonRpc.cpp
+       6      1     44      3       6 bjorne_agent::jsonrpc::encodeError@174-179@src/jsonrpc/JsonRpc.cpp
+      12      2    118      2      13 bjorne_agent::jsonrpc::encodeError@181-193@src/jsonrpc/JsonRpc.cpp
+      22      7    160      3      22 bjorne_agent::jsonrpc::parse@195-216@src/jsonrpc/JsonRpc.cpp
        5      1     56      4       5 bjorne_agent::jsonrpc::writeLine@18-22@src/jsonrpc/Endpoint.cpp
        1      1     24      1       1 bjorne_agent::jsonrpc::Endpoint::Endpoint@26-26@src/jsonrpc/Endpoint.cpp
-      10      2     48      0      10 bjorne_agent::jsonrpc::Endpoint::~Endpoint@28-37@src/jsonrpc/Endpoint.cpp
-       1      1     18      1       1 bjorne_agent::jsonrpc::Endpoint::setRequestHandler@39-39@src/jsonrpc/Endpoint.cpp
-       3      1     18      1       3 bjorne_agent::jsonrpc::Endpoint::setNotificationHandler@41-43@src/jsonrpc/Endpoint.cpp
-       8      2     46      0       8 bjorne_agent::jsonrpc::Endpoint::start@45-52@src/jsonrpc/Endpoint.cpp
-      41      9    325      5      45 bjorne_agent::jsonrpc::Endpoint::request@54-98@src/jsonrpc/Endpoint.cpp
-       3      1     43      3       3 bjorne_agent::jsonrpc::Endpoint::notify@100-102@src/jsonrpc/Endpoint.cpp
-       4      1     24      0       4 bjorne_agent::jsonrpc::Endpoint::closed@104-107@src/jsonrpc/Endpoint.cpp
-       4      1     24      0       4 bjorne_agent::jsonrpc::Endpoint::closeReason@109-112@src/jsonrpc/Endpoint.cpp
-      30      8    146      0      34 bjorne_agent::jsonrpc::Endpoint::readLoop@114-147@src/jsonrpc/Endpoint.cpp
-      43     10    298      1      47 bjorne_agent::jsonrpc::Endpoint::dispatch@149-195@src/jsonrpc/Endpoint.cpp
-      12      3     75      1      12 bjorne_agent::jsonrpc::Endpoint::failPending@197-208@src/jsonrpc/Endpoint.cpp
-      12      3     63      1      12 bjorne_agent::jsonrpc::Endpoint::markClosed@210-221@src/jsonrpc/Endpoint.cpp
+      15      3     75      0      17 bjorne_agent::jsonrpc::Endpoint::~Endpoint@28-44@src/jsonrpc/Endpoint.cpp
+       1      1     18      1       1 bjorne_agent::jsonrpc::Endpoint::setRequestHandler@46-46@src/jsonrpc/Endpoint.cpp
+       3      1     18      1       3 bjorne_agent::jsonrpc::Endpoint::setNotificationHandler@48-50@src/jsonrpc/Endpoint.cpp
+       9      2     60      0       9 bjorne_agent::jsonrpc::Endpoint::start@52-60@src/jsonrpc/Endpoint.cpp
+       4      2     38      0       4 bjorne_agent::jsonrpc::Endpoint::waitForClose@62-65@src/jsonrpc/Endpoint.cpp
+      57     13    441      5      61 bjorne_agent::jsonrpc::Endpoint::request@67-127@src/jsonrpc/Endpoint.cpp
+       3      1     43      3       3 bjorne_agent::jsonrpc::Endpoint::notify@129-131@src/jsonrpc/Endpoint.cpp
+       4      1     24      0       4 bjorne_agent::jsonrpc::Endpoint::closed@133-136@src/jsonrpc/Endpoint.cpp
+       4      1     24      0       4 bjorne_agent::jsonrpc::Endpoint::closeReason@138-141@src/jsonrpc/Endpoint.cpp
+      40     11    202      0      49 bjorne_agent::jsonrpc::Endpoint::readLoop@143-191@src/jsonrpc/Endpoint.cpp
+      18      6    105      0      18 bjorne_agent::jsonrpc::Endpoint::workerLoop@193-210@src/jsonrpc/Endpoint.cpp
+       5      1     37      1       5 bjorne_agent::jsonrpc::Endpoint::queueMessage@212-216@src/jsonrpc/Endpoint.cpp
+      16      3    118      1      16 bjorne_agent::jsonrpc::Endpoint::fulfill@218-233@src/jsonrpc/Endpoint.cpp
+      24      7    167      1      27 bjorne_agent::jsonrpc::Endpoint::dispatch@235-261@src/jsonrpc/Endpoint.cpp
+      13      3     69      1      13 bjorne_agent::jsonrpc::Endpoint::markClosed@263-275@src/jsonrpc/Endpoint.cpp
+      12      3     75      1      12 bjorne_agent::jsonrpc::Endpoint::failPending@277-288@src/jsonrpc/Endpoint.cpp
        1      1     13      0       1 bjorne_agent::json::Value::isObject@25-25@src/json/Json.h
        1      1     13      0       1 bjorne_agent::json::Value::isArray@26-26@src/json/Json.h
        1      1     13      0       1 bjorne_agent::json::Value::isString@27-27@src/json/Json.h
@@ -200,6 +209,90 @@
       47     13    272      3      47 bjorne_agent::json::writeValue@332-378@src/json/Json.cpp
        5      1     26      1       5 bjorne_agent::json::write@382-386@src/json/Json.cpp
        4      1     24      1       4 bjorne_agent::json::parse@388-391@src/json/Json.cpp
+       5      1     25      0       5 bjorne_agent::acp::objectValue@15-19@src/acp/AcpChannel.cpp
+       6      1     37      1       6 bjorne_agent::acp::stringValue@21-26@src/acp/AcpChannel.cpp
+       5      1     25      0       5 bjorne_agent::acp::arrayValue@28-32@src/acp/AcpChannel.cpp
+      17      4    130      1      17 bjorne_agent::acp::permissionOptions@36-52@src/acp/AcpChannel.cpp
+       9      1     69      0       9 bjorne_agent::acp::permissionChoices@56-64@src/acp/AcpChannel.cpp
+       8      2     53      1       8 bjorne_agent::acp::permissionRequest@66-73@src/acp/AcpChannel.cpp
+       8      3     42      1       8 bjorne_agent::acp::permissionChoiceForLabel@75-82@src/acp/AcpChannel.cpp
+       6      1     76      4       6 bjorne_agent::acp::AcpChannel::AcpChannel@84-89@src/acp/AcpChannel.cpp
+      52     15    371      3      56 bjorne_agent::acp::AcpChannel::ask@91-146@src/acp/AcpChannel.cpp
+       1      1     10      0       1 bjorne_agent::acp::AcpChannel::available@47-47@src/acp/AcpChannel.h
+       7      2     35      0      10 bjorne_agent::acp::StdioTransport::StdioTransport@30-39@src/acp/StdioTransport.cpp
+       2      1     27      2       2 bjorne_agent::acp::StdioTransport::StdioTransport@41-42@src/acp/StdioTransport.cpp
+      14      6    136      2      19 bjorne_agent::acp::StdioTransport::sendLine@44-62@src/acp/StdioTransport.cpp
+      16      5    131      1      21 bjorne_agent::acp::StdioTransport::waitForInput@64-84@src/acp/StdioTransport.cpp
+      18      7    124      1      23 bjorne_agent::acp::StdioTransport::readChunk@86-108@src/acp/StdioTransport.cpp
+      31     10    259      3      36 bjorne_agent::acp::StdioTransport::readLine@110-145@src/acp/StdioTransport.cpp
+       5      1     25      0       5 bjorne_agent::acp::objectValue@21-25@src/acp/AcpServer.cpp
+       5      1     25      0       5 bjorne_agent::acp::arrayValue@27-31@src/acp/AcpServer.cpp
+       6      1     37      1       6 bjorne_agent::acp::stringValue@33-38@src/acp/AcpServer.cpp
+       6      1     33      1       6 bjorne_agent::acp::boolValue@40-45@src/acp/AcpServer.cpp
+       6      1     33      1       6 bjorne_agent::acp::numberValue@47-52@src/acp/AcpServer.cpp
+       4      2     11      0       7 bjorne_agent::acp::shellProgram@56-62@src/acp/AcpServer.cpp
+       4      2     11      0       7 bjorne_agent::acp::shellFlag@64-70@src/acp/AcpServer.cpp
+      12      6     55      1      12 bjorne_agent::acp::toolKind@74-85@src/acp/AcpServer.cpp
+      21     11    146      2      21 bjorne_agent::acp::toolTitle@88-108@src/acp/AcpServer.cpp
+       3      3     24      1       3 bjorne_agent::acp::autoApproved@112-114@src/acp/AcpServer.cpp
+      10      3     81      3      10 bjorne_agent::acp::appendTextBlock@117-126@src/acp/AcpServer.cpp
+      10      5    111      2      10 bjorne_agent::acp::appendResourceLinkBlock@130-139@src/acp/AcpServer.cpp
+      20      7    162      3      20 bjorne_agent::acp::appendResourceBlock@143-162@src/acp/AcpServer.cpp
+      20      6    148      3      20 bjorne_agent::acp::appendPromptBlock@165-184@src/acp/AcpServer.cpp
+      16      5    123      4      16 bjorne_agent::acp::readMcpArgs@187-202@src/acp/AcpServer.cpp
+      18      8    168      4      18 bjorne_agent::acp::readMcpEnv@205-222@src/acp/AcpServer.cpp
+      26      9    216      4      27 bjorne_agent::acp::readMcpServer@225-251@src/acp/AcpServer.cpp
+      11      3     69      2      11 bjorne_agent::acp::toolArgumentsOf@254-264@src/acp/AcpServer.cpp
+       7      1     94      5       7 bjorne_agent::acp::AcpServer::AcpServer@268-274@src/acp/AcpServer.cpp
+      35     11    227      4      35 bjorne_agent::acp::AcpServer::handle@276-310@src/acp/AcpServer.cpp
+      13      5     92      2      15 bjorne_agent::acp::AcpServer::notify@312-326@src/acp/AcpServer.cpp
+      10      7    104      1      10 bjorne_agent::acp::AcpServer::readFsCapabilities@329-338@src/acp/AcpServer.cpp
+       8      4     71      1       8 bjorne_agent::acp::AcpServer::readElicitationCapability@342-349@src/acp/AcpServer.cpp
+      10      5     86      1      10 bjorne_agent::acp::AcpServer::readClientCapabilities@353-362@src/acp/AcpServer.cpp
+      21      2    202      0      24 bjorne_agent::acp::AcpServer::agentCapabilities@366-389@src/acp/AcpServer.cpp
+      24      5    204      3      29 bjorne_agent::acp::AcpServer::initialize@391-419@src/acp/AcpServer.cpp
+      40      9    300      3      43 bjorne_agent::acp::AcpServer::sessionNew@421-463@src/acp/AcpServer.cpp
+      52     11    461      3      58 bjorne_agent::acp::AcpServer::sessionPrompt@465-522@src/acp/AcpServer.cpp
+      45     10    341      4      51 bjorne_agent::acp::AcpServer::sessionLoad@524-574@src/acp/AcpServer.cpp
+      34      8    288      3      36 bjorne_agent::acp::AcpServer::sessionList@576-611@src/acp/AcpServer.cpp
+      25      6    179      3      26 bjorne_agent::acp::AcpServer::sessionDelete@613-638@src/acp/AcpServer.cpp
+      50     13    399      3      53 bjorne_agent::acp::AcpServer::sessionSetConfig@640-692@src/acp/AcpServer.cpp
+       8      2     57      1       8 bjorne_agent::acp::AcpServer::findSession@694-701@src/acp/AcpServer.cpp
+      20      2    154      5      20 bjorne_agent::acp::AcpServer::buildSession@703-722@src/acp/AcpServer.cpp
+      21      5    145      3      22 bjorne_agent::acp::AcpServer::rebuildRuntime@724-745@src/acp/AcpServer.cpp
+      21      7    113      1      21 bjorne_agent::acp::AcpServer::installSessionTools@747-767@src/acp/AcpServer.cpp
+      26      5    240      2      27 bjorne_agent::acp::AcpServer::installReadTool@769-795@src/acp/AcpServer.cpp
+      33      8    309      2      34 bjorne_agent::acp::AcpServer::installWriteTool@797-830@src/acp/AcpServer.cpp
+      26      5    225      2      27 bjorne_agent::acp::AcpServer::installShellTool@832-858@src/acp/AcpServer.cpp
+      49     11    318      2      50 bjorne_agent::acp::AcpServer::installAskTool@860-909@src/acp/AcpServer.cpp
+      22      3    205      1      22 bjorne_agent::acp::AcpServer::configOptions@911-932@src/acp/AcpServer.cpp
+      21      6    153      3      21 bjorne_agent::acp::AcpServer::readMcpServers@934-954@src/acp/AcpServer.cpp
+      21      7    151      3      21 bjorne_agent::acp::AcpServer::readPrompt@956-976@src/acp/AcpServer.cpp
+      30      6    239      5      33 bjorne_agent::acp::AcpServer::gate@978-1010@src/acp/AcpServer.cpp
+       9      2     83      2       9 bjorne_agent::acp::AcpServer::sendUpdate@1012-1020@src/acp/AcpServer.cpp
+      12      2    119      3      13 bjorne_agent::acp::AcpServer::emitMessage@1022-1034@src/acp/AcpServer.cpp
+       6      1     57      1       7 bjorne_agent::acp::AcpServer::emitCommands@1036-1042@src/acp/AcpServer.cpp
+      10      1    130      2      10 bjorne_agent::acp::AcpServer::emitToolCall@1044-1053@src/acp/AcpServer.cpp
+       7      1     83      3       7 bjorne_agent::acp::AcpServer::emitToolStatus@1055-1061@src/acp/AcpServer.cpp
+      14      2    146      1      14 bjorne_agent::acp::AcpServer::emitPlan@1063-1076@src/acp/AcpServer.cpp
+      38      9    340      2      39 bjorne_agent::acp::AcpServer::finishPendingCalls@1078-1116@src/acp/AcpServer.cpp
+      19      2    206      2      19 bjorne_agent::acp::AcpServer::failPendingCalls@1118-1136@src/acp/AcpServer.cpp
+      19      5    162      3      23 bjorne_agent::acp::AcpServer::requestPermission@1138-1160@src/acp/AcpServer.cpp
+      38      7    399      1      38 bjorne_agent::acp::AcpServer::replay@1162-1199@src/acp/AcpServer.cpp
+      17      4    143      4      18 bjorne_agent::acp::AcpServer::clientReadFile@1201-1218@src/acp/AcpServer.cpp
+      12      2    114      4      13 bjorne_agent::acp::AcpServer::clientWriteFile@1220-1232@src/acp/AcpServer.cpp
+      44      9    406      5      49 bjorne_agent::acp::AcpServer::clientRunShell@1234-1282@src/acp/AcpServer.cpp
+      15      4    130      2      16 bjorne_agent::acp::AcpServer::terminalOutput@1284-1299@src/acp/AcpServer.cpp
+      10      2     97      2      11 bjorne_agent::acp::AcpServer::releaseTerminal@1301-1311@src/acp/AcpServer.cpp
+      46     11    432      5      48 bjorne_agent::acp::AcpServer::clientAsk@1313-1360@src/acp/AcpServer.cpp
+       2      1     35      2       2 bjorne_agent::acp::AcpServer::SessionObserver::SessionObserver@1362-1363@src/acp/AcpServer.cpp
+       5      1     55      2       5 bjorne_agent::acp::AcpServer::SessionObserver::onTurn@1365-1369@src/acp/AcpServer.cpp
+       3      1     28      1       3 bjorne_agent::acp::AcpServer::SessionObserver::onAssistantMessage@1371-1373@src/acp/AcpServer.cpp
+       3      1     28      1       3 bjorne_agent::acp::AcpServer::SessionObserver::onReasoning@1375-1377@src/acp/AcpServer.cpp
+       8      2     73      2       8 bjorne_agent::acp::AcpServer::SessionObserver::onComplete@1379-1386@src/acp/AcpServer.cpp
+       3      1     39      2       3 bjorne_agent::acp::AcpServer::SessionObserver::onFailure@1388-1390@src/acp/AcpServer.cpp
+       3      1     32      1       3 bjorne_agent::acp::AcpServer::SessionObserver::onInterrupt@1392-1394@src/acp/AcpServer.cpp
+      15      3    116      4      15 bjorne_agent::acp::AcpServer::SessionObserver::persist@1396-1410@src/acp/AcpServer.cpp
       10      3     50      0      12 bjorne_agent::http::ignoreSigPipe@60-71@src/http/HttpClient.cpp
       30      7    313      2      30 bjorne_agent::http::findHeader@76-105@src/http/HttpClient.cpp
       34     11    241      4      34 bjorne_agent::http::parseChunkSize@108-141@src/http/HttpClient.cpp
@@ -316,60 +409,69 @@
        4      1     38      0       4 bjorne_agent::log::elapsedSeconds@98-101@src/log/Log.cpp
        8      3     60      1       8 bjorne_agent::log::formatSeconds@103-110@src/log/Log.cpp
        4      2     31      1       4 bjorne_agent::cli::namesAnExistingFile@15-18@src/cli/Invocation.cpp
-      19      5     86      2      19 bjorne_agent::cli::reservedVerb@23-41@src/cli/Invocation.cpp
-      28      6    188      3      34 bjorne_agent::cli::resolveRun@50-83@src/cli/Invocation.cpp
-      34     12    203      4      34 bjorne_agent::cli::parseFlags@87-120@src/cli/Invocation.cpp
-      14      3     93      2      14 bjorne_agent::cli::selectCommand@124-137@src/cli/Invocation.cpp
-      24      8    148      3      24 bjorne_agent::cli::parseCommandArguments@139-162@src/cli/Invocation.cpp
-      16      4    106      3      23 bjorne_agent::cli::parse@166-188@src/cli/Invocation.cpp
-      13      5     48      1      13 bjorne_agent::cli::commandName@190-202@src/cli/Invocation.cpp
-      30      1     35      0      30 bjorne_agent::cli::usage@204-233@src/cli/Invocation.cpp
-      41      5     78      1      41 bjorne_agent::cli::usage@235-275@src/cli/Invocation.cpp
-       1      1     30      2       1 bjorne_agent::agent::LoopObserver::onTurn@34-34@src/agent/AgentLoop.h
-       4      1     33      2       4 bjorne_agent::agent::LoopObserver::onComplete@37-40@src/agent/AgentLoop.h
-       4      1     33      2       4 bjorne_agent::agent::LoopObserver::onFailure@43-46@src/agent/AgentLoop.h
-       1      1     21      1       1 bjorne_agent::agent::LoopObserver::onInterrupt@49-49@src/agent/AgentLoop.h
+      23      6    103      2      23 bjorne_agent::cli::reservedVerb@23-45@src/cli/Invocation.cpp
+      28      6    188      3      34 bjorne_agent::cli::resolveRun@54-87@src/cli/Invocation.cpp
+      34     12    203      4      34 bjorne_agent::cli::parseFlags@91-124@src/cli/Invocation.cpp
+      14      3     93      2      14 bjorne_agent::cli::selectCommand@128-141@src/cli/Invocation.cpp
+      39     12    235      3      41 bjorne_agent::cli::parseCommandArguments@143-183@src/cli/Invocation.cpp
+      16      4    106      3      23 bjorne_agent::cli::parse@187-209@src/cli/Invocation.cpp
+      15      6     56      1      15 bjorne_agent::cli::commandName@211-225@src/cli/Invocation.cpp
+      32      1     37      0      32 bjorne_agent::cli::usage@227-258@src/cli/Invocation.cpp
+      51      6     94      1      51 bjorne_agent::cli::usage@260-310@src/cli/Invocation.cpp
+       1      1     30      2       1 bjorne_agent::agent::LoopObserver::onTurn@40-40@src/agent/AgentLoop.h
+       1      1     16      1       1 bjorne_agent::agent::LoopObserver::onAssistantMessage@43-43@src/agent/AgentLoop.h
+       1      1     16      1       1 bjorne_agent::agent::LoopObserver::onReasoning@46-46@src/agent/AgentLoop.h
+       4      1     33      2       4 bjorne_agent::agent::LoopObserver::onComplete@49-52@src/agent/AgentLoop.h
+       4      1     33      2       4 bjorne_agent::agent::LoopObserver::onFailure@55-58@src/agent/AgentLoop.h
+       1      1     21      1       1 bjorne_agent::agent::LoopObserver::onInterrupt@61-61@src/agent/AgentLoop.h
+       1      1      9      0       1 bjorne_agent::agent::AgentLoop::stopReason@79-79@src/agent/AgentLoop.h
        8      1     97      5       8 bjorne_agent::agent::AgentLoop::AgentLoop@12-19@src/agent/AgentLoop.cpp
       18      5    141      1      18 bjorne_agent::agent::AgentLoop::buildContext@21-38@src/agent/AgentLoop.cpp
       15      3    139      2      16 bjorne_agent::agent::AgentLoop::appendToolTurn@40-55@src/agent/AgentLoop.cpp
        8      2     50      2       8 bjorne_agent::agent::AgentLoop::interrupt@57-64@src/agent/AgentLoop.cpp
        5      2     40      2       5 bjorne_agent::agent::AgentLoop::notifyFailure@66-70@src/agent/AgentLoop.cpp
-      58     15    455      3      65 bjorne_agent::agent::AgentLoop::run@72-136@src/agent/AgentLoop.cpp
-       5      1     28      0       5 readStdin@32-36@src/main.cpp
-      10      2     64      2      10 readTextFile@38-47@src/main.cpp
-       4      3     21      1       7 isPathSeparator@51-57@src/main.cpp
-      13      8     92      1      15 isAbsolutePath@61-75@src/main.cpp
-       4      2     27      1       7 lastPathSeparator@77-83@src/main.cpp
-      10      4     74      2      10 resolveAgainstConfig@85-94@src/main.cpp
-      10      2     90      1      10 selectModel@96-105@src/main.cpp
-      11      3     71      1      11 applyLogEnvironment@109-119@src/main.cpp
-       4      1     30      1       4 reportError@121-124@src/main.cpp
-      17      3    121      3      18 buildContextConfig@129-146@src/main.cpp
-      18      2    164      1      18 makeCompressionHandler@150-167@src/main.cpp
-      12      3     82      2      12 buildSystemPrompt@172-183@src/main.cpp
-      24      5    189      3      25 prepareModel@187-211@src/main.cpp
-      48     10    545      4      59 buildRuntime@224-282@src/main.cpp
-       8      2     64      3       8 sessionDirectoryFor@285-292@src/main.cpp
-       9      2     56      1       9 openSessionStore@294-302@src/main.cpp
-       6      2     43      2       6 shortened@304-309@src/main.cpp
-      54     10    435      1      64 runTask@313-376@src/main.cpp
-      22      6    155      4      23 loadResumeSession@382-404@src/main.cpp
-      66     15    515      1      79 resumeTask@409-487@src/main.cpp
-      35      8    251      0      39 listSessions@489-527@src/main.cpp
-      44     14    332      2      53 main@531-583@src/main.cpp
-49 file analyzed.
+       3      2     19      0       3 bjorne_agent::agent::AgentLoop::stopRequested@72-74@src/agent/AgentLoop.cpp
+      19      3    163      4      19 bjorne_agent::agent::AgentLoop::callModel@76-94@src/agent/AgentLoop.cpp
+      14      6    100      1      16 bjorne_agent::agent::AgentLoop::narrate@96-111@src/agent/AgentLoop.cpp
+      13      4     85      2      13 bjorne_agent::agent::AgentLoop::approved@113-125@src/agent/AgentLoop.cpp
+      61     12    377      3      71 bjorne_agent::agent::AgentLoop::run@127-197@src/agent/AgentLoop.cpp
+       5      1     28      0       5 readStdin@37-41@src/main.cpp
+      10      2     64      2      10 readTextFile@43-52@src/main.cpp
+       4      3     21      1       7 isPathSeparator@56-62@src/main.cpp
+      13      8     92      1      15 isAbsolutePath@66-80@src/main.cpp
+       4      2     27      1       7 lastPathSeparator@82-88@src/main.cpp
+      10      4     74      2      10 resolveAgainstConfig@90-99@src/main.cpp
+      10      2     90      1      10 selectModel@101-110@src/main.cpp
+      11      3     71      1      11 applyLogEnvironment@114-124@src/main.cpp
+       4      1     30      1       4 reportError@126-129@src/main.cpp
+      17      3    121      3      18 buildContextConfig@134-151@src/main.cpp
+      18      2    164      1      18 makeCompressionHandler@155-172@src/main.cpp
+      12      3     82      2      12 buildSystemPrompt@177-188@src/main.cpp
+      24      5    189      3      25 prepareModel@192-216@src/main.cpp
+      48     10    546      5      59 buildRuntimeFor@238-296@src/main.cpp
+       7      1     68      4       7 buildRuntime@298-304@src/main.cpp
+       8      2     64      3       8 sessionDirectoryFor@307-314@src/main.cpp
+       9      2     56      1       9 openSessionStore@316-324@src/main.cpp
+       6      2     43      2       6 shortened@326-331@src/main.cpp
+      54     10    435      1      64 runTask@335-398@src/main.cpp
+      22      6    155      4      23 loadResumeSession@404-426@src/main.cpp
+      66     15    515      1      79 resumeTask@431-509@src/main.cpp
+      35      8    251      0      39 listSessions@511-549@src/main.cpp
+      71     12    641      1      87 runAcp@554-640@src/main.cpp
+      46     15    347      2      55 main@644-698@src/main.cpp
+55 file analyzed.
 ==============================================================
 NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
 --------------------------------------------------------------
      56       1.0     1.0        9.0         2     src/mcp/McpClient.h
-    311      12.4     4.0       97.1        23     src/mcp/McpClient.cpp
+    311      12.4     4.0       97.8        23     src/mcp/McpClient.cpp
      66      18.7     5.0      117.7         3     src/context/Fragments.cpp
      76      15.8     4.8      129.8         4     src/context/AgentsFiles.cpp
      16       0.0     0.0        0.0         0     src/context/Fragments.h
      92      10.6     2.9       86.4         8     src/context/ContextManager.cpp
      12       0.0     0.0        0.0         0     src/context/AgentsFiles.h
      34       0.0     0.0        0.0         0     src/context/ContextManager.h
-     54       0.0     0.0        0.0         0     src/model/ModelClient.h
+     55       1.0     1.0       16.0         1     src/model/ModelClient.h
     209      19.1     5.9      158.2        10     src/model/ModelClient.cpp
     113      10.8     4.4       72.7         9     src/config/ConfigPaths.cpp
      39       0.0     0.0        0.0         0     src/config/Config.h
@@ -377,18 +479,24 @@ NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
     146      16.9     5.5      136.4         8     src/config/Config.cpp
      23       1.0     1.0        8.0         1     src/session/SessionRecorder.h
      38       4.8     1.3       47.0         6     src/session/SessionRecorder.cpp
-    419      14.1     3.8      111.2        28     src/session/Session.cpp
-     50       1.0     1.0        9.0         1     src/session/Session.h
-     49       0.0     0.0        0.0         0     src/tools/Tools.h
-    380      12.0     3.4       90.4        30     src/tools/Tools.cpp
+    442      13.9     3.8      109.1        30     src/session/Session.cpp
+     53       1.0     1.0        9.0         1     src/session/Session.h
+     50       0.0     0.0        0.0         0     src/tools/Tools.h
+    383      11.7     3.3       88.6        31     src/tools/Tools.cpp
      24       0.0     0.0        0.0         0     src/skills/Skills.h
     216      20.0     6.0      149.1        10     src/skills/Skills.cpp
-     62       0.0     0.0        0.0         0     src/jsonrpc/Endpoint.h
-     34       0.0     0.0        0.0         0     src/jsonrpc/JsonRpc.h
-    177      10.4     2.9       77.9        16     src/jsonrpc/JsonRpc.cpp
-    191      12.6     3.1       86.3        14     src/jsonrpc/Endpoint.cpp
+     74       0.0     0.0        0.0         0     src/jsonrpc/Endpoint.h
+     37       0.0     0.0        0.0         0     src/jsonrpc/JsonRpc.h
+    190      10.6     2.9       79.4        17     src/jsonrpc/JsonRpc.cpp
+    248      13.0     3.4       88.6        18     src/jsonrpc/Endpoint.cpp
      41       2.4     1.2       19.4         8     src/json/Json.h
     360      18.9     6.3      125.2        18     src/json/Json.cpp
+    126      12.9     3.2       92.0         9     src/acp/AcpChannel.cpp
+     32       1.0     1.0       10.0         1     src/acp/AcpChannel.h
+    105      14.7     5.2      118.7         6     src/acp/StdioTransport.cpp
+     20       0.0     0.0        0.0         0     src/acp/StdioTransport.h
+    138       0.0     0.0        0.0         0     src/acp/AcpServer.h
+   1250      18.1     4.6      151.3        68     src/acp/AcpServer.cpp
     419      17.6     4.4      136.5        22     src/http/HttpClient.cpp
      56       0.0     0.0        0.0         0     src/http/HttpClient.h
      14       0.0     0.0        0.0         0     src/http/Url.h
@@ -405,15 +513,15 @@ NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
     120       3.9     1.3       30.4        24     src/platform/Platform.h
      16       0.0     0.0        0.0         0     src/log/Log.h
      92       7.9     2.6       56.4        10     src/log/Log.cpp
-    235      22.3     5.1      101.6        10     src/cli/Invocation.cpp
+    268      25.6     5.8      114.6        10     src/cli/Invocation.cpp
      24       0.0     0.0        0.0         0     src/cli/Invocation.h
-     49       2.5     1.0       29.2         4     src/agent/AgentLoop.h
-    121      18.7     4.7      153.7         6     src/agent/AgentLoop.cpp
-    471      19.7     4.9      156.8        22     src/main.cpp
+     61       1.9     1.0       22.6         7     src/agent/AgentLoop.h
+    173      16.4     4.0      121.1        10     src/agent/AgentLoop.cpp
+    560      21.4     5.1      173.9        24     src/main.cpp
 
 ============================================================================================================
 No thresholds exceeded (cyclomatic_complexity > 15 or length > 100 or nloc > 1000000 or parameter_count > 5)
 ==========================================================================================
 Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt
 ------------------------------------------------------------------------------------------
-      6059      13.7     3.9      102.1      356            0      0.00    0.00
+      8032      14.4     4.0      109.4      458            0      0.00    0.00
