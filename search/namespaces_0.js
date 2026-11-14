@@ -10,6 +10,8 @@ var searchData=
   ['bjorne_5fagent_3a_3alog_7',['log',['../namespacebjorne__agent_1_1log.html',1,'bjorne_agent']]],
   ['bjorne_5fagent_3a_3amodel_8',['model',['../namespacebjorne__agent_1_1model.html',1,'bjorne_agent']]],
   ['bjorne_5fagent_3a_3aplatform_9',['platform',['../namespacebjorne__agent_1_1platform.html',1,'bjorne_agent']]],
-  ['bjorne_5fagent_3a_3askills_10',['skills',['../namespacebjorne__agent_1_1skills.html',1,'bjorne_agent']]],
-  ['bjorne_5fagent_3a_3atools_11',['tools',['../namespacebjorne__agent_1_1tools.html',1,'bjorne_agent']]]
+  ['bjorne_5fagent_3a_3aplatform_3a_3adetail_10',['detail',['../namespacebjorne__agent_1_1platform_1_1detail.html',1,'bjorne_agent::platform']]],
+  ['bjorne_5fagent_3a_3asession_11',['session',['../namespacebjorne__agent_1_1session.html',1,'bjorne_agent']]],
+  ['bjorne_5fagent_3a_3askills_12',['skills',['../namespacebjorne__agent_1_1skills.html',1,'bjorne_agent']]],
+  ['bjorne_5fagent_3a_3atools_13',['tools',['../namespacebjorne__agent_1_1tools.html',1,'bjorne_agent']]]
 ];

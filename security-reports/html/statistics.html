@@ -264,8 +264,8 @@ var Statistics = {
 
 };
 
-      var checker_statistics_data = [];
-      var severity_statistics_data = [];
+      var checker_statistics_data = [{"checker_name": "cert-err33-c", "severity": "medium", "value": 2}];
+      var severity_statistics_data = [{"severity": "medium", "value": 2}];
 
       window.onload = function () {
         if (!browserCompatible) {
@@ -284,11 +284,11 @@ var Statistics = {
       <table id="statistics">
         <tr>
           <td>Number of processed analyzer result files</td>
-          <td>0</td>
+          <td>1</td>
         </tr>
         <tr>
           <td>Number of analyzer reports</td>
-          <td>0</td>
+          <td>2</td>
         </tr>
       </table>
       <h1>Checker statistics</h1>

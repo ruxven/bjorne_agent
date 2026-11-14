@@ -12,5 +12,6 @@ var Platform_8h =
     [ "addressToBinary", "Platform_8h.html#afd25219f098f1832292005519f737747", null ],
     [ "addressToText", "Platform_8h.html#a11958835ec328f1d9657459673c58e11", null ],
     [ "addressErrorMessage", "Platform_8h.html#ae46cfb3143fb8a6c4f60030389f6938b", null ],
+    [ "replaceFile", "Platform_8h.html#ac6779366681684ead2b73c85eb704452", null ],
     [ "kInvalidSocket", "Platform_8h.html#a7637629a7126c10bc79073adb0ae1e7a", null ]
 ];

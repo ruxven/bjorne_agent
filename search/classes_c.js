@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value_0',['Value',['../classbjorne__agent_1_1json_1_1Value.html',1,'bjorne_agent::json']]]
+  ['url_0',['Url',['../structbjorne__agent_1_1http_1_1Url.html',1,'bjorne_agent::http']]]
 ];

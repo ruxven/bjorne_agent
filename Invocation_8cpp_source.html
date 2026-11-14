@@ -312,7 +312,7 @@ $(document).ready(function(){initNavTree('Invocation_8cpp_source.html',''); init
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>         <span class="stringliteral">&quot;       bjorne_agent [options] run [config] [task]\n&quot;</span></div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>         <span class="stringliteral">&quot;       bjorne_agent [options] init\n&quot;</span></div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>         <span class="stringliteral">&quot;       bjorne_agent [options] sessions\n&quot;</span></div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>         <span class="stringliteral">&quot;       bjorne_agent [options] resume &lt;session&gt;\n&quot;</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>         <span class="stringliteral">&quot;       bjorne_agent [options] resume [session]\n&quot;</span></div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>         <span class="stringliteral">&quot;\n&quot;</span></div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>         <span class="stringliteral">&quot;Run a task. With no task argument the task comes from standard input.\n&quot;</span></div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>         <span class="stringliteral">&quot;With no arguments at all, print this usage and exit.\n&quot;</span></div>
@@ -365,19 +365,27 @@ $(document).ready(function(){initNavTree('Invocation_8cpp_source.html',''); init
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacebjorne__agent_1_1cli.html#af3439404a9a79b847d8f06aed44b547eaa9c4b6c9fbd990849d1f128dfc4ed3e7">Command::Sessions</a>:</div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Usage: bjorne_agent [options] sessions\n&quot;</span></div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>             <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>             <span class="stringliteral">&quot;List stored sessions. Not implemented yet.\n&quot;</span>;</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacebjorne__agent_1_1cli.html#af3439404a9a79b847d8f06aed44b547eaf1cefec9e2196c672a622347f1fbc325">Command::Resume</a>:</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Usage: bjorne_agent [options] resume &lt;session&gt;\n&quot;</span></div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>             <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>             <span class="stringliteral">&quot;Continue a stored session. Not implemented yet.\n&quot;</span>;</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>  }</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespacebjorne__agent_1_1cli.html#a2a587f80ecebfc0d2bb637d14802f234">usage</a>();</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>}</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>             <span class="stringliteral">&quot;List the stored sessions, most recently updated first. The config\n&quot;</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>             <span class="stringliteral">&quot;file is found as for a run, and agent.session_dir must name the\n&quot;</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>             <span class="stringliteral">&quot;session directory.\n&quot;</span>;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="namespacebjorne__agent_1_1cli.html#af3439404a9a79b847d8f06aed44b547eaf1cefec9e2196c672a622347f1fbc325">Command::Resume</a>:</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>      <span class="keywordflow">return</span> <span class="stringliteral">&quot;Usage: bjorne_agent [options] resume [session]\n&quot;</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>             <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>             <span class="stringliteral">&quot;Continue a stored session. With no session id the most recently\n&quot;</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>             <span class="stringliteral">&quot;updated session is resumed. An unfinished tool call is repaired\n&quot;</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>             <span class="stringliteral">&quot;before the model sees the conversation, and a session that already\n&quot;</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>             <span class="stringliteral">&quot;completed prints its stored answer.\n&quot;</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>             <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>             <span class="stringliteral">&quot;The config file is found as for a run, and agent.session_dir must\n&quot;</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>             <span class="stringliteral">&quot;name the session directory.\n&quot;</span>;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>  }</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespacebjorne__agent_1_1cli.html#a2a587f80ecebfc0d2bb637d14802f234">usage</a>();</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>}</div>
 </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>}  <span class="comment">// namespace cli</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>}  <span class="comment">// namespace cli</span></div>
 </div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>}  <span class="comment">// namespace bjorne_agent</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>}  <span class="comment">// namespace bjorne_agent</span></div>
 <div class="ttc" id="aConfigPaths_8h_html"><div class="ttname"><a href="ConfigPaths_8h.html">ConfigPaths.h</a></div></div>
 <div class="ttc" id="aInvocation_8h_html"><div class="ttname"><a href="Invocation_8h.html">Invocation.h</a></div></div>
 <div class="ttc" id="anamespacebjorne__agent_1_1cli_html_a2a587f80ecebfc0d2bb637d14802f234"><div class="ttname"><a href="namespacebjorne__agent_1_1cli.html#a2a587f80ecebfc0d2bb637d14802f234">bjorne_agent::cli::usage</a></div><div class="ttdeci">std::string usage()</div><div class="ttdef"><b>Definition</b> <a href="Invocation_8cpp_source.html#l00204">Invocation.cpp:204</a></div></div>

@@ -17,6 +17,9 @@ var hierarchy =
       [ "bjorne_agent::http::PlainTcpTransport", "classbjorne__agent_1_1http_1_1PlainTcpTransport.html", null ]
     ] ],
     [ "bjorne_agent::cli::Invocation", "structbjorne__agent_1_1cli_1_1Invocation.html", null ],
+    [ "bjorne_agent::agent::LoopObserver", "classbjorne__agent_1_1agent_1_1LoopObserver.html", [
+      [ "bjorne_agent::session::SessionRecorder", "classbjorne__agent_1_1session_1_1SessionRecorder.html", null ]
+    ] ],
     [ "bjorne_agent::config::McpServerConfig", "structbjorne__agent_1_1config_1_1McpServerConfig.html", null ],
     [ "bjorne_agent::model::ModelBackend", "classbjorne__agent_1_1model_1_1ModelBackend.html", [
       [ "bjorne_agent::model::ModelClient", "classbjorne__agent_1_1model_1_1ModelClient.html", null ]
@@ -28,6 +31,9 @@ var hierarchy =
     [ "bjorne_agent::http::OpenSslTransport::Options", "structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html", null ],
     [ "bjorne_agent::http::ResolvedAddress", "structbjorne__agent_1_1http_1_1ResolvedAddress.html", null ],
     [ "bjorne_agent::http::ResolverOptions", "structbjorne__agent_1_1http_1_1ResolverOptions.html", null ],
+    [ "bjorne_agent::session::SessionState", "structbjorne__agent_1_1session_1_1SessionState.html", null ],
+    [ "bjorne_agent::session::SessionStore", "classbjorne__agent_1_1session_1_1SessionStore.html", null ],
+    [ "bjorne_agent::session::SessionSummary", "structbjorne__agent_1_1session_1_1SessionSummary.html", null ],
     [ "bjorne_agent::skills::Skill", "structbjorne__agent_1_1skills_1_1Skill.html", null ],
     [ "bjorne_agent::skills::SkillLoad", "structbjorne__agent_1_1skills_1_1SkillLoad.html", null ],
     [ "bjorne_agent::model::ToolCall", "structbjorne__agent_1_1model_1_1ToolCall.html", null ],

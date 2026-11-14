@@ -3,7 +3,8 @@ var annotated_dup =
     [ "bjorne_agent", "namespacebjorne__agent.html", [
       [ "agent", "namespacebjorne__agent_1_1agent.html", [
         [ "AgentLoop", "classbjorne__agent_1_1agent_1_1AgentLoop.html", "classbjorne__agent_1_1agent_1_1AgentLoop" ],
-        [ "AgentLoopConfig", "structbjorne__agent_1_1agent_1_1AgentLoopConfig.html", "structbjorne__agent_1_1agent_1_1AgentLoopConfig" ]
+        [ "AgentLoopConfig", "structbjorne__agent_1_1agent_1_1AgentLoopConfig.html", "structbjorne__agent_1_1agent_1_1AgentLoopConfig" ],
+        [ "LoopObserver", "classbjorne__agent_1_1agent_1_1LoopObserver.html", "classbjorne__agent_1_1agent_1_1LoopObserver" ]
       ] ],
       [ "cli", "namespacebjorne__agent_1_1cli.html", [
         [ "Invocation", "structbjorne__agent_1_1cli_1_1Invocation.html", "structbjorne__agent_1_1cli_1_1Invocation" ]
@@ -42,6 +43,12 @@ var annotated_dup =
         [ "ModelMessage", "structbjorne__agent_1_1model_1_1ModelMessage.html", "structbjorne__agent_1_1model_1_1ModelMessage" ],
         [ "ModelResponse", "structbjorne__agent_1_1model_1_1ModelResponse.html", "structbjorne__agent_1_1model_1_1ModelResponse" ],
         [ "ToolCall", "structbjorne__agent_1_1model_1_1ToolCall.html", "structbjorne__agent_1_1model_1_1ToolCall" ]
+      ] ],
+      [ "session", "namespacebjorne__agent_1_1session.html", [
+        [ "SessionRecorder", "classbjorne__agent_1_1session_1_1SessionRecorder.html", "classbjorne__agent_1_1session_1_1SessionRecorder" ],
+        [ "SessionState", "structbjorne__agent_1_1session_1_1SessionState.html", "structbjorne__agent_1_1session_1_1SessionState" ],
+        [ "SessionStore", "classbjorne__agent_1_1session_1_1SessionStore.html", "classbjorne__agent_1_1session_1_1SessionStore" ],
+        [ "SessionSummary", "structbjorne__agent_1_1session_1_1SessionSummary.html", "structbjorne__agent_1_1session_1_1SessionSummary" ]
       ] ],
       [ "skills", "namespacebjorne__agent_1_1skills.html", [
         [ "Skill", "structbjorne__agent_1_1skills_1_1Skill.html", "structbjorne__agent_1_1skills_1_1Skill" ],

@@ -101,17 +101,17 @@ $(document).ready(function(){initNavTree('classbjorne__agent_1_1agent_1_1AgentLo
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad0048706ec6cf653f4fe734c2e24d65d" id="r_ad0048706ec6cf653f4fe734c2e24d65d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1agent_1_1AgentLoop.html#ad0048706ec6cf653f4fe734c2e24d65d">AgentLoop</a> (<a class="el" href="structbjorne__agent_1_1agent_1_1AgentLoopConfig.html">AgentLoopConfig</a> config, std::shared_ptr&lt; <a class="el" href="classbjorne__agent_1_1model_1_1ModelBackend.html">model::ModelBackend</a> &gt; model, std::shared_ptr&lt; <a class="el" href="classbjorne__agent_1_1context_1_1ContextManager.html">context::ContextManager</a> &gt; context, std::shared_ptr&lt; <a class="el" href="classbjorne__agent_1_1tools_1_1ToolRegistry.html">tools::ToolRegistry</a> &gt; tools)</td></tr>
-<tr class="separator:ad0048706ec6cf653f4fe734c2e24d65d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b0b581e1788e3f0a20b616abdba5d33" id="r_a1b0b581e1788e3f0a20b616abdba5d33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1agent_1_1AgentLoop.html#a1b0b581e1788e3f0a20b616abdba5d33">AgentLoop</a> (<a class="el" href="structbjorne__agent_1_1agent_1_1AgentLoopConfig.html">AgentLoopConfig</a> config, std::shared_ptr&lt; <a class="el" href="classbjorne__agent_1_1model_1_1ModelBackend.html">model::ModelBackend</a> &gt; model, std::shared_ptr&lt; <a class="el" href="classbjorne__agent_1_1context_1_1ContextManager.html">context::ContextManager</a> &gt; context, std::shared_ptr&lt; <a class="el" href="classbjorne__agent_1_1tools_1_1ToolRegistry.html">tools::ToolRegistry</a> &gt; tools, std::shared_ptr&lt; <a class="el" href="classbjorne__agent_1_1agent_1_1LoopObserver.html">LoopObserver</a> &gt; observer=nullptr)</td></tr>
+<tr class="separator:a1b0b581e1788e3f0a20b616abdba5d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2930aa5a10e285f985295c3f5e59bf9" id="r_af2930aa5a10e285f985295c3f5e59bf9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1agent_1_1AgentLoop.html#af2930aa5a10e285f985295c3f5e59bf9">run</a> (const std::string &amp;task, std::string &amp;result, std::string &amp;error)</td></tr>
 <tr class="separator:af2930aa5a10e285f985295c3f5e59bf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="AgentLoop_8h_source.html#l00024">24</a> of file <a class="el" href="AgentLoop_8h_source.html">AgentLoop.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AgentLoop_8h_source.html#l00056">56</a> of file <a class="el" href="AgentLoop_8h_source.html">AgentLoop.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ad0048706ec6cf653f4fe734c2e24d65d" name="ad0048706ec6cf653f4fe734c2e24d65d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0048706ec6cf653f4fe734c2e24d65d">&#9670;&#160;</a></span>AgentLoop()</h2>
+<a id="a1b0b581e1788e3f0a20b616abdba5d33" name="a1b0b581e1788e3f0a20b616abdba5d33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b0b581e1788e3f0a20b616abdba5d33">&#9670;&#160;</a></span>AgentLoop()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -138,7 +138,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classbjorne__agent_1_1tools_1_1ToolRegistry.html">tools::ToolRegistry</a> &gt;&#160;</td>
-          <td class="paramname"><em>tools</em>&#160;</td>
+          <td class="paramname"><em>tools</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classbjorne__agent_1_1agent_1_1LoopObserver.html">LoopObserver</a> &gt;&#160;</td>
+          <td class="paramname"><em>observer</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -185,7 +191,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AgentLoop_8cpp_source.html#l00048">48</a> of file <a class="el" href="AgentLoop_8cpp_source.html">AgentLoop.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AgentLoop_8cpp_source.html#l00072">72</a> of file <a class="el" href="AgentLoop_8cpp_source.html">AgentLoop.cpp</a>.</p>
 
 </div>
 </div>
