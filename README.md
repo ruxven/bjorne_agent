@@ -353,7 +353,7 @@ complete example.
 | --- | --- | --- |
 | `system_prompt` | string | Instruction content sent to the model. |
 | `workspace` | string | Root for tool operations. Relative tool paths resolve against it. |
-| `skills_path` | string, optional | Directory holding `skills/<name>/SKILL.md`. Reserved for the skills phase. |
+| `skills_path` | string, optional | Directory holding `skills/<name>/SKILL.md`. A relative path resolves against the config file. |
 | `session_dir` | string, optional | Directory for persisted sessions. Empty keeps the one-shot behaviour. Reserved for the session phase. |
 | `interactive` | boolean, optional | Defaults to `false`. Enables the console interaction channel when it is implemented. |
 
@@ -381,6 +381,42 @@ in `http://[::1]:8080/v1`.
 A relative `compression_prompt_path` resolves against the directory holding
 the config file, not the working directory. When the key is absent, the
 compression instruction is `Summarize the conversation`.
+
+### Context fragments
+
+Two sources are added to the configured `system_prompt` before the first model
+call.
+
+`AGENTS.md` files are discovered automatically. The search reads the global file
+`~/.config/bjorne_agent/AGENTS.md`, then the workspace and every parent
+directory. The global file comes first and the nearest file last, so the most
+specific instruction is the last one the model reads. The assembled text is
+capped at 64 KiB; a file that does not fit is truncated and marked.
+
+Skills come from `skills_path`, using the same layout as opencode and Claude
+Code:
+
+```
+skills/
+  release-notes/
+    SKILL.md
+```
+
+`SKILL.md` starts with YAML frontmatter holding `name` and `description`, then
+the instructions:
+
+```markdown
+---
+name: release-notes
+description: Write release notes from a range of commits
+---
+Read the commits and group them by change type.
+```
+
+Only the name and description go into the system prompt. The model calls the
+`load_skill` tool to read the full instructions on demand, which keeps a large
+skills directory out of the context until one is needed. A skill file without
+usable frontmatter is skipped with a warning rather than stopping the run.
 
 ### MCP servers
 
@@ -434,6 +470,7 @@ are sent to the model.
 | `write_file` | `path`, `content` | Writes a file in the workspace. |
 | `edit_file` | `path`, `old`, `new` | Replaces the first occurrence of `old` in the file. |
 | `run_shell` | `command` | Runs a shell command in the workspace. Output is capped at 256 KiB and marked when truncated. |
+| `load_skill` | `name` | Returns the full instructions of a skill listed in the system prompt. Registered only when the skills directory holds at least one skill. |
 
 Relative paths resolve against `agent.workspace`. A path that traverses a
 parent directory is rejected. A tool that fails does not stop the loop: the

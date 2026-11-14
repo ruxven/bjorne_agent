@@ -13,10 +13,13 @@
 #include "cli/Invocation.h"
 #include "config/Config.h"
 #include "config/ConfigPaths.h"
+#include "context/AgentsFiles.h"
 #include "context/ContextManager.h"
+#include "context/Fragments.h"
 #include "log/Log.h"
 #include "model/ModelClient.h"
 #include "platform/Platform.h"
+#include "skills/Skills.h"
 #include "tools/Tools.h"
 
 namespace {
@@ -155,6 +158,22 @@ bjorne_agent::context::CompressionHandler makeCompressionHandler(const std::shar
   };
 }
 
+// Builds the system prompt from the configured text and the assembled
+// fragments. Skills come first and the nearest AGENTS.md last, so the most
+// specific instruction is the last thing the model reads.
+std::string buildSystemPrompt(const std::string& base, const std::vector<bjorne_agent::context::Fragment>& fragments) {
+  std::string prompt = base;
+  const std::string assembled = bjorne_agent::context::renderFragments(fragments);
+  if (assembled.empty()) {
+    return prompt;
+  }
+  if (!prompt.empty()) {
+    prompt += "\n\n";
+  }
+  prompt += assembled;
+  return prompt;
+}
+
 // Runs one task: loads the config, builds the model, context and tools, and
 // prints the final answer. Returns 0 on success and 1 after reporting an error.
 int runTask(const bjorne_agent::cli::Invocation& invocation) {
@@ -199,6 +218,36 @@ int runTask(const bjorne_agent::cli::Invocation& invocation) {
     return 1;
   }
 
+  // Skills and AGENTS.md are assembled before the model client, because the
+  // system prompt they produce is part of the request and load_skill has to be
+  // in the tool set from the first turn.
+  const std::string skillsDirectory = resolveAgainstConfig(configPath, config.agent.skills_path);
+  const bjorne_agent::skills::SkillLoad skillLoad = bjorne_agent::skills::loadSkills(skillsDirectory);
+  if (!skillsDirectory.empty() && !skillLoad.directory_found) {
+    bjorne_agent::log::fail("Skills directory not found: " + skillsDirectory);
+  }
+  for (const std::string& skipped : skillLoad.skipped) {
+    bjorne_agent::log::fail("Skipping skill " + skipped);
+  }
+  for (const bjorne_agent::skills::Skill& skill : skillLoad.skills) {
+    bjorne_agent::log::detail("Skill: " + skill.name);
+  }
+
+  const bjorne_agent::context::AgentsFiles agents =
+      bjorne_agent::context::loadAgentsFiles(config.agent.workspace, bjorne_agent::config::userConfigDirectory());
+  for (const std::string& path : agents.unreadable) {
+    bjorne_agent::log::fail("Cannot read " + path);
+  }
+  for (const bjorne_agent::context::Fragment& fragment : agents.fragments) {
+    bjorne_agent::log::detail("Context: " + fragment.title);
+  }
+
+  std::vector<bjorne_agent::context::Fragment> fragments;
+  if (!skillLoad.skills.empty()) {
+    fragments.push_back(bjorne_agent::skills::skillIndexFragment(skillLoad.skills));
+  }
+  fragments.insert(fragments.end(), agents.fragments.begin(), agents.fragments.end());
+
   bjorne_agent::model::ModelClientOptions modelOptions;
   modelOptions.endpoint = selected->endpoint;
   modelOptions.model = selected->model;
@@ -209,10 +258,14 @@ int runTask(const bjorne_agent::cli::Invocation& invocation) {
 
   auto context = std::make_shared<bjorne_agent::context::ContextManager>(contextConfig, makeCompressionHandler(model));
   auto tools = std::make_shared<bjorne_agent::tools::ToolRegistry>(config.agent.workspace);
+  if (!skillLoad.skills.empty()) {
+    auto skillCatalog = std::make_shared<std::vector<bjorne_agent::skills::Skill>>(skillLoad.skills);
+    bjorne_agent::skills::registerLoadSkillTool(*tools, skillCatalog);
+  }
   model->setTools(tools->definitionsJson());
 
   bjorne_agent::agent::AgentLoopConfig loopConfig;
-  loopConfig.system_prompt = config.agent.system_prompt;
+  loopConfig.system_prompt = buildSystemPrompt(config.agent.system_prompt, fragments);
   loopConfig.workspace = config.agent.workspace;
   bjorne_agent::agent::AgentLoop loop(loopConfig, model, context, tools);
 

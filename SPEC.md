@@ -73,6 +73,14 @@ A path given on the command line names the config file. Without one, the run sea
 - api_key_env: string, environment variable name holding the key. The key itself stays out of the file.
 - priority: integer. Lower value means higher preference. Priority one is the first choice, priority two is the second, priority three is the third, priority thirty is the thirtieth.
 
+## Context Fragments
+
+- AGENTS.md detection: the run searches `~/.config/bjorne_agent/AGENTS.md` plus the workspace root and every parent directory. The global file is first and the nearest file last, so the most specific instruction lands last in the context.
+- The total fragment size is capped. Content past the cap is truncated and marked, and later files are dropped.
+- Skills use the opencode and Claude Code format: `skills/<name>/SKILL.md` with YAML frontmatter carrying `name` and `description`. The frontmatter scan is minimal and needs no YAML library.
+- Only the name and description appear in the system prompt. A `load_skill` tool returns the full instructions on demand.
+- AGENTS.md and skills share one fragment mechanism, so ordering, headings, and the size cap are applied the same way.
+
 ## Context Management
 
 - Default overflow strategy: truncate.

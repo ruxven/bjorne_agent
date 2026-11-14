@@ -50,15 +50,15 @@ dynamic tool set. The configuration gains `agent.skills_path`, `agent.session_di
 
 ### Phase B: Context fragments
 
-- [ ] AGENTS.md detection. Search the workspace root and its parents, plus a global
+- [x] AGENTS.md detection. Search the workspace root and its parents, plus a global
   `~/.config/bjorne_agent/AGENTS.md`. Concatenate global first and nearest last, so the most
   specific instruction lands last in the context, and cap the total size.
-- [ ] Skills from a configured directory. The format matches opencode and Claude Code:
+- [x] Skills from a configured directory. The format matches opencode and Claude Code:
   `skills/<name>/SKILL.md` with YAML frontmatter carrying `name` and `description`, so an existing
   skills directory works unmodified. Only the name and description pairs go into the system prompt;
   a `load_skill` tool returns the full body on demand. The frontmatter needs a minimal `key: value`
   scanner rather than a YAML library, to keep the no dependency guarantee.
-- [ ] A shared fragment mechanism, so AGENTS.md and skills are both assembled the same way.
+- [x] A shared fragment mechanism, so AGENTS.md and skills are both assembled the same way.
 
 ### Phase C: Session persistence
 
@@ -191,7 +191,7 @@ share one implementation rather than two.
 
 ## Quality Gates
 
-- [x] Catch2 suite: `bjorne_agent_tests` (150 cases, 552 assertions with TLS, 148 cases and 556 assertions without TLS).
+- [x] Catch2 suite: `bjorne_agent_tests` (225 cases, 817 assertions with TLS, 219 cases and 801 assertions without TLS).
 - [x] Lizard complexity gate: `-C 15 -L 100 -a 5`, no thresholds exceeded in any configuration.
 - [x] Line and function coverage: `./run_coverage.sh`, reports in `bjorne_agent/coverage-reports/`. Line coverage is 96% with TLS and 97% in both no TLS configurations, and the function level coverage agrees: 96% with TLS and 97% in both no TLS configurations. Set `BJORNE_AGENT_OPENSSL=disabled` to measure the no TLS configuration, and add `BJORNE_AGENT_STATIC=ON` to measure the static one. Below 80% function coverage only the two out-of-line virtual destructors and the TLS transport helpers remain: the TLS handshake and send paths need a peer that completes the session, and the no TLS builds cannot run the OpenSSL constructor and factory at all. Residual line gaps are the OS allocation failures inside the transports and the getaddrinfo success branches that need a live name server.
 - [x] Transport tests against a loopback HTTP/TLS server, including read and handshake failure paths.

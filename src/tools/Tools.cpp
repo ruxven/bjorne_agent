@@ -24,24 +24,6 @@ namespace {
 
 constexpr size_t kMaxShellOutput = 256 * 1024;
 
-bool parseArguments(const std::string& arguments, json::Value& out) {
-  try {
-    out = json::parse(arguments.empty() ? "{}" : arguments);
-  } catch (const std::exception&) {
-    return false;
-  }
-  return out.isObject();
-}
-
-bool argString(const json::Value& object, const std::string& key, std::string& out) {
-  const json::Value* value = object.find(key);
-  if (value == nullptr || !value->isString()) {
-    return false;
-  }
-  out = value->string;
-  return true;
-}
-
 // Windows accepts either separator; POSIX has only the forward slash, and a
 // backslash is an ordinary character in a POSIX file name.
 bool isPathSeparator(char c) {
@@ -163,9 +145,32 @@ json::Value arrayNode() {
   return value;
 }
 
+ToolDefinition readFileDefinition() {
+  return {"read_file", "Read a file from the workspace.", stringParameters({{"path", "File path."}}, {"path"})};
+}
+
+ToolDefinition writeFileDefinition() {
+  return {"write_file",
+          "Write a file in the workspace.",
+          stringParameters({{"path", "File path."}, {"content", "File content."}}, {"path", "content"})};
+}
+
+ToolDefinition editFileDefinition() {
+  return {"edit_file",
+          "Replace the first occurrence of text in a file.",
+          stringParameters({{"path", "File path."}, {"old", "Text to replace."}, {"new", "Replacement text."}},
+                           {"path", "old", "new"})};
+}
+
+ToolDefinition runShellDefinition() {
+  return {"run_shell", "Run a shell command in the workspace.", stringParameters({{"command", "Command to run."}}, {"command"})};
+}
+
+}  // namespace
+
 // Builds the JSON schema for a tool whose arguments are all strings.
-json::Value parameterSchema(const std::vector<std::pair<std::string, std::string>>& properties,
-                            const std::vector<std::string>& required) {
+json::Value stringParameters(const std::vector<std::pair<std::string, std::string>>& properties,
+                             const std::vector<std::string>& required) {
   json::Value propertyNodes = objectNode();
   for (const auto& property : properties) {
     json::Value spec = objectNode();
@@ -184,28 +189,23 @@ json::Value parameterSchema(const std::vector<std::pair<std::string, std::string
   return parameters;
 }
 
-ToolDefinition readFileDefinition() {
-  return {"read_file", "Read a file from the workspace.", parameterSchema({{"path", "File path."}}, {"path"})};
+bool parseToolArguments(const std::string& arguments, json::Value& out) {
+  try {
+    out = json::parse(arguments.empty() ? "{}" : arguments);
+  } catch (const std::exception&) {
+    return false;
+  }
+  return out.isObject();
 }
 
-ToolDefinition writeFileDefinition() {
-  return {"write_file",
-          "Write a file in the workspace.",
-          parameterSchema({{"path", "File path."}, {"content", "File content."}}, {"path", "content"})};
+bool toolStringArgument(const json::Value& arguments, const std::string& key, std::string& out) {
+  const json::Value* value = arguments.find(key);
+  if (value == nullptr || !value->isString()) {
+    return false;
+  }
+  out = value->string;
+  return true;
 }
-
-ToolDefinition editFileDefinition() {
-  return {"edit_file",
-          "Replace the first occurrence of text in a file.",
-          parameterSchema({{"path", "File path."}, {"old", "Text to replace."}, {"new", "Replacement text."}},
-                          {"path", "old", "new"})};
-}
-
-ToolDefinition runShellDefinition() {
-  return {"run_shell", "Run a shell command in the workspace.", parameterSchema({{"command", "Command to run."}}, {"command"})};
-}
-
-}  // namespace
 
 ToolRegistry::ToolRegistry(std::string workspace) : workspace_(std::move(workspace)) { registerBuiltins(); }
 
@@ -280,11 +280,11 @@ std::string ToolRegistry::resolvePath(const std::string& path, std::string& erro
 
 ToolResult ToolRegistry::readFile(const std::string& arguments) const {
   json::Value args;
-  if (!parseArguments(arguments, args)) {
+  if (!parseToolArguments(arguments, args)) {
     return {false, "read_file requires a JSON object"};
   }
   std::string path;
-  if (!argString(args, "path", path)) {
+  if (!toolStringArgument(args, "path", path)) {
     return {false, "read_file requires path"};
   }
   std::string error;
@@ -303,15 +303,15 @@ ToolResult ToolRegistry::readFile(const std::string& arguments) const {
 
 ToolResult ToolRegistry::writeFile(const std::string& arguments) const {
   json::Value args;
-  if (!parseArguments(arguments, args)) {
+  if (!parseToolArguments(arguments, args)) {
     return {false, "write_file requires a JSON object"};
   }
   std::string path;
   std::string content;
-  if (!argString(args, "path", path)) {
+  if (!toolStringArgument(args, "path", path)) {
     return {false, "write_file requires path"};
   }
-  if (!argString(args, "content", content)) {
+  if (!toolStringArgument(args, "content", content)) {
     return {false, "write_file requires content"};
   }
   std::string error;
@@ -337,19 +337,19 @@ ToolResult ToolRegistry::writeFile(const std::string& arguments) const {
 
 ToolResult ToolRegistry::editFile(const std::string& arguments) const {
   json::Value args;
-  if (!parseArguments(arguments, args)) {
+  if (!parseToolArguments(arguments, args)) {
     return {false, "edit_file requires a JSON object"};
   }
   std::string path;
   std::string oldText;
   std::string newText;
-  if (!argString(args, "path", path)) {
+  if (!toolStringArgument(args, "path", path)) {
     return {false, "edit_file requires path"};
   }
-  if (!argString(args, "old", oldText)) {
+  if (!toolStringArgument(args, "old", oldText)) {
     return {false, "edit_file requires old"};
   }
-  if (!argString(args, "new", newText)) {
+  if (!toolStringArgument(args, "new", newText)) {
     return {false, "edit_file requires new"};
   }
   std::string error;
@@ -383,11 +383,11 @@ ToolResult ToolRegistry::editFile(const std::string& arguments) const {
 
 ToolResult ToolRegistry::runShell(const std::string& arguments) const {
   json::Value args;
-  if (!parseArguments(arguments, args)) {
+  if (!parseToolArguments(arguments, args)) {
     return {false, "run_shell requires a JSON object"};
   }
   std::string command;
-  if (!argString(args, "command", command)) {
+  if (!toolStringArgument(args, "command", command)) {
     return {false, "run_shell requires command"};
   }
   std::string full = command;

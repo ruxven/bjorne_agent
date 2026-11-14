@@ -88,6 +88,17 @@ void writeFile(const std::string& path) {
 
 }  // namespace
 
+TEST_CASE("the user config directory follows the XDG rules") {
+  const EnvironmentGuard guard;
+  bjorne_agent::platform::setEnvironmentVariable("HOME", "/home/tester");
+  bjorne_agent::platform::setEnvironmentVariable("XDG_CONFIG_HOME", "/xdg");
+
+  REQUIRE(bjorne_agent::config::userConfigDirectory() == "/xdg/bjorne_agent");
+
+  bjorne_agent::platform::unsetEnvironmentVariable("XDG_CONFIG_HOME");
+  REQUIRE(bjorne_agent::config::userConfigDirectory() == "/home/tester/.config/bjorne_agent");
+}
+
 TEST_CASE("default config paths start with the project local file") {
   const EnvironmentGuard guard;
   bjorne_agent::platform::unsetEnvironmentVariable("XDG_CONFIG_HOME");

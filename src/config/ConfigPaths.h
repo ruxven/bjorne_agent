@@ -14,6 +14,11 @@ namespace config {
 // line still wins over it.
 std::string environmentConfigPath();
 
+// The user level config directory, for example ~/.config/bjorne_agent. Empty
+// when no home directory is available. The context fragment search uses it to
+// find the global AGENTS.md.
+std::string userConfigDirectory();
+
 // The config locations bjorne_agent looks at when the command line names no config
 // file. The project local file wins over the user level file, so a repository
 // can carry its own settings without touching the user configuration.

@@ -9,6 +9,15 @@ project(bjorne_agent VERSION 0.1.0 LANGUAGES CXX)
 # traced compilation unit after the fact.
 include(CTest)
 
+# Spell the language standard out rather than relying on the compiler default.
+# Analysis tools read compile_commands.json and may not use the same compiler as
+# the build, so the standard has to be visible in the command line. GCC 16
+# defaults to a standard new enough that CMake omits the flag, which leaves an
+# older analyser parsing the code as a previous standard.
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 set(BJORNE_AGENT_OPENSSL "static" CACHE STRING "OpenSSL linkage: static, shared, or disabled")
 set(BJORNE_AGENT_TLS "openssl" CACHE STRING "TLS backend for the model client: openssl or none")
 option(BJORNE_AGENT_COVERAGE "Instrument BJORNE_AGENT targets with gcov coverage" OFF)
@@ -62,6 +71,9 @@ add_library(bjorne_agent_core STATIC
   src/log/Log.cpp
   src/model/ModelClient.cpp
   src/context/ContextManager.cpp
+  src/context/Fragments.cpp
+  src/context/AgentsFiles.cpp
+  src/skills/Skills.cpp
   src/tools/Tools.cpp
   src/agent/AgentLoop.cpp
 )
@@ -147,6 +159,9 @@ if(BUILD_TESTING)
     tests/log/LogTest.cpp
     tests/model/ModelClientTest.cpp
     tests/context/ContextManagerTest.cpp
+    tests/context/FragmentsTest.cpp
+    tests/context/AgentsFilesTest.cpp
+    tests/skills/SkillsTest.cpp
     tests/tools/ToolsTest.cpp
     tests/agent/AgentLoopTest.cpp
   )

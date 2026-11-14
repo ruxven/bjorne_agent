@@ -3,6 +3,7 @@
 #include <functional>
 #include <map>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include "json/Json.h"
@@ -25,6 +26,19 @@ struct ToolDefinition {
 };
 
 using ToolHandler = std::function<ToolResult(const std::string& arguments)>;
+
+// Builds the JSON schema for a tool whose arguments are all strings, so a
+// caller that registers a tool does not hand write the schema.
+json::Value stringParameters(const std::vector<std::pair<std::string, std::string>>& properties,
+                             const std::vector<std::string>& required);
+
+// Parses a tool arguments document into an object. Returns false when the text
+// is not valid JSON or the top level is not an object.
+bool parseToolArguments(const std::string& arguments, json::Value& out);
+
+// Reads a string property from parsed tool arguments. Returns false when the
+// property is missing or is not a string.
+bool toolStringArgument(const json::Value& arguments, const std::string& key, std::string& out);
 
 // Tool calls arrive as JSON arguments and results feed back into the agent
 // context. The registry starts with the built-in file and shell tools. A

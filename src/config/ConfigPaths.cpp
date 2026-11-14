@@ -13,7 +13,7 @@ namespace config {
 namespace {
 
 constexpr const char* kProjectConfigPath = ".bjorne_agent/bjorne_agent.json";
-constexpr const char* kUserConfigPath = "bjorne_agent/bjorne_agent.json";
+constexpr const char* kUserConfigFileName = "bjorne_agent.json";
 
 // Windows accepts either separator; POSIX has only the forward slash, and a
 // backslash is an ordinary character in a POSIX file name.
@@ -55,32 +55,41 @@ std::string joinPath(const std::string& base, const std::string& rest) {
   return base + "/" + rest;
 }
 
+}  // namespace
+
 // The user level config directory follows the XDG base directory spec where it
 // applies: the XDG_CONFIG_HOME variable when it is set and absolute, otherwise
 // .config under the home directory. Windows has no XDG variable by default, so
 // the roaming application data directory is used instead.
-std::string userConfigPath() {
+std::string userConfigDirectory() {
   std::string xdgHome;
   if (platform::getEnvironmentVariable("XDG_CONFIG_HOME", xdgHome) && isAbsolutePath(xdgHome)) {
-    return joinPath(xdgHome, kUserConfigPath);
+    return joinPath(xdgHome, "bjorne_agent");
   }
   std::string home;
   if (platform::getEnvironmentVariable("HOME", home) && !home.empty()) {
-    return joinPath(joinPath(home, ".config"), kUserConfigPath);
+    return joinPath(joinPath(home, ".config"), "bjorne_agent");
   }
 #if defined(_WIN32)
   // Windows has no HOME by default, so the roaming application data directory
   // is the user level location.
   std::string appData;
   if (platform::getEnvironmentVariable("APPDATA", appData) && !appData.empty()) {
-    return joinPath(appData, kUserConfigPath);
+    return joinPath(appData, "bjorne_agent");
   }
   std::string profile;
   if (platform::getEnvironmentVariable("USERPROFILE", profile) && !profile.empty()) {
-    return joinPath(joinPath(profile, ".config"), kUserConfigPath);
+    return joinPath(joinPath(profile, ".config"), "bjorne_agent");
   }
 #endif
   return {};
+}
+
+namespace {
+
+std::string userConfigPath() {
+  const std::string directory = userConfigDirectory();
+  return directory.empty() ? std::string{} : joinPath(directory, kUserConfigFileName);
 }
 
 // Trims the spaces and tabs around a value, so a variable that holds only

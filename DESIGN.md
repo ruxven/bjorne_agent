@@ -22,6 +22,14 @@ The configuration loader implements the configuration specification. It reads JS
 
 The config path search lives in its own module, separate from the loader, because finding the file and reading the file are different jobs.
 
+### Context Fragments
+
+Two context sources are assembled before the model runs, and both go through one fragment mechanism. The mechanism owns the section heading, the order the caller supplies, and the byte cap, so a runaway file cannot crowd out the task.
+
+AGENTS.md discovery walks from the workspace up to the filesystem root, then reverses the list so the nearest file comes last. The global file comes before that list. Candidates are compared by canonical path, so a global file that sits inside the workspace is included once. A file that cannot be read is reported and skipped rather than failing the run.
+
+Skills are scanned from `skills_path` one directory level deep. The frontmatter scanner accepts `key: value` lines, quotes, CRLF, and a UTF-8 byte order mark, which covers real skill directories without a YAML dependency. A skill without a name or a description is skipped with the reason. The catalog renders only names and descriptions into the system prompt; the instructions stay behind a `load_skill` tool that returns the body on demand. Registering that tool only when the catalog is non-empty keeps a tool with nothing to load out of the model's choices.
+
 ### Model Client
 
 The model client implements the model interaction from the baseline specification. It calls an OpenAI compatible chat completions endpoint. It uses a hand written HTTP client and TLS through OpenSSL.
@@ -48,7 +56,7 @@ The loop stops when the model returns a final response without tool calls. The l
 
 The tool layer provides the minimal set from the baseline specification: read file, write file, edit file, run shell command. Tool results feed back into the context.
 
-The registry is dynamic. The four built-ins are registered first. A caller may add a tool, replace one by name, or remove one, and the definitions sent to the model are derived from whatever is registered. The built-in schemas are values assembled in code and serialized by the JSON writer rather than string concatenation. That registration path is what a configuration override or an MCP server uses later; name resolution is by map lookup, so a later registration wins over an earlier one.
+The registry is dynamic. The four built-ins are registered first. A caller may add a tool, replace one by name, or remove one, and the definitions sent to the model are derived from whatever is registered. The built-in schemas are values assembled in code and serialized by the JSON writer rather than string concatenation. That registration path is what a configuration override or an MCP server uses later; name resolution is by map lookup, so a later registration wins over an earlier one. `stringParameters` and `parseToolArguments` are public for the same reason: a caller that registers `load_skill` or its own tool builds a schema and parses arguments without repeating the JSON work.
 
 The JSON layer has both a parser and a writer. The writer emits compact JSON, escapes strings so a message never contains an embedded newline, prints integral numbers without a decimal point, and rejects a non-finite number because JSON cannot represent one.
 
