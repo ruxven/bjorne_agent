@@ -397,7 +397,7 @@ complete example.
 | `workspace` | string | Root for tool operations. Relative tool paths resolve against it. |
 | `skills_path` | string, optional | Directory holding `skills/<name>/SKILL.md`. A relative path resolves against the config file. |
 | `session_dir` | string, optional | Directory for persisted sessions. A relative path resolves against the config file. Empty keeps the one-shot behaviour. |
-| `interactive` | boolean, optional | Defaults to `false`. Enables the console interaction channel when it is implemented. |
+| `interactive` | boolean, optional | Defaults to `false`. Enables the console interaction channel when standard input is a terminal. |
 
 ### Model
 
@@ -513,10 +513,19 @@ are sent to the model.
 | `edit_file` | `path`, `old`, `new` | Replaces the first occurrence of `old` in the file. |
 | `run_shell` | `command` | Runs a shell command in the workspace. Output is capped at 256 KiB and marked when truncated. |
 | `load_skill` | `name` | Returns the full instructions of a skill listed in the system prompt. Registered only when the skills directory holds at least one skill. |
+| `request_input` | `question`, `options` (optional array) | Asks the user and returns the answer. With options the answer is a 1-based index or the option text. |
 
 Relative paths resolve against `agent.workspace`. A path that traverses a
 parent directory is rejected. A tool that fails does not stop the loop: the
 error becomes tool result text and the model decides what to do next.
+
+`request_input` is always registered, but the channel behind it depends on the
+configuration. With `agent.interactive` false, or when standard input is not a
+terminal, it fails at once with a message that says why instead of waiting for
+an answer. With `agent.interactive` true and a terminal on standard input, it
+prints the question and reads one line. The task must be passed as an argument
+in that mode, because a task read from standard input consumes the same
+stream.
 
 ## Containers
 
@@ -581,7 +590,8 @@ cd build && ctest --output-on-failure
 The suite covers the JSON parser, the config loader, config discovery, CLI
 argument resolution, URL parsing, DNS, the HTTP client, TLS, the model
 client, context management, context fragments, AGENTS.md discovery, skills,
-the tools, the agent loop, the session store and recorder, and the log module.
+the tools, the interaction channel, the agent loop, the session store and
+recorder, and the log module.
 
 The static analysis gates used by this project:
 

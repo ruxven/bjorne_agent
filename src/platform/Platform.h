@@ -22,6 +22,7 @@
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windows.h>
+#include <io.h>
 
 namespace bjorne_agent {
 namespace platform {
@@ -79,6 +80,13 @@ inline void unsetEnvironmentVariable(const std::string& name) {
 
 inline int processId() {
   return static_cast<int>(::GetCurrentProcessId());
+}
+
+// True when standard input is a terminal. The console interaction channel is
+// only offered when this is true, because a prompt on a pipe would either read
+// the task or wait forever for an answer that cannot come.
+inline bool standardInputIsTerminal() {
+  return ::_isatty(::_fileno(stdin)) != 0;
 }
 
 inline int closeSocket(SocketHandle handle) {
@@ -159,6 +167,13 @@ inline void unsetEnvironmentVariable(const std::string& name) {
 
 inline int processId() {
   return static_cast<int>(::getpid());
+}
+
+// True when standard input is a terminal. The console interaction channel is
+// only offered when this is true, because a prompt on a pipe would either read
+// the task or wait forever for an answer that cannot come.
+inline bool standardInputIsTerminal() {
+  return ::isatty(STDIN_FILENO) != 0;
 }
 
 inline int closeSocket(SocketHandle handle) {

@@ -78,6 +78,7 @@ add_library(bjorne_agent_core STATIC
   src/session/SessionRecorder.cpp
   src/tools/Tools.cpp
   src/agent/AgentLoop.cpp
+  src/interaction/Interaction.cpp
 )
 
 target_compile_features(bjorne_agent_core PUBLIC cxx_std_20)
@@ -163,6 +164,7 @@ if(BUILD_TESTING)
     tests/context/ContextManagerTest.cpp
     tests/context/FragmentsTest.cpp
     tests/context/AgentsFilesTest.cpp
+    tests/interaction/InteractionTest.cpp
     tests/skills/SkillsTest.cpp
     tests/session/SessionTest.cpp
     tests/tools/ToolsTest.cpp

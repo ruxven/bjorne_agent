@@ -16,6 +16,7 @@
 #include "context/AgentsFiles.h"
 #include "context/ContextManager.h"
 #include "context/Fragments.h"
+#include "interaction/Interaction.h"
 #include "log/Log.h"
 #include "model/ModelClient.h"
 #include "platform/Platform.h"
@@ -265,6 +266,8 @@ bool buildRuntime(const std::string& configPath, const bjorne_agent::config::Con
   out.context =
       std::make_shared<bjorne_agent::context::ContextManager>(out.context_config, makeCompressionHandler(out.model));
   out.tools = std::make_shared<bjorne_agent::tools::ToolRegistry>(config.agent.workspace);
+  bjorne_agent::interaction::registerRequestInputTool(
+      *out.tools, bjorne_agent::interaction::makeChannel(config.agent.interactive));
   if (!skillLoad.skills.empty()) {
     auto skillCatalog = std::make_shared<std::vector<bjorne_agent::skills::Skill>>(skillLoad.skills);
     bjorne_agent::skills::registerLoadSkillTool(*out.tools, skillCatalog);
@@ -521,7 +524,9 @@ int listSessions() {
 }  // namespace
 
 int main(int argc, char** argv) {
-  bjorne_agent::platform::installShutdownHandlers();
+  if (!bjorne_agent::platform::installShutdownHandlers()) {
+    std::cerr << "Cannot install the shutdown handlers; an interrupted session may not be saved.\\n";
+  }
 
   std::vector<std::string> arguments;
   for (int index = 1; index < argc; ++index) {

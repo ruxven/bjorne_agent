@@ -37,7 +37,7 @@ The environment variable is the path a container uses. The config is mounted at 
 - workspace: string. Workspace root for tool operations.
 - skills_path: string, optional. Directory holding `skills/<name>/SKILL.md` entries. A relative path resolves against the directory holding the config file. Empty disables skill discovery.
 - session_dir: string, optional. Directory for persisted sessions. A relative path resolves against the directory holding the config file. Empty disables persistence and keeps the one-shot behaviour.
-- interactive: boolean, optional. Defaults to false. Reserved for the interaction phase.
+- interactive: boolean, optional. Defaults to false. Enables the console interaction channel when standard input is a terminal. With it false, or with standard input that is not a terminal, the `request_input` tool fails fast with a message instead of waiting.
 
 ## Models
 

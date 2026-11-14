@@ -77,13 +77,13 @@ dynamic tool set. The configuration gains `agent.skills_path`, `agent.session_di
 
 ### Phase D: Interaction
 
-- [ ] A pluggable interaction channel, because in a container stdin is the task and there is no
+- [x] A pluggable interaction channel, because in a container stdin is the task and there is no
   human. The default channel is unavailable and the tool fails fast with a clear message.
-- [ ] A console channel that prompts on the terminal, with `isatty(STDIN_FILENO)` detection. A
+- [x] A console channel that prompts on the terminal, with `isatty(STDIN_FILENO)` detection. A
   hanging container is worse than a failed one, so the tool never blocks indefinitely.
-- [ ] A request shape of `question` plus `options`, so the model can offer a constrained choice and
+- [x] A request shape of `question` plus `options`, so the model can offer a constrained choice and
   the answer returns as the tool result.
-- [ ] Plain prompts rather than a full-screen TUI, which suits a constrained console and keeps the
+- [x] Plain prompts rather than a full-screen TUI, which suits a constrained console and keeps the
   static minimal build.
 
 ### Phase E: MCP
@@ -191,7 +191,7 @@ share one implementation rather than two.
 
 ## Quality Gates
 
-- [x] Catch2 suite: `bjorne_agent_tests` (253 cases, 970 assertions with TLS; 247 cases, 954 assertions in the no TLS dynamic build; 251 cases, 974 assertions in the static build).
+- [x] Catch2 suite: `bjorne_agent_tests` (266 cases, 1013 assertions with TLS; 260 cases, 997 assertions in the no TLS dynamic build; 264 cases, 1017 assertions in the static build).
 - [x] Lizard complexity gate: `-C 15 -L 100 -a 5`, no thresholds exceeded in any configuration.
 - [x] Line and function coverage: measured with `gcovr` over the instrumented test build. Line coverage is 94% with TLS, 94% in the no TLS build, and 94% in the static build; function coverage is 98%, 97%, and 97%. The measurement covers the code the test binary links and therefore leaves out `src/main.cpp`, which only the executable runs. Set `BJORNE_AGENT_OPENSSL=disabled` to measure the no TLS configuration, and add `BJORNE_AGENT_STATIC=ON` to measure the static one. Residual gaps are the session write and list error paths, the OS allocation failures inside the transports, and the getaddrinfo success branches that need a live name server.
 - [x] Transport tests against a loopback HTTP/TLS server, including read and handshake failure paths.

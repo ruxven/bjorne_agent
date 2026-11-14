@@ -60,7 +60,7 @@ A path given on the command line names the config file. Without one, the run sea
 - workspace: string.
 - skills_path: string, optional. Directory holding `skills/<name>/SKILL.md`.
 - session_dir: string, optional. Directory for persisted sessions; empty disables persistence.
-- interactive: boolean, optional, defaults to false. Enables the console interaction channel.
+- interactive: boolean, optional, defaults to false. Enables the console interaction channel when standard input is a terminal. With it false, or with piped input, the `request_input` tool fails fast instead of waiting.
 
 ### Model
 

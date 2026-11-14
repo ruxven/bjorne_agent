@@ -76,6 +76,14 @@ The registry is dynamic. The four built-ins are registered first. A caller may a
 
 The JSON layer has both a parser and a writer. The writer emits compact JSON, escapes strings so a message never contains an embedded newline, prints integral numbers without a decimal point, and rejects a non-finite number because JSON cannot represent one.
 
+### Interaction
+
+The interaction channel is the seam between the model and a human. The request shape is a question plus an optional list of options, and the tool that carries it is `request_input`. The channel is pluggable so that a later ACP permission request can use the same constrained choice shape without a second prompt implementation.
+
+The default channel is unavailable. In a container standard input usually carries the task and there is no human, so the tool fails at once with a message that names the reason. The console channel is selected only when `agent.interactive` is true and standard input is a terminal. That check is the guard against a hanging container: a prompt on a pipe would either consume the task or wait for an answer that cannot arrive. The console is a plain line prompt rather than a full screen interface, which keeps the static build small. With options it accepts a one based index or the option text and rejects anything else, so the constraint is real.
+
+The tool is registered even when no channel is available. An unavailable channel becomes a tool error, which the loop already handles as result text, so the model can adapt instead of the run failing outright.
+
 ## Fulfilment Mapping
 
 The design meets the specifications:
@@ -86,6 +94,7 @@ The design meets the specifications:
 - Context: truncate default, compress before overflow, per model, custom compression instruction from markdown file.
 - Loop: stages, stopping conditions, error handling.
 - Sessions: local directory, atomic rewrite after each turn, signal flush, resume repair.
+- Interaction: pluggable channel, unavailable by default, console only on a terminal, constrained options.
 - Container: scratch or distroless base, static binary, config via mount or env, binary entrypoint.
 
 ## Build and Container Design

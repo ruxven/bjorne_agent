@@ -21,12 +21,16 @@ inline void handleShutdownSignal(int) { shutdownFlag() = 1; }
 
 // Installs handlers for SIGINT and SIGTERM. The process keeps running until the
 // agent loop observes the flag and saves the session, so a container stop does
-// not lose the turn that already finished.
-inline void installShutdownHandlers() {
-  std::signal(SIGINT, detail::handleShutdownSignal);
+// not lose the turn that already finished. Returns false when the platform
+// refuses a handler; the run then continues without the flush.
+inline bool installShutdownHandlers() {
+  const bool interruptInstalled = std::signal(SIGINT, detail::handleShutdownSignal) != SIG_ERR;
 #ifdef SIGTERM
-  std::signal(SIGTERM, detail::handleShutdownSignal);
+  const bool terminateInstalled = std::signal(SIGTERM, detail::handleShutdownSignal) != SIG_ERR;
+#else
+  const bool terminateInstalled = true;
 #endif
+  return interruptInstalled && terminateInstalled;
 }
 
 inline bool shutdownRequested() { return detail::shutdownFlag() != 0; }
