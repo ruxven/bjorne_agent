@@ -93,44 +93,44 @@ $(document).ready(function(){initNavTree('md_DESIGN.html',''); initResizable(); 
   <div class="headertitle"><div class="title">Design: C++ Agent Harness</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md69"></a> </p>
-<h1><a class="anchor" id="autotoc_md70"></a>
+<div class="textblock"><p><a class="anchor" id="autotoc_md70"></a> </p>
+<h1><a class="anchor" id="autotoc_md71"></a>
 Purpose</h1>
 <p>This document drafts the design for the C++ agent harness and maps the design to the specifications.</p>
-<h1><a class="anchor" id="autotoc_md71"></a>
+<h1><a class="anchor" id="autotoc_md72"></a>
 Design Principles</h1>
 <p>The design keeps the dependency footprint low. Version one uses no third-party C++ libraries. The runtime uses the standard library only. JSON and HTTP are hand written. The binary is statically linked where possible.</p>
-<h1><a class="anchor" id="autotoc_md72"></a>
+<h1><a class="anchor" id="autotoc_md73"></a>
 Architecture</h1>
 <p>The binary is split into focused components. The design keeps the boundaries small.</p>
-<h2><a class="anchor" id="autotoc_md73"></a>
+<h2><a class="anchor" id="autotoc_md74"></a>
 Entry Point</h2>
 <p>The entry point resolves the config file and the task from the command line, loads the configuration, and starts the agent loop. The command line is a small set of reserved verbs with <code>run</code> as the default, so the bare form keeps working. <code>sessions</code> lists the store and <code>resume</code> continues a stored session; <code>init</code> still reports that it is not implemented. Flags may appear before or after the verb, and <code>--</code> ends flag parsing. Help is answered before any config lookup. A path on the command line names the config file. Without one, the run reads the BJORNE_AGENT_CONFIG environment variable, and when that is unset it searches the project local path and then the user level path. The task comes from standard input when the command line names none, and an empty command line is a usage error rather than a wait on a terminal. The environment variable is the container path: the config is mounted where the search does not look, so the variable names it. A variable naming a file that is not there stops the run with an error that names the variable and the path.</p>
-<h2><a class="anchor" id="autotoc_md74"></a>
+<h2><a class="anchor" id="autotoc_md75"></a>
 Configuration</h2>
 <p>The configuration loader implements the configuration specification. It reads JSON, uses a hand written parser, and uses snake_case keys. It validates the version, agent section, and models array. The agent section also carries <code>skills_path</code>, <code>session_dir</code>, and <code>interactive</code>, and the top level carries an <code>mcp_servers</code> map of stdio server definitions. The loader reads those fields now so later phases consume a stable configuration shape.</p>
 <p>The config path search lives in its own module, separate from the loader, because finding the file and reading the file are different jobs.</p>
-<h2><a class="anchor" id="autotoc_md75"></a>
+<h2><a class="anchor" id="autotoc_md76"></a>
 Context Fragments</h2>
 <p>Two context sources are assembled before the model runs, and both go through one fragment mechanism. The mechanism owns the section heading, the order the caller supplies, and the byte cap, so a runaway file cannot crowd out the task.</p>
 <p>AGENTS.md discovery walks from the workspace up to the filesystem root, then reverses the list so the nearest file comes last. The global file comes before that list. Candidates are compared by canonical path, so a global file that sits inside the workspace is included once. A file that cannot be read is reported and skipped rather than failing the run.</p>
 <p>Skills are scanned from <code>skills_path</code> one directory level deep. The frontmatter scanner accepts <code>key: value</code> lines, quotes, CRLF, and a UTF-8 byte order mark, which covers real skill directories without a YAML dependency. A skill without a name or a description is skipped with the reason. The catalog renders only names and descriptions into the system prompt; the instructions stay behind a <code>load_skill</code> tool that returns the body on demand. Registering that tool only when the catalog is non-empty keeps a tool with nothing to load out of the model's choices.</p>
-<h2><a class="anchor" id="autotoc_md76"></a>
+<h2><a class="anchor" id="autotoc_md77"></a>
 Model Client</h2>
 <p>The model client implements the model interaction from the baseline specification. It calls an OpenAI compatible chat completions endpoint. It uses a hand written HTTP client and TLS through OpenSSL.</p>
 <p>The endpoint is parsed once per request into scheme, host, port, and path prefix. The scheme picks the transport: https builds an OpenSSL transport, http builds a plain TCP transport. The port defaults from the scheme but an explicit port overrides it, which is what makes a local model reachable. Ports are passed explicitly through the transport interface rather than defaulted inside it, so the wire target is visible at the call site and the transports are testable against a loopback server. The path prefix from the endpoint is prepended to /chat/completions.</p>
 <p>The build uses a CMake option for OpenSSL. The option has three states: static, shared, and disabled. Static is the default. Static links OpenSSL into the binary, which suits musl static builds. Shared links OpenSSL as a shared library. Disabled removes OpenSSL entirely: no headers, no library, static or shared. Everything that touches SSL is compiled out behind a <code>BJORNE_AGENT_HAS_OPENSSL</code> definition that the build sets for the core library and its consumers. A disabled build keeps the plain TCP transport, so http endpoints work, and the model client rejects an https endpoint before any connection with an error naming the endpoint. That state serves local models such as llama.cpp on a secure network, and it gives a container image with no crypto dependency at all.</p>
 <p>A static OpenSSL build does not include the FIPS approved provider. That matters on FIPS systems.</p>
 <p>Static linking is a separate switch from the OpenSSL choice. <code>BJORNE_AGENT_STATIC</code> is ON for the static OpenSSL and disabled OpenSSL modes and OFF for shared OpenSSL and coverage builds. When ON, both executables link with <code>-static</code>, the deployment binary is stripped, and <code>ldd</code> reports no dynamic dependencies. The one thing a static glibc cannot do is call <code>getaddrinfo</code>: it needs the NSS modules, which are shared objects, and loading one from a static binary crashes. The static build therefore resolves names itself. Numeric addresses go straight through <code>inet_pton</code>. <code>/etc/hosts</code> is parsed directly, so aliases and comments behave as expected. Anything else goes to the libc stub resolver through <code>res_search</code>, which reads <code>/etc/resolv.conf</code>, applies the search domains, and speaks DNS to the configured nameservers. The trade is that <code>nsswitch.conf</code>, mDNS, and NSS modules are not consulted, which is a fair price for a binary that starts on a machine with nothing installed. The dynamic build keeps <code>getaddrinfo</code> and its full name service switch. Both paths return the same <code>DNS resolution failed</code> error shape, and neither crashes on a name that does not exist. The DNS answer parser is a separate unit with its own tests, so the wire format is exercised without a network.</p>
-<h2><a class="anchor" id="autotoc_md77"></a>
+<h2><a class="anchor" id="autotoc_md78"></a>
 Context Manager</h2>
 <p>The context manager implements the context rules. The default overflow strategy is truncate. Compression can run before overflow. Compression is separate from truncation. Compression timing is per model. The compression instruction starts with summarization. A customized instruction offers more control than a hardcoded prompt. The customized instruction comes from a markdown file referenced by configuration, combined with the binary and the config file. The default compression prompt is "Summarize the conversation". A user-configured markdown file can override. Each model entry may carry a compression prompt path.</p>
-<h2><a class="anchor" id="autotoc_md78"></a>
+<h2><a class="anchor" id="autotoc_md79"></a>
 Agent Loop</h2>
 <p>The agent loop implements the loop specification. It assembles context, calls the model, runs tools, and iterates.</p>
 <p>The loop stops when the model returns a final response without tool calls. The loop also stops at the iteration cap.</p>
 <p>The loop takes an optional observer. It reports each completed tool turn, the final answer, a failure, and an interrupt together with the message list at that moment. The default observer does nothing, so a one-shot run without persistence carries no session code in its path. The loop also takes an optional stop predicate, which it polls before and after each model call. That is the seam a shutdown signal uses, and later the seam an ACP cancellation uses.</p>
-<h2><a class="anchor" id="autotoc_md79"></a>
+<h2><a class="anchor" id="autotoc_md80"></a>
 Session Store</h2>
 <p>The session store is a directory of <code>&lt;id&gt;.json</code> files, one per session. The design keeps it to a directory rather than a remote or pluggable backend because the deployment case is a container with a mounted volume: the volume survives the container, and nothing else is needed.</p>
 <p>Every write goes to <code>&lt;id&gt;.json.tmp</code> and is then published with a rename. On POSIX that is <code>rename</code>, which replaces the destination atomically; on Windows it is <code>MoveFileEx</code> with the replace and write-through flags, because the C <code>rename</code> fails there when the target exists. A process that dies mid-write leaves the previous record intact. The record is rewritten after each turn, not only at exit, so a teardown loses at most the turn in flight.</p>
@@ -138,17 +138,32 @@ Session Store</h2>
 <p>The recorder is the loop observer that owns the persistence. It stamps the status and rewrites the file on each event. A failed write is logged and the run continues, and the next event tries again.</p>
 <p>Signals are handled by a flag, never by file code. A POSIX signal handler may only set a <code>sig_atomic_t</code>, so the handler does that and the loop polls the flag between steps. When the loop sees it, it persists the session as interrupted and returns. Without that split a <code>SIGTERM</code> during a write, or during allocation, could corrupt the record it was trying to save.</p>
 <p>Resume loads the record, refreshes the system message from the current fragments, and repairs dangling tool calls. A tool call with no result is the normal damage from a kill between the model response and the tool result; the API rejects the sequence, so each missing call gets a synthetic error result. The repaired record is saved before the first model call. A session that already completed prints its answer without contacting the model.</p>
-<h2><a class="anchor" id="autotoc_md80"></a>
+<h2><a class="anchor" id="autotoc_md81"></a>
 Tool Layer</h2>
 <p>The tool layer provides the minimal set from the baseline specification: read file, write file, edit file, run shell command. Tool results feed back into the context.</p>
 <p>The registry is dynamic. The four built-ins are registered first. A caller may add a tool, replace one by name, or remove one, and the definitions sent to the model are derived from whatever is registered. The built-in schemas are values assembled in code and serialized by the JSON writer rather than string concatenation. That registration path is what a configuration override or an MCP server uses later; name resolution is by map lookup, so a later registration wins over an earlier one. <code>stringParameters</code> and <code>parseToolArguments</code> are public for the same reason: a caller that registers <code>load_skill</code> or its own tool builds a schema and parses arguments without repeating the JSON work.</p>
 <p>The JSON layer has both a parser and a writer. The writer emits compact JSON, escapes strings so a message never contains an embedded newline, prints integral numbers without a decimal point, and rejects a non-finite number because JSON cannot represent one.</p>
-<h2><a class="anchor" id="autotoc_md81"></a>
+<h2><a class="anchor" id="autotoc_md82"></a>
 Interaction</h2>
 <p>The interaction channel is the seam between the model and a human. The request shape is a question plus an optional list of options, and the tool that carries it is <code>request_input</code>. The channel is pluggable so that a later ACP permission request can use the same constrained choice shape without a second prompt implementation.</p>
 <p>The default channel is unavailable. In a container standard input usually carries the task and there is no human, so the tool fails at once with a message that names the reason. The console channel is selected only when <code>agent.interactive</code> is true and standard input is a terminal. That check is the guard against a hanging container: a prompt on a pipe would either consume the task or wait for an answer that cannot arrive. The console is a plain line prompt rather than a full screen interface, which keeps the static build small. With options it accepts a one based index or the option text and rejects anything else, so the constraint is real.</p>
 <p>The tool is registered even when no channel is available. An unavailable channel becomes a tool error, which the loop already handles as result text, so the model can adapt instead of the run failing outright.</p>
-<h1><a class="anchor" id="autotoc_md82"></a>
+<h2><a class="anchor" id="autotoc_md83"></a>
+JSON-RPC Core</h2>
+<p>Phase E and Phase F speak the same wire format: JSON-RPC 2.0 with one message per line and no <code>Content-Length</code> framing. The codec is therefore written once, in <code>src/jsonrpc/</code>, and used by both roles. The ACP framing and the MCP stdio framing are identical, so a second implementation would be a second set of bugs.</p>
+<p>The codec parses a line into a message that is either a request, a response, or a notification. A request carries an id and a method, a response carries an id and a result or an error, and a notification carries a method and no id. The writer escapes newlines inside strings, because a protocol message must not contain an embedded newline: the framing would break.</p>
+<p>The endpoint is the transport half. It owns a reader thread, a map of pending requests keyed by the request id, and a write mutex, because a request and a response may cross on the wire at the same time. A caller issues a request with a timeout and waits on a condition variable; the reader thread fills in the pending entry and notifies. A malformed line is skipped rather than fatal: a peer that emits one bad log line should not take a working session down. The transport itself is an interface with a <code>sendLine</code> and a <code>readLine</code>, which is what lets the tests drive the endpoint with a scripted peer instead of a process.</p>
+<h2><a class="anchor" id="autotoc_md84"></a>
+Child Processes</h2>
+<p>An MCP server is a child process with pipes on standard input and standard output. The existing <code>run_shell</code> tool uses a one way <code>popen</code> and cannot be reused, because the protocol is bidirectional. The child process class therefore owns two pipes and a line buffer. Standard error is inherited rather than piped, so a server's own log lines reach the agent's stderr and never fill a pipe that nobody drains.</p>
+<p>The reader is a poll on POSIX and a peek on the named pipe on Windows, with a poll interval rather than a blocking read, so the endpoint can time out a request. A partial line is kept for the next call, and an oversized line is refused rather than allowed to exhaust memory.</p>
+<h2><a class="anchor" id="autotoc_md85"></a>
+MCP Client</h2>
+<p>The MCP client is the protocol half on top of the endpoint. It performs the <code>initialize</code> handshake, sends the initialized notification, lists the tools following the pagination cursor, and calls a tool. The list is paginated because a server may hold more tools than fit in one response, and the cursor is followed up to a fixed number of pages so a server cannot loop the client forever.</p>
+<p>A tool is exposed to the model as <code>mcp__&lt;server&gt;__&lt;tool&gt;</code>. The namespace is what keeps an MCP tool from colliding with a built-in, and it makes the origin of a tool visible in the model's tool call. The input schema is passed through untouched, so a server can describe any argument shape without the agent having to know it.</p>
+<p>The result of a call is the text content of the response. Content that is not text is rendered as a placeholder rather than dropped, so the model sees that something was returned. A response that reports <code>isError</code> becomes a tool error rather than a failed run: the server worked and reported a problem, which is the same shape as any other failed tool.</p>
+<p>A server that crashes or times out is restarted once and the call is retried, which turns a dying server into a lost call rather than a lost run. A tool that merely reported an error is not retried, because the server itself answered. A server that cannot start at all is logged and skipped, and the run continues with the tools that did register. The registration order is the built-ins, then the interaction tool, then the MCP servers, which is the resolution order the tool set promises.</p>
+<h1><a class="anchor" id="autotoc_md86"></a>
 Fulfilment Mapping</h1>
 <p>The design meets the specifications:</p>
 <ul>
@@ -159,9 +174,10 @@ Fulfilment Mapping</h1>
 <li>Loop: stages, stopping conditions, error handling.</li>
 <li>Sessions: local directory, atomic rewrite after each turn, signal flush, resume repair.</li>
 <li>Interaction: pluggable channel, unavailable by default, console only on a terminal, constrained options.</li>
+<li>MCP: stdio JSON-RPC client, initialize handshake, namespaced tool names, restart on crash, no new dependency.</li>
 <li>Container: scratch or distroless base, static binary, config via mount or env, binary entrypoint.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md83"></a>
+<h1><a class="anchor" id="autotoc_md87"></a>
 Build and Container Design</h1>
 <ul>
 <li>C++20, GCC or Clang.</li>
@@ -174,7 +190,7 @@ Build and Container Design</h1>
 <li>Config: mount as a file or pass via environment.</li>
 <li>Entry point: binary.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md84"></a>
+<h2><a class="anchor" id="autotoc_md88"></a>
 Build Environments</h2>
 <p>Three podman environments, one per link mode, live in <code>container/</code>:</p>
 <ul>
@@ -184,20 +200,21 @@ Build Environments</h2>
 </ul>
 <p>Each image creates a <code>builder</code> user from <code>--build-arg UID/GID</code>, and the run passes <code>--userns=keep-id</code>. Rootless podman maps the caller's uid to container uid 0, so an image user with the caller's uid only exists inside the container if that uid is mapped back; <code>keep-id</code> does that. The bind mount stays writable, nothing compiles as root, and the artifacts belong to the caller. The driver refuses to run as root rather than silently producing root owned output.</p>
 <p>The <code>notls</code> image still contains shared OpenSSL, because Alpine's <code>cmake</code> package depends on it directly. That does not reach the build: <code>disabled</code> skips <code>find_package(OpenSSL)</code>, so no OpenSSL path appears in the cache or the compile and link lines.</p>
-<h2><a class="anchor" id="autotoc_md85"></a>
+<h2><a class="anchor" id="autotoc_md89"></a>
 Runtime Image</h2>
 <p><code>container/Containerfile.runtime</code> builds the image the harness runs in. It has two stages. The first is Alpine with the build tools and static OpenSSL. It compiles a fully static binary and assembles the runtime root. The second stage is scratch and holds only that root.</p>
 <p>The runtime root holds the binary at <code>/usr/local/bin/bjorne_agent</code>, the compression prompt next to the config mount point and in the install layout, a CA bundle at both <code>/etc/ssl/cert.pem</code> and <code>/etc/ssl/certs/ca-certificates.crt</code>, busybox with its applet symlinks, the musl loader and libc that busybox links against, and a passwd and group file that name a user with uid 1000. The container runs as that user.</p>
 <p>Three things in that root come from the tools rather than the binary. The CA bundle is needed because the TLS transport calls <code>SSL_CTX_set_default_verify_paths</code>, and the static OpenSSL build looks in <code>/etc/ssl</code>. The busybox shell is needed because the <code>run_shell</code> tool calls <code>popen</code>, which runs <code>/bin/sh</code>. The passwd file is needed because scratch has no account database, and the image must not run as root.</p>
+<p>The image also reserves <code>/usr/local/share/bjorne_agent/mcp</code> as the mount point for MCP server binaries. Scratch has no package manager, so a server binary cannot be installed at run time; it is either baked into the image or mounted there, and the configuration names it by an absolute path.</p>
 <p>Podman writes <code>/etc/resolv.conf</code> and <code>/etc/hosts</code> into the container even when the image is scratch, so the stub resolver in the static build reaches the nameservers without anything in the image.</p>
 <p>The binary is the entrypoint, so a run takes the task as its only argument. The config arrives either as a mount at <code>/etc/bjorne_agent/bjorne_agent.json</code>, which is the default <code>BJORNE_AGENT_CONFIG</code> value, or through <code>BJORNE_AGENT_CONFIG</code> naming any other path. A relative <code>compression_prompt_path</code> resolves against the directory holding the config file, so a config mounted outside <code>/etc/bjorne_agent</code> needs the absolute path <code>/usr/local/share/bjorne_agent/prompts/compression.md</code>.</p>
-<h1><a class="anchor" id="autotoc_md86"></a>
+<h1><a class="anchor" id="autotoc_md90"></a>
 Design Decisions</h1>
 <ul>
 <li>Tool source: fixed set for version one. The tool layer provides read file, write file, edit file, run shell command. A config driven tool source is deferred.</li>
 <li>Iteration cap: default 25. The cap may change before release.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md87"></a>
+<h1><a class="anchor" id="autotoc_md91"></a>
 Status</h1>
 <p>Design draft. This document maps the design to the specifications. </p>
 </div></div><!-- contents -->

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['level_0',['Level',['../namespacebjorne__agent_1_1log.html#ac923e7d2faae3eab1a1a3bfa3cd7d947',1,'bjorne_agent::log']]]
+  ['kind_0',['Kind',['../structbjorne__agent_1_1jsonrpc_1_1Message.html#a4ec8804dc53fb83e92f5599acdf4b3bf',1,'bjorne_agent::jsonrpc::Message']]]
 ];

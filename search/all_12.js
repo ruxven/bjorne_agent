@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['object_0',['object',['../namespacebjorne__agent_1_1json.html#a2751ea680716e84d69c621345d2f50ab',1,'bjorne_agent::json::Object'],['../classbjorne__agent_1_1json_1_1Value.html#a5cf3a67a10e1f3ea614fe295872c7c9a',1,'bjorne_agent::json::Value::object'],['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8a497031794414a552435f90151ac3b54b',1,'bjorne_agent::json::Value::Object']]],
-  ['of_20scope_1',['Deliberately out of scope',['../md_ROADMAP.html#autotoc_md101',1,'']]],
+  ['object_0',['object',['../namespacebjorne__agent_1_1json.html#a2751ea680716e84d69c621345d2f50ab',1,'bjorne_agent::json::Object'],['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8a497031794414a552435f90151ac3b54b',1,'bjorne_agent::json::Value::Object'],['../classbjorne__agent_1_1json_1_1Value.html#a5cf3a67a10e1f3ea614fe295872c7c9a',1,'bjorne_agent::json::Value::object']]],
+  ['of_20scope_1',['Deliberately out of scope',['../md_ROADMAP.html#autotoc_md105',1,'']]],
   ['ok_2',['ok',['../structbjorne__agent_1_1tools_1_1ToolResult.html#a3e74617481b63e57dd0f578e5c712251',1,'bjorne_agent::tools::ToolResult']]],
   ['oncomplete_3',['oncomplete',['../classbjorne__agent_1_1agent_1_1LoopObserver.html#a176c540acba586d34dfce85e77248479',1,'bjorne_agent::agent::LoopObserver::onComplete()'],['../classbjorne__agent_1_1session_1_1SessionRecorder.html#aafe9f0c9ee95de33e482b1a7e28abcf7',1,'bjorne_agent::session::SessionRecorder::onComplete()']]],
   ['one_20scope_4',['Version One Scope',['../md_SPEC.html#autotoc_md27',1,'']]],
@@ -9,15 +9,15 @@ var searchData=
   ['oninterrupt_6',['oninterrupt',['../classbjorne__agent_1_1agent_1_1LoopObserver.html#a3e950a5da38f38c34b30781d29671fb0',1,'bjorne_agent::agent::LoopObserver::onInterrupt()'],['../classbjorne__agent_1_1session_1_1SessionRecorder.html#aaf8a0c7f3e5fb49328127316a07c94da',1,'bjorne_agent::session::SessionRecorder::onInterrupt(const std::vector&lt; model::ModelMessage &gt; &amp;messages) override']]],
   ['onturn_7',['onturn',['../classbjorne__agent_1_1session_1_1SessionRecorder.html#a51e0416dc2067f9bbff54183341687ce',1,'bjorne_agent::session::SessionRecorder::onTurn()'],['../classbjorne__agent_1_1agent_1_1LoopObserver.html#ac0f9a62d0e61de18e956437091a43571',1,'bjorne_agent::agent::LoopObserver::onTurn()']]],
   ['open_8',['open',['../classbjorne__agent_1_1session_1_1SessionStore.html#a2476387e5a9f8915176e19c7fdccc865',1,'bjorne_agent::session::SessionStore']]],
-  ['open_20questions_9',['open questions',['../md_SPEC_8CONFIG.html#autotoc_md54',1,'Open Questions'],['../md_SPEC.html#autotoc_md42',1,'Open Questions']]],
+  ['open_20questions_9',['open questions',['../md_SPEC_8CONFIG.html#autotoc_md55',1,'Open Questions'],['../md_SPEC.html#autotoc_md43',1,'Open Questions']]],
   ['openssltransport_10',['openssltransport',['../classbjorne__agent_1_1http_1_1OpenSslTransport.html#a3f8bbf799f758f6a6f3db3ec8cb7d931',1,'bjorne_agent::http::OpenSslTransport::OpenSslTransport()=default'],['../classbjorne__agent_1_1http_1_1OpenSslTransport.html#a9a70a9546c36af408fd4efd5605d1b27',1,'bjorne_agent::http::OpenSslTransport::OpenSslTransport(Options options)'],['../classbjorne__agent_1_1http_1_1OpenSslTransport.html',1,'bjorne_agent::http::OpenSslTransport']]],
-  ['operator_3d_11',['operator=',['../classbjorne__agent_1_1session_1_1SessionStore.html#acd43dcc0034f5b3e796e510a3bc45c29',1,'bjorne_agent::session::SessionStore::operator=()'],['../classbjorne__agent_1_1tools_1_1ToolRegistry.html#a3374813542ae875807657feda6fba3e0',1,'bjorne_agent::tools::ToolRegistry::operator=()']]],
+  ['operator_3d_11',['operator=',['../classbjorne__agent_1_1mcp_1_1Server.html#ab4d5b098a928c4278ebad3bc0db4fb6d',1,'bjorne_agent::mcp::Server::operator=()'],['../classbjorne__agent_1_1tools_1_1ToolRegistry.html#a3374813542ae875807657feda6fba3e0',1,'bjorne_agent::tools::ToolRegistry::operator=()'],['../classbjorne__agent_1_1session_1_1SessionStore.html#acd43dcc0034f5b3e796e510a3bc45c29',1,'bjorne_agent::session::SessionStore::operator=()'],['../classbjorne__agent_1_1platform_1_1ChildProcess.html#a601819ea549047494bb1092d32039af0',1,'bjorne_agent::platform::ChildProcess::operator=()'],['../classbjorne__agent_1_1jsonrpc_1_1Endpoint.html#a3e68fab246b7d4bbfe5f18e0a72ac87b',1,'bjorne_agent::jsonrpc::Endpoint::operator=()']]],
   ['operator_5b_5d_12',['operator[]',['../classbjorne__agent_1_1json_1_1Value.html#a502236c15f6164bde1577f6d63b0720b',1,'bjorne_agent::json::Value']]],
   ['options_13',['options',['../structbjorne__agent_1_1interaction_1_1Request.html#ada53de17f4af0b3aa2ddaf9fe421db0e',1,'bjorne_agent::interaction::Request::options'],['../structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html',1,'bjorne_agent::http::OpenSslTransport::Options']]],
-  ['out_20of_20scope_14',['Deliberately out of scope',['../md_ROADMAP.html#autotoc_md101',1,'']]],
+  ['out_20of_20scope_14',['Deliberately out of scope',['../md_ROADMAP.html#autotoc_md105',1,'']]],
   ['output_15',['output',['../structbjorne__agent_1_1tools_1_1ToolResult.html#ad3b9f5d3f7b7336c251316509f825beb',1,'bjorne_agent::tools::ToolResult']]],
   ['output_20levels_16',['Output levels',['../md_README.html#autotoc_md10',1,'']]],
   ['overflow_5fstrategy_17',['overflow_strategy',['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a2767ec1f9a88d38c4ca41f7db2bf1cc7',1,'bjorne_agent::context::ContextManagerConfig']]],
   ['overflowstrategy_18',['OverflowStrategy',['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a228a635684d0dc4bd7a4bc34d62f2073',1,'bjorne_agent::context::ContextManagerConfig']]],
-  ['overview_19',['overview',['../md_SPEC_8CONFIG.html#autotoc_md46',1,'Overview'],['../md_SPEC_8LOOP.html#autotoc_md58',1,'Overview']]]
+  ['overview_19',['overview',['../md_SPEC_8CONFIG.html#autotoc_md47',1,'Overview'],['../md_SPEC_8LOOP.html#autotoc_md59',1,'Overview']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['toolhandler_0',['ToolHandler',['../namespacebjorne__agent_1_1tools.html#a12306154355bf9a749837809aad2fea1',1,'bjorne_agent::tools']]]
+  ['requesthandler_0',['RequestHandler',['../namespacebjorne__agent_1_1jsonrpc.html#abdda357879eb82f302837951d053a2c4',1,'bjorne_agent::jsonrpc']]]
 ];

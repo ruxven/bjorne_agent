@@ -1,11 +1,6 @@
 var searchData=
 [
-  ['oncomplete_0',['oncomplete',['../classbjorne__agent_1_1agent_1_1LoopObserver.html#a176c540acba586d34dfce85e77248479',1,'bjorne_agent::agent::LoopObserver::onComplete()'],['../classbjorne__agent_1_1session_1_1SessionRecorder.html#aafe9f0c9ee95de33e482b1a7e28abcf7',1,'bjorne_agent::session::SessionRecorder::onComplete()']]],
-  ['onfailure_1',['onfailure',['../classbjorne__agent_1_1agent_1_1LoopObserver.html#ab4f28c1438c7412531e9721dcc25d5e3',1,'bjorne_agent::agent::LoopObserver::onFailure()'],['../classbjorne__agent_1_1session_1_1SessionRecorder.html#ad07c8968cd7b10500eb84b191d01bbc1',1,'bjorne_agent::session::SessionRecorder::onFailure()']]],
-  ['oninterrupt_2',['oninterrupt',['../classbjorne__agent_1_1agent_1_1LoopObserver.html#a3e950a5da38f38c34b30781d29671fb0',1,'bjorne_agent::agent::LoopObserver::onInterrupt()'],['../classbjorne__agent_1_1session_1_1SessionRecorder.html#aaf8a0c7f3e5fb49328127316a07c94da',1,'bjorne_agent::session::SessionRecorder::onInterrupt()']]],
-  ['onturn_3',['onturn',['../classbjorne__agent_1_1agent_1_1LoopObserver.html#ac0f9a62d0e61de18e956437091a43571',1,'bjorne_agent::agent::LoopObserver::onTurn()'],['../classbjorne__agent_1_1session_1_1SessionRecorder.html#a51e0416dc2067f9bbff54183341687ce',1,'bjorne_agent::session::SessionRecorder::onTurn()']]],
-  ['open_4',['open',['../classbjorne__agent_1_1session_1_1SessionStore.html#a2476387e5a9f8915176e19c7fdccc865',1,'bjorne_agent::session::SessionStore']]],
-  ['openssltransport_5',['openssltransport',['../classbjorne__agent_1_1http_1_1OpenSslTransport.html#a3f8bbf799f758f6a6f3db3ec8cb7d931',1,'bjorne_agent::http::OpenSslTransport::OpenSslTransport()=default'],['../classbjorne__agent_1_1http_1_1OpenSslTransport.html#a9a70a9546c36af408fd4efd5605d1b27',1,'bjorne_agent::http::OpenSslTransport::OpenSslTransport(Options options)']]],
-  ['operator_3d_6',['operator=',['../classbjorne__agent_1_1session_1_1SessionStore.html#acd43dcc0034f5b3e796e510a3bc45c29',1,'bjorne_agent::session::SessionStore::operator=()'],['../classbjorne__agent_1_1tools_1_1ToolRegistry.html#a3374813542ae875807657feda6fba3e0',1,'bjorne_agent::tools::ToolRegistry::operator=()']]],
-  ['operator_5b_5d_7',['operator[]',['../classbjorne__agent_1_1json_1_1Value.html#a502236c15f6164bde1577f6d63b0720b',1,'bjorne_agent::json::Value']]]
+  ['name_0',['name',['../classbjorne__agent_1_1mcp_1_1Server.html#a16dba6bd30edf500bd210053d725b6fd',1,'bjorne_agent::mcp::Server']]],
+  ['notify_1',['notify',['../classbjorne__agent_1_1jsonrpc_1_1Endpoint.html#a9c88eea0875e7a355da82bec592c08a6',1,'bjorne_agent::jsonrpc::Endpoint']]],
+  ['numberid_2',['numberId',['../namespacebjorne__agent_1_1jsonrpc.html#ae7af3d05a9fd20e779d6147477fc2d88',1,'bjorne_agent::jsonrpc']]]
 ];

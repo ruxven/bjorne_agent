@@ -409,7 +409,7 @@ Context fragments</h2>
 </div><!-- fragment --><p>Only the name and description go into the system prompt. The model calls the <code>load_skill</code> tool to read the full instructions on demand, which keeps a large skills directory out of the context until one is needed. A skill file without usable frontmatter is skipped with a warning rather than stopping the run.</p>
 <h2><a class="anchor" id="autotoc_md18"></a>
 MCP servers</h2>
-<p><code>mcp_servers</code> maps a server name to a stdio server definition. The loader reads the block now so the configuration stays stable; no server is started yet.</p>
+<p><code>mcp_servers</code> maps a server name to a stdio server definition. Each server is spawned as a child process at startup and speaks newline delimited JSON-RPC 2.0 over its standard input and output. There is no <code>Content-Length</code> framing.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Key   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Meaning    </th></tr>
@@ -427,8 +427,20 @@ MCP servers</h2>
 <div class="line">    &quot;env&quot;: {&quot;LOG_LEVEL&quot;: &quot;warn&quot;}</div>
 <div class="line">  }</div>
 <div class="line">}</div>
-</div><!-- fragment --><p>Tools from a server will appear as <code>mcp__&lt;server&gt;__&lt;tool&gt;</code>, so they cannot collide with a built-in.</p>
-<h2><a class="anchor" id="autotoc_md19"></a>
+</div><!-- fragment --><p>At startup the agent performs the <code>initialize</code> handshake, sends the initialized notification, and lists the tools. Each tool is registered under <code>mcp__&lt;server&gt;__&lt;tool&gt;</code>, so it cannot collide with a built-in, and its input schema is passed through to the model unchanged.</p>
+<p>A tool call returns the text content of the response. A server that reports <code>isError</code> produces a tool error, which the loop handles the way it handles any other failed tool. A server that crashes or times out is restarted once and the call is retried, so a dying server costs one call rather than the run. A server that cannot start at all is logged and skipped, and the run continues with the remaining tools.</p>
+<p>The runtime image has no package manager, so a server binary has to be baked into the image or mounted into it. The image reserves <code>/usr/local/share/bjorne_agent/mcp</code> for that, and the configuration names the binary by an absolute path:</p>
+<div class="fragment"><div class="line">podman run --rm \</div>
+<div class="line">  -v &quot;$PWD/bjorne_agent.json:/etc/bjorne_agent/bjorne_agent.json:ro&quot; \</div>
+<div class="line">  -v &quot;$PWD/mcp:/usr/local/share/bjorne_agent/mcp:ro&quot; \</div>
+<div class="line">  -v &quot;$PWD:/workspace&quot; \</div>
+<div class="line">  bjorne_agent &quot;your task&quot;</div>
+</div><!-- fragment --><div class="fragment"><div class="line">&quot;mcp_servers&quot;: {</div>
+<div class="line">  &quot;filesystem&quot;: {</div>
+<div class="line">    &quot;command&quot;: &quot;/usr/local/share/bjorne_agent/mcp/mcp-filesystem&quot;</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md19"></a>
 TLS</h2>
 <p>Certificate verification is on by default. The chain is checked against the system trust store, and the expected hostname is the <code>hostname</code> key when present, otherwise the host from the endpoint. A rejected certificate ends the run with the reason, for example <code>Certificate verification failed: self-signed certificate</code>.</p>
 <p><code>ignore_self_signed</code> turns off both the chain check and the hostname check. Use it only against a host with a self-signed certificate. The API key travels over this connection, so a build that trusts arbitrary certificates can hand the key to a wrong peer.</p>

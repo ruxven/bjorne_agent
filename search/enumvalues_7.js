@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['resume_0',['Resume',['../namespacebjorne__agent_1_1cli.html#af3439404a9a79b847d8f06aed44b547eaf1cefec9e2196c672a622347f1fbc325',1,'bjorne_agent::cli']]],
-  ['run_1',['Run',['../namespacebjorne__agent_1_1cli.html#af3439404a9a79b847d8f06aed44b547eac5301693c4e792bcd5a479ef38fb8f8d',1,'bjorne_agent::cli']]]
+  ['object_0',['Object',['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8a497031794414a552435f90151ac3b54b',1,'bjorne_agent::json::Value']]]
 ];

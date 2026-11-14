@@ -1,16 +1,18 @@
 var searchData=
 [
-  ['save_0',['save',['../classbjorne__agent_1_1session_1_1SessionStore.html#a9876a3d359e9d62c3d651ee588eb7930',1,'bjorne_agent::session::SessionStore']]],
-  ['send_1',['send',['../classbjorne__agent_1_1http_1_1HttpTransport.html#a39b4c0fbbbcb5dd1e8daa3c8208d8cd7',1,'bjorne_agent::http::HttpTransport::send()'],['../classbjorne__agent_1_1http_1_1OpenSslTransport.html#a23d973df7868f3046986ceb793fe5166',1,'bjorne_agent::http::OpenSslTransport::send()'],['../classbjorne__agent_1_1http_1_1PlainTcpTransport.html#a951b0b37fb631efeefa93ae18b150716',1,'bjorne_agent::http::PlainTcpTransport::send()']]],
-  ['sessionrecorder_2',['SessionRecorder',['../classbjorne__agent_1_1session_1_1SessionRecorder.html#a1772a76213cd1be86b0ecb1da3e49dbc',1,'bjorne_agent::session::SessionRecorder']]],
-  ['sessionstore_3',['SessionStore',['../classbjorne__agent_1_1session_1_1SessionStore.html#a3cf1e1f5f250d10cefafa013167a6d84',1,'bjorne_agent::session::SessionStore']]],
-  ['setenvironmentvariable_4',['setEnvironmentVariable',['../namespacebjorne__agent_1_1platform.html#a14b837952fb2046e0a0ddf461c8433bc',1,'bjorne_agent::platform']]],
-  ['setlevel_5',['setLevel',['../namespacebjorne__agent_1_1log.html#a5d70dc0f27dcfeb7449844ed31b61bc0',1,'bjorne_agent::log']]],
-  ['settools_6',['setTools',['../classbjorne__agent_1_1model_1_1ModelClient.html#ae3c5bdb861b473d109d005b070ea6265',1,'bjorne_agent::model::ModelClient']]],
-  ['shutdownflag_7',['shutdownFlag',['../namespacebjorne__agent_1_1platform_1_1detail.html#a8d2e32aa83383cda6478164ab28b650c',1,'bjorne_agent::platform::detail']]],
-  ['shutdownrequested_8',['shutdownRequested',['../namespacebjorne__agent_1_1platform.html#a89d795051ec21ca7157863d49f7bd4a9',1,'bjorne_agent::platform']]],
-  ['skillindexfragment_9',['skillIndexFragment',['../namespacebjorne__agent_1_1skills.html#ae418bdcf9f16651204e7b73d84ae4b77',1,'bjorne_agent::skills']]],
-  ['standardinputisterminal_10',['standardInputIsTerminal',['../namespacebjorne__agent_1_1platform.html#a4e9e826de68f008431b91bb1a487ae06',1,'bjorne_agent::platform']]],
-  ['state_11',['state',['../classbjorne__agent_1_1session_1_1SessionRecorder.html#a9b18d69c016ff81988940b12440f453e',1,'bjorne_agent::session::SessionRecorder']]],
-  ['stringparameters_12',['stringParameters',['../namespacebjorne__agent_1_1tools.html#a2cf510ec76f7f6fb20316bacfef11b17',1,'bjorne_agent::tools']]]
+  ['readfragment_0',['readFragment',['../namespacebjorne__agent_1_1context.html#acc4f1e5cda33f7727a0a78f505533832',1,'bjorne_agent::context']]],
+  ['readline_1',['readline',['../classbjorne__agent_1_1platform_1_1ChildProcess.html#aef25ae8f4b77f65785156eec857bc2ac',1,'bjorne_agent::platform::ChildProcess::readLine()'],['../classbjorne__agent_1_1jsonrpc_1_1Transport.html#ad8a4ffa02f07233ad8cc10888e6216e6',1,'bjorne_agent::jsonrpc::Transport::readLine()']]],
+  ['registerloadskilltool_2',['registerLoadSkillTool',['../namespacebjorne__agent_1_1skills.html#aaff49f98c659a2126b5603e29069eb3e',1,'bjorne_agent::skills']]],
+  ['registerrequestinputtool_3',['registerRequestInputTool',['../namespacebjorne__agent_1_1interaction.html#a6f55ba10df9a2e34c8b63dabbf096326',1,'bjorne_agent::interaction']]],
+  ['registerservers_4',['registerServers',['../namespacebjorne__agent_1_1mcp.html#a712085e902452569e7f568e0ac22ac5e',1,'bjorne_agent::mcp']]],
+  ['registertool_5',['registerTool',['../classbjorne__agent_1_1tools_1_1ToolRegistry.html#a965a68bf17798ac2215c05cf5c694d97',1,'bjorne_agent::tools::ToolRegistry']]],
+  ['removetool_6',['removeTool',['../classbjorne__agent_1_1tools_1_1ToolRegistry.html#a55d6fe566ce461cea647e28f75ff5191',1,'bjorne_agent::tools::ToolRegistry']]],
+  ['renderfragments_7',['renderFragments',['../namespacebjorne__agent_1_1context.html#ad51c9d160d037d5879c5190d2cc26436',1,'bjorne_agent::context']]],
+  ['repairdanglingtoolcalls_8',['repairDanglingToolCalls',['../namespacebjorne__agent_1_1session.html#a2c46551dca13daafcdf91efda3094462',1,'bjorne_agent::session']]],
+  ['replacefile_9',['replaceFile',['../namespacebjorne__agent_1_1platform.html#ac6779366681684ead2b73c85eb704452',1,'bjorne_agent::platform']]],
+  ['request_10',['request',['../classbjorne__agent_1_1http_1_1HttpClient.html#a846e18faebd19cd04461f23ebaf3a582',1,'bjorne_agent::http::HttpClient::request()'],['../classbjorne__agent_1_1jsonrpc_1_1Endpoint.html#a4f8014dabeda73505b2c37c8320a84b1',1,'bjorne_agent::jsonrpc::Endpoint::request()']]],
+  ['resolvehost_11',['resolveHost',['../namespacebjorne__agent_1_1http.html#a04d1001f2945eb2a0996234dbdcb4984',1,'bjorne_agent::http']]],
+  ['respond_12',['respond',['../classbjorne__agent_1_1model_1_1ModelClient.html#a219985f3e4f6e00f1a68957b4bca8061',1,'bjorne_agent::model::ModelClient::respond()'],['../classbjorne__agent_1_1model_1_1ModelBackend.html#a7928168c672e16f7064536aeef09263d',1,'bjorne_agent::model::ModelBackend::respond()']]],
+  ['run_13',['run',['../classbjorne__agent_1_1agent_1_1AgentLoop.html#af2930aa5a10e285f985295c3f5e59bf9',1,'bjorne_agent::agent::AgentLoop']]],
+  ['running_14',['running',['../classbjorne__agent_1_1platform_1_1ChildProcess.html#a00bff59f75306e5cf4356b5b9f620a94',1,'bjorne_agent::platform::ChildProcess']]]
 ];

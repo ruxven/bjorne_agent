@@ -8,11 +8,13 @@ var searchData=
   ['bjorne_5fagent_3a_3ahttp_5',['http',['../namespacebjorne__agent_1_1http.html',1,'bjorne_agent']]],
   ['bjorne_5fagent_3a_3ainteraction_6',['interaction',['../namespacebjorne__agent_1_1interaction.html',1,'bjorne_agent']]],
   ['bjorne_5fagent_3a_3ajson_7',['json',['../namespacebjorne__agent_1_1json.html',1,'bjorne_agent']]],
-  ['bjorne_5fagent_3a_3alog_8',['log',['../namespacebjorne__agent_1_1log.html',1,'bjorne_agent']]],
-  ['bjorne_5fagent_3a_3amodel_9',['model',['../namespacebjorne__agent_1_1model.html',1,'bjorne_agent']]],
-  ['bjorne_5fagent_3a_3aplatform_10',['platform',['../namespacebjorne__agent_1_1platform.html',1,'bjorne_agent']]],
-  ['bjorne_5fagent_3a_3aplatform_3a_3adetail_11',['detail',['../namespacebjorne__agent_1_1platform_1_1detail.html',1,'bjorne_agent::platform']]],
-  ['bjorne_5fagent_3a_3asession_12',['session',['../namespacebjorne__agent_1_1session.html',1,'bjorne_agent']]],
-  ['bjorne_5fagent_3a_3askills_13',['skills',['../namespacebjorne__agent_1_1skills.html',1,'bjorne_agent']]],
-  ['bjorne_5fagent_3a_3atools_14',['tools',['../namespacebjorne__agent_1_1tools.html',1,'bjorne_agent']]]
+  ['bjorne_5fagent_3a_3ajsonrpc_8',['jsonrpc',['../namespacebjorne__agent_1_1jsonrpc.html',1,'bjorne_agent']]],
+  ['bjorne_5fagent_3a_3alog_9',['log',['../namespacebjorne__agent_1_1log.html',1,'bjorne_agent']]],
+  ['bjorne_5fagent_3a_3amcp_10',['mcp',['../namespacebjorne__agent_1_1mcp.html',1,'bjorne_agent']]],
+  ['bjorne_5fagent_3a_3amodel_11',['model',['../namespacebjorne__agent_1_1model.html',1,'bjorne_agent']]],
+  ['bjorne_5fagent_3a_3aplatform_12',['platform',['../namespacebjorne__agent_1_1platform.html',1,'bjorne_agent']]],
+  ['bjorne_5fagent_3a_3aplatform_3a_3adetail_13',['detail',['../namespacebjorne__agent_1_1platform_1_1detail.html',1,'bjorne_agent::platform']]],
+  ['bjorne_5fagent_3a_3asession_14',['session',['../namespacebjorne__agent_1_1session.html',1,'bjorne_agent']]],
+  ['bjorne_5fagent_3a_3askills_15',['skills',['../namespacebjorne__agent_1_1skills.html',1,'bjorne_agent']]],
+  ['bjorne_5fagent_3a_3atools_16',['tools',['../namespacebjorne__agent_1_1tools.html',1,'bjorne_agent']]]
 ];

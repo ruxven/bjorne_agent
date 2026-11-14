@@ -7,6 +7,7 @@ var namespacebjorne__agent =
     [ "http", "namespacebjorne__agent_1_1http.html", "namespacebjorne__agent_1_1http" ],
     [ "interaction", "namespacebjorne__agent_1_1interaction.html", "namespacebjorne__agent_1_1interaction" ],
     [ "json", "namespacebjorne__agent_1_1json.html", "namespacebjorne__agent_1_1json" ],
+    [ "jsonrpc", "namespacebjorne__agent_1_1jsonrpc.html", "namespacebjorne__agent_1_1jsonrpc" ],
     [ "log", "namespacebjorne__agent_1_1log.html", [
       [ "Level", "namespacebjorne__agent_1_1log.html#ac923e7d2faae3eab1a1a3bfa3cd7d947", [
         [ "Quiet", "namespacebjorne__agent_1_1log.html#ac923e7d2faae3eab1a1a3bfa3cd7d947a098753f8980036f4b936e3d4b6997111", null ],
@@ -23,6 +24,7 @@ var namespacebjorne__agent =
       [ "elapsedSeconds", "namespacebjorne__agent_1_1log.html#aa98eb282dd86ab30c0750f9a66d53b05", null ],
       [ "formatSeconds", "namespacebjorne__agent_1_1log.html#a991ad1ccdd8820623175b5800ba18e48", null ]
     ] ],
+    [ "mcp", "namespacebjorne__agent_1_1mcp.html", "namespacebjorne__agent_1_1mcp" ],
     [ "model", "namespacebjorne__agent_1_1model.html", "namespacebjorne__agent_1_1model" ],
     [ "platform", "namespacebjorne__agent_1_1platform.html", "namespacebjorne__agent_1_1platform" ],
     [ "session", "namespacebjorne__agent_1_1session.html", "namespacebjorne__agent_1_1session" ],

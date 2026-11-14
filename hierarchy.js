@@ -8,9 +8,13 @@ var hierarchy =
       [ "bjorne_agent::interaction::ConsoleChannel", "classbjorne__agent_1_1interaction_1_1ConsoleChannel.html", null ],
       [ "bjorne_agent::interaction::UnavailableChannel", "classbjorne__agent_1_1interaction_1_1UnavailableChannel.html", null ]
     ] ],
+    [ "bjorne_agent::platform::ChildProcess", "classbjorne__agent_1_1platform_1_1ChildProcess.html", null ],
+    [ "bjorne_agent::mcp::Client", "classbjorne__agent_1_1mcp_1_1Client.html", null ],
     [ "bjorne_agent::config::Config", "structbjorne__agent_1_1config_1_1Config.html", null ],
     [ "bjorne_agent::context::ContextManager", "classbjorne__agent_1_1context_1_1ContextManager.html", null ],
     [ "bjorne_agent::context::ContextManagerConfig", "structbjorne__agent_1_1context_1_1ContextManagerConfig.html", null ],
+    [ "bjorne_agent::jsonrpc::Endpoint", "classbjorne__agent_1_1jsonrpc_1_1Endpoint.html", null ],
+    [ "bjorne_agent::jsonrpc::Error", "structbjorne__agent_1_1jsonrpc_1_1Error.html", null ],
     [ "bjorne_agent::context::Fragment", "structbjorne__agent_1_1context_1_1Fragment.html", null ],
     [ "bjorne_agent::context::FragmentLimits", "structbjorne__agent_1_1context_1_1FragmentLimits.html", null ],
     [ "bjorne_agent::http::HttpClient", "classbjorne__agent_1_1http_1_1HttpClient.html", null ],
@@ -25,6 +29,7 @@ var hierarchy =
       [ "bjorne_agent::session::SessionRecorder", "classbjorne__agent_1_1session_1_1SessionRecorder.html", null ]
     ] ],
     [ "bjorne_agent::config::McpServerConfig", "structbjorne__agent_1_1config_1_1McpServerConfig.html", null ],
+    [ "bjorne_agent::jsonrpc::Message", "structbjorne__agent_1_1jsonrpc_1_1Message.html", null ],
     [ "bjorne_agent::model::ModelBackend", "classbjorne__agent_1_1model_1_1ModelBackend.html", [
       [ "bjorne_agent::model::ModelClient", "classbjorne__agent_1_1model_1_1ModelClient.html", null ]
     ] ],
@@ -36,6 +41,7 @@ var hierarchy =
     [ "bjorne_agent::interaction::Request", "structbjorne__agent_1_1interaction_1_1Request.html", null ],
     [ "bjorne_agent::http::ResolvedAddress", "structbjorne__agent_1_1http_1_1ResolvedAddress.html", null ],
     [ "bjorne_agent::http::ResolverOptions", "structbjorne__agent_1_1http_1_1ResolverOptions.html", null ],
+    [ "bjorne_agent::mcp::Server", "classbjorne__agent_1_1mcp_1_1Server.html", null ],
     [ "bjorne_agent::session::SessionState", "structbjorne__agent_1_1session_1_1SessionState.html", null ],
     [ "bjorne_agent::session::SessionStore", "classbjorne__agent_1_1session_1_1SessionStore.html", null ],
     [ "bjorne_agent::session::SessionSummary", "structbjorne__agent_1_1session_1_1SessionSummary.html", null ],
@@ -43,8 +49,10 @@ var hierarchy =
     [ "bjorne_agent::skills::SkillLoad", "structbjorne__agent_1_1skills_1_1SkillLoad.html", null ],
     [ "bjorne_agent::model::ToolCall", "structbjorne__agent_1_1model_1_1ToolCall.html", null ],
     [ "bjorne_agent::tools::ToolDefinition", "structbjorne__agent_1_1tools_1_1ToolDefinition.html", null ],
+    [ "bjorne_agent::mcp::ToolInfo", "structbjorne__agent_1_1mcp_1_1ToolInfo.html", null ],
     [ "bjorne_agent::tools::ToolRegistry", "classbjorne__agent_1_1tools_1_1ToolRegistry.html", null ],
     [ "bjorne_agent::tools::ToolResult", "structbjorne__agent_1_1tools_1_1ToolResult.html", null ],
+    [ "bjorne_agent::jsonrpc::Transport", "classbjorne__agent_1_1jsonrpc_1_1Transport.html", null ],
     [ "bjorne_agent::http::Url", "structbjorne__agent_1_1http_1_1Url.html", null ],
     [ "bjorne_agent::json::Value", "classbjorne__agent_1_1json_1_1Value.html", null ]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loopobserver_0',['LoopObserver',['../classbjorne__agent_1_1agent_1_1LoopObserver.html',1,'bjorne_agent::agent']]]
+  ['invocation_0',['Invocation',['../structbjorne__agent_1_1cli_1_1Invocation.html',1,'bjorne_agent::cli']]]
 ];

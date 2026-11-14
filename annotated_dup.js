@@ -42,6 +42,17 @@ var annotated_dup =
       [ "json", "namespacebjorne__agent_1_1json.html", [
         [ "Value", "classbjorne__agent_1_1json_1_1Value.html", "classbjorne__agent_1_1json_1_1Value" ]
       ] ],
+      [ "jsonrpc", "namespacebjorne__agent_1_1jsonrpc.html", [
+        [ "Endpoint", "classbjorne__agent_1_1jsonrpc_1_1Endpoint.html", "classbjorne__agent_1_1jsonrpc_1_1Endpoint" ],
+        [ "Error", "structbjorne__agent_1_1jsonrpc_1_1Error.html", "structbjorne__agent_1_1jsonrpc_1_1Error" ],
+        [ "Message", "structbjorne__agent_1_1jsonrpc_1_1Message.html", "structbjorne__agent_1_1jsonrpc_1_1Message" ],
+        [ "Transport", "classbjorne__agent_1_1jsonrpc_1_1Transport.html", "classbjorne__agent_1_1jsonrpc_1_1Transport" ]
+      ] ],
+      [ "mcp", "namespacebjorne__agent_1_1mcp.html", [
+        [ "Client", "classbjorne__agent_1_1mcp_1_1Client.html", "classbjorne__agent_1_1mcp_1_1Client" ],
+        [ "Server", "classbjorne__agent_1_1mcp_1_1Server.html", "classbjorne__agent_1_1mcp_1_1Server" ],
+        [ "ToolInfo", "structbjorne__agent_1_1mcp_1_1ToolInfo.html", "structbjorne__agent_1_1mcp_1_1ToolInfo" ]
+      ] ],
       [ "model", "namespacebjorne__agent_1_1model.html", [
         [ "ModelBackend", "classbjorne__agent_1_1model_1_1ModelBackend.html", "classbjorne__agent_1_1model_1_1ModelBackend" ],
         [ "ModelClient", "classbjorne__agent_1_1model_1_1ModelClient.html", "classbjorne__agent_1_1model_1_1ModelClient" ],
@@ -49,6 +60,9 @@ var annotated_dup =
         [ "ModelMessage", "structbjorne__agent_1_1model_1_1ModelMessage.html", "structbjorne__agent_1_1model_1_1ModelMessage" ],
         [ "ModelResponse", "structbjorne__agent_1_1model_1_1ModelResponse.html", "structbjorne__agent_1_1model_1_1ModelResponse" ],
         [ "ToolCall", "structbjorne__agent_1_1model_1_1ToolCall.html", "structbjorne__agent_1_1model_1_1ToolCall" ]
+      ] ],
+      [ "platform", "namespacebjorne__agent_1_1platform.html", [
+        [ "ChildProcess", "classbjorne__agent_1_1platform_1_1ChildProcess.html", "classbjorne__agent_1_1platform_1_1ChildProcess" ]
       ] ],
       [ "session", "namespacebjorne__agent_1_1session.html", [
         [ "SessionRecorder", "classbjorne__agent_1_1session_1_1SessionRecorder.html", "classbjorne__agent_1_1session_1_1SessionRecorder" ],

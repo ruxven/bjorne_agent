@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_0',['Type',['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8',1,'bjorne_agent::json::Value']]]
+  ['overflowstrategy_0',['OverflowStrategy',['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a228a635684d0dc4bd7a4bc34d62f2073',1,'bjorne_agent::context::ContextManagerConfig']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['object_0',['Object',['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8a497031794414a552435f90151ac3b54b',1,'bjorne_agent::json::Value']]]
+  ['line_0',['line',['../namespacebjorne__agent_1_1jsonrpc.html#a16d235299fdb02c34e68a49c21323c7ca4803e6b9e63dabf04de980788d6a13c4',1,'bjorne_agent::jsonrpc::Line'],['../namespacebjorne__agent_1_1platform.html#a9082d940e1587586496d5ad2365132d0a4803e6b9e63dabf04de980788d6a13c4',1,'bjorne_agent::platform::Line']]]
 ];
