@@ -360,7 +360,7 @@ Agent</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>session_dir</code>   </td><td class="markdownTableBodyNone">string, optional   </td><td class="markdownTableBodyNone">Directory for persisted sessions. A relative path resolves against the config file. Empty keeps the one-shot behaviour.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>interactive</code>   </td><td class="markdownTableBodyNone">boolean, optional   </td><td class="markdownTableBodyNone">Defaults to <code>false</code>. Enables the console interaction channel when it is implemented.   </td></tr>
+<td class="markdownTableBodyNone"><code>interactive</code>   </td><td class="markdownTableBodyNone">boolean, optional   </td><td class="markdownTableBodyNone">Defaults to <code>false</code>. Enables the console interaction channel when standard input is a terminal.   </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md16"></a>
 Model</h2>
@@ -448,9 +448,12 @@ Tools</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>run_shell</code>   </td><td class="markdownTableBodyNone"><code>command</code>   </td><td class="markdownTableBodyNone">Runs a shell command in the workspace. Output is capped at 256 KiB and marked when truncated.    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>load_skill</code>   </td><td class="markdownTableBodyNone"><code>name</code>   </td><td class="markdownTableBodyNone">Returns the full instructions of a skill listed in the system prompt. Registered only when the skills directory holds at least one skill.   </td></tr>
+<td class="markdownTableBodyNone"><code>load_skill</code>   </td><td class="markdownTableBodyNone"><code>name</code>   </td><td class="markdownTableBodyNone">Returns the full instructions of a skill listed in the system prompt. Registered only when the skills directory holds at least one skill.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>request_input</code>   </td><td class="markdownTableBodyNone"><code>question</code>, <code>options</code> (optional array)   </td><td class="markdownTableBodyNone">Asks the user and returns the answer. With options the answer is a 1-based index or the option text.   </td></tr>
 </table>
 <p>Relative paths resolve against <code>agent.workspace</code>. A path that traverses a parent directory is rejected. A tool that fails does not stop the loop: the error becomes tool result text and the model decides what to do next.</p>
+<p><code>request_input</code> is always registered, but the channel behind it depends on the configuration. With <code>agent.interactive</code> false, or when standard input is not a terminal, it fails at once with a message that says why instead of waiting for an answer. With <code>agent.interactive</code> true and a terminal on standard input, it prints the question and reads one line. The task must be passed as an argument in that mode, because a task read from standard input consumes the same stream.</p>
 <h1><a class="anchor" id="autotoc_md21"></a>
 Containers</h1>
 <p><code>container/README.md</code> covers the podman work: the three build environments and the runtime image.</p>
@@ -481,7 +484,7 @@ Development</h1>
 <p>Run the tests:</p>
 <div class="fragment"><div class="line">cmake --build build</div>
 <div class="line">cd build &amp;&amp; ctest --output-on-failure</div>
-</div><!-- fragment --><p>The suite covers the JSON parser, the config loader, config discovery, CLI argument resolution, URL parsing, DNS, the HTTP client, TLS, the model client, context management, context fragments, AGENTS.md discovery, skills, the tools, the agent loop, the session store and recorder, and the log module.</p>
+</div><!-- fragment --><p>The suite covers the JSON parser, the config loader, config discovery, CLI argument resolution, URL parsing, DNS, the HTTP client, TLS, the model client, context management, context fragments, AGENTS.md discovery, skills, the tools, the interaction channel, the agent loop, the session store and recorder, and the log module.</p>
 <p>The static analysis gates used by this project:</p>
 <div class="fragment"><div class="line">lizard src/ -l cpp -C 15 -L 100 -a 5</div>
 </div><!-- fragment --><p>Complexity stays under 15 per function, 100 lines per function, and 5 parameters per function.</p>

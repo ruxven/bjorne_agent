@@ -86,7 +86,7 @@
     <h1 id="developer-pain-point-report"><a class="anchor" aria-hidden="true" tabindex="-1" href="#developer-pain-point-report"><span class="octicon octicon-link"></span></a>Developer Pain Point Report</h1>
     <h2 id="-top-high-risk-functions-complex--untested"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-top-high-risk-functions-complex--untested"><span class="octicon octicon-link"></span></a>🚨 Top High Risk Functions (Complex + Untested)</h2>
     <ul>
-      <li><strong><a href="https://github.com/ruxven/bjorne_agent/blob/d4664c260e87bdeb0104125920116d4598920ab6/src/main.cpp#L401-L479"><code>resumeTask()</code></a></strong> in <code>src/main.cpp</code>
+      <li><strong><a href="https://github.com/ruxven/bjorne_agent/blob/cb66919648b4f8e80c231e5720d91bc4fbe7c37c/src/main.cpp#L404-L482"><code>resumeTask()</code></a></strong> in <code>src/main.cpp</code>
         <ul>
           <li>Score: <strong>10100</strong></li>
           <li>Complexity: <strong>15</strong> (above threshold value: 15)</li>
@@ -97,16 +97,7 @@
       </li>
     </ul>
     <h2 id="-top-security-risk-functions-prioritized-by-coverage"><a class="anchor" aria-hidden="true" tabindex="-1" href="#-top-security-risk-functions-prioritized-by-coverage"><span class="octicon octicon-link"></span></a>🔒 Top Security Risk Functions (Prioritized by coverage)</h2>
-    <ul>
-      <li><strong><a href="https://github.com/ruxven/bjorne_agent/blob/d4664c260e87bdeb0104125920116d4598920ab6/src/platform/Shutdown.h#L25-L30"><code>bjorne_agent::platform::installShutdownHandlers()</code></a></strong> in <code>src/platform/Shutdown.h</code>
-        <ul>
-          <li>Score: <strong>20000</strong></li>
-          <li>Branch Coverage: <strong>0.0%</strong></li>
-          <li>Line Coverage: <strong>0.0%</strong></li>
-          <li>Critical findings: <code>cert-err33-c, cert-err33-c</code></li>
-        </ul>
-      </li>
-    </ul>
+    <p>None detected!</p>
     <script>/*! @uiw/copy-to-clipboard v1.0.12 | MIT (c) 2021 Kenny Wang | https://github.com/uiwjs/copy-to-clipboard.git */
 !function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).copyTextToClipboard=t()}(this,(function(){"use strict";return function(e,t){const o=document.createElement("textarea");o.value=e,o.setAttribute("readonly",""),o.style={position:"absolute",left:"-9999px"},document.body.appendChild(o);const n=document.getSelection().rangeCount>0&&document.getSelection().getRangeAt(0);o.select();let c=!1;try{c=!!document.execCommand("copy")}catch(e){c=!1}document.body.removeChild(o),n&&document.getSelection&&(document.getSelection().removeAllRanges(),document.getSelection().addRange(n)),t&&t(c)}}));
 

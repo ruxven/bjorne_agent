@@ -5,6 +5,7 @@ var namespacebjorne__agent =
     [ "config", "namespacebjorne__agent_1_1config.html", "namespacebjorne__agent_1_1config" ],
     [ "context", "namespacebjorne__agent_1_1context.html", "namespacebjorne__agent_1_1context" ],
     [ "http", "namespacebjorne__agent_1_1http.html", "namespacebjorne__agent_1_1http" ],
+    [ "interaction", "namespacebjorne__agent_1_1interaction.html", "namespacebjorne__agent_1_1interaction" ],
     [ "json", "namespacebjorne__agent_1_1json.html", "namespacebjorne__agent_1_1json" ],
     [ "log", "namespacebjorne__agent_1_1log.html", [
       [ "Level", "namespacebjorne__agent_1_1log.html#ac923e7d2faae3eab1a1a3bfa3cd7d947", [

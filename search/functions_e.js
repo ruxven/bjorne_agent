@@ -10,6 +10,7 @@ var searchData=
   ['shutdownflag_7',['shutdownFlag',['../namespacebjorne__agent_1_1platform_1_1detail.html#a8d2e32aa83383cda6478164ab28b650c',1,'bjorne_agent::platform::detail']]],
   ['shutdownrequested_8',['shutdownRequested',['../namespacebjorne__agent_1_1platform.html#a89d795051ec21ca7157863d49f7bd4a9',1,'bjorne_agent::platform']]],
   ['skillindexfragment_9',['skillIndexFragment',['../namespacebjorne__agent_1_1skills.html#ae418bdcf9f16651204e7b73d84ae4b77',1,'bjorne_agent::skills']]],
-  ['state_10',['state',['../classbjorne__agent_1_1session_1_1SessionRecorder.html#a9b18d69c016ff81988940b12440f453e',1,'bjorne_agent::session::SessionRecorder']]],
-  ['stringparameters_11',['stringParameters',['../namespacebjorne__agent_1_1tools.html#a2cf510ec76f7f6fb20316bacfef11b17',1,'bjorne_agent::tools']]]
+  ['standardinputisterminal_10',['standardInputIsTerminal',['../namespacebjorne__agent_1_1platform.html#a4e9e826de68f008431b91bb1a487ae06',1,'bjorne_agent::platform']]],
+  ['state_11',['state',['../classbjorne__agent_1_1session_1_1SessionRecorder.html#a9b18d69c016ff81988940b12440f453e',1,'bjorne_agent::session::SessionRecorder']]],
+  ['stringparameters_12',['stringParameters',['../namespacebjorne__agent_1_1tools.html#a2cf510ec76f7f6fb20316bacfef11b17',1,'bjorne_agent::tools']]]
 ];

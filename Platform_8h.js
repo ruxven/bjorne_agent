@@ -8,6 +8,7 @@ var Platform_8h =
     [ "setEnvironmentVariable", "Platform_8h.html#a14b837952fb2046e0a0ddf461c8433bc", null ],
     [ "unsetEnvironmentVariable", "Platform_8h.html#a08190caa786ed5d0545b75dfc7ae8dd3", null ],
     [ "processId", "Platform_8h.html#a871058d68e6b1db37c803a9c9489aeca", null ],
+    [ "standardInputIsTerminal", "Platform_8h.html#a4e9e826de68f008431b91bb1a487ae06", null ],
     [ "closeSocket", "Platform_8h.html#a3da817f5d8bd69d9a04489402d2545a0", null ],
     [ "addressToBinary", "Platform_8h.html#afd25219f098f1832292005519f737747", null ],
     [ "addressToText", "Platform_8h.html#a11958835ec328f1d9657459673c58e11", null ],

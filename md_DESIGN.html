@@ -143,7 +143,12 @@ Tool Layer</h2>
 <p>The tool layer provides the minimal set from the baseline specification: read file, write file, edit file, run shell command. Tool results feed back into the context.</p>
 <p>The registry is dynamic. The four built-ins are registered first. A caller may add a tool, replace one by name, or remove one, and the definitions sent to the model are derived from whatever is registered. The built-in schemas are values assembled in code and serialized by the JSON writer rather than string concatenation. That registration path is what a configuration override or an MCP server uses later; name resolution is by map lookup, so a later registration wins over an earlier one. <code>stringParameters</code> and <code>parseToolArguments</code> are public for the same reason: a caller that registers <code>load_skill</code> or its own tool builds a schema and parses arguments without repeating the JSON work.</p>
 <p>The JSON layer has both a parser and a writer. The writer emits compact JSON, escapes strings so a message never contains an embedded newline, prints integral numbers without a decimal point, and rejects a non-finite number because JSON cannot represent one.</p>
-<h1><a class="anchor" id="autotoc_md81"></a>
+<h2><a class="anchor" id="autotoc_md81"></a>
+Interaction</h2>
+<p>The interaction channel is the seam between the model and a human. The request shape is a question plus an optional list of options, and the tool that carries it is <code>request_input</code>. The channel is pluggable so that a later ACP permission request can use the same constrained choice shape without a second prompt implementation.</p>
+<p>The default channel is unavailable. In a container standard input usually carries the task and there is no human, so the tool fails at once with a message that names the reason. The console channel is selected only when <code>agent.interactive</code> is true and standard input is a terminal. That check is the guard against a hanging container: a prompt on a pipe would either consume the task or wait for an answer that cannot arrive. The console is a plain line prompt rather than a full screen interface, which keeps the static build small. With options it accepts a one based index or the option text and rejects anything else, so the constraint is real.</p>
+<p>The tool is registered even when no channel is available. An unavailable channel becomes a tool error, which the loop already handles as result text, so the model can adapt instead of the run failing outright.</p>
+<h1><a class="anchor" id="autotoc_md82"></a>
 Fulfilment Mapping</h1>
 <p>The design meets the specifications:</p>
 <ul>
@@ -153,9 +158,10 @@ Fulfilment Mapping</h1>
 <li>Context: truncate default, compress before overflow, per model, custom compression instruction from markdown file.</li>
 <li>Loop: stages, stopping conditions, error handling.</li>
 <li>Sessions: local directory, atomic rewrite after each turn, signal flush, resume repair.</li>
+<li>Interaction: pluggable channel, unavailable by default, console only on a terminal, constrained options.</li>
 <li>Container: scratch or distroless base, static binary, config via mount or env, binary entrypoint.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md82"></a>
+<h1><a class="anchor" id="autotoc_md83"></a>
 Build and Container Design</h1>
 <ul>
 <li>C++20, GCC or Clang.</li>
@@ -168,7 +174,7 @@ Build and Container Design</h1>
 <li>Config: mount as a file or pass via environment.</li>
 <li>Entry point: binary.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md83"></a>
+<h2><a class="anchor" id="autotoc_md84"></a>
 Build Environments</h2>
 <p>Three podman environments, one per link mode, live in <code>container/</code>:</p>
 <ul>
@@ -178,20 +184,20 @@ Build Environments</h2>
 </ul>
 <p>Each image creates a <code>builder</code> user from <code>--build-arg UID/GID</code>, and the run passes <code>--userns=keep-id</code>. Rootless podman maps the caller's uid to container uid 0, so an image user with the caller's uid only exists inside the container if that uid is mapped back; <code>keep-id</code> does that. The bind mount stays writable, nothing compiles as root, and the artifacts belong to the caller. The driver refuses to run as root rather than silently producing root owned output.</p>
 <p>The <code>notls</code> image still contains shared OpenSSL, because Alpine's <code>cmake</code> package depends on it directly. That does not reach the build: <code>disabled</code> skips <code>find_package(OpenSSL)</code>, so no OpenSSL path appears in the cache or the compile and link lines.</p>
-<h2><a class="anchor" id="autotoc_md84"></a>
+<h2><a class="anchor" id="autotoc_md85"></a>
 Runtime Image</h2>
 <p><code>container/Containerfile.runtime</code> builds the image the harness runs in. It has two stages. The first is Alpine with the build tools and static OpenSSL. It compiles a fully static binary and assembles the runtime root. The second stage is scratch and holds only that root.</p>
 <p>The runtime root holds the binary at <code>/usr/local/bin/bjorne_agent</code>, the compression prompt next to the config mount point and in the install layout, a CA bundle at both <code>/etc/ssl/cert.pem</code> and <code>/etc/ssl/certs/ca-certificates.crt</code>, busybox with its applet symlinks, the musl loader and libc that busybox links against, and a passwd and group file that name a user with uid 1000. The container runs as that user.</p>
 <p>Three things in that root come from the tools rather than the binary. The CA bundle is needed because the TLS transport calls <code>SSL_CTX_set_default_verify_paths</code>, and the static OpenSSL build looks in <code>/etc/ssl</code>. The busybox shell is needed because the <code>run_shell</code> tool calls <code>popen</code>, which runs <code>/bin/sh</code>. The passwd file is needed because scratch has no account database, and the image must not run as root.</p>
 <p>Podman writes <code>/etc/resolv.conf</code> and <code>/etc/hosts</code> into the container even when the image is scratch, so the stub resolver in the static build reaches the nameservers without anything in the image.</p>
 <p>The binary is the entrypoint, so a run takes the task as its only argument. The config arrives either as a mount at <code>/etc/bjorne_agent/bjorne_agent.json</code>, which is the default <code>BJORNE_AGENT_CONFIG</code> value, or through <code>BJORNE_AGENT_CONFIG</code> naming any other path. A relative <code>compression_prompt_path</code> resolves against the directory holding the config file, so a config mounted outside <code>/etc/bjorne_agent</code> needs the absolute path <code>/usr/local/share/bjorne_agent/prompts/compression.md</code>.</p>
-<h1><a class="anchor" id="autotoc_md85"></a>
+<h1><a class="anchor" id="autotoc_md86"></a>
 Design Decisions</h1>
 <ul>
 <li>Tool source: fixed set for version one. The tool layer provides read file, write file, edit file, run shell command. A config driven tool source is deferred.</li>
 <li>Iteration cap: default 25. The cap may change before release.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md86"></a>
+<h1><a class="anchor" id="autotoc_md87"></a>
 Status</h1>
 <p>Design draft. This document maps the design to the specifications. </p>
 </div></div><!-- contents -->

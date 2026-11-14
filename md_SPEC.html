@@ -156,7 +156,7 @@ Agent</h2>
 <li>workspace: string.</li>
 <li>skills_path: string, optional. Directory holding <code>skills/&lt;name&gt;/SKILL.md</code>.</li>
 <li>session_dir: string, optional. Directory for persisted sessions; empty disables persistence.</li>
-<li>interactive: boolean, optional, defaults to false. Enables the console interaction channel.</li>
+<li>interactive: boolean, optional, defaults to false. Enables the console interaction channel when standard input is a terminal. With it false, or with piped input, the <code>request_input</code> tool fails fast instead of waiting.</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md36"></a>
 Model</h2>

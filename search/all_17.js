@@ -7,7 +7,7 @@ var searchData=
   ['tls_4',['tls',['../md_SPEC.html#autotoc_md39',1,'Build and TLS'],['../md_README.html#autotoc_md19',1,'TLS'],['../structbjorne__agent_1_1http_1_1Url.html#a17bd8f3e5f8f288d252de53c752daa00',1,'bjorne_agent::http::Url::tls'],['../md_SPEC_8CONFIG.html#autotoc_md51',1,'TLS']]],
   ['tool_20execution_5',['Tool Execution',['../md_SPEC_8LOOP.html#autotoc_md62',1,'']]],
   ['tool_20layer_6',['Tool Layer',['../md_DESIGN.html#autotoc_md80',1,'']]],
-  ['tool_20set_20customization_7',['Tool set customization',['../md_ROADMAP.html#autotoc_md99',1,'']]],
+  ['tool_20set_20customization_7',['Tool set customization',['../md_ROADMAP.html#autotoc_md100',1,'']]],
   ['tool_5fcall_5fid_8',['tool_call_id',['../structbjorne__agent_1_1model_1_1ModelMessage.html#a8c1fd5922712d933563951505841fb2d',1,'bjorne_agent::model::ModelMessage']]],
   ['tool_5fcalls_9',['tool_calls',['../structbjorne__agent_1_1model_1_1ModelMessage.html#a80f61d70dcd9993c0973f0de6e11fcd7',1,'bjorne_agent::model::ModelMessage::tool_calls'],['../structbjorne__agent_1_1model_1_1ModelResponse.html#aaf74762932b77826d49707b518785fe8',1,'bjorne_agent::model::ModelResponse::tool_calls']]],
   ['toolcall_10',['ToolCall',['../structbjorne__agent_1_1model_1_1ToolCall.html',1,'bjorne_agent::model']]],

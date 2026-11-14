@@ -127,7 +127,7 @@ Agent</h1>
 <li>workspace: string. Workspace root for tool operations.</li>
 <li>skills_path: string, optional. Directory holding <code>skills/&lt;name&gt;/SKILL.md</code> entries. A relative path resolves against the directory holding the config file. Empty disables skill discovery.</li>
 <li>session_dir: string, optional. Directory for persisted sessions. A relative path resolves against the directory holding the config file. Empty disables persistence and keeps the one-shot behaviour.</li>
-<li>interactive: boolean, optional. Defaults to false. Reserved for the interaction phase.</li>
+<li>interactive: boolean, optional. Defaults to false. Enables the console interaction channel when standard input is a terminal. With it false, or with standard input that is not a terminal, the <code>request_input</code> tool fails fast with a message instead of waiting.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md50"></a>
 Models</h1>

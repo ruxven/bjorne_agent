@@ -1,7 +1,7 @@
 var searchData=
 [
   ['initializesockets_0',['initializeSockets',['../namespacebjorne__agent_1_1platform.html#a371b374aa4c866e0435dca12570902f2',1,'bjorne_agent::platform']]],
-  ['installshutdownhandlers_1',['installShutdownHandlers',['../namespacebjorne__agent_1_1platform.html#ae61dcb888a987f6f64898c96484b2f8f',1,'bjorne_agent::platform']]],
+  ['installshutdownhandlers_1',['installShutdownHandlers',['../namespacebjorne__agent_1_1platform.html#aabdc4b8be53c187aa31dd7793acb1943',1,'bjorne_agent::platform']]],
   ['isarray_2',['isArray',['../classbjorne__agent_1_1json_1_1Value.html#a848c25a557e1d3f02954498fd01b9582',1,'bjorne_agent::json::Value']]],
   ['isboolean_3',['isBoolean',['../classbjorne__agent_1_1json_1_1Value.html#a0c58f1dcfb65eb4c7c738ceaf8f3bac8',1,'bjorne_agent::json::Value']]],
   ['isdefaultport_4',['isDefaultPort',['../namespacebjorne__agent_1_1http.html#a7ab6a9d988b77d122b6e554ec17c39af',1,'bjorne_agent::http']]],

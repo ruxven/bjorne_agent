@@ -114,33 +114,34 @@ var NAVTREE =
         [ "Context Manager", "md_DESIGN.html#autotoc_md77", null ],
         [ "Agent Loop", "md_DESIGN.html#autotoc_md78", null ],
         [ "Session Store", "md_DESIGN.html#autotoc_md79", null ],
-        [ "Tool Layer", "md_DESIGN.html#autotoc_md80", null ]
+        [ "Tool Layer", "md_DESIGN.html#autotoc_md80", null ],
+        [ "Interaction", "md_DESIGN.html#autotoc_md81", null ]
       ] ],
-      [ "Fulfilment Mapping", "md_DESIGN.html#autotoc_md81", null ],
-      [ "Build and Container Design", "md_DESIGN.html#autotoc_md82", [
-        [ "Build Environments", "md_DESIGN.html#autotoc_md83", null ],
-        [ "Runtime Image", "md_DESIGN.html#autotoc_md84", null ]
+      [ "Fulfilment Mapping", "md_DESIGN.html#autotoc_md82", null ],
+      [ "Build and Container Design", "md_DESIGN.html#autotoc_md83", [
+        [ "Build Environments", "md_DESIGN.html#autotoc_md84", null ],
+        [ "Runtime Image", "md_DESIGN.html#autotoc_md85", null ]
       ] ],
-      [ "Design Decisions", "md_DESIGN.html#autotoc_md85", null ],
-      [ "Status", "md_DESIGN.html#autotoc_md86", null ]
+      [ "Design Decisions", "md_DESIGN.html#autotoc_md86", null ],
+      [ "Status", "md_DESIGN.html#autotoc_md87", null ]
     ] ],
     [ "ROADMAP: C++ Agent Harness", "md_ROADMAP.html", [
-      [ "Phase 1: Specification Development", "md_ROADMAP.html#autotoc_md88", null ],
-      [ "Phase 2: Design", "md_ROADMAP.html#autotoc_md89", null ],
-      [ "Phase 3: Implementation", "md_ROADMAP.html#autotoc_md90", null ],
-      [ "Phase 4: Evolution", "md_ROADMAP.html#autotoc_md91", [
-        [ "Phase A: Foundation", "md_ROADMAP.html#autotoc_md92", null ],
-        [ "Phase B: Context fragments", "md_ROADMAP.html#autotoc_md93", null ],
-        [ "Phase C: Session persistence", "md_ROADMAP.html#autotoc_md94", null ],
-        [ "Phase D: Interaction", "md_ROADMAP.html#autotoc_md95", null ],
-        [ "Phase E: MCP", "md_ROADMAP.html#autotoc_md96", null ],
-        [ "Phase F: ACP client mode", "md_ROADMAP.html#autotoc_md97", null ],
-        [ "Shared JSON-RPC core", "md_ROADMAP.html#autotoc_md98", null ],
-        [ "Tool set customization", "md_ROADMAP.html#autotoc_md99", null ],
-        [ "Deliberately out of scope", "md_ROADMAP.html#autotoc_md100", null ],
-        [ "Spec impact", "md_ROADMAP.html#autotoc_md101", null ]
+      [ "Phase 1: Specification Development", "md_ROADMAP.html#autotoc_md89", null ],
+      [ "Phase 2: Design", "md_ROADMAP.html#autotoc_md90", null ],
+      [ "Phase 3: Implementation", "md_ROADMAP.html#autotoc_md91", null ],
+      [ "Phase 4: Evolution", "md_ROADMAP.html#autotoc_md92", [
+        [ "Phase A: Foundation", "md_ROADMAP.html#autotoc_md93", null ],
+        [ "Phase B: Context fragments", "md_ROADMAP.html#autotoc_md94", null ],
+        [ "Phase C: Session persistence", "md_ROADMAP.html#autotoc_md95", null ],
+        [ "Phase D: Interaction", "md_ROADMAP.html#autotoc_md96", null ],
+        [ "Phase E: MCP", "md_ROADMAP.html#autotoc_md97", null ],
+        [ "Phase F: ACP client mode", "md_ROADMAP.html#autotoc_md98", null ],
+        [ "Shared JSON-RPC core", "md_ROADMAP.html#autotoc_md99", null ],
+        [ "Tool set customization", "md_ROADMAP.html#autotoc_md100", null ],
+        [ "Deliberately out of scope", "md_ROADMAP.html#autotoc_md101", null ],
+        [ "Spec impact", "md_ROADMAP.html#autotoc_md102", null ]
       ] ],
-      [ "Quality Gates", "md_ROADMAP.html#autotoc_md102", null ]
+      [ "Quality Gates", "md_ROADMAP.html#autotoc_md103", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -176,9 +177,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AgentLoop_8cpp.html",
-"classbjorne__agent_1_1json_1_1Value.html#a1ce846e72a2728c9b3bbc765044de497",
-"namespacebjorne__agent_1_1cli.html#af3439404a9a79b847d8f06aed44b547eaf1cefec9e2196c672a622347f1fbc325",
-"structbjorne__agent_1_1http_1_1Url.html#a540841d066af58b5beb2f6b65a021e78"
+"classbjorne__agent_1_1http_1_1OpenSslTransport.html#a3f8bbf799f758f6a6f3db3ec8cb7d931",
+"md_SPEC_8CONFIG.html",
+"structbjorne__agent_1_1http_1_1HttpRequest.html#a4ee4923282f38f95b5917bedcdf52c4f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

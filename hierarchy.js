@@ -4,6 +4,10 @@ var hierarchy =
     [ "bjorne_agent::agent::AgentLoop", "classbjorne__agent_1_1agent_1_1AgentLoop.html", null ],
     [ "bjorne_agent::agent::AgentLoopConfig", "structbjorne__agent_1_1agent_1_1AgentLoopConfig.html", null ],
     [ "bjorne_agent::context::AgentsFiles", "structbjorne__agent_1_1context_1_1AgentsFiles.html", null ],
+    [ "bjorne_agent::interaction::Channel", "classbjorne__agent_1_1interaction_1_1Channel.html", [
+      [ "bjorne_agent::interaction::ConsoleChannel", "classbjorne__agent_1_1interaction_1_1ConsoleChannel.html", null ],
+      [ "bjorne_agent::interaction::UnavailableChannel", "classbjorne__agent_1_1interaction_1_1UnavailableChannel.html", null ]
+    ] ],
     [ "bjorne_agent::config::Config", "structbjorne__agent_1_1config_1_1Config.html", null ],
     [ "bjorne_agent::context::ContextManager", "classbjorne__agent_1_1context_1_1ContextManager.html", null ],
     [ "bjorne_agent::context::ContextManagerConfig", "structbjorne__agent_1_1context_1_1ContextManagerConfig.html", null ],
@@ -29,6 +33,7 @@ var hierarchy =
     [ "bjorne_agent::model::ModelMessage", "structbjorne__agent_1_1model_1_1ModelMessage.html", null ],
     [ "bjorne_agent::model::ModelResponse", "structbjorne__agent_1_1model_1_1ModelResponse.html", null ],
     [ "bjorne_agent::http::OpenSslTransport::Options", "structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html", null ],
+    [ "bjorne_agent::interaction::Request", "structbjorne__agent_1_1interaction_1_1Request.html", null ],
     [ "bjorne_agent::http::ResolvedAddress", "structbjorne__agent_1_1http_1_1ResolvedAddress.html", null ],
     [ "bjorne_agent::http::ResolverOptions", "structbjorne__agent_1_1http_1_1ResolverOptions.html", null ],
     [ "bjorne_agent::session::SessionState", "structbjorne__agent_1_1session_1_1SessionState.html", null ],

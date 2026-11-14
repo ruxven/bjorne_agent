@@ -1,13 +1,16 @@
 var searchData=
 [
-  ['task_0',['task',['../structbjorne__agent_1_1cli_1_1Invocation.html#ac766841fec90f48fa1988ff6a40396ed',1,'bjorne_agent::cli::Invocation::task'],['../structbjorne__agent_1_1session_1_1SessionState.html#ae96d61a9238d5d28bca42d570cb08009',1,'bjorne_agent::session::SessionState::task'],['../structbjorne__agent_1_1session_1_1SessionSummary.html#a158986217de6b8073a358edc705c6be2',1,'bjorne_agent::session::SessionSummary::task']]],
-  ['taskfromargument_1',['taskFromArgument',['../structbjorne__agent_1_1cli_1_1Invocation.html#a7cdd0bec39142e299cba81ecc33ed0be',1,'bjorne_agent::cli::Invocation']]],
-  ['temperature_2',['temperature',['../structbjorne__agent_1_1config_1_1ModelConfig.html#a1724fc88a1df2dc37974ca0d4b5a6313',1,'bjorne_agent::config::ModelConfig']]],
-  ['title_3',['title',['../structbjorne__agent_1_1context_1_1Fragment.html#a2d20af7d19a48a47f23d2d750e1ad07f',1,'bjorne_agent::context::Fragment']]],
-  ['tls_4',['tls',['../structbjorne__agent_1_1http_1_1Url.html#a17bd8f3e5f8f288d252de53c752daa00',1,'bjorne_agent::http::Url']]],
-  ['tool_5fcall_5fid_5',['tool_call_id',['../structbjorne__agent_1_1model_1_1ModelMessage.html#a8c1fd5922712d933563951505841fb2d',1,'bjorne_agent::model::ModelMessage']]],
-  ['tool_5fcalls_6',['tool_calls',['../structbjorne__agent_1_1model_1_1ModelMessage.html#a80f61d70dcd9993c0973f0de6e11fcd7',1,'bjorne_agent::model::ModelMessage::tool_calls'],['../structbjorne__agent_1_1model_1_1ModelResponse.html#aaf74762932b77826d49707b518785fe8',1,'bjorne_agent::model::ModelResponse::tool_calls']]],
-  ['transport_7',['transport',['../structbjorne__agent_1_1model_1_1ModelClientOptions.html#a071b7327fc45b8526ea7d703837a2e09',1,'bjorne_agent::model::ModelClientOptions']]],
-  ['turns_8',['turns',['../structbjorne__agent_1_1session_1_1SessionState.html#ad8fbdac6258429330e221272479e2960',1,'bjorne_agent::session::SessionState']]],
-  ['type_9',['type',['../classbjorne__agent_1_1json_1_1Value.html#a4d3ed5ad1c4b97f2705645e9e7df419a',1,'bjorne_agent::json::Value']]]
+  ['scheme_0',['scheme',['../structbjorne__agent_1_1http_1_1Url.html#a34f297dadd1a6aa5686ffcbd4cb9e742',1,'bjorne_agent::http::Url']]],
+  ['session_1',['session',['../structbjorne__agent_1_1cli_1_1Invocation.html#a6d72a64257d0797758279690a24a0168',1,'bjorne_agent::cli::Invocation']]],
+  ['session_5fdir_2',['session_dir',['../structbjorne__agent_1_1config_1_1AgentConfig.html#a48baa1e024cba0c76ca82eefd03e14e6',1,'bjorne_agent::config::AgentConfig']]],
+  ['showusage_3',['showUsage',['../structbjorne__agent_1_1cli_1_1Invocation.html#afce6814cccf316e91e70659127e9c7e9',1,'bjorne_agent::cli::Invocation']]],
+  ['skills_4',['skills',['../structbjorne__agent_1_1skills_1_1SkillLoad.html#a23bcd18c6ce7040fb467bf6c94b224ed',1,'bjorne_agent::skills::SkillLoad']]],
+  ['skills_5fpath_5',['skills_path',['../structbjorne__agent_1_1config_1_1AgentConfig.html#a2ce849fafa604b441197fe9b6f219bab',1,'bjorne_agent::config::AgentConfig']]],
+  ['skipped_6',['skipped',['../structbjorne__agent_1_1skills_1_1SkillLoad.html#a0d1bfdbf12b2f6519a8980da33117c06',1,'bjorne_agent::skills::SkillLoad']]],
+  ['status_7',['status',['../structbjorne__agent_1_1http_1_1HttpResponse.html#a7820279785b14d8f0a8dbc1d084c6ee3',1,'bjorne_agent::http::HttpResponse::status'],['../structbjorne__agent_1_1session_1_1SessionState.html#a93c588f961d0120cfdd6e67c111481bb',1,'bjorne_agent::session::SessionState::status'],['../structbjorne__agent_1_1session_1_1SessionSummary.html#a2b671e6780ccb6decdb6aa7e3428ee04',1,'bjorne_agent::session::SessionSummary::status']]],
+  ['status_5fline_8',['status_line',['../structbjorne__agent_1_1http_1_1HttpResponse.html#abf7894fd7891dc62cbb93e53c837e65b',1,'bjorne_agent::http::HttpResponse']]],
+  ['stop_5frequested_9',['stop_requested',['../structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a5595f7681559987862d40e5b0aa0f48b',1,'bjorne_agent::agent::AgentLoopConfig']]],
+  ['storage_10',['storage',['../structbjorne__agent_1_1http_1_1ResolvedAddress.html#acbfdc8f8c526b9784589b6c3198f8359',1,'bjorne_agent::http::ResolvedAddress']]],
+  ['string_11',['string',['../classbjorne__agent_1_1json_1_1Value.html#aa7cfa8cda2757f6369bc45f4e4d7d11e',1,'bjorne_agent::json::Value']]],
+  ['system_5fprompt_12',['system_prompt',['../structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a320eae916a5c916d82cdd71ea705399b',1,'bjorne_agent::agent::AgentLoopConfig::system_prompt'],['../structbjorne__agent_1_1config_1_1AgentConfig.html#a50a70bd0583c32d53ce56a9a89b05d00',1,'bjorne_agent::config::AgentConfig::system_prompt']]]
 ];

@@ -33,6 +33,12 @@ var annotated_dup =
         [ "ResolverOptions", "structbjorne__agent_1_1http_1_1ResolverOptions.html", "structbjorne__agent_1_1http_1_1ResolverOptions" ],
         [ "Url", "structbjorne__agent_1_1http_1_1Url.html", "structbjorne__agent_1_1http_1_1Url" ]
       ] ],
+      [ "interaction", "namespacebjorne__agent_1_1interaction.html", [
+        [ "Channel", "classbjorne__agent_1_1interaction_1_1Channel.html", "classbjorne__agent_1_1interaction_1_1Channel" ],
+        [ "ConsoleChannel", "classbjorne__agent_1_1interaction_1_1ConsoleChannel.html", "classbjorne__agent_1_1interaction_1_1ConsoleChannel" ],
+        [ "Request", "structbjorne__agent_1_1interaction_1_1Request.html", "structbjorne__agent_1_1interaction_1_1Request" ],
+        [ "UnavailableChannel", "classbjorne__agent_1_1interaction_1_1UnavailableChannel.html", "classbjorne__agent_1_1interaction_1_1UnavailableChannel" ]
+      ] ],
       [ "json", "namespacebjorne__agent_1_1json.html", [
         [ "Value", "classbjorne__agent_1_1json_1_1Value.html", "classbjorne__agent_1_1json_1_1Value" ]
       ] ],
