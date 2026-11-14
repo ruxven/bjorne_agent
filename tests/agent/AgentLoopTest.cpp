@@ -1,5 +1,6 @@
 #include "agent/AgentLoop.h"
 
+#include <cstddef>
 #include <filesystem>
 #include <fstream>
 #include <memory>
@@ -84,6 +85,13 @@ ModelResponse toolResponse(const std::string& name, const std::string& arguments
   ModelResponse response;
   response.tool_calls.push_back(bjorne_agent::model::ToolCall{"call_1", name, arguments});
   return response;
+}
+
+ModelMessage message(const std::string& role, const std::string& content) {
+  ModelMessage value;
+  value.role = role;
+  value.content = content;
+  return value;
 }
 
 }  // namespace
@@ -257,4 +265,196 @@ TEST_CASE("Agent loop stops when the context cannot be trimmed") {
   REQUIRE_FALSE(loop.run("too big", result, error));
   REQUIRE(!error.empty());
   REQUIRE(backend->seen.empty());
+}
+
+namespace {
+
+class RecordingObserver final : public bjorne_agent::agent::LoopObserver {
+ public:
+  void onTurn(const std::vector<ModelMessage>& messages, long long turn) override {
+    turn_numbers.push_back(turn);
+    turn_sizes.push_back(messages.size());
+  }
+  void onComplete(const std::vector<ModelMessage>& messages, const std::string& finalResult) override {
+    completed = true;
+    completion = messages;
+    result = finalResult;
+  }
+  void onFailure(const std::vector<ModelMessage>& messages, const std::string& error) override {
+    failed = true;
+    failure = error;
+    failure_messages = messages;
+  }
+  void onInterrupt(const std::vector<ModelMessage>& messages) override {
+    interrupted = true;
+    interrupt_messages = messages;
+  }
+
+  std::vector<long long> turn_numbers;
+  std::vector<std::size_t> turn_sizes;
+  bool completed = false;
+  std::vector<ModelMessage> completion;
+  std::string result;
+  bool failed = false;
+  std::string failure;
+  std::vector<ModelMessage> failure_messages;
+  bool interrupted = false;
+  std::vector<ModelMessage> interrupt_messages;
+};
+
+std::shared_ptr<bjorne_agent::agent::AgentLoop> makeObservedLoop(std::shared_ptr<MockModelBackend> backend,
+                                                                 bjorne_agent::agent::AgentLoopConfig config,
+                                                                 std::shared_ptr<RecordingObserver> observer) {
+  bjorne_agent::context::ContextManagerConfig contextConfig;
+  auto context = std::make_shared<bjorne_agent::context::ContextManager>(contextConfig);
+  auto tools = std::make_shared<bjorne_agent::tools::ToolRegistry>(config.workspace);
+  return std::make_shared<bjorne_agent::agent::AgentLoop>(config, backend, context, tools, observer);
+}
+
+}  // namespace
+
+TEST_CASE("Agent loop reports each tool turn and the final answer to the observer") {
+  auto backend = std::make_shared<MockModelBackend>();
+  backend->responses.push_back(toolResponse("missing_tool", "{}"));
+  backend->responses.push_back(ModelResponse{"finished", {}, {}});
+  auto observer = std::make_shared<RecordingObserver>();
+
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "You are a test agent.";
+  config.workspace = "";
+  const auto loop = makeObservedLoop(backend, config, observer);
+
+  std::string result;
+  std::string error;
+  REQUIRE(loop->run("use the tool", result, error));
+  REQUIRE(result == "finished");
+  REQUIRE(observer->turn_numbers.size() == 1);
+  REQUIRE(observer->turn_numbers[0] == 1);
+  REQUIRE(observer->turn_sizes[0] == 4);
+  REQUIRE(observer->completed);
+  REQUIRE(observer->result == "finished");
+  REQUIRE(observer->completion.back().role == "assistant");
+  REQUIRE(observer->completion.back().content == "finished");
+}
+
+TEST_CASE("Agent loop continues from stored history without a new task") {
+  auto backend = std::make_shared<MockModelBackend>();
+  backend->responses.push_back(ModelResponse{"continued", {}, {}});
+
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "fresh prompt that must not be added";
+  config.history.push_back(message("system", "stored prompt"));
+  config.history.push_back(message("user", "first task"));
+  config.history.push_back(message("assistant", "first answer"));
+  config.history.push_back(message("user", "second task"));
+
+  bjorne_agent::context::ContextManagerConfig contextConfig;
+  auto context = std::make_shared<bjorne_agent::context::ContextManager>(contextConfig);
+  auto tools = std::make_shared<bjorne_agent::tools::ToolRegistry>("");
+  bjorne_agent::agent::AgentLoop loop(config, backend, context, tools);
+
+  std::string result;
+  std::string error;
+  REQUIRE(loop.run("", result, error));
+  REQUIRE(result == "continued");
+  REQUIRE(backend->seen.size() == 1);
+  REQUIRE(backend->seen[0].size() == 4);
+  REQUIRE(backend->seen[0][0].content == "stored prompt");
+  REQUIRE(backend->seen[0][3].content == "second task");
+}
+
+TEST_CASE("Agent loop adds the configured prompt when history has no system message") {
+  auto backend = std::make_shared<MockModelBackend>();
+  backend->responses.push_back(ModelResponse{"done", {}, {}});
+
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "configured prompt";
+  config.history.push_back(message("user", "an earlier task"));
+
+  bjorne_agent::context::ContextManagerConfig contextConfig;
+  auto context = std::make_shared<bjorne_agent::context::ContextManager>(contextConfig);
+  auto tools = std::make_shared<bjorne_agent::tools::ToolRegistry>("");
+  bjorne_agent::agent::AgentLoop loop(config, backend, context, tools);
+
+  std::string result;
+  std::string error;
+  REQUIRE(loop.run("", result, error));
+  REQUIRE(backend->seen[0].size() == 2);
+  REQUIRE(backend->seen[0][0].role == "system");
+  REQUIRE(backend->seen[0][0].content == "configured prompt");
+  REQUIRE(backend->seen[0][1].content == "an earlier task");
+}
+
+TEST_CASE("Agent loop reports an empty context as a failure") {
+  auto backend = std::make_shared<MockModelBackend>();
+  auto observer = std::make_shared<RecordingObserver>();
+
+  bjorne_agent::agent::AgentLoopConfig config;
+  const auto loop = makeObservedLoop(backend, config, observer);
+
+  std::string result;
+  std::string error;
+  REQUIRE_FALSE(loop->run("", result, error));
+  REQUIRE(error == "No task and no session history to continue");
+  REQUIRE(backend->seen.empty());
+  REQUIRE(observer->failed);
+}
+
+TEST_CASE("Agent loop interrupts before the first model call") {
+  auto backend = std::make_shared<MockModelBackend>();
+  auto observer = std::make_shared<RecordingObserver>();
+
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "test";
+  config.stop_requested = [] { return true; };
+  const auto loop = makeObservedLoop(backend, config, observer);
+
+  std::string result;
+  std::string error;
+  REQUIRE_FALSE(loop->run("go", result, error));
+  REQUIRE(error == "Interrupted by a shutdown signal");
+  REQUIRE(backend->seen.empty());
+  REQUIRE(observer->interrupted);
+  REQUIRE(observer->interrupt_messages.size() == 2);
+}
+
+TEST_CASE("Agent loop interrupts after a model call without recording the response") {
+  auto backend = std::make_shared<MockModelBackend>();
+  backend->responses.push_back(toolResponse("read_file", R"({"path":"a.txt"})"));
+  auto observer = std::make_shared<RecordingObserver>();
+
+  int checks = 0;
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "test";
+  config.stop_requested = [&checks] { return ++checks > 1; };
+  const auto loop = makeObservedLoop(backend, config, observer);
+
+  std::string result;
+  std::string error;
+  REQUIRE_FALSE(loop->run("go", result, error));
+  REQUIRE(error == "Interrupted by a shutdown signal");
+  REQUIRE(backend->seen.size() == 1);
+  REQUIRE(observer->interrupted);
+  REQUIRE(observer->interrupt_messages.size() == 2);
+  REQUIRE(observer->interrupt_messages[1].content == "go");
+  REQUIRE(observer->turn_numbers.empty());
+}
+
+TEST_CASE("Agent loop reports a model failure to the observer") {
+  auto backend = std::make_shared<MockModelBackend>();
+  backend->fail = true;
+  backend->fail_error = "backend failure";
+  auto observer = std::make_shared<RecordingObserver>();
+
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "test";
+  const auto loop = makeObservedLoop(backend, config, observer);
+
+  std::string result;
+  std::string error;
+  REQUIRE_FALSE(loop->run("fail", result, error));
+  REQUIRE(error == "backend failure");
+  REQUIRE(observer->failed);
+  REQUIRE(observer->failure == "backend failure");
+  REQUIRE(observer->failure_messages.size() == 2);
 }

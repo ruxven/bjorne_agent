@@ -196,7 +196,7 @@ bjorne_agent [options] [config] [task]
 bjorne_agent [options] run [config] [task]
 bjorne_agent [options] init
 bjorne_agent [options] sessions
-bjorne_agent [options] resume <session>
+bjorne_agent [options] resume [session]
 ```
 
 `run` is the default, so the bare form and the spelled out form do the same
@@ -219,8 +219,8 @@ prints the usage and exits `1` instead of waiting on a terminal for a task.
 | --- | --- |
 | `run` | Run a task. The default when no command is given. |
 | `init` | Create a config file. Not implemented yet. |
-| `sessions` | List stored sessions. Not implemented yet. |
-| `resume` | Continue a stored session. Not implemented yet. |
+| `sessions` | List stored sessions, most recently updated first. |
+| `resume` | Continue a stored session, or print its answer when it is complete. |
 
 The verbs are reserved. A task that begins with one has to be passed after
 `run`, or it is read as that command:
@@ -293,8 +293,50 @@ only, so piping the answer stays clean.
 
 | Code | Meaning |
 | --- | --- |
-| `0` | The run produced an answer, or help was printed. |
-| `1` | The command line was invalid, the command is not implemented yet, the config failed to load, no model was configured, the compression prompt could not be read, the task was empty, or the model or the loop failed. |
+| `0` | The run produced an answer, a session was listed or resumed, or help was printed. |
+| `1` | The command line was invalid, the command is not implemented yet, the config failed to load, no model was configured, the compression prompt could not be read, the task was empty, the session store was unavailable, or the model or the loop failed. A run stopped by `SIGINT` or `SIGTERM` also exits `1`, after the session is saved. |
+
+### Sessions
+
+With `agent.session_dir` set, every run also writes a record under that
+directory. A relative path resolves against the config file, so a config
+mounted beside a volume keeps its sessions on that volume. Each session is one
+`<id>.json` file; the id is built from the time, the process, and a counter.
+
+The record is rewritten after every turn. A write goes to `<id>.json.tmp`
+first and is then renamed over the destination, so a container that dies
+mid-write leaves the previous complete record rather than a truncated one.
+
+| Status | Meaning |
+| --- | --- |
+| `running` | The loop is still working. |
+| `complete` | A final answer was stored in `result`. |
+| `error` | The model or the loop failed; the reason is in `error`. |
+| `interrupted` | `SIGINT` or `SIGTERM` stopped the loop between steps. |
+
+A signal handler only sets a flag. The loop checks that flag before and after
+each model call, so the session is written before the process exits and a turn
+that was still in flight is not recorded half finished.
+
+`sessions` lists the store, newest first: update time, status, id, and the
+task on one line. `resume [session]` continues a stored session. With no id it
+takes the most recently updated one. Three things happen before the model sees
+the conversation:
+
+- A tool call that has no result, because the container died after the model
+  asked for it, gets a synthetic error result so the message sequence is valid
+  again.
+- The stored system message is rebuilt from the current config, AGENTS.md
+  files, and skills, so a changed prompt takes effect on resume.
+- The repaired record is saved before the first model call, so another
+  teardown does not repeat the repair from a stale file.
+
+A session whose status is `complete` prints its stored answer and makes no
+model call. `sessions` and `resume` find the config the same way a run does and
+take no config path of their own; both require `agent.session_dir`.
+
+With `session_dir` empty there is no persistence and the run is the one-shot
+behaviour described above.
 
 ### Setting up a config
 
@@ -354,7 +396,7 @@ complete example.
 | `system_prompt` | string | Instruction content sent to the model. |
 | `workspace` | string | Root for tool operations. Relative tool paths resolve against it. |
 | `skills_path` | string, optional | Directory holding `skills/<name>/SKILL.md`. A relative path resolves against the config file. |
-| `session_dir` | string, optional | Directory for persisted sessions. Empty keeps the one-shot behaviour. Reserved for the session phase. |
+| `session_dir` | string, optional | Directory for persisted sessions. A relative path resolves against the config file. Empty keeps the one-shot behaviour. |
 | `interactive` | boolean, optional | Defaults to `false`. Enables the console interaction channel when it is implemented. |
 
 ### Model
@@ -538,7 +580,8 @@ cd build && ctest --output-on-failure
 
 The suite covers the JSON parser, the config loader, config discovery, CLI
 argument resolution, URL parsing, DNS, the HTTP client, TLS, the model
-client, context management, the tools, the agent loop, and the log module.
+client, context management, context fragments, AGENTS.md discovery, skills,
+the tools, the agent loop, the session store and recorder, and the log module.
 
 The static analysis gates used by this project:
 

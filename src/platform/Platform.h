@@ -6,6 +6,7 @@
 // here instead of reaching for the POSIX spellings directly.
 
 #include <cstddef>
+#include <cstdio>
 #include <string>
 
 #if defined(_WIN32)
@@ -102,6 +103,12 @@ inline std::string addressErrorMessage(int code) {
   return text == nullptr ? std::string("unknown error") : std::string(text);
 }
 
+// Publishes a finished temporary file over its destination. The C rename fails
+// on Windows when the target exists, so the Win32 call is used there instead.
+inline bool replaceFile(const std::string& from, const std::string& to) {
+  return ::MoveFileExA(from.c_str(), to.c_str(), MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH) != 0;
+}
+
 }  // namespace platform
 }  // namespace bjorne_agent
 
@@ -169,6 +176,12 @@ inline const char* addressToText(int family, const void* address, char* buffer, 
 inline std::string addressErrorMessage(int code) {
   const char* text = ::gai_strerror(code);
   return text == nullptr ? std::string("unknown error") : std::string(text);
+}
+
+// Publishes a finished temporary file over its destination. POSIX rename
+// replaces the target atomically, which is what the session store needs.
+inline bool replaceFile(const std::string& from, const std::string& to) {
+  return std::rename(from.c_str(), to.c_str()) == 0;
 }
 
 }  // namespace platform

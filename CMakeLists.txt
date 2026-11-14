@@ -74,6 +74,8 @@ add_library(bjorne_agent_core STATIC
   src/context/Fragments.cpp
   src/context/AgentsFiles.cpp
   src/skills/Skills.cpp
+  src/session/Session.cpp
+  src/session/SessionRecorder.cpp
   src/tools/Tools.cpp
   src/agent/AgentLoop.cpp
 )
@@ -162,6 +164,7 @@ if(BUILD_TESTING)
     tests/context/FragmentsTest.cpp
     tests/context/AgentsFilesTest.cpp
     tests/skills/SkillsTest.cpp
+    tests/session/SessionTest.cpp
     tests/tools/ToolsTest.cpp
     tests/agent/AgentLoopTest.cpp
   )

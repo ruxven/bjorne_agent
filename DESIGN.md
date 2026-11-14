@@ -14,7 +14,7 @@ The binary is split into focused components. The design keeps the boundaries sma
 
 ### Entry Point
 
-The entry point resolves the config file and the task from the command line, loads the configuration, and starts the agent loop. The command line is a small set of reserved verbs with `run` as the default, so the bare form keeps working; the other verbs parse but report that they are not implemented yet. Flags may appear before or after the verb, and `--` ends flag parsing. Help is answered before any config lookup. A path on the command line names the config file. Without one, the run reads the BJORNE_AGENT_CONFIG environment variable, and when that is unset it searches the project local path and then the user level path. The task comes from standard input when the command line names none, and an empty command line is a usage error rather than a wait on a terminal. The environment variable is the container path: the config is mounted where the search does not look, so the variable names it. A variable naming a file that is not there stops the run with an error that names the variable and the path.
+The entry point resolves the config file and the task from the command line, loads the configuration, and starts the agent loop. The command line is a small set of reserved verbs with `run` as the default, so the bare form keeps working. `sessions` lists the store and `resume` continues a stored session; `init` still reports that it is not implemented. Flags may appear before or after the verb, and `--` ends flag parsing. Help is answered before any config lookup. A path on the command line names the config file. Without one, the run reads the BJORNE_AGENT_CONFIG environment variable, and when that is unset it searches the project local path and then the user level path. The task comes from standard input when the command line names none, and an empty command line is a usage error rather than a wait on a terminal. The environment variable is the container path: the config is mounted where the search does not look, so the variable names it. A variable naming a file that is not there stops the run with an error that names the variable and the path.
 
 ### Configuration
 
@@ -52,6 +52,22 @@ The agent loop implements the loop specification. It assembles context, calls th
 
 The loop stops when the model returns a final response without tool calls. The loop also stops at the iteration cap.
 
+The loop takes an optional observer. It reports each completed tool turn, the final answer, a failure, and an interrupt together with the message list at that moment. The default observer does nothing, so a one-shot run without persistence carries no session code in its path. The loop also takes an optional stop predicate, which it polls before and after each model call. That is the seam a shutdown signal uses, and later the seam an ACP cancellation uses.
+
+### Session Store
+
+The session store is a directory of `<id>.json` files, one per session. The design keeps it to a directory rather than a remote or pluggable backend because the deployment case is a container with a mounted volume: the volume survives the container, and nothing else is needed.
+
+Every write goes to `<id>.json.tmp` and is then published with a rename. On POSIX that is `rename`, which replaces the destination atomically; on Windows it is `MoveFileEx` with the replace and write-through flags, because the C `rename` fails there when the target exists. A process that dies mid-write leaves the previous record intact. The record is rewritten after each turn, not only at exit, so a teardown loses at most the turn in flight.
+
+A session id becomes a file name, so it is restricted to letters, digits, dash, underscore, and dot, and `.` and `..` are refused. The generated form is `<epoch-millis>-<pid>-<sequence>`. A load treats the file name as authoritative, so a damaged record cannot redirect the next save at another session.
+
+The recorder is the loop observer that owns the persistence. It stamps the status and rewrites the file on each event. A failed write is logged and the run continues, and the next event tries again.
+
+Signals are handled by a flag, never by file code. A POSIX signal handler may only set a `sig_atomic_t`, so the handler does that and the loop polls the flag between steps. When the loop sees it, it persists the session as interrupted and returns. Without that split a `SIGTERM` during a write, or during allocation, could corrupt the record it was trying to save.
+
+Resume loads the record, refreshes the system message from the current fragments, and repairs dangling tool calls. A tool call with no result is the normal damage from a kill between the model response and the tool result; the API rejects the sequence, so each missing call gets a synthetic error result. The repaired record is saved before the first model call. A session that already completed prints its answer without contacting the model.
+
 ### Tool Layer
 
 The tool layer provides the minimal set from the baseline specification: read file, write file, edit file, run shell command. Tool results feed back into the context.
@@ -69,6 +85,7 @@ The design meets the specifications:
 - Configuration: JSON, snake_case, version, agent, models, env var key.
 - Context: truncate default, compress before overflow, per model, custom compression instruction from markdown file.
 - Loop: stages, stopping conditions, error handling.
+- Sessions: local directory, atomic rewrite after each turn, signal flush, resume repair.
 - Container: scratch or distroless base, static binary, config via mount or env, binary entrypoint.
 
 ## Build and Container Design

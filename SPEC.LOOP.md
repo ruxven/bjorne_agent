@@ -30,6 +30,18 @@ The loop appends the model response and tool results, then returns to the model 
 
 - The model returns a final response without tool calls.
 - The iteration cap is reached.
+- A shutdown signal is observed before or after a model call. The loop stops and persists the session as interrupted.
+
+## Session Persistence
+
+When a session directory is configured, the loop's conversation is persisted after every turn, so an abrupt teardown loses at most the turn that was still running.
+
+- The store writes one `<id>.json` per session through a temporary file and an atomic rename, so a process that dies mid-write leaves the previous complete record.
+- A run begins with status `running`. A final answer stores `complete` with the answer. A model or loop failure stores `error` with the reason. A shutdown signal stores `interrupted`.
+- The stored messages are the exact sequence the loop used, including the system message and every tool result, so a resume can continue the conversation without reconstructing it.
+- If the process stops after the model emitted tool calls but before the results were recorded, resume finds the dangling calls and inserts a synthetic error result for each. Without that repair the API rejects the assistant message because its tool calls have no matching responses.
+- Resume refreshes the stored system message from the current configuration and context fragments, and repairs and saves the conversation before the first model call. A session whose status is `complete` prints its stored answer without a model call.
+- With no session directory the persistence is off, and the behaviour is the one-shot run.
 
 ## Context Management
 
@@ -44,6 +56,7 @@ The loop handles model errors and tool errors.
 
 - Model error: the loop stops and reports the failure.
 - Tool error: the tool result carries the error text. The loop appends the result to the context and continues.
+- Shutdown: a signal handler only sets a flag. The loop observes it between steps, saves the session as interrupted, and returns an error naming the interruption.
 
 ## Status
 

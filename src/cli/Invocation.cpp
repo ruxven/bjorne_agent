@@ -206,7 +206,7 @@ std::string usage() {
          "       bjorne_agent [options] run [config] [task]\n"
          "       bjorne_agent [options] init\n"
          "       bjorne_agent [options] sessions\n"
-         "       bjorne_agent [options] resume <session>\n"
+         "       bjorne_agent [options] resume [session]\n"
          "\n"
          "Run a task. With no task argument the task comes from standard input.\n"
          "With no arguments at all, print this usage and exit.\n"
@@ -257,11 +257,19 @@ std::string usage(Command command) {
     case Command::Sessions:
       return "Usage: bjorne_agent [options] sessions\n"
              "\n"
-             "List stored sessions. Not implemented yet.\n";
+             "List the stored sessions, most recently updated first. The config\n"
+             "file is found as for a run, and agent.session_dir must name the\n"
+             "session directory.\n";
     case Command::Resume:
-      return "Usage: bjorne_agent [options] resume <session>\n"
+      return "Usage: bjorne_agent [options] resume [session]\n"
              "\n"
-             "Continue a stored session. Not implemented yet.\n";
+             "Continue a stored session. With no session id the most recently\n"
+             "updated session is resumed. An unfinished tool call is repaired\n"
+             "before the model sees the conversation, and a session that already\n"
+             "completed prints its stored answer.\n"
+             "\n"
+             "The config file is found as for a run, and agent.session_dir must\n"
+             "name the session directory.\n";
   }
   return usage();
 }
