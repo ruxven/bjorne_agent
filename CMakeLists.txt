@@ -59,8 +59,13 @@ if(BJORNE_AGENT_STATIC AND NOT BJORNE_AGENT_STATIC_LINK_FLAG)
   set(BJORNE_AGENT_STATIC OFF)
 endif()
 
+find_package(Threads REQUIRED)
+
 add_library(bjorne_agent_core STATIC
   src/json/Json.cpp
+  src/jsonrpc/JsonRpc.cpp
+  src/jsonrpc/Endpoint.cpp
+  src/mcp/McpClient.cpp
   src/cli/Invocation.cpp
   src/config/Config.cpp
   src/config/ConfigPaths.cpp
@@ -70,6 +75,7 @@ add_library(bjorne_agent_core STATIC
   src/http/Url.cpp
   src/log/Log.cpp
   src/model/ModelClient.cpp
+  src/platform/Process.cpp
   src/context/ContextManager.cpp
   src/context/Fragments.cpp
   src/context/AgentsFiles.cpp
@@ -84,6 +90,9 @@ add_library(bjorne_agent_core STATIC
 target_compile_features(bjorne_agent_core PUBLIC cxx_std_20)
 target_compile_options(bjorne_agent_core PRIVATE ${BJORNE_AGENT_WARNING_FLAGS})
 target_include_directories(bjorne_agent_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
+# The JSON-RPC endpoint runs a reader thread, so the standard thread library has
+# to be linked in every configuration.
+target_link_libraries(bjorne_agent_core PUBLIC Threads::Threads)
 
 if(WIN32)
   # Winsock lives in ws2_32. The library is PUBLIC because the test binary and
@@ -165,15 +174,29 @@ if(BUILD_TESTING)
     tests/context/FragmentsTest.cpp
     tests/context/AgentsFilesTest.cpp
     tests/interaction/InteractionTest.cpp
+    tests/jsonrpc/JsonRpcTest.cpp
+    tests/jsonrpc/EndpointTest.cpp
+    tests/mcp/McpClientTest.cpp
+    tests/platform/ProcessTest.cpp
     tests/skills/SkillsTest.cpp
     tests/session/SessionTest.cpp
     tests/tools/ToolsTest.cpp
     tests/agent/AgentLoopTest.cpp
   )
 
+  # A stub MCP server the MCP tests spawn as a child process. It is a separate
+  # binary so the test exercises the real process transport.
+  add_executable(bjorne_agent_mcp_stub tests/mcp/McpStubServer.cpp)
+  target_compile_features(bjorne_agent_mcp_stub PRIVATE cxx_std_20)
+  target_compile_options(bjorne_agent_mcp_stub PRIVATE ${BJORNE_AGENT_WARNING_FLAGS})
+  target_link_libraries(bjorne_agent_mcp_stub PRIVATE bjorne_agent_core)
+
   target_compile_features(bjorne_agent_tests PRIVATE cxx_std_20)
   target_compile_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_WARNING_FLAGS})
   target_include_directories(bjorne_agent_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+  # The MCP tests spawn the stub server, so they need to know where it is.
+  target_compile_definitions(bjorne_agent_tests PRIVATE
+    BJORNE_AGENT_MCP_STUB="$<TARGET_FILE:bjorne_agent_mcp_stub>")
   target_link_libraries(bjorne_agent_tests PRIVATE bjorne_agent_core catch2_main Threads::Threads)
 
   if(BJORNE_AGENT_COVERAGE)

@@ -12,6 +12,9 @@
 #   - busybox and the musl loader, because the run_shell tool calls popen,
 #     which needs a shell
 #   - a passwd and group file, so the container runs as a named non-root user
+#   - an empty /usr/local/share/bjorne_agent/mcp directory, which is the mount
+#     point for MCP server binaries. The scratch image has no package manager,
+#     so a server binary is either baked in or mounted here.
 #
 # The build context is the repository root, not this directory:
 #
@@ -42,6 +45,7 @@ RUN set -eu; \
     root=/out/root; \
     mkdir -p "$root/bin" "$root/etc/ssl/certs" "$root/etc/bjorne_agent/prompts" \
              "$root/usr/local/share/bjorne_agent/prompts" "$root/usr/local/bin" \
+             "$root/usr/local/share/bjorne_agent/mcp" \
              "$root/home/bjorne_agent" "$root/lib" "$root/tmp" "$root/workspace"; \
     cp /bin/busybox "$root/bin/busybox"; \
     for applet in sh ash ls cat echo grep sed awk mkdir rmdir rm cp mv find \

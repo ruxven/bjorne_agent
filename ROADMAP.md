@@ -88,18 +88,19 @@ dynamic tool set. The configuration gains `agent.skills_path`, `agent.session_di
 
 ### Phase E: MCP
 
-- [ ] A stdio client speaking newline delimited JSON-RPC. No Content-Length framing and no
+- [x] A stdio client speaking newline delimited JSON-RPC. No Content-Length framing and no
   dependencies.
-- [ ] The `initialize` handshake, then `tools/list` and `tools/call`.
-- [ ] Namespaced tool names of the form `mcp__<server>__<tool>`, so they cannot collide with the
+- [x] The `initialize` handshake, then `tools/list` and `tools/call`.
+- [x] Namespaced tool names of the form `mcp__<server>__<tool>`, so they cannot collide with the
   built-in tools.
-- [ ] Bidirectional pipes and process spawning. The existing `run_shell` uses a one way `popen` and
+- [x] Bidirectional pipes and process spawning. The existing `run_shell` uses a one way `popen` and
   cannot be reused.
-- [ ] Recovery from a server crash, a timeout and a restart, so a dying server does not take the
+- [x] Recovery from a server crash, a timeout and a restart, so a dying server does not take the
   agent down.
-- [ ] The server binaries baked into or mounted into the scratch runtime image. This affects the
-  image build and not only the code.
-- [ ] The JSON-RPC transport comes from the shared core described below, so the MCP client and the
+- [x] The server binaries baked into or mounted into the scratch runtime image. The image reserves
+  `/usr/local/share/bjorne_agent/mcp` as the mount point, and the configuration names a server by
+  an absolute path.
+- [x] The JSON-RPC transport comes from the shared core described below, so the MCP client and the
   ACP server are not two separate implementations of the same wire format.
 
 ### Phase F: ACP client mode
@@ -148,11 +149,11 @@ and stdout, with messages delimited by newlines.
 Phase E and Phase F both speak JSON-RPC 2.0 and both need the same transport mechanics. They should
 share one implementation rather than two.
 
-- [ ] One newline delimited JSON-RPC codec. The ACP framing and the MCP stdio framing are the same,
+- [x] One newline delimited JSON-RPC codec. The ACP framing and the MCP stdio framing are the same,
   which is why the codec is written once.
-- [ ] One endpoint component with a reader thread, a map of pending requests and a write mutex. It
+- [x] One endpoint component with a reader thread, a map of pending requests and a write mutex. It
   serves both roles, as the client towards an MCP server and the server towards an ACP editor.
-- [ ] The JSON writer escapes newlines inside strings, since a protocol message must not contain an
+- [x] The JSON writer escapes newlines inside strings, since a protocol message must not contain an
   embedded newline.
 
 ### Tool set customization
@@ -180,20 +181,21 @@ share one implementation rather than two.
 
 ### Spec impact
 
-- [ ] `SPEC.md` gains the subcommand semantics, the MCP scope and the ACP mode.
-- [ ] `SPEC.CONFIG.md` gains `skills_path`, `session_dir`, `interactive`, `mcp_servers` and the tool
-  override section.
-- [ ] `SPEC.LOOP.md` gains the session lifecycle, the resume semantics, the dangling call repair and
-  the cooperative cancellation.
-- [ ] `DESIGN.md` gains the shift from a one-shot to a long-lived stateful agent, along with the
-  fragment mechanism, the interaction channel abstraction, the shared JSON-RPC core and the two
-  protocol roles the agent plays in it.
+- [x] `SPEC.md` gains the subcommand semantics and the MCP scope.
+- [ ] `SPEC.md` gains the ACP mode. That waits for Phase F.
+- [x] `SPEC.CONFIG.md` gains `skills_path`, `session_dir`, `interactive` and `mcp_servers`.
+- [ ] `SPEC.CONFIG.md` gains the tool override section. That waits for the tool set customization.
+- [x] `SPEC.LOOP.md` gains the session lifecycle, the resume semantics and the dangling call repair.
+- [ ] `SPEC.LOOP.md` gains the cooperative cancellation. That waits for Phase F.
+- [x] `DESIGN.md` gains the shift from a one-shot to a long-lived stateful agent, along with the
+  fragment mechanism, the interaction channel abstraction and the shared JSON-RPC core.
+- [ ] `DESIGN.md` gains the two protocol roles the agent plays in it. That waits for Phase F.
 
 ## Quality Gates
 
-- [x] Catch2 suite: `bjorne_agent_tests` (266 cases, 1013 assertions with TLS; 260 cases, 997 assertions in the no TLS dynamic build; 264 cases, 1017 assertions in the static build).
+- [x] Catch2 suite: `bjorne_agent_tests` (310 cases, 1160 assertions with TLS; 304 cases, 1144 assertions in the no TLS dynamic build; 308 cases, 1164 assertions in the static build).
 - [x] Lizard complexity gate: `-C 15 -L 100 -a 5`, no thresholds exceeded in any configuration.
-- [x] Line and function coverage: measured with `gcovr` over the instrumented test build. Line coverage is 94% with TLS, 94% in the no TLS build, and 94% in the static build; function coverage is 98%, 97%, and 97%. The measurement covers the code the test binary links and therefore leaves out `src/main.cpp`, which only the executable runs. Set `BJORNE_AGENT_OPENSSL=disabled` to measure the no TLS configuration, and add `BJORNE_AGENT_STATIC=ON` to measure the static one. Residual gaps are the session write and list error paths, the OS allocation failures inside the transports, and the getaddrinfo success branches that need a live name server.
+- [x] Line and function coverage: measured with `gcovr` over the instrumented test build. Line coverage is 92% with TLS, 92% in the no TLS build, and 92% in the static build; function coverage is 97%, 97%, and 97%. The measurement covers the code the test binary links and therefore leaves out `src/main.cpp`, which only the executable runs. Set `BJORNE_AGENT_OPENSSL=disabled` to measure the no TLS configuration, and add `BJORNE_AGENT_STATIC=ON` to measure the static one. Residual gaps are the session write and list error paths, the OS allocation failures inside the transports, the getaddrinfo success branches that need a live name server, and the Windows-only branches of the child process transport that cannot run on this host.
 - [x] Transport tests against a loopback HTTP/TLS server, including read and handshake failure paths.
 - [x] DNS answer parser tests built from crafted packets, so the wire format is checked without a network.
 - [x] CodeChecker static analysis: clangsa and clang-tidy over `src/`, no findings in project code. Third party Catch2 is excluded through `.codechecker.skip`.

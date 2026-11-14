@@ -462,8 +462,9 @@ usable frontmatter is skipped with a warning rather than stopping the run.
 
 ### MCP servers
 
-`mcp_servers` maps a server name to a stdio server definition. The loader reads
-the block now so the configuration stays stable; no server is started yet.
+`mcp_servers` maps a server name to a stdio server definition. Each server is
+spawned as a child process at startup and speaks newline delimited JSON-RPC
+2.0 over its standard input and output. There is no `Content-Length` framing.
 
 | Key | Type | Meaning |
 | --- | --- | --- |
@@ -481,8 +482,38 @@ the block now so the configuration stays stable; no server is started yet.
 }
 ```
 
-Tools from a server will appear as `mcp__<server>__<tool>`, so they cannot
-collide with a built-in.
+At startup the agent performs the `initialize` handshake, sends the
+initialized notification, and lists the tools. Each tool is registered under
+`mcp__<server>__<tool>`, so it cannot collide with a built-in, and its input
+schema is passed through to the model unchanged.
+
+A tool call returns the text content of the response. A server that reports
+`isError` produces a tool error, which the loop handles the way it handles any
+other failed tool. A server that crashes or times out is restarted once and the
+call is retried, so a dying server costs one call rather than the run. A
+server that cannot start at all is logged and skipped, and the run continues
+with the remaining tools.
+
+The runtime image has no package manager, so a server binary has to be baked
+into the image or mounted into it. The image reserves
+`/usr/local/share/bjorne_agent/mcp` for that, and the configuration names the
+binary by an absolute path:
+
+```sh
+podman run --rm \
+  -v "$PWD/bjorne_agent.json:/etc/bjorne_agent/bjorne_agent.json:ro" \
+  -v "$PWD/mcp:/usr/local/share/bjorne_agent/mcp:ro" \
+  -v "$PWD:/workspace" \
+  bjorne_agent "your task"
+```
+
+```json
+"mcp_servers": {
+  "filesystem": {
+    "command": "/usr/local/share/bjorne_agent/mcp/mcp-filesystem"
+  }
+}
+```
 
 ### TLS
 

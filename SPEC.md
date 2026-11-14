@@ -54,6 +54,16 @@ A path given on the command line names the config file. Without one, the run sea
 - models: array of objects.
 - mcp_servers: object, optional. Each key is a server name; each value is an object with `command` (string), `args` (array of strings, optional), and `env` (object of strings, optional).
 
+## MCP
+
+Each configured server is spawned as a child process and speaks newline delimited JSON-RPC 2.0 over standard input and standard output. There is no `Content-Length` framing, which is the MCP stdio transport.
+
+The client performs the `initialize` handshake with the protocol version, sends the initialized notification, and lists the tools. A tool is exposed to the model as `mcp__<server>__<tool>`, so it cannot collide with a built-in, and its input schema is passed through unchanged.
+
+A call returns the text content of the response. A tool that reports `isError` becomes a tool error rather than a failed run. A server that crashes or times out is restarted once and the call is retried. A server that cannot start is logged and skipped, and the run continues with the remaining tools.
+
+The runtime image carries no package manager, so a server binary is baked into the image or mounted into `/usr/local/share/bjorne_agent/mcp`, and the configuration names it by an absolute path.
+
 ### Agent
 
 - system_prompt: string.

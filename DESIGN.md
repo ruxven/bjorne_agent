@@ -84,6 +84,30 @@ The default channel is unavailable. In a container standard input usually carrie
 
 The tool is registered even when no channel is available. An unavailable channel becomes a tool error, which the loop already handles as result text, so the model can adapt instead of the run failing outright.
 
+### JSON-RPC Core
+
+Phase E and Phase F speak the same wire format: JSON-RPC 2.0 with one message per line and no `Content-Length` framing. The codec is therefore written once, in `src/jsonrpc/`, and used by both roles. The ACP framing and the MCP stdio framing are identical, so a second implementation would be a second set of bugs.
+
+The codec parses a line into a message that is either a request, a response, or a notification. A request carries an id and a method, a response carries an id and a result or an error, and a notification carries a method and no id. The writer escapes newlines inside strings, because a protocol message must not contain an embedded newline: the framing would break.
+
+The endpoint is the transport half. It owns a reader thread, a map of pending requests keyed by the request id, and a write mutex, because a request and a response may cross on the wire at the same time. A caller issues a request with a timeout and waits on a condition variable; the reader thread fills in the pending entry and notifies. A malformed line is skipped rather than fatal: a peer that emits one bad log line should not take a working session down. The transport itself is an interface with a `sendLine` and a `readLine`, which is what lets the tests drive the endpoint with a scripted peer instead of a process.
+
+### Child Processes
+
+An MCP server is a child process with pipes on standard input and standard output. The existing `run_shell` tool uses a one way `popen` and cannot be reused, because the protocol is bidirectional. The child process class therefore owns two pipes and a line buffer. Standard error is inherited rather than piped, so a server's own log lines reach the agent's stderr and never fill a pipe that nobody drains.
+
+The reader is a poll on POSIX and a peek on the named pipe on Windows, with a poll interval rather than a blocking read, so the endpoint can time out a request. A partial line is kept for the next call, and an oversized line is refused rather than allowed to exhaust memory.
+
+### MCP Client
+
+The MCP client is the protocol half on top of the endpoint. It performs the `initialize` handshake, sends the initialized notification, lists the tools following the pagination cursor, and calls a tool. The list is paginated because a server may hold more tools than fit in one response, and the cursor is followed up to a fixed number of pages so a server cannot loop the client forever.
+
+A tool is exposed to the model as `mcp__<server>__<tool>`. The namespace is what keeps an MCP tool from colliding with a built-in, and it makes the origin of a tool visible in the model's tool call. The input schema is passed through untouched, so a server can describe any argument shape without the agent having to know it.
+
+The result of a call is the text content of the response. Content that is not text is rendered as a placeholder rather than dropped, so the model sees that something was returned. A response that reports `isError` becomes a tool error rather than a failed run: the server worked and reported a problem, which is the same shape as any other failed tool.
+
+A server that crashes or times out is restarted once and the call is retried, which turns a dying server into a lost call rather than a lost run. A tool that merely reported an error is not retried, because the server itself answered. A server that cannot start at all is logged and skipped, and the run continues with the tools that did register. The registration order is the built-ins, then the interaction tool, then the MCP servers, which is the resolution order the tool set promises.
+
 ## Fulfilment Mapping
 
 The design meets the specifications:
@@ -95,6 +119,7 @@ The design meets the specifications:
 - Loop: stages, stopping conditions, error handling.
 - Sessions: local directory, atomic rewrite after each turn, signal flush, resume repair.
 - Interaction: pluggable channel, unavailable by default, console only on a terminal, constrained options.
+- MCP: stdio JSON-RPC client, initialize handshake, namespaced tool names, restart on crash, no new dependency.
 - Container: scratch or distroless base, static binary, config via mount or env, binary entrypoint.
 
 ## Build and Container Design
@@ -149,6 +174,11 @@ bundle is needed because the TLS transport calls
 `/etc/ssl`. The busybox shell is needed because the `run_shell` tool calls
 `popen`, which runs `/bin/sh`. The passwd file is needed because scratch has no
 account database, and the image must not run as root.
+
+The image also reserves `/usr/local/share/bjorne_agent/mcp` as the mount point
+for MCP server binaries. Scratch has no package manager, so a server binary
+cannot be installed at run time; it is either baked into the image or mounted
+there, and the configuration names it by an absolute path.
 
 Podman writes `/etc/resolv.conf` and `/etc/hosts` into the container even when
 the image is scratch, so the stub resolver in the static build reaches the

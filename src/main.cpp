@@ -18,6 +18,7 @@
 #include "context/Fragments.h"
 #include "interaction/Interaction.h"
 #include "log/Log.h"
+#include "mcp/McpClient.h"
 #include "model/ModelClient.h"
 #include "platform/Platform.h"
 #include "platform/Shutdown.h"
@@ -272,6 +273,10 @@ bool buildRuntime(const std::string& configPath, const bjorne_agent::config::Con
     auto skillCatalog = std::make_shared<std::vector<bjorne_agent::skills::Skill>>(skillLoad.skills);
     bjorne_agent::skills::registerLoadSkillTool(*out.tools, skillCatalog);
   }
+  // MCP tools are registered last, so they sit alongside the built-ins in the
+  // same namespace without being able to replace one: the namespaced name
+  // cannot collide with a built-in name.
+  bjorne_agent::mcp::registerServers(config.mcp_servers, *out.tools);
   out.model->setTools(out.tools->definitionsJson());
   return true;
 }
