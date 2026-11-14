@@ -15,10 +15,14 @@ constexpr int kMethodNotFound = -32601;
 constexpr int kInvalidParams = -32602;
 constexpr int kInternalError = -32603;
 
-// The error member of a failed response.
+// The error member of a failed response. The optional data value carries the
+// structured detail ACP attaches to a few codes, such as the session id of a
+// resource that was not found.
 struct Error {
   int code = 0;
   std::string message;
+  json::Value data;
+  bool hasData = false;
 };
 
 // One decoded JSON-RPC message. A request carries a method and an id, a
@@ -49,6 +53,7 @@ std::string encodeRequest(const json::Value& id, const std::string& method, cons
 std::string encodeNotification(const std::string& method, const json::Value& params);
 std::string encodeResult(const json::Value& id, const json::Value& result);
 std::string encodeError(const json::Value& id, int code, const std::string& message);
+std::string encodeError(const json::Value& id, const Error& error);
 
 // Decodes one line. Returns false with a reason when the text is not a JSON-RPC
 // 2.0 message.

@@ -305,6 +305,14 @@ std::string formatTimestamp(long long epochSeconds) {
   return std::string(buffer, written);
 }
 
+std::string formatIsoTimestamp(long long epochSeconds) {
+  std::string text = formatTimestamp(epochSeconds);
+  if (text.size() != 19) {
+    return text;
+  }
+  return text.substr(0, 10) + "T" + text.substr(11, 8) + "Z";
+}
+
 SessionStore::SessionStore(std::string directory) : directory_(std::move(directory)) {}
 
 std::unique_ptr<SessionStore> SessionStore::open(const std::string& directory, std::string& error) {
@@ -343,7 +351,12 @@ std::string SessionStore::pathFor(const std::string& id) const {
 }
 
 bool SessionStore::begin(SessionState& state, std::string& error) {
-  state.id = generateSessionId();
+  // A caller may preset the id, which is what the ACP server does so that the
+  // id it hands to the editor names the stored file. An id that cannot be a
+  // file name is replaced rather than refused.
+  if (!isValidSessionId(state.id)) {
+    state.id = generateSessionId();
+  }
   state.created = nowSeconds();
   if (state.status.empty()) {
     state.status = "running";
@@ -382,6 +395,20 @@ bool SessionStore::load(const std::string& id, SessionState& state, std::string&
   return true;
 }
 
+bool SessionStore::erase(const std::string& id, std::string& error) {
+  if (!isValidSessionId(id)) {
+    error = "Invalid session id: " + id;
+    return false;
+  }
+  std::error_code code;
+  std::filesystem::remove(pathFor(id), code);
+  if (code) {
+    error = "Cannot delete session: " + id + ": " + code.message();
+    return false;
+  }
+  return true;
+}
+
 std::vector<SessionSummary> SessionStore::list(std::string& error) const {
   std::vector<SessionSummary> summaries;
   error.clear();
@@ -404,6 +431,7 @@ std::vector<SessionSummary> SessionStore::list(std::string& error) const {
           summary.updated = state.updated;
           summary.status = state.status;
           summary.task = oneLineTask(state.task);
+          summary.workspace = state.workspace;
           summary.messages = state.messages.size();
           summaries.push_back(std::move(summary));
         }

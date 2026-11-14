@@ -31,6 +31,19 @@ The loop appends the model response and tool results, then returns to the model 
 - The model returns a final response without tool calls.
 - The iteration cap is reached.
 - A shutdown signal is observed before or after a model call. The loop stops and persists the session as interrupted.
+- A permission gate refuses a tool call. The turn ends as a refusal and the reason is reported.
+- A cancellation flag is observed. The turn ends as cancelled.
+
+Every stop has a reason, and the reason is available to the caller through `stopReason()`: `end_turn`, `refusal`, `cancelled`, `max_tokens` or `max_turn_requests`.
+
+## Cancellation
+
+Cancellation is cooperative. The loop never blocks on a signal handler, and a signal handler never does more than set a flag.
+
+- The loop polls the flag before and after every model call, so a turn that is waiting on the model stops as soon as the call returns.
+- A permission gate is a callback the caller supplies. It receives the tool name, the arguments and the tool call id, and returns false with a reason when the tool must not run. The gate runs before the tool, so a refused tool never reaches the filesystem or the shell.
+- A cancelled turn takes precedence over a refusal: when the flag is set, the reason is `cancelled` rather than `refusal`.
+- The refusal path and the cancellation path are both observable through the same stop reason, so an ACP editor learns from one field why a turn ended.
 
 ## Session Persistence
 

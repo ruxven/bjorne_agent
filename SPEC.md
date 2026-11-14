@@ -83,6 +83,22 @@ The runtime image carries no package manager, so a server binary is baked into t
 - api_key_env: string, environment variable name holding the key. The key itself stays out of the file.
 - priority: integer. Lower value means higher preference. Priority one is the first choice, priority two is the second, priority three is the third, priority thirty is the thirtieth.
 
+## ACP Mode
+
+The `acp` subcommand serves the Agent Client Protocol over standard input and standard output, so an editor such as Zed, Neovim or JetBrains can drive the agent. The wire format is JSON-RPC 2.0 with one message per line, the same codec the MCP client uses.
+
+- stdout carries protocol messages only. The progress output goes to stderr, and the result printing of the one-shot mode is suppressed.
+- `initialize` negotiates the protocol version. The agent answers with the requested version when it is supported and with the latest version it supports otherwise. The draft v2 is not implemented.
+- The agent side methods are `initialize`, `session/new`, `session/prompt`, `session/cancel`, `session/load`, `session/resume`, `session/list` and `session/delete`. The last three need a session store.
+- The client side methods the agent calls back into are `fs/read_text_file`, `fs/write_text_file`, `session/request_permission`, `elicitation/create` and the `terminal/*` family. The elicitation and terminal tools are only installed when the client advertises the matching capability.
+- The `session/update` notifications are `agent_message_chunk`, `agent_thought_chunk`, `tool_call`, `tool_call_update`, `plan` and `available_commands_update`.
+- The capability advertisement follows the configuration. `loadSession` appears only when a session store exists, and no MCP HTTP or SSE capability is advertised while only the stdio MCP transport exists.
+- The workspace comes from `session/new` and overrides the configured workspace. The MCP servers the client supplies override the configured ones for that session, by name.
+- The file tools route through the client when it advertises the file system capability, and fall back to the local filesystem when it does not. The unsaved editor buffer is only reachable through the client.
+- A permission request carries the constrained choice of the interaction channel: a question and the answers it accepts. The four answers are allow once, allow always, reject once and reject always. An answer that allows the tool for the rest of the session is remembered for that session.
+- `session/cancel` interrupts a turn that is already running. The loop observes the flag cooperatively before and after each model call, and a pending permission request is abandoned.
+- A session maps onto a stored session, so a session created over ACP can be listed, loaded and deleted through the same store the one-shot mode uses.
+
 ## Context Fragments
 
 - AGENTS.md detection: the run searches `~/.config/bjorne_agent/AGENTS.md` plus the workspace root and every parent directory. The global file is first and the nearest file last, so the most specific instruction lands last in the context.
@@ -123,7 +139,7 @@ The image carries three things beyond the binary, each because a tool needs it: 
 
 ## Next Steps
 
-- The configuration and agent loop specifications are finished and the implementation is complete through Phase 3.
+- The configuration and agent loop specifications are finished and the implementation is complete through Phase F.
 - Deployment: publish the runtime image and verify it against the supported endpoints.
 
 ## Open Questions

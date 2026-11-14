@@ -114,3 +114,12 @@ TEST_CASE("an error response encodes with the protocol marker") {
   REQUIRE(message.error.code == -32601);
   REQUIRE(message.error.message == "Method not found");
 }
+
+TEST_CASE("a string id encodes as a string") {
+  const Value id = bjorne_agent::jsonrpc::stringId("abc");
+  REQUIRE(id.isString());
+  REQUIRE(id.string == "abc");
+
+  const std::string text = bjorne_agent::jsonrpc::encodeRequest(id, "ask", Value());
+  REQUIRE(text.find("\"id\":\"abc\"") != std::string::npos);
+}

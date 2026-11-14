@@ -379,3 +379,21 @@ TEST_CASE("a server without a command is skipped") {
 
   REQUIRE_FALSE(registry.hasTool("mcp__demo__echo"));
 }
+
+TEST_CASE("a server that dies before answering is restarted") {
+  bjorne_agent::config::McpServerConfig config;
+  config.command = BJORNE_AGENT_MCP_STUB;
+  // The stub dies without answering the tool call, so the client has to
+  // restart the server and try again.
+  config.env["BJORNE_AGENT_MCP_STUB_DIE_BEFORE_REPLY"] = "1";
+
+  bjorne_agent::mcp::Server server("demo", config);
+  std::string error;
+  REQUIRE(server.start(error));
+
+  const bjorne_agent::tools::ToolResult result = server.call("echo", R"({"text":"hi"})");
+  REQUIRE_FALSE(result.ok);
+  // The server was restarted and died again, so the call reports the failure
+  // of the second attempt.
+  REQUIRE(result.output.find("echo") == std::string::npos);
+}

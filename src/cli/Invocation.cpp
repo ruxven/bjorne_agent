@@ -37,6 +37,10 @@ bool reservedVerb(const std::string& value, Command& out) {
     out = Command::Resume;
     return true;
   }
+  if (value == "acp") {
+    out = Command::Acp;
+    return true;
+  }
   return false;
 }
 
@@ -147,6 +151,23 @@ bool parseCommandArguments(const std::vector<std::string>& positional, Invocatio
         return false;
       }
       return true;
+    case Command::Acp:
+      // The editor launches the agent with no arguments, so a config path is
+      // optional and the default search fills in the rest.
+      if (positional.size() > 1) {
+        error = "The 'acp' command takes at most a config path";
+        return false;
+      }
+      if (positional.empty()) {
+        out.configPath = config::findDefaultConfig(error);
+        return !out.configPath.empty();
+      }
+      if (!namesAnExistingFile(positional[0])) {
+        error = "The 'acp' command takes a config path that names an existing file";
+        return false;
+      }
+      out.configPath = positional[0];
+      return true;
     case Command::Resume:
       if (positional.size() > 1) {
         error = "The 'resume' command takes at most one session id";
@@ -197,6 +218,8 @@ const char* commandName(Command command) {
       return "sessions";
     case Command::Resume:
       return "resume";
+    case Command::Acp:
+      return "acp";
   }
   return "run";
 }
@@ -207,6 +230,7 @@ std::string usage() {
          "       bjorne_agent [options] init\n"
          "       bjorne_agent [options] sessions\n"
          "       bjorne_agent [options] resume [session]\n"
+         "       bjorne_agent [options] acp [config]\n"
          "\n"
          "Run a task. With no task argument the task comes from standard input.\n"
          "With no arguments at all, print this usage and exit.\n"
@@ -216,6 +240,7 @@ std::string usage() {
          "  init      Create a config file\n"
          "  sessions  List stored sessions\n"
          "  resume    Continue a stored session\n"
+         "  acp       Serve the Agent Client Protocol on stdin and stdout\n"
          "\n"
          "Options:\n"
          "  -h, --help     Show this help and exit\n"
@@ -270,6 +295,16 @@ std::string usage(Command command) {
              "\n"
              "The config file is found as for a run, and agent.session_dir must\n"
              "name the session directory.\n";
+    case Command::Acp:
+      return "Usage: bjorne_agent [options] acp [config]\n"
+             "\n"
+             "Serve the Agent Client Protocol. The command reads JSON-RPC 2.0\n"
+             "from standard input and writes JSON-RPC 2.0 to standard output,\n"
+             "one message per line. Standard error stays free for the log.\n"
+             "\n"
+             "An editor such as Zed or Neovim launches the agent this way and\n"
+             "drives the conversation over the connection. The config file is\n"
+             "found as for a run, and an explicit path may be given.\n";
   }
   return usage();
 }

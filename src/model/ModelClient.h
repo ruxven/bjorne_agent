@@ -37,6 +37,11 @@ class ModelBackend {
  public:
   virtual ~ModelBackend() = default;
   virtual bool respond(const std::vector<ModelMessage>& messages, ModelResponse& out, std::string& error) = 0;
+
+  // The tool schema for the next request. An ACP session changes its tool set
+  // while the client stays connected, so the loop's owner may replace it. The
+  // default ignores the call, which keeps a scripted test backend simple.
+  virtual void setTools(const std::string& tools_json) { (void)tools_json; }
 };
 
 // Everything the client needs to reach one endpoint. Grouping the fields keeps
@@ -59,7 +64,7 @@ class ModelClient final : public ModelBackend {
   ModelClient(const std::string& endpoint, const std::string& model, const std::string& api_key_env,
               std::shared_ptr<http::HttpTransport> transport = nullptr);
 
-  void setTools(const std::string& tools_json);
+  void setTools(const std::string& tools_json) override;
 
   bool respond(const std::vector<ModelMessage>& messages, ModelResponse& out, std::string& error) override;
 

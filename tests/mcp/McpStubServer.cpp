@@ -1,7 +1,9 @@
 // A stub MCP server for the tests. It speaks the newline delimited JSON-RPC
 // dialect of the stdio transport: initialize, tools/list and tools/call. The
 // environment variable BJORNE_AGENT_MCP_STUB_EXIT_AFTER makes it exit after
-// that many tool calls, which is how the tests exercise the restart path.
+// that many tool calls, and BJORNE_AGENT_MCP_STUB_DIE_BEFORE_REPLY makes it
+// die without answering a tool call, which is how the tests exercise the
+// restart path.
 
 #include <cstdlib>
 #include <iostream>
@@ -42,6 +44,8 @@ bjorne_agent::json::Value numberValue(double number) {
 int main() {
   const char* exitAfterText = std::getenv("BJORNE_AGENT_MCP_STUB_EXIT_AFTER");
   const int exitAfter = exitAfterText != nullptr ? std::atoi(exitAfterText) : 0;
+  const char* dieBeforeReplyText = std::getenv("BJORNE_AGENT_MCP_STUB_DIE_BEFORE_REPLY");
+  const bool dieBeforeReply = dieBeforeReplyText != nullptr && std::atoi(dieBeforeReplyText) != 0;
   int calls = 0;
 
   std::string line;
@@ -89,6 +93,11 @@ int main() {
       reply.object["result"] = result;
     } else if (method->string == "tools/call") {
       ++calls;
+      if (dieBeforeReply) {
+        // The server dies without answering, so the client sees a broken
+        // connection and has to restart the server.
+        return 4;
+      }
       bjorne_agent::json::Value text = objectValue();
       text.object["type"] = stringValue("text");
       text.object["text"] = stringValue("echo:" + std::to_string(calls));

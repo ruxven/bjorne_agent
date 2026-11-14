@@ -82,6 +82,10 @@ bool parseError(const json::Value& source, Message& out, std::string& error) {
   out.hasError = true;
   out.error.code = static_cast<int>(code->number);
   out.error.message = message->string;
+  if (const json::Value* data = value->find("data")) {
+    out.error.data = *data;
+    out.error.hasData = true;
+  }
   return true;
 }
 
@@ -168,13 +172,23 @@ std::string encodeResult(const json::Value& id, const json::Value& result) {
 }
 
 std::string encodeError(const json::Value& id, int code, const std::string& message) {
-  json::Value error = objectValue();
-  error.object["code"] = numberValue(static_cast<double>(code));
-  error.object["message"] = stringValue(message);
+  Error failure;
+  failure.code = code;
+  failure.message = message;
+  return encodeError(id, failure);
+}
+
+std::string encodeError(const json::Value& id, const Error& error) {
+  json::Value body = objectValue();
+  body.object["code"] = numberValue(static_cast<double>(error.code));
+  body.object["message"] = stringValue(error.message);
+  if (error.hasData) {
+    body.object["data"] = error.data;
+  }
 
   json::Value reply = envelope();
   reply.object["id"] = id;
-  reply.object["error"] = error;
+  reply.object["error"] = std::move(body);
   return json::write(reply);
 }
 

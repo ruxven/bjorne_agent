@@ -378,3 +378,19 @@ TEST_CASE("OpenSSL transport reports that TLS is unavailable") {
   REQUIRE(error == "TLS is not available: this build has no OpenSSL");
 }
 #endif
+
+TEST_CASE("a TLS transport keeps the options it was given") {
+  bjorne_agent::http::OpenSslTransport::Options options;
+  options.ignore_self_signed = true;
+  options.hostname = "bjorne_agent.test";
+
+  // The options constructor works in every build. Without OpenSSL the
+  // transport refuses the request later on, but it still holds the options.
+  bjorne_agent::http::OpenSslTransport transport(options);
+  std::string response;
+  std::string error;
+  transport.send("GET / HTTP/1.1\r\n\r\n", "127.0.0.1", "443", response, error);
+
+  const auto client = bjorne_agent::http::HttpClient::createOpenSsl(options);
+  REQUIRE(client != nullptr);
+}

@@ -36,6 +36,9 @@ struct SessionSummary {
   long long updated = 0;
   std::string status;
   std::string task;
+  // The workspace the session ran in. The ACP session list reports it as the
+  // working directory of the session.
+  std::string workspace;
   std::size_t messages = 0;
 };
 
@@ -62,6 +65,10 @@ class SessionStore {
 
   bool load(const std::string& id, SessionState& state, std::string& error) const;
 
+  // Removes the session file. A session that is already gone is a success, so
+  // a repeated delete is harmless.
+  bool erase(const std::string& id, std::string& error);
+
   // Sessions ordered by updated time, newest first. A file that cannot be read
   // or parsed is skipped rather than failing the list.
   std::vector<SessionSummary> list(std::string& error) const;
@@ -87,6 +94,10 @@ std::string generateSessionId();
 // UTC, "YYYY-MM-DD HH:MM:SS". Returns an empty string when the platform cannot
 // format the value.
 std::string formatTimestamp(long long epochSeconds);
+
+// UTC, "YYYY-MM-DDTHH:MM:SSZ". The ACP session list reports the time in this
+// shape.
+std::string formatIsoTimestamp(long long epochSeconds);
 
 // Adds a synthetic tool result for every tool call that has no result yet. A
 // container can die after the model requested a tool and before the result was

@@ -40,6 +40,11 @@ bool parseToolArguments(const std::string& arguments, json::Value& out);
 // property is missing or is not a string.
 bool toolStringArgument(const json::Value& arguments, const std::string& key, std::string& out);
 
+// Resolves a tool path against the workspace. A relative path is joined to the
+// workspace, and a path that climbs out through ".." is refused. The ACP file
+// tools route through the editor and need the same rule as the local ones.
+std::string resolveToolPath(const std::string& workspace, const std::string& path, std::string& error);
+
 // Tool calls arrive as JSON arguments and results feed back into the agent
 // context. The registry starts with the built-in file and shell tools. A
 // caller may register more tools, replace a built-in by name, or remove one;

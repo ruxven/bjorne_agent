@@ -1,5 +1,6 @@
 #include "platform/Process.h"
 
+#include <chrono>
 #include <string>
 #include <thread>
 #include <vector>
@@ -118,4 +119,29 @@ TEST_CASE("a write to a stopped process is refused") {
 
   REQUIRE_FALSE(process.sendLine("hello", error));
   REQUIRE(error.find("not running") != std::string::npos);
+}
+
+TEST_CASE("the exit code of a finished process is reported") {
+#if defined(_WIN32)
+  const char* kExitCommand = "cmd.exe";
+  const std::vector<std::string> arguments = {"/c", "exit 7"};
+#else
+  const char* kExitCommand = "sh";
+  const std::vector<std::string> arguments = {"-c", "exit 7"};
+#endif
+
+  ChildProcess process;
+  std::string error;
+  REQUIRE(process.start(kExitCommand, arguments, {}, error));
+
+  // The exit code is only known once the process has ended.
+  for (int attempt = 0; attempt < 100 && process.running(); ++attempt) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+  }
+  REQUIRE(process.exitCode() == 7);
+}
+
+TEST_CASE("the exit code of a process that runs is not known") {
+  ChildProcess process;
+  REQUIRE(process.exitCode() == -1);
 }

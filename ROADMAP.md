@@ -109,37 +109,37 @@ The Agent Client Protocol is what puts the agent in front of an editor such as Z
 JetBrains. The editor launches the agent as a subprocess and drives it over JSON-RPC 2.0 on stdin
 and stdout, with messages delimited by newlines.
 
-- [ ] An `acp` subcommand. It replaces the one-shot entry point with a request loop that reads
+- [x] An `acp` subcommand. It replaces the one-shot entry point with a request loop that reads
   JSON-RPC from stdin and writes JSON-RPC to stdout.
-- [ ] The agent side methods: `initialize`, `session/new`, `session/prompt`, `session/cancel`, and
+- [x] The agent side methods: `initialize`, `session/new`, `session/prompt`, `session/cancel`, and
   `session/load` when a session store is configured.
-- [ ] The client side methods the agent calls back into: `fs/read_text_file`,
+- [x] The client side methods the agent calls back into: `fs/read_text_file`,
   `fs/write_text_file`, `session/request_permission`, `elicitation/create`, and the `terminal/*`
   family when the client advertises them.
-- [ ] The `session/update` notifications: `agent_message_chunk`, `agent_thought_chunk`, `tool_call`,
+- [x] The `session/update` notifications: `agent_message_chunk`, `agent_thought_chunk`, `tool_call`,
   `tool_call_update`, `plan` and `available_commands_update`.
-- [ ] Version negotiation in `initialize`. Answer with the requested protocol version when it is
+- [x] Version negotiation in `initialize`. Answer with the requested protocol version when it is
   supported, otherwise the latest one the agent supports. The draft v2 is not implemented.
-- [ ] Capability advertisement driven by the configuration: `loadSession` only when a session store
+- [x] Capability advertisement driven by the configuration: `loadSession` only when a session store
   exists, the prompt capabilities that are genuinely supported, and no MCP HTTP or SSE capability
   while only the stdio MCP transport exists.
-- [ ] stdout stays reserved for protocol messages. The progress output already goes to stderr, and
+- [x] stdout stays reserved for protocol messages. The progress output already goes to stderr, and
   the result printing of the one-shot mode is suppressed in this mode.
-- [ ] The workspace comes from `session/new` and overrides the configured workspace. The MCP servers
+- [x] The workspace comes from `session/new` and overrides the configured workspace. The MCP servers
   the client supplies override the configured ones for that session.
-- [ ] The file tools route through the client when it advertises the file system capability, and
+- [x] The file tools route through the client when it advertises the file system capability, and
   fall back to the local filesystem when it does not. The unsaved editor buffer is only reachable
   through the client.
-- [ ] A permission request maps onto the interaction channel from Phase D, so the constrained choice
+- [x] A permission request maps onto the interaction channel from Phase D, so the constrained choice
   shape is reused rather than reinvented.
-- [ ] Cancellation. `session/cancel` has to interrupt a turn that is already running, which needs a
+- [x] Cancellation. `session/cancel` has to interrupt a turn that is already running, which needs a
   cooperative cancellation flag in the agent loop. The loop is single threaded today, so this is
   the first place where a running turn has to observe outside input.
-- [ ] Session continuity. `session/load` and the stable `session/resume` map onto the session store
+- [x] Session continuity. `session/load` and the stable `session/resume` map onto the session store
   from Phase C, and the ACP session identifier maps onto a stored session identifier.
-- [ ] The stable `session/list` and `session/delete` methods map onto the same store and are cheap
+- [x] The stable `session/list` and `session/delete` methods map onto the same store and are cheap
   once it exists.
-- [ ] Session configuration options expose the configured models, so the user picks the model from
+- [x] Session configuration options expose the configured models, so the user picks the model from
   the editor the same way the model list is picked today.
 - [ ] A conformance check against the ACP test compatibility kit, so the implementation is
   verified against the protocol rather than against a hand written expectation.
@@ -193,9 +193,9 @@ share one implementation rather than two.
 
 ## Quality Gates
 
-- [x] Catch2 suite: `bjorne_agent_tests` (310 cases, 1160 assertions with TLS; 304 cases, 1144 assertions in the no TLS dynamic build; 308 cases, 1164 assertions in the static build).
+- [x] Catch2 suite: `bjorne_agent_tests` (446 cases, 1483 assertions with TLS; 440 cases, 1467 assertions in the no TLS dynamic build; 444 cases, 1487 assertions in the static build).
 - [x] Lizard complexity gate: `-C 15 -L 100 -a 5`, no thresholds exceeded in any configuration.
-- [x] Line and function coverage: measured with `gcovr` over the instrumented test build. Line coverage is 92% with TLS, 92% in the no TLS build, and 92% in the static build; function coverage is 97%, 97%, and 97%. The measurement covers the code the test binary links and therefore leaves out `src/main.cpp`, which only the executable runs. Set `BJORNE_AGENT_OPENSSL=disabled` to measure the no TLS configuration, and add `BJORNE_AGENT_STATIC=ON` to measure the static one. Residual gaps are the session write and list error paths, the OS allocation failures inside the transports, the getaddrinfo success branches that need a live name server, and the Windows-only branches of the child process transport that cannot run on this host.
+- [x] Line and function coverage: measured with `gcovr` over the instrumented test build. Line coverage is 93.4% with TLS, 93.8% in the no TLS build, and 93.9% in the static build; function coverage is 99.8%, 99.8%, and 99.8%. The measurement covers the code the test binary links and therefore leaves out `src/main.cpp`, which only the executable runs. Set `BJORNE_AGENT_OPENSSL=disabled` to measure the no TLS configuration, and add `BJORNE_AGENT_STATIC=ON` to measure the static one. The one function that no build covers is the pipe cleanup in the child process transport, which only runs when a pipe cannot be created.
 - [x] Transport tests against a loopback HTTP/TLS server, including read and handshake failure paths.
 - [x] DNS answer parser tests built from crafted packets, so the wire format is checked without a network.
 - [x] CodeChecker static analysis: clangsa and clang-tidy over `src/`, no findings in project code. Third party Catch2 is excluded through `.codechecker.skip`.

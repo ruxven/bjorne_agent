@@ -12,7 +12,7 @@ namespace cli {
 // form keeps working. The other verbs are reserved by the roadmap: they parse
 // as commands so that a task beginning with one has to be passed to `run`, but
 // they are not implemented yet.
-enum class Command { Run, Init, Sessions, Resume };
+enum class Command { Run, Init, Sessions, Resume, Acp };
 
 // What the command line asked for. The config path is empty for commands that
 // do not run a task, and when the default search found nothing.

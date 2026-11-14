@@ -207,6 +207,26 @@ bool toolStringArgument(const json::Value& arguments, const std::string& key, st
   return true;
 }
 
+std::string resolveToolPath(const std::string& workspace, const std::string& path, std::string& error) {
+  if (path.empty()) {
+    error = "path is required";
+    return {};
+  }
+  if (hasParentTraversal(path)) {
+    error = "path must not traverse parent directories";
+    return {};
+  }
+  if (isAbsolutePath(path) || workspace.empty()) {
+    return path;
+  }
+  std::string resolved = workspace;
+  if (!isPathSeparator(resolved.back())) {
+    resolved += '/';
+  }
+  resolved += path;
+  return resolved;
+}
+
 ToolRegistry::ToolRegistry(std::string workspace) : workspace_(std::move(workspace)) { registerBuiltins(); }
 
 void ToolRegistry::registerBuiltins() {
@@ -259,23 +279,7 @@ ToolResult ToolRegistry::execute(const std::string& name, const std::string& arg
 }
 
 std::string ToolRegistry::resolvePath(const std::string& path, std::string& error) const {
-  if (path.empty()) {
-    error = "path is required";
-    return {};
-  }
-  if (hasParentTraversal(path)) {
-    error = "path must not traverse parent directories";
-    return {};
-  }
-  if (isAbsolutePath(path) || workspace_.empty()) {
-    return path;
-  }
-  std::string resolved = workspace_;
-  if (!isPathSeparator(resolved.back())) {
-    resolved += '/';
-  }
-  resolved += path;
-  return resolved;
+  return resolveToolPath(workspace_, path, error);
 }
 
 ToolResult ToolRegistry::readFile(const std::string& arguments) const {

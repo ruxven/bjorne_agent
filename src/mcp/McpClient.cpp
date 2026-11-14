@@ -118,7 +118,7 @@ bool Client::initialize(std::string& error) {
   params.object["clientInfo"] = client;
 
   json::Value result;
-  if (!endpoint_->request("initialize", params, result, error, kHandshakeTimeoutMs)) {
+  if (!endpoint_->request("initialize", params, result, error, jsonrpc::RequestOptions{kHandshakeTimeoutMs})) {
     return false;
   }
   if (!result.isObject()) {
@@ -133,7 +133,7 @@ bool Client::fetchToolPage(const std::string& cursor, json::Value& result, std::
   if (!cursor.empty()) {
     params.object["cursor"] = stringValue(cursor);
   }
-  if (!endpoint_->request("tools/list", params, result, error, kHandshakeTimeoutMs)) {
+  if (!endpoint_->request("tools/list", params, result, error, jsonrpc::RequestOptions{kHandshakeTimeoutMs})) {
     return false;
   }
   if (!result.isObject()) {
@@ -203,7 +203,7 @@ bool Client::callTool(const std::string& name, const json::Value& arguments, std
   params.object["arguments"] = arguments;
 
   json::Value result;
-  if (!endpoint_->request("tools/call", params, result, error, kCallTimeoutMs)) {
+  if (!endpoint_->request("tools/call", params, result, error, jsonrpc::RequestOptions{kCallTimeoutMs})) {
     return false;
   }
   if (!result.isObject()) {

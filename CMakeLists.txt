@@ -65,6 +65,9 @@ add_library(bjorne_agent_core STATIC
   src/json/Json.cpp
   src/jsonrpc/JsonRpc.cpp
   src/jsonrpc/Endpoint.cpp
+  src/acp/AcpChannel.cpp
+  src/acp/AcpServer.cpp
+  src/acp/StdioTransport.cpp
   src/mcp/McpClient.cpp
   src/cli/Invocation.cpp
   src/config/Config.cpp
@@ -178,10 +181,14 @@ if(BUILD_TESTING)
     tests/jsonrpc/EndpointTest.cpp
     tests/mcp/McpClientTest.cpp
     tests/platform/ProcessTest.cpp
+    tests/platform/ShutdownTest.cpp
     tests/skills/SkillsTest.cpp
     tests/session/SessionTest.cpp
     tests/tools/ToolsTest.cpp
     tests/agent/AgentLoopTest.cpp
+    tests/acp/AcpChannelTest.cpp
+    tests/acp/AcpServerTest.cpp
+    tests/acp/StdioTransportTest.cpp
   )
 
   # A stub MCP server the MCP tests spawn as a child process. It is a separate

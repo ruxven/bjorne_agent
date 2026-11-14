@@ -1,5 +1,6 @@
 #include "agent/AgentLoop.h"
 
+#include <atomic>
 #include <cstddef>
 #include <filesystem>
 #include <fstream>
@@ -440,6 +441,127 @@ TEST_CASE("Agent loop interrupts after a model call without recording the respon
   REQUIRE(observer->turn_numbers.empty());
 }
 
+TEST_CASE("Agent loop names the stop reason of a finished turn") {
+  auto backend = std::make_shared<MockModelBackend>();
+  backend->responses.push_back(ModelResponse{"done", {}, {}});
+
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "test";
+  const auto loop = makeObservedLoop(backend, config, std::make_shared<RecordingObserver>());
+
+  std::string result;
+  std::string error;
+  REQUIRE(loop->run("go", result, error));
+  REQUIRE(loop->stopReason() == "end_turn");
+}
+
+TEST_CASE("Agent loop names the stop reason of a cancelled turn") {
+  auto backend = std::make_shared<MockModelBackend>();
+  backend->responses.push_back(ModelResponse{"done", {}, {}});
+
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "test";
+  config.stop_requested = [] { return true; };
+  const auto loop = makeObservedLoop(backend, config, std::make_shared<RecordingObserver>());
+
+  std::string result;
+  std::string error;
+  REQUIRE_FALSE(loop->run("go", result, error));
+  REQUIRE(loop->stopReason() == "cancelled");
+}
+
+TEST_CASE("Agent loop names the stop reason of a refused turn") {
+  auto backend = std::make_shared<MockModelBackend>();
+  backend->responses.push_back(toolResponse("write_file", R"({"path":"a.txt"})"));
+
+  std::string denial;
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "test";
+  config.permissionGate = [&denial](const std::string& tool, const std::string& arguments, const std::string& id,
+                                   std::string& reason) {
+    (void)tool;
+    (void)arguments;
+    (void)id;
+    denial = "The user said no";
+    reason = denial;
+    return false;
+  };
+  const auto loop = makeObservedLoop(backend, config, std::make_shared<RecordingObserver>());
+
+  std::string result;
+  std::string error;
+  REQUIRE(loop->run("go", result, error));
+  REQUIRE(loop->stopReason() == "refusal");
+  REQUIRE(result == "The user said no");
+}
+
+TEST_CASE("Agent loop names the stop reason when the iteration cap is reached") {
+  auto backend = std::make_shared<MockModelBackend>();
+  for (int index = 0; index < 3; ++index) {
+    backend->responses.push_back(toolResponse("missing_tool", "{}"));
+  }
+
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "test";
+  config.max_iterations = 2;
+  const auto loop = makeObservedLoop(backend, config, std::make_shared<RecordingObserver>());
+
+  std::string result;
+  std::string error;
+  REQUIRE_FALSE(loop->run("go", result, error));
+  REQUIRE(loop->stopReason() == "max_turn_requests");
+}
+
+TEST_CASE("Agent loop asks the gate before a tool runs") {
+  auto backend = std::make_shared<MockModelBackend>();
+  backend->responses.push_back(toolResponse("read_file", R"({"path":"a.txt"})"));
+  backend->responses.push_back(ModelResponse{"done", {}, {}});
+
+  std::vector<std::string> asked;
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "test";
+  config.permissionGate = [&asked](const std::string& tool, const std::string& arguments, const std::string& id,
+                                   std::string& reason) {
+    (void)reason;
+    asked.push_back(tool + ":" + arguments + ":" + id);
+    return true;
+  };
+  const auto loop = makeObservedLoop(backend, config, std::make_shared<RecordingObserver>());
+
+  std::string result;
+  std::string error;
+  REQUIRE(loop->run("go", result, error));
+  REQUIRE(asked.size() == 1);
+  REQUIRE(asked[0] == R"(read_file:{"path":"a.txt"}:call_1)");
+  REQUIRE(result == "done");
+}
+
+TEST_CASE("Agent loop treats a cancelled gate as a cancellation") {
+  auto backend = std::make_shared<MockModelBackend>();
+  backend->responses.push_back(toolResponse("write_file", R"({"path":"a.txt"})"));
+
+  auto cancelled = std::make_shared<std::atomic<bool>>(false);
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "test";
+  config.stop_requested = [cancelled]() { return cancelled->load(); };
+  config.permissionGate = [cancelled](const std::string& tool, const std::string& arguments, const std::string& id,
+                                    std::string& reason) {
+    (void)tool;
+    (void)arguments;
+    (void)id;
+    (void)reason;
+    // The user cancels while the question is in flight.
+    cancelled->store(true);
+    return false;
+  };
+  const auto loop = makeObservedLoop(backend, config, std::make_shared<RecordingObserver>());
+
+  std::string result;
+  std::string error;
+  REQUIRE_FALSE(loop->run("go", result, error));
+  REQUIRE(loop->stopReason() == "cancelled");
+}
+
 TEST_CASE("Agent loop reports a model failure to the observer") {
   auto backend = std::make_shared<MockModelBackend>();
   backend->fail = true;
@@ -457,4 +579,101 @@ TEST_CASE("Agent loop reports a model failure to the observer") {
   REQUIRE(observer->failed);
   REQUIRE(observer->failure == "backend failure");
   REQUIRE(observer->failure_messages.size() == 2);
+}
+
+namespace {
+
+// An observer that overrides nothing. The base methods exist so that a
+// one-shot run without a session store can ignore the events, and this test
+// exercises every one of them.
+class BareObserver final : public bjorne_agent::agent::LoopObserver {};
+
+}  // namespace
+
+TEST_CASE("An observer that overrides nothing still sees the events") {
+  auto backend = std::make_shared<MockModelBackend>();
+  backend->responses.push_back(toolResponse("missing_tool", "{}"));
+  backend->responses.push_back(ModelResponse{"finished", {}, {}});
+
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "test";
+  auto context = std::make_shared<bjorne_agent::context::ContextManager>(
+      bjorne_agent::context::ContextManagerConfig());
+  auto tools = std::make_shared<bjorne_agent::tools::ToolRegistry>("");
+  auto observer = std::make_shared<BareObserver>();
+  auto loop = std::make_shared<bjorne_agent::agent::AgentLoop>(config, backend, context, tools, observer);
+
+  std::string result;
+  std::string error;
+  REQUIRE(loop->run("go", result, error));
+  REQUIRE(result == "finished");
+}
+
+TEST_CASE("An observer that overrides nothing sees a failure") {
+  auto backend = std::make_shared<MockModelBackend>();
+  backend->fail = true;
+  backend->fail_error = "backend failure";
+
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "test";
+  auto context = std::make_shared<bjorne_agent::context::ContextManager>(
+      bjorne_agent::context::ContextManagerConfig());
+  auto tools = std::make_shared<bjorne_agent::tools::ToolRegistry>("");
+  auto observer = std::make_shared<BareObserver>();
+  auto loop = std::make_shared<bjorne_agent::agent::AgentLoop>(config, backend, context, tools, observer);
+
+  std::string result;
+  std::string error;
+  REQUIRE_FALSE(loop->run("go", result, error));
+  REQUIRE(error == "backend failure");
+}
+
+TEST_CASE("An observer that overrides nothing sees an interrupt") {
+  auto backend = std::make_shared<MockModelBackend>();
+
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "test";
+  config.stop_requested = [] { return true; };
+  auto context = std::make_shared<bjorne_agent::context::ContextManager>(
+      bjorne_agent::context::ContextManagerConfig());
+  auto tools = std::make_shared<bjorne_agent::tools::ToolRegistry>("");
+  auto observer = std::make_shared<BareObserver>();
+  auto loop = std::make_shared<bjorne_agent::agent::AgentLoop>(config, backend, context, tools, observer);
+
+  std::string result;
+  std::string error;
+  REQUIRE_FALSE(loop->run("go", result, error));
+  REQUIRE(loop->stopReason() == "cancelled");
+}
+
+TEST_CASE("A model backend that does not override setTools accepts the call") {
+  auto backend = std::make_shared<MockModelBackend>();
+  // The default implementation ignores the schema, so a scripted backend does
+  // not have to write one.
+  backend->setTools(R"([{"name":"read_file"}])");
+  REQUIRE(backend->seen.empty());
+}
+
+TEST_CASE("An observer that overrides nothing sees the reasoning and the narration") {
+  auto backend = std::make_shared<MockModelBackend>();
+
+  ModelResponse narrated;
+  narrated.reasoning = "I should look at the file";
+  narrated.content = "I will read the file";
+  narrated.tool_calls.push_back(bjorne_agent::model::ToolCall{"call_1", "missing_tool", "{}"});
+  backend->responses.push_back(narrated);
+  backend->responses.push_back(ModelResponse{"finished", {}, {}});
+
+  bjorne_agent::agent::AgentLoopConfig config;
+  config.system_prompt = "test";
+  auto context = std::make_shared<bjorne_agent::context::ContextManager>(
+      bjorne_agent::context::ContextManagerConfig());
+  auto tools = std::make_shared<bjorne_agent::tools::ToolRegistry>("");
+  auto observer = std::make_shared<BareObserver>();
+  auto loop = std::make_shared<bjorne_agent::agent::AgentLoop>(config, backend, context, tools, observer);
+
+  std::string result;
+  std::string error;
+  REQUIRE(loop->run("go", result, error));
+  REQUIRE(result == "finished");
 }

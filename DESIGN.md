@@ -108,6 +108,18 @@ The result of a call is the text content of the response. Content that is not te
 
 A server that crashes or times out is restarted once and the call is retried, which turns a dying server into a lost call rather than a lost run. A tool that merely reported an error is not retried, because the server itself answered. A server that cannot start at all is logged and skipped, and the run continues with the tools that did register. The registration order is the built-ins, then the interaction tool, then the MCP servers, which is the resolution order the tool set promises.
 
+### ACP Server
+
+The ACP server is the other role of the same endpoint. It answers an editor that launched the agent as a subprocess and drives it over standard input and standard output. Two things make this role different from the MCP client, and both are consequences of the protocol.
+
+First, the traffic runs in both directions. The editor asks the agent to run a turn, and the agent asks the editor to read a file, to write a file, to grant a permission and to open a terminal. A single reader thread that handles the messages it receives cannot also wait for an answer to a question it asked, because the answer arrives on that same reader. The endpoint therefore runs the request handlers on a worker thread with an incoming queue, so a handler can issue a request of its own without deadlocking against the reader it is waiting on.
+
+Second, a permission question is a question to a human. The ACP server does not invent a second shape for it. The permission request is an interaction channel of Phase D, carrying the constrained choice: a question and the answers it accepts. The channel translates the choice into the protocol options the editor receives and translates the answer back into a label, so the list of choices is defined once and cannot drift between the question and the answer.
+
+The protocol roles are therefore the same component in two positions: the MCP client is a client of an MCP server, and the ACP server is a server of an editor. Both speak the same codec, both use the same endpoint, and neither knows about the other's method names.
+
+A session maps onto a stored session: the ACP identifier is the stored identifier with a prefix, so a session created over ACP can be listed, loaded and deleted through the same store the one-shot mode uses. The agent side methods are `initialize`, `session/new`, `session/prompt`, `session/cancel`, `session/load`, `session/resume`, `session/list` and `session/delete`. The client side methods the agent calls are `fs/read_text_file`, `fs/write_text_file`, `session/request_permission`, `elicitation/create` and the `terminal/*` family, and the last two are only installed when the client advertises the matching capability, because a client that does not know them would never answer them.
+
 ## Fulfilment Mapping
 
 The design meets the specifications:
@@ -120,6 +132,7 @@ The design meets the specifications:
 - Sessions: local directory, atomic rewrite after each turn, signal flush, resume repair.
 - Interaction: pluggable channel, unavailable by default, console only on a terminal, constrained options.
 - MCP: stdio JSON-RPC client, initialize handshake, namespaced tool names, restart on crash, no new dependency.
+- ACP: stdio JSON-RPC server over the shared core, bidirectional requests, permission question through the interaction channel, sessions on the shared store.
 - Container: scratch or distroless base, static binary, config via mount or env, binary entrypoint.
 
 ## Build and Container Design

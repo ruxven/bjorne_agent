@@ -1,14 +1,19 @@
 #include <algorithm>
 #include <cctype>
+#include <chrono>
 #include <cstdlib>
 #include <fstream>
 #include <functional>
 #include <iostream>
+#include <map>
 #include <memory>
 #include <sstream>
 #include <string>
+#include <thread>
 #include <vector>
 
+#include "acp/AcpServer.h"
+#include "acp/StdioTransport.h"
 #include "agent/AgentLoop.h"
 #include "cli/Invocation.h"
 #include "config/Config.h"
@@ -221,8 +226,17 @@ struct Runtime {
   std::vector<bjorne_agent::context::Fragment> fragments;
 };
 
-bool buildRuntime(const std::string& configPath, const bjorne_agent::config::Config& config,
-                  const bjorne_agent::config::ModelConfig& selected, Runtime& out) {
+// What one runtime is built for. A one-shot run uses the configured values;
+// an ACP session uses the ones the editor named, so the two paths share the
+// whole assembly.
+struct RuntimeSetup {
+  std::string workspace;
+  std::map<std::string, bjorne_agent::config::McpServerConfig> mcp_servers;
+};
+
+// Builds everything a run needs for one workspace, model and MCP server set.
+bool buildRuntimeFor(const std::string& configPath, const bjorne_agent::config::Config& config,
+                     const bjorne_agent::config::ModelConfig& selected, const RuntimeSetup& setup, Runtime& out) {
   if (!buildContextConfig(configPath, selected, out.context_config)) {
     return false;
   }
@@ -243,7 +257,7 @@ bool buildRuntime(const std::string& configPath, const bjorne_agent::config::Con
   }
 
   const bjorne_agent::context::AgentsFiles agents =
-      bjorne_agent::context::loadAgentsFiles(config.agent.workspace, bjorne_agent::config::userConfigDirectory());
+      bjorne_agent::context::loadAgentsFiles(setup.workspace, bjorne_agent::config::userConfigDirectory());
   for (const std::string& path : agents.unreadable) {
     bjorne_agent::log::fail("Cannot read " + path);
   }
@@ -266,7 +280,7 @@ bool buildRuntime(const std::string& configPath, const bjorne_agent::config::Con
 
   out.context =
       std::make_shared<bjorne_agent::context::ContextManager>(out.context_config, makeCompressionHandler(out.model));
-  out.tools = std::make_shared<bjorne_agent::tools::ToolRegistry>(config.agent.workspace);
+  out.tools = std::make_shared<bjorne_agent::tools::ToolRegistry>(setup.workspace);
   bjorne_agent::interaction::registerRequestInputTool(
       *out.tools, bjorne_agent::interaction::makeChannel(config.agent.interactive));
   if (!skillLoad.skills.empty()) {
@@ -276,9 +290,17 @@ bool buildRuntime(const std::string& configPath, const bjorne_agent::config::Con
   // MCP tools are registered last, so they sit alongside the built-ins in the
   // same namespace without being able to replace one: the namespaced name
   // cannot collide with a built-in name.
-  bjorne_agent::mcp::registerServers(config.mcp_servers, *out.tools);
+  bjorne_agent::mcp::registerServers(setup.mcp_servers, *out.tools);
   out.model->setTools(out.tools->definitionsJson());
   return true;
+}
+
+bool buildRuntime(const std::string& configPath, const bjorne_agent::config::Config& config,
+                  const bjorne_agent::config::ModelConfig& selected, Runtime& out) {
+  RuntimeSetup setup;
+  setup.workspace = config.agent.workspace;
+  setup.mcp_servers = config.mcp_servers;
+  return buildRuntimeFor(configPath, config, selected, setup, out);
 }
 
 // The session directory named by the config, resolved next to the config file.
@@ -526,6 +548,97 @@ int listSessions() {
   return 0;
 }
 
+// Serves the Agent Client Protocol. The editor drives the conversation over
+// standard input and standard output, so the only output the binary writes to
+// standard output is protocol traffic.
+int runAcp(const bjorne_agent::cli::Invocation& invocation) {
+  std::string error;
+  const std::string& configPath = invocation.configPath;
+  bjorne_agent::config::Config config;
+  const bjorne_agent::config::ModelConfig* selected = nullptr;
+  if (!prepareModel(configPath, config, selected)) {
+    return 1;
+  }
+
+  // A session store is optional. Without one the agent serves the editor but
+  // cannot list, load or resume a conversation.
+  std::shared_ptr<bjorne_agent::session::SessionStore> store;
+  if (!config.agent.session_dir.empty()) {
+    std::string directory;
+    if (!sessionDirectoryFor(configPath, config, directory)) {
+      return 1;
+    }
+    store = openSessionStore(directory);
+    if (!store) {
+      return 1;
+    }
+  }
+
+  // The editor can pick the model of a session, so every configured model is
+  // offered by name.
+  std::vector<std::string> models;
+  std::map<std::string, bjorne_agent::config::ModelConfig> byName;
+  for (const bjorne_agent::config::ModelConfig& model : config.models) {
+    models.push_back(model.model);
+    byName[model.model] = model;
+  }
+
+  // Each session builds its own runtime, because the editor names the
+  // workspace, the model and the MCP servers it wants.
+  const auto factory = [&config, &configPath, &byName, selected](const bjorne_agent::acp::RuntimeRequest& request,
+                                                                 bjorne_agent::acp::SessionRuntime& runtime,
+                                                                 std::string& factoryError) {
+    const bjorne_agent::config::ModelConfig* model = selected;
+    if (!request.model.empty()) {
+      auto entry = byName.find(request.model);
+      if (entry != byName.end()) {
+        model = &entry->second;
+      }
+    }
+    // The servers the editor named win over the configured ones by name.
+    std::map<std::string, bjorne_agent::config::McpServerConfig> servers = config.mcp_servers;
+    for (const auto& [name, server] : request.mcp_servers) {
+      servers[name] = server;
+    }
+
+    RuntimeSetup setup;
+    setup.workspace = request.workspace;
+    setup.mcp_servers = servers;
+
+    Runtime built;
+    if (!buildRuntimeFor(configPath, config, *model, setup, built)) {
+      factoryError = "The session runtime could not be built";
+      return false;
+    }
+    runtime.model = built.model;
+    runtime.context = built.context;
+    runtime.tools = built.tools;
+    runtime.system_prompt = buildSystemPrompt(config.agent.system_prompt, built.fragments);
+    return true;
+  };
+
+  auto transport = std::make_shared<bjorne_agent::acp::StdioTransport>();
+  auto endpoint = std::make_shared<bjorne_agent::jsonrpc::Endpoint>(transport);
+  auto server = std::make_shared<bjorne_agent::acp::AcpServer>(endpoint, store, factory, models, selected->model);
+  endpoint->setRequestHandler([server](const std::string& method, const bjorne_agent::json::Value& params,
+                                       bjorne_agent::json::Value& result, bjorne_agent::jsonrpc::Error& error) {
+    return server->handle(method, params, result, error);
+  });
+  endpoint->setNotificationHandler([server](const std::string& method, const bjorne_agent::json::Value& params) {
+    server->notify(method, params);
+  });
+
+  bjorne_agent::log::progress("Serving the Agent Client Protocol");
+  endpoint->start();
+  // The connection ends when the editor closes it or when the process is
+  // asked to stop.
+  while (!endpoint->closed() && !bjorne_agent::platform::shutdownRequested()) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  }
+  bjorne_agent::log::progress("Connection closed");
+  return 0;
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -574,6 +687,8 @@ int main(int argc, char** argv) {
       return listSessions();
     case bjorne_agent::cli::Command::Resume:
       return resumeTask(invocation);
+    case bjorne_agent::cli::Command::Acp:
+      return runAcp(invocation);
     case bjorne_agent::cli::Command::Init:
       break;
   }

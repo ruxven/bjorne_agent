@@ -197,6 +197,7 @@ bjorne_agent [options] run [config] [task]
 bjorne_agent [options] init
 bjorne_agent [options] sessions
 bjorne_agent [options] resume [session]
+bjorne_agent [options] acp [config]
 ```
 
 `run` is the default, so the bare form and the spelled out form do the same
@@ -221,6 +222,7 @@ prints the usage and exits `1` instead of waiting on a terminal for a task.
 | `init` | Create a config file. Not implemented yet. |
 | `sessions` | List stored sessions, most recently updated first. |
 | `resume` | Continue a stored session, or print its answer when it is complete. |
+| `acp` | Serve the Agent Client Protocol on standard input and standard output. |
 
 The verbs are reserved. A task that begins with one has to be passed after
 `run`, or it is read as that command:
@@ -337,6 +339,45 @@ take no config path of their own; both require `agent.session_dir`.
 
 With `session_dir` empty there is no persistence and the run is the one-shot
 behaviour described above.
+
+### ACP mode
+
+`acp` serves the Agent Client Protocol, which is what puts the agent in front of
+an editor such as Zed, Neovim or JetBrains. The editor launches the agent as a
+subprocess and drives it over standard input and standard output:
+
+```sh
+bjorne_agent acp [config]
+```
+
+The wire format is JSON-RPC 2.0 with one message per line, the same codec the
+MCP client uses. Standard output carries protocol messages only; progress goes
+to standard error.
+
+- `initialize` negotiates the protocol version and the capabilities. The agent
+  answers with the requested version when it supports it, and with the latest
+  version it supports otherwise.
+- `session/new`, `session/prompt`, `session/cancel`, `session/load`,
+  `session/resume`, `session/list` and `session/delete` are the agent side
+  methods. The last three need a `session_dir`, and the sessions they reach are
+  the same ones `bjorne_agent sessions` lists.
+- The agent calls back into the editor for `fs/read_text_file`,
+  `fs/write_text_file`, `session/request_permission`, `elicitation/create` and
+  the `terminal/*` family. The elicitation and terminal tools are only
+  installed when the editor advertises the matching capability.
+- The workspace comes from `session/new` and overrides the configured
+  workspace. The MCP servers the editor supplies override the configured ones
+  for that session.
+- The file tools go through the editor when it advertises the file system
+  capability, so an unsaved buffer is reachable, and fall back to the local
+  filesystem when it does not.
+- A permission request offers four answers: allow once, allow always, reject
+  once and reject always. "Allow always" is remembered for the rest of the
+  session, so the editor is not asked again about that tool.
+- `session/cancel` interrupts a turn that is already running, including a turn
+  that is waiting for a permission answer.
+
+The draft version two of the protocol is not implemented.
 
 ### Setting up a config
 
