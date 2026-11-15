@@ -88,6 +88,7 @@ add_library(bjorne_agent_core STATIC
   src/tools/Tools.cpp
   src/agent/AgentLoop.cpp
   src/interaction/Interaction.cpp
+  src/app/App.cpp
 )
 
 target_compile_features(bjorne_agent_core PUBLIC cxx_std_20)
@@ -189,6 +190,8 @@ if(BUILD_TESTING)
     tests/acp/AcpChannelTest.cpp
     tests/acp/AcpServerTest.cpp
     tests/acp/StdioTransportTest.cpp
+    tests/app/AppTest.cpp
+    tests/app/AppAcpTest.cpp
   )
 
   # A stub MCP server the MCP tests spawn as a child process. It is a separate

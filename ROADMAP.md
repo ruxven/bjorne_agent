@@ -182,20 +182,20 @@ share one implementation rather than two.
 ### Spec impact
 
 - [x] `SPEC.md` gains the subcommand semantics and the MCP scope.
-- [ ] `SPEC.md` gains the ACP mode. That waits for Phase F.
+- [x] `SPEC.md` gains the ACP mode.
 - [x] `SPEC.CONFIG.md` gains `skills_path`, `session_dir`, `interactive` and `mcp_servers`.
 - [ ] `SPEC.CONFIG.md` gains the tool override section. That waits for the tool set customization.
 - [x] `SPEC.LOOP.md` gains the session lifecycle, the resume semantics and the dangling call repair.
-- [ ] `SPEC.LOOP.md` gains the cooperative cancellation. That waits for Phase F.
+- [x] `SPEC.LOOP.md` gains the cooperative cancellation.
 - [x] `DESIGN.md` gains the shift from a one-shot to a long-lived stateful agent, along with the
   fragment mechanism, the interaction channel abstraction and the shared JSON-RPC core.
-- [ ] `DESIGN.md` gains the two protocol roles the agent plays in it. That waits for Phase F.
+- [x] `DESIGN.md` gains the two protocol roles the agent plays in it.
 
 ## Quality Gates
 
-- [x] Catch2 suite: `bjorne_agent_tests` (446 cases, 1483 assertions with TLS; 440 cases, 1467 assertions in the no TLS dynamic build; 444 cases, 1487 assertions in the static build).
+- [x] Catch2 suite: `bjorne_agent_tests` (474 cases, 1563 assertions with TLS; 468 cases, 1547 assertions in the no TLS dynamic build; 472 cases, 1567 assertions in the static build).
 - [x] Lizard complexity gate: `-C 15 -L 100 -a 5`, no thresholds exceeded in any configuration.
-- [x] Line and function coverage: measured with `gcovr` over the instrumented test build. Line coverage is 93.4% with TLS, 93.8% in the no TLS build, and 93.9% in the static build; function coverage is 99.8%, 99.8%, and 99.8%. The measurement covers the code the test binary links and therefore leaves out `src/main.cpp`, which only the executable runs. Set `BJORNE_AGENT_OPENSSL=disabled` to measure the no TLS configuration, and add `BJORNE_AGENT_STATIC=ON` to measure the static one. The one function that no build covers is the pipe cleanup in the child process transport, which only runs when a pipe cannot be created.
+- [x] Line and function coverage: measured with `gcovr` over the instrumented test build. Line coverage is 93.0% with TLS (4580 of 4925 lines), 93.3% in the no TLS build (4491 of 4811), and 93.4% in the static build (4539 of 4859); function coverage is 98.7% in all three builds (453 of 459 functions, 461 of 467, and 457 of 463). The measurement covers the code the test binary links and therefore leaves out `src/main.cpp`, which only the executable runs; the command logic itself lives in `src/app/App.cpp`, which the test binary links and which is therefore measured. Set `BJORNE_AGENT_OPENSSL=disabled` to measure the no TLS configuration, and add `BJORNE_AGENT_STATIC=ON` to measure the static one. The six functions that no build covers are the destructors of the abstract base classes the tests never destroy through a base pointer, and the pipe cleanup in the child process transport, which only runs when a pipe cannot be created.
 - [x] Transport tests against a loopback HTTP/TLS server, including read and handshake failure paths.
 - [x] DNS answer parser tests built from crafted packets, so the wire format is checked without a network.
 - [x] CodeChecker static analysis: clangsa and clang-tidy over `src/`, no findings in project code. Third party Catch2 is excluded through `.codechecker.skip`.
