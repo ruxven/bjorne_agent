@@ -293,6 +293,33 @@
        3      1     39      2       3 bjorne_agent::acp::AcpServer::SessionObserver::onFailure@1388-1390@src/acp/AcpServer.cpp
        3      1     32      1       3 bjorne_agent::acp::AcpServer::SessionObserver::onInterrupt@1392-1394@src/acp/AcpServer.cpp
       15      3    116      4      15 bjorne_agent::acp::AcpServer::SessionObserver::persist@1396-1410@src/acp/AcpServer.cpp
+       5      1     31      1       5 bjorne_agent::app::readAll@31-35@src/app/App.cpp
+      10      2     64      2      10 bjorne_agent::app::readTextFile@37-46@src/app/App.cpp
+       4      3     21      1       7 bjorne_agent::app::isPathSeparator@50-56@src/app/App.cpp
+      13      8     92      1      15 bjorne_agent::app::isAbsolutePath@60-74@src/app/App.cpp
+       4      2     27      1       7 bjorne_agent::app::lastPathSeparator@76-82@src/app/App.cpp
+      10      4     74      2      10 bjorne_agent::app::resolveAgainstConfig@86-95@src/app/App.cpp
+      10      2     84      1      10 bjorne_agent::app::selectModel@98-107@src/app/App.cpp
+      17      3    120      4      18 bjorne_agent::app::buildContextConfig@112-129@src/app/App.cpp
+      18      2    152      1      18 bjorne_agent::app::makeCompressionHandler@133-150@src/app/App.cpp
+      12      3     78      2      12 bjorne_agent::app::buildSystemPrompt@155-166@src/app/App.cpp
+       6      2     43      2       6 bjorne_agent::app::shortened@168-173@src/app/App.cpp
+       9      1     74      1       9 bjorne_agent::app::makeRealModel@176-184@src/app/App.cpp
+       1      1     14      0       1 bjorne_agent::app::App::App@188-188@src/app/App.cpp
+       5      1     73      1       5 bjorne_agent::app::App::App@190-194@src/app/App.cpp
+       4      1     28      1       4 bjorne_agent::app::App::reportError@196-199@src/app/App.cpp
+      24      5    173      3      25 bjorne_agent::app::App::prepareModel@201-225@src/app/App.cpp
+      41     11    466      5      52 bjorne_agent::app::App::buildRuntimeFor@227-278@src/app/App.cpp
+       7      1     66      4       7 bjorne_agent::app::App::buildRuntime@280-286@src/app/App.cpp
+       8      2     64      3       8 bjorne_agent::app::App::sessionDirectoryFor@288-295@src/app/App.cpp
+       8      2     54      1       8 bjorne_agent::app::App::openSessionStore@297-304@src/app/App.cpp
+      16      6    102      1      17 bjorne_agent::app::App::run@306-322@src/app/App.cpp
+      54     10    406      1      64 bjorne_agent::app::App::runTask@324-387@src/app/App.cpp
+      22      6    149      4      23 bjorne_agent::app::App::loadResumeSession@389-411@src/app/App.cpp
+      38      8    341      5      47 bjorne_agent::app::App::continueSession@413-459@src/app/App.cpp
+      34      8    212      1      38 bjorne_agent::app::App::resumeTask@461-498@src/app/App.cpp
+      35      8    235      0      39 bjorne_agent::app::App::listSessions@500-538@src/app/App.cpp
+      71     13    615      1      87 bjorne_agent::app::App::runAcp@540-626@src/app/App.cpp
       10      3     50      0      12 bjorne_agent::http::ignoreSigPipe@60-71@src/http/HttpClient.cpp
       30      7    313      2      30 bjorne_agent::http::findHeader@76-105@src/http/HttpClient.cpp
       34     11    241      4      34 bjorne_agent::http::parseChunkSize@108-141@src/http/HttpClient.cpp
@@ -435,31 +462,12 @@
       14      6    100      1      16 bjorne_agent::agent::AgentLoop::narrate@96-111@src/agent/AgentLoop.cpp
       13      4     85      2      13 bjorne_agent::agent::AgentLoop::approved@113-125@src/agent/AgentLoop.cpp
       61     12    377      3      71 bjorne_agent::agent::AgentLoop::run@127-197@src/agent/AgentLoop.cpp
-       5      1     28      0       5 readStdin@37-41@src/main.cpp
-      10      2     64      2      10 readTextFile@43-52@src/main.cpp
-       4      3     21      1       7 isPathSeparator@56-62@src/main.cpp
-      13      8     92      1      15 isAbsolutePath@66-80@src/main.cpp
-       4      2     27      1       7 lastPathSeparator@82-88@src/main.cpp
-      10      4     74      2      10 resolveAgainstConfig@90-99@src/main.cpp
-      10      2     90      1      10 selectModel@101-110@src/main.cpp
-      11      3     71      1      11 applyLogEnvironment@114-124@src/main.cpp
-       4      1     30      1       4 reportError@126-129@src/main.cpp
-      17      3    121      3      18 buildContextConfig@134-151@src/main.cpp
-      18      2    164      1      18 makeCompressionHandler@155-172@src/main.cpp
-      12      3     82      2      12 buildSystemPrompt@177-188@src/main.cpp
-      24      5    189      3      25 prepareModel@192-216@src/main.cpp
-      48     10    546      5      59 buildRuntimeFor@238-296@src/main.cpp
-       7      1     68      4       7 buildRuntime@298-304@src/main.cpp
-       8      2     64      3       8 sessionDirectoryFor@307-314@src/main.cpp
-       9      2     56      1       9 openSessionStore@316-324@src/main.cpp
-       6      2     43      2       6 shortened@326-331@src/main.cpp
-      54     10    435      1      64 runTask@335-398@src/main.cpp
-      22      6    155      4      23 loadResumeSession@404-426@src/main.cpp
-      66     15    515      1      79 resumeTask@431-509@src/main.cpp
-      35      8    251      0      39 listSessions@511-549@src/main.cpp
-      71     12    641      1      87 runAcp@554-640@src/main.cpp
-      46     15    347      2      55 main@644-698@src/main.cpp
-55 file analyzed.
+      11      3     71      1      11 applyLogEnvironment@15-25@src/main.cpp
+      16      4    126      3      17 parseCommandLine@30-46@src/main.cpp
+       8      4     66      1       8 applyLogLevel@51-58@src/main.cpp
+       7      2     53      1       7 printHelp@62-68@src/main.cpp
+      18      5     99      2      22 main@72-93@src/main.cpp
+57 file analyzed.
 ==============================================================
 NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
 --------------------------------------------------------------
@@ -497,6 +505,8 @@ NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
      20       0.0     0.0        0.0         0     src/acp/StdioTransport.h
     138       0.0     0.0        0.0         0     src/acp/AcpServer.h
    1250      18.1     4.6      151.3        68     src/acp/AcpServer.cpp
+    514      18.0     4.3      142.9        27     src/app/App.cpp
+     69       0.0     0.0        0.0         0     src/app/App.h
     419      17.6     4.4      136.5        22     src/http/HttpClient.cpp
      56       0.0     0.0        0.0         0     src/http/HttpClient.h
      14       0.0     0.0        0.0         0     src/http/Url.h
@@ -517,11 +527,11 @@ NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
      24       0.0     0.0        0.0         0     src/cli/Invocation.h
      61       1.9     1.0       22.6         7     src/agent/AgentLoop.h
     173      16.4     4.0      121.1        10     src/agent/AgentLoop.cpp
-    560      21.4     5.1      173.9        24     src/main.cpp
+     70      12.0     3.6       83.0         5     src/main.cpp
 
 ============================================================================================================
 No thresholds exceeded (cyclomatic_complexity > 15 or length > 100 or nloc > 1000000 or parameter_count > 5)
 ==========================================================================================
 Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt
 ------------------------------------------------------------------------------------------
-      8032      14.4     4.0      109.4      458            0      0.00    0.00
+      8125      14.2     4.0      107.7      466            0      0.00    0.00

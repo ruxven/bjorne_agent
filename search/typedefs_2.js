@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['notificationhandler_0',['NotificationHandler',['../namespacebjorne__agent_1_1jsonrpc.html#a1951ff00b6d4b959604adca4acdcacbc',1,'bjorne_agent::jsonrpc']]]
+  ['modelfactory_0',['ModelFactory',['../namespacebjorne__agent_1_1app.html#a63a06af38da0c4b1332a124d258ec575',1,'bjorne_agent::app']]]
 ];

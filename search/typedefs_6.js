@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['toolhandler_0',['ToolHandler',['../namespacebjorne__agent_1_1tools.html#a12306154355bf9a749837809aad2fea1',1,'bjorne_agent::tools']]]
+  ['sockethandle_0',['SocketHandle',['../namespacebjorne__agent_1_1platform.html#afc08b2aff50b415bd41a4e003baef077',1,'bjorne_agent::platform']]],
+  ['socketlength_1',['SocketLength',['../namespacebjorne__agent_1_1platform.html#a4e87167b29675f7efb89819dd0762380',1,'bjorne_agent::platform']]]
 ];

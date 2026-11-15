@@ -26,9 +26,10 @@ var searchData=
   ['tools_2eh_23',['Tools.h',['../Tools_8h.html',1,'']]],
   ['toolstringargument_24',['toolStringArgument',['../namespacebjorne__agent_1_1tools.html#aa546bc5b0358f22aed3802dd466bcca3',1,'bjorne_agent::tools']]],
   ['top_20level_25',['top level',['../md_SPEC.html#autotoc_md35',1,'Top level'],['../md_SPEC_8CONFIG.html#autotoc_md51',1,'Top Level']]],
-  ['transport_26',['transport',['../structbjorne__agent_1_1model_1_1ModelClientOptions.html#a071b7327fc45b8526ea7d703837a2e09',1,'bjorne_agent::model::ModelClientOptions::transport'],['../classbjorne__agent_1_1jsonrpc_1_1Transport.html',1,'bjorne_agent::jsonrpc::Transport']]],
-  ['trim_27',['trim',['../classbjorne__agent_1_1context_1_1ContextManager.html#aa588c897cb31abf6afbdcb6f383c6e53',1,'bjorne_agent::context::ContextManager']]],
-  ['truncate_28',['Truncate',['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a228a635684d0dc4bd7a4bc34d62f2073aa8156810bfee2bd2b44765b9e91db3bd',1,'bjorne_agent::context::ContextManagerConfig']]],
-  ['turns_29',['turns',['../structbjorne__agent_1_1session_1_1SessionState.html#ad8fbdac6258429330e221272479e2960',1,'bjorne_agent::session::SessionState']]],
-  ['type_30',['type',['../classbjorne__agent_1_1json_1_1Value.html#a4d3ed5ad1c4b97f2705645e9e7df419a',1,'bjorne_agent::json::Value::type'],['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8',1,'bjorne_agent::json::Value::Type']]]
+  ['transport_26',['transport',['../classbjorne__agent_1_1jsonrpc_1_1Transport.html',1,'bjorne_agent::jsonrpc::Transport'],['../structbjorne__agent_1_1model_1_1ModelClientOptions.html#a071b7327fc45b8526ea7d703837a2e09',1,'bjorne_agent::model::ModelClientOptions::transport']]],
+  ['transportfactory_27',['TransportFactory',['../namespacebjorne__agent_1_1app.html#a11353bb3f4ba883a51066d803ff1d1bf',1,'bjorne_agent::app']]],
+  ['trim_28',['trim',['../classbjorne__agent_1_1context_1_1ContextManager.html#aa588c897cb31abf6afbdcb6f383c6e53',1,'bjorne_agent::context::ContextManager']]],
+  ['truncate_29',['Truncate',['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a228a635684d0dc4bd7a4bc34d62f2073aa8156810bfee2bd2b44765b9e91db3bd',1,'bjorne_agent::context::ContextManagerConfig']]],
+  ['turns_30',['turns',['../structbjorne__agent_1_1session_1_1SessionState.html#ad8fbdac6258429330e221272479e2960',1,'bjorne_agent::session::SessionState']]],
+  ['type_31',['type',['../classbjorne__agent_1_1json_1_1Value.html#a4d3ed5ad1c4b97f2705645e9e7df419a',1,'bjorne_agent::json::Value::type'],['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8',1,'bjorne_agent::json::Value::Type']]]
 ];

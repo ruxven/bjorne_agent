@@ -14,6 +14,6 @@ var searchData=
   ['resolvehost_11',['resolveHost',['../namespacebjorne__agent_1_1http.html#a04d1001f2945eb2a0996234dbdcb4984',1,'bjorne_agent::http']]],
   ['resolvetoolpath_12',['resolveToolPath',['../namespacebjorne__agent_1_1tools.html#a3c6a6a92c5d57afc92ee982262c17289',1,'bjorne_agent::tools']]],
   ['respond_13',['respond',['../classbjorne__agent_1_1model_1_1ModelClient.html#a219985f3e4f6e00f1a68957b4bca8061',1,'bjorne_agent::model::ModelClient::respond()'],['../classbjorne__agent_1_1model_1_1ModelBackend.html#a7928168c672e16f7064536aeef09263d',1,'bjorne_agent::model::ModelBackend::respond()']]],
-  ['run_14',['run',['../classbjorne__agent_1_1agent_1_1AgentLoop.html#af2930aa5a10e285f985295c3f5e59bf9',1,'bjorne_agent::agent::AgentLoop']]],
+  ['run_14',['run',['../classbjorne__agent_1_1app_1_1App.html#a76586b5418ad561fbdecd77519ecb0ce',1,'bjorne_agent::app::App::run()'],['../classbjorne__agent_1_1agent_1_1AgentLoop.html#af2930aa5a10e285f985295c3f5e59bf9',1,'bjorne_agent::agent::AgentLoop::run()']]],
   ['running_15',['running',['../classbjorne__agent_1_1platform_1_1ChildProcess.html#a00bff59f75306e5cf4356b5b9f620a94',1,'bjorne_agent::platform::ChildProcess']]]
 ];

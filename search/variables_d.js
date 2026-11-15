@@ -3,6 +3,7 @@ var searchData=
   ['object_0',['object',['../classbjorne__agent_1_1json_1_1Value.html#a5cf3a67a10e1f3ea614fe295872c7c9a',1,'bjorne_agent::json::Value']]],
   ['ok_1',['ok',['../structbjorne__agent_1_1tools_1_1ToolResult.html#a3e74617481b63e57dd0f578e5c712251',1,'bjorne_agent::tools::ToolResult']]],
   ['options_2',['options',['../structbjorne__agent_1_1interaction_1_1Request.html#ada53de17f4af0b3aa2ddaf9fe421db0e',1,'bjorne_agent::interaction::Request']]],
-  ['output_3',['output',['../structbjorne__agent_1_1tools_1_1ToolResult.html#ad3b9f5d3f7b7336c251316509f825beb',1,'bjorne_agent::tools::ToolResult']]],
-  ['overflow_5fstrategy_4',['overflow_strategy',['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a2767ec1f9a88d38c4ca41f7db2bf1cc7',1,'bjorne_agent::context::ContextManagerConfig']]]
+  ['out_3',['out',['../structbjorne__agent_1_1app_1_1App_1_1Options.html#a72e702ada9d463610305d38f3e8a31a8',1,'bjorne_agent::app::App::Options']]],
+  ['output_4',['output',['../structbjorne__agent_1_1tools_1_1ToolResult.html#ad3b9f5d3f7b7336c251316509f825beb',1,'bjorne_agent::tools::ToolResult']]],
+  ['overflow_5fstrategy_5',['overflow_strategy',['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a2767ec1f9a88d38c4ca41f7db2bf1cc7',1,'bjorne_agent::context::ContextManagerConfig']]]
 ];

@@ -15,13 +15,14 @@ var searchData=
   ['environmentconfigpath_12',['environmentConfigPath',['../namespacebjorne__agent_1_1config.html#a6097c519f9154b0c3bffa1498b60e038',1,'bjorne_agent::config']]],
   ['environments_13',['Build Environments',['../md_DESIGN.html#autotoc_md92',1,'']]],
   ['erase_14',['erase',['../classbjorne__agent_1_1session_1_1SessionStore.html#a4f1e298b78be034800d943a9007a734e',1,'bjorne_agent::session::SessionStore']]],
-  ['error_15',['error',['../structbjorne__agent_1_1jsonrpc_1_1Error.html',1,'bjorne_agent::jsonrpc::Error'],['../namespacebjorne__agent_1_1platform.html#a9082d940e1587586496d5ad2365132d0a902b0d55fddef6f8d651fe1035b7d4bd',1,'bjorne_agent::platform::Error'],['../namespacebjorne__agent_1_1jsonrpc.html#a16d235299fdb02c34e68a49c21323c7ca902b0d55fddef6f8d651fe1035b7d4bd',1,'bjorne_agent::jsonrpc::Error'],['../structbjorne__agent_1_1jsonrpc_1_1Message.html#a5ba33a522d5fa52634920a7e3c344cd0',1,'bjorne_agent::jsonrpc::Message::error'],['../structbjorne__agent_1_1session_1_1SessionState.html#abb3453695eab438b559aea9926e1dada',1,'bjorne_agent::session::SessionState::error']]],
-  ['error_20handling_16',['Error Handling',['../md_SPEC_8LOOP.html#autotoc_md71',1,'']]],
-  ['estimatetokens_17',['estimateTokens',['../classbjorne__agent_1_1context_1_1ContextManager.html#a257fc11de2b506a305c791055c69f4ba',1,'bjorne_agent::context::ContextManager']]],
-  ['evolution_18',['Phase 4: Evolution',['../md_ROADMAP.html#autotoc_md100',1,'']]],
-  ['execute_19',['execute',['../classbjorne__agent_1_1tools_1_1ToolRegistry.html#a280314817de3b6bb8539cb2e67d69ce7',1,'bjorne_agent::tools::ToolRegistry']]],
-  ['execution_20',['Tool Execution',['../md_SPEC_8LOOP.html#autotoc_md65',1,'']]],
-  ['exit_20codes_21',['Exit codes',['../md_README.html#autotoc_md11',1,'']]],
-  ['exitcode_22',['exitCode',['../classbjorne__agent_1_1platform_1_1ChildProcess.html#a9c2698d14117d568f176f83ffc93f038',1,'bjorne_agent::platform::ChildProcess']]],
-  ['extractline_23',['extractLine',['../classbjorne__agent_1_1platform_1_1ChildProcess.html#a3cc9172472c0392e2148ccf2bdb39548',1,'bjorne_agent::platform::ChildProcess']]]
+  ['err_15',['err',['../structbjorne__agent_1_1app_1_1App_1_1Options.html#a0a4990172ea5ae00be3e774c5be41e9a',1,'bjorne_agent::app::App::Options']]],
+  ['error_16',['error',['../structbjorne__agent_1_1jsonrpc_1_1Error.html',1,'bjorne_agent::jsonrpc::Error'],['../namespacebjorne__agent_1_1platform.html#a9082d940e1587586496d5ad2365132d0a902b0d55fddef6f8d651fe1035b7d4bd',1,'bjorne_agent::platform::Error'],['../namespacebjorne__agent_1_1jsonrpc.html#a16d235299fdb02c34e68a49c21323c7ca902b0d55fddef6f8d651fe1035b7d4bd',1,'bjorne_agent::jsonrpc::Error'],['../structbjorne__agent_1_1jsonrpc_1_1Message.html#a5ba33a522d5fa52634920a7e3c344cd0',1,'bjorne_agent::jsonrpc::Message::error'],['../structbjorne__agent_1_1session_1_1SessionState.html#abb3453695eab438b559aea9926e1dada',1,'bjorne_agent::session::SessionState::error']]],
+  ['error_20handling_17',['Error Handling',['../md_SPEC_8LOOP.html#autotoc_md71',1,'']]],
+  ['estimatetokens_18',['estimateTokens',['../classbjorne__agent_1_1context_1_1ContextManager.html#a257fc11de2b506a305c791055c69f4ba',1,'bjorne_agent::context::ContextManager']]],
+  ['evolution_19',['Phase 4: Evolution',['../md_ROADMAP.html#autotoc_md100',1,'']]],
+  ['execute_20',['execute',['../classbjorne__agent_1_1tools_1_1ToolRegistry.html#a280314817de3b6bb8539cb2e67d69ce7',1,'bjorne_agent::tools::ToolRegistry']]],
+  ['execution_21',['Tool Execution',['../md_SPEC_8LOOP.html#autotoc_md65',1,'']]],
+  ['exit_20codes_22',['Exit codes',['../md_README.html#autotoc_md11',1,'']]],
+  ['exitcode_23',['exitCode',['../classbjorne__agent_1_1platform_1_1ChildProcess.html#a9c2698d14117d568f176f83ffc93f038',1,'bjorne_agent::platform::ChildProcess']]],
+  ['extractline_24',['extractLine',['../classbjorne__agent_1_1platform_1_1ChildProcess.html#a3cc9172472c0392e2148ccf2bdb39548',1,'bjorne_agent::platform::ChildProcess']]]
 ];

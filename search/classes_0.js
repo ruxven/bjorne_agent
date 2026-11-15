@@ -5,5 +5,6 @@ var searchData=
   ['agentconfig_2',['AgentConfig',['../structbjorne__agent_1_1config_1_1AgentConfig.html',1,'bjorne_agent::config']]],
   ['agentloop_3',['AgentLoop',['../classbjorne__agent_1_1agent_1_1AgentLoop.html',1,'bjorne_agent::agent']]],
   ['agentloopconfig_4',['AgentLoopConfig',['../structbjorne__agent_1_1agent_1_1AgentLoopConfig.html',1,'bjorne_agent::agent']]],
-  ['agentsfiles_5',['AgentsFiles',['../structbjorne__agent_1_1context_1_1AgentsFiles.html',1,'bjorne_agent::context']]]
+  ['agentsfiles_5',['AgentsFiles',['../structbjorne__agent_1_1context_1_1AgentsFiles.html',1,'bjorne_agent::context']]],
+  ['app_6',['App',['../classbjorne__agent_1_1app_1_1App.html',1,'bjorne_agent::app']]]
 ];

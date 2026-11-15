@@ -2,6 +2,7 @@ var namespacebjorne__agent =
 [
     [ "acp", "namespacebjorne__agent_1_1acp.html", "namespacebjorne__agent_1_1acp" ],
     [ "agent", "namespacebjorne__agent_1_1agent.html", "namespacebjorne__agent_1_1agent" ],
+    [ "app", "namespacebjorne__agent_1_1app.html", "namespacebjorne__agent_1_1app" ],
     [ "cli", "namespacebjorne__agent_1_1cli.html", "namespacebjorne__agent_1_1cli" ],
     [ "config", "namespacebjorne__agent_1_1config.html", "namespacebjorne__agent_1_1config" ],
     [ "context", "namespacebjorne__agent_1_1context.html", "namespacebjorne__agent_1_1context" ],

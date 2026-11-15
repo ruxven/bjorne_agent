@@ -1535,878 +1535,922 @@
 		</item>
 		<average label="NCSS" value="14.178082191780822"/>
 		<average label="CCN" value="4.068493150684931"/>
-		<item name="bjorne_agent::http::ignoreSigPipe() at src/http/HttpClient.cpp:60">
+		<item name="bjorne_agent::app::readAll( std :: istream &amp; input) at src/app/App.cpp:31">
 			<value>293</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::app::readTextFile( const std :: string &amp; path , std :: string &amp; out) at src/app/App.cpp:37">
+			<value>294</value>
+			<value>10</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::app::isPathSeparator( char c) at src/app/App.cpp:50">
+			<value>295</value>
+			<value>4</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::app::isAbsolutePath( const std :: string &amp; path) at src/app/App.cpp:60">
+			<value>296</value>
+			<value>13</value>
+			<value>8</value>
+		</item>
+		<item name="bjorne_agent::app::lastPathSeparator( const std :: string &amp; path) at src/app/App.cpp:76">
+			<value>297</value>
+			<value>4</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::app::resolveAgainstConfig( const std :: string &amp; config_path , const std :: string &amp; path) at src/app/App.cpp:86">
+			<value>298</value>
+			<value>10</value>
+			<value>4</value>
+		</item>
+		<item name="bjorne_agent::app::selectModel( const std :: vector&lt;config::ModelConfig&gt; &amp; models) at src/app/App.cpp:98">
+			<value>299</value>
+			<value>10</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::app::buildContextConfig( const std :: string &amp; config_path , const config :: ModelConfig &amp; model , context :: ContextManagerConfig &amp; contextConfig , std :: string &amp; error) at src/app/App.cpp:112">
+			<value>300</value>
+			<value>17</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::app::makeCompressionHandler( const std :: shared_ptr&lt;model::ModelBackend&gt; &amp; model) at src/app/App.cpp:133">
+			<value>301</value>
+			<value>18</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::app::buildSystemPrompt( const std :: string &amp; base , const std :: vector&lt;context::Fragment&gt; &amp; fragments) at src/app/App.cpp:155">
+			<value>302</value>
+			<value>12</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::app::shortened( const std :: string &amp; text , std :: size_t max) at src/app/App.cpp:168">
+			<value>303</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::app::makeRealModel( const config :: ModelConfig &amp; selected) at src/app/App.cpp:176">
+			<value>304</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::app::App::App() at src/app/App.cpp:188">
+			<value>305</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::app::App::App( Options options) at src/app/App.cpp:190">
+			<value>306</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::app::App::reportError( const std :: string &amp; message) at src/app/App.cpp:196">
+			<value>307</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::app::App::prepareModel( const std :: string &amp; config_path , config :: Config &amp; config , const config :: ModelConfig * &amp; selected) at src/app/App.cpp:201">
+			<value>308</value>
+			<value>24</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::app::App::buildRuntimeFor( const std :: string &amp; config_path , const config :: Config &amp; config , const config :: ModelConfig &amp; selected , const RuntimeSetup &amp; setup , Runtime &amp; out) at src/app/App.cpp:227">
+			<value>309</value>
+			<value>41</value>
+			<value>11</value>
+		</item>
+		<item name="bjorne_agent::app::App::buildRuntime( const std :: string &amp; config_path , const config :: Config &amp; config , const config :: ModelConfig &amp; selected , Runtime &amp; out) at src/app/App.cpp:280">
+			<value>310</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::app::App::sessionDirectoryFor( const std :: string &amp; config_path , const config :: Config &amp; config , std :: string &amp; out) at src/app/App.cpp:288">
+			<value>311</value>
+			<value>8</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::app::App::openSessionStore( const std :: string &amp; directory) at src/app/App.cpp:297">
+			<value>312</value>
+			<value>8</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::app::App::run( const cli :: Invocation &amp; invocation) at src/app/App.cpp:306">
+			<value>313</value>
+			<value>16</value>
+			<value>6</value>
+		</item>
+		<item name="bjorne_agent::app::App::runTask( const cli :: Invocation &amp; invocation) at src/app/App.cpp:324">
+			<value>314</value>
+			<value>54</value>
+			<value>10</value>
+		</item>
+		<item name="bjorne_agent::app::App::loadResumeSession( const session :: SessionStore &amp; store , const std :: string &amp; requested , session :: SessionState &amp; state , std :: string &amp; error) at src/app/App.cpp:389">
+			<value>315</value>
+			<value>22</value>
+			<value>6</value>
+		</item>
+		<item name="bjorne_agent::app::App::continueSession( const std :: string &amp; config_path , const config :: Config &amp; config , const config :: ModelConfig &amp; selected , const std :: shared_ptr&lt;session::SessionStore&gt; &amp; store , session :: SessionState &amp; state) at src/app/App.cpp:413">
+			<value>316</value>
+			<value>38</value>
+			<value>8</value>
+		</item>
+		<item name="bjorne_agent::app::App::resumeTask( const cli :: Invocation &amp; invocation) at src/app/App.cpp:461">
+			<value>317</value>
+			<value>34</value>
+			<value>8</value>
+		</item>
+		<item name="bjorne_agent::app::App::listSessions() at src/app/App.cpp:500">
+			<value>318</value>
+			<value>35</value>
+			<value>8</value>
+		</item>
+		<item name="bjorne_agent::app::App::runAcp( const cli :: Invocation &amp; invocation) at src/app/App.cpp:540">
+			<value>319</value>
+			<value>71</value>
+			<value>13</value>
+		</item>
+		<average label="NCSS" value="14.501567398119123"/>
+		<average label="CCN" value="4.087774294670846"/>
+		<average label="NCSS" value="14.501567398119123"/>
+		<average label="CCN" value="4.087774294670846"/>
+		<item name="bjorne_agent::http::ignoreSigPipe() at src/http/HttpClient.cpp:60">
+			<value>320</value>
 			<value>10</value>
 			<value>3</value>
 		</item>
 		<item name="bjorne_agent::http::findHeader( const std :: string &amp; headers , const std :: string &amp; name) at src/http/HttpClient.cpp:76">
-			<value>294</value>
+			<value>321</value>
 			<value>30</value>
 			<value>7</value>
 		</item>
 		<item name="bjorne_agent::http::parseChunkSize( const std :: string &amp; raw , size_t &amp; pos , size_t &amp; size , std :: string &amp; error) at src/http/HttpClient.cpp:108">
-			<value>295</value>
+			<value>322</value>
 			<value>34</value>
 			<value>11</value>
 		</item>
 		<item name="bjorne_agent::http::decodeChunked( const std :: string &amp; raw , std :: string &amp; out , std :: string &amp; error) at src/http/HttpClient.cpp:146">
-			<value>296</value>
+			<value>323</value>
 			<value>24</value>
 			<value>7</value>
 		</item>
 		<item name="bjorne_agent::http::readBody( const std :: string &amp; headers , const std :: string &amp; raw , std :: string &amp; out , std :: string &amp; error) at src/http/HttpClient.cpp:173">
-			<value>297</value>
+			<value>324</value>
 			<value>22</value>
 			<value>7</value>
 		</item>
 		<item name="bjorne_agent::http::buildRequest( const HttpRequest &amp; request) at src/http/HttpClient.cpp:198">
-			<value>298</value>
+			<value>325</value>
 			<value>13</value>
 			<value>3</value>
 		</item>
 		<item name="bjorne_agent::http::connectToHost( const std :: string &amp; host , const std :: string &amp; port , std :: string &amp; error) at src/http/HttpClient.cpp:214">
-			<value>299</value>
+			<value>326</value>
 			<value>28</value>
 			<value>6</value>
 		</item>
 		<item name="bjorne_agent::http::readAllPlain( platform :: SocketHandle fd , std :: string &amp; data , std :: string &amp; error) at src/http/HttpClient.cpp:243">
-			<value>300</value>
+			<value>327</value>
 			<value>15</value>
 			<value>4</value>
 		</item>
 		<item name="bjorne_agent::http::tlsError( std :: string &amp; error) at src/http/HttpClient.cpp:260">
-			<value>301</value>
+			<value>328</value>
 			<value>6</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::http::readAllTls( SSL * ssl , std :: string &amp; data , std :: string &amp; error) at src/http/HttpClient.cpp:267">
-			<value>302</value>
+			<value>329</value>
 			<value>15</value>
 			<value>4</value>
 		</item>
 		<item name="bjorne_agent::http::closeTransport( SSL * ssl , platform :: SocketHandle fd) at src/http/HttpClient.cpp:283">
-			<value>303</value>
+			<value>330</value>
 			<value>4</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::http::configureTlsSession( SSL * ssl , const std :: string &amp; host , const OpenSslTransport :: Options &amp; options , std :: string &amp; sniHost , std :: string &amp; error) at src/http/HttpClient.cpp:290">
-			<value>304</value>
+			<value>331</value>
 			<value>17</value>
 			<value>6</value>
 		</item>
 		<item name="bjorne_agent::http::handshakeTls( SSL * ssl , const std :: string &amp; sniHost , bool ignoreSelfSigned , std :: string &amp; error) at src/http/HttpClient.cpp:313">
-			<value>305</value>
+			<value>332</value>
 			<value>25</value>
 			<value>6</value>
 		</item>
 		<item name="bjorne_agent::http::writeTlsRequest( SSL * ssl , const std :: string &amp; request , std :: string &amp; error) at src/http/HttpClient.cpp:342">
-			<value>306</value>
+			<value>333</value>
 			<value>13</value>
 			<value>3</value>
 		</item>
 		<item name="bjorne_agent::http::OpenSslTransport::OpenSslTransport( Options options) at src/http/HttpClient.cpp:359">
-			<value>307</value>
+			<value>334</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::http::OpenSslTransport::send( const std :: string &amp; request , const std :: string &amp; host , const std :: string &amp; port , std :: string &amp; response , std :: string &amp; error) at src/http/HttpClient.cpp:361">
-			<value>308</value>
+			<value>335</value>
 			<value>62</value>
 			<value>10</value>
 		</item>
 		<item name="bjorne_agent::http::PlainTcpTransport::send( const std :: string &amp; request , const std :: string &amp; host , const std :: string &amp; port , std :: string &amp; response , std :: string &amp; error) at src/http/HttpClient.cpp:438">
-			<value>309</value>
+			<value>336</value>
 			<value>29</value>
 			<value>5</value>
 		</item>
 		<item name="bjorne_agent::http::HttpClient::createOpenSsl() at src/http/HttpClient.cpp:471">
-			<value>310</value>
+			<value>337</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::http::HttpClient::createOpenSsl( OpenSslTransport :: Options options) at src/http/HttpClient.cpp:475">
-			<value>311</value>
+			<value>338</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::http::HttpClient::createPlainTcp() at src/http/HttpClient.cpp:479">
-			<value>312</value>
+			<value>339</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::http::HttpClient::HttpClient( std :: shared_ptr&lt;HttpTransport&gt; transport) at src/http/HttpClient.cpp:483">
-			<value>313</value>
+			<value>340</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::http::HttpClient::request( const HttpRequest &amp; request , HttpResponse &amp; out , std :: string &amp; error) at src/http/HttpClient.cpp:485">
-			<value>314</value>
+			<value>341</value>
 			<value>30</value>
 			<value>8</value>
 		</item>
-		<average label="NCSS" value="14.420382165605096"/>
-		<average label="CCN" value="4.092356687898089"/>
-		<average label="NCSS" value="14.420382165605096"/>
-		<average label="CCN" value="4.092356687898089"/>
-		<average label="NCSS" value="14.420382165605096"/>
-		<average label="CCN" value="4.092356687898089"/>
+		<average label="NCSS" value="14.703812316715542"/>
+		<average label="CCN" value="4.108504398826979"/>
+		<average label="NCSS" value="14.703812316715542"/>
+		<average label="CCN" value="4.108504398826979"/>
+		<average label="NCSS" value="14.703812316715542"/>
+		<average label="CCN" value="4.108504398826979"/>
 		<item name="bjorne_agent::http::allDigits( const std :: string &amp; text) at src/http/Url.cpp:10">
-			<value>315</value>
+			<value>342</value>
 			<value>11</value>
 			<value>5</value>
 		</item>
 		<item name="bjorne_agent::http::splitAuthority( const std :: string &amp; authority , Url &amp; url , std :: string &amp; error) at src/http/Url.cpp:25">
-			<value>316</value>
+			<value>343</value>
 			<value>39</value>
 			<value>11</value>
 		</item>
 		<item name="bjorne_agent::http::isDefaultPort( const std :: string &amp; port) at src/http/Url.cpp:69">
-			<value>317</value>
+			<value>344</value>
 			<value>1</value>
 			<value>3</value>
 		</item>
 		<item name="bjorne_agent::http::parseUrl( const std :: string &amp; text , Url &amp; out , std :: string &amp; error) at src/http/Url.cpp:71">
-			<value>318</value>
+			<value>345</value>
 			<value>32</value>
 			<value>8</value>
 		</item>
-		<average label="NCSS" value="14.5"/>
-		<average label="CCN" value="4.1257861635220126"/>
+		<average label="NCSS" value="14.773913043478261"/>
+		<average label="CCN" value="4.139130434782609"/>
 		<item name="bjorne_agent::http::parsePort( const std :: string &amp; port , unsigned short &amp; value) at src/http/Resolver.cpp:40">
-			<value>319</value>
+			<value>346</value>
 			<value>20</value>
 			<value>7</value>
 		</item>
 		<item name="bjorne_agent::http::withoutBrackets( const std :: string &amp; host) at src/http/Resolver.cpp:63">
-			<value>320</value>
+			<value>347</value>
 			<value>6</value>
 			<value>4</value>
 		</item>
 		<item name="bjorne_agent::http::numericAddress( const std :: string &amp; host , unsigned short port , ResolvedAddress &amp; out) at src/http/Resolver.cpp:70">
-			<value>321</value>
+			<value>348</value>
 			<value>20</value>
 			<value>3</value>
 		</item>
 		<item name="bjorne_agent::http::readFile( const std :: string &amp; path , std :: string &amp; contents) at src/http/Resolver.cpp:93">
-			<value>322</value>
+			<value>349</value>
 			<value>20</value>
 			<value>5</value>
 		</item>
 		<item name="bjorne_agent::http::splitFields( const std :: string &amp; line) at src/http/Resolver.cpp:114">
-			<value>323</value>
+			<value>350</value>
 			<value>17</value>
 			<value>7</value>
 		</item>
 		<item name="bjorne_agent::http::hostsLineMatches( const std :: string &amp; line , const std :: string &amp; host , std :: string &amp; address) at src/http/Resolver.cpp:133">
-			<value>324</value>
+			<value>351</value>
 			<value>14</value>
 			<value>5</value>
 		</item>
 		<item name="bjorne_agent::http::lookupHosts( const std :: string &amp; path , const std :: string &amp; host , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses) at src/http/Resolver.cpp:148">
-			<value>325</value>
+			<value>352</value>
 			<value>22</value>
 			<value>7</value>
 		</item>
 		<item name="bjorne_agent::http::queryDns( const std :: string &amp; host , int type , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses) at src/http/Resolver.cpp:171">
-			<value>326</value>
+			<value>353</value>
 			<value>8</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::http::resolveStub( const std :: string &amp; host , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses , std :: string &amp; error , const ResolverOptions &amp; options) at src/http/Resolver.cpp:180">
-			<value>327</value>
+			<value>354</value>
 			<value>18</value>
 			<value>5</value>
 		</item>
 		<item name="bjorne_agent::http::resolveWithGetaddrinfo( const std :: string &amp; host , const std :: string &amp; port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses , std :: string &amp; error) at src/http/Resolver.cpp:201">
-			<value>328</value>
+			<value>355</value>
 			<value>27</value>
 			<value>5</value>
 		</item>
 		<item name="bjorne_agent::http::resolveHost( const std :: string &amp; host , const std :: string &amp; port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses , std :: string &amp; error , const ResolverOptions &amp; options) at src/http/Resolver.cpp:233">
-			<value>329</value>
+			<value>356</value>
 			<value>21</value>
 			<value>5</value>
 		</item>
-		<average label="NCSS" value="14.601823708206688"/>
-		<average label="CCN" value="4.155015197568389"/>
+		<average label="NCSS" value="14.859550561797754"/>
+		<average label="CCN" value="4.165730337078652"/>
 		<item name="bjorne_agent::http::readU16( const unsigned char * data) at src/http/DnsResponse.cpp:26">
-			<value>330</value>
+			<value>357</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::http::skipName( const unsigned char * data , int size , int offset) at src/http/DnsResponse.cpp:33">
-			<value>331</value>
+			<value>358</value>
 			<value>14</value>
 			<value>5</value>
 		</item>
 		<item name="bjorne_agent::http::appendRecord( const unsigned char * data , int size , int offset , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses) at src/http/DnsResponse.cpp:48">
-			<value>332</value>
+			<value>359</value>
 			<value>33</value>
 			<value>9</value>
 		</item>
 		<item name="bjorne_agent::http::parseDnsResponse( const unsigned char * data , int size , unsigned short port , std :: vector&lt;ResolvedAddress&gt; &amp; addresses) at src/http/DnsResponse.cpp:84">
-			<value>333</value>
+			<value>360</value>
 			<value>25</value>
 			<value>8</value>
 		</item>
-		<average label="NCSS" value="14.651651651651651"/>
-		<average label="CCN" value="4.1741741741741745"/>
-		<average label="NCSS" value="14.651651651651651"/>
-		<average label="CCN" value="4.1741741741741745"/>
-		<average label="NCSS" value="14.651651651651651"/>
-		<average label="CCN" value="4.1741741741741745"/>
+		<average label="NCSS" value="14.902777777777779"/>
+		<average label="CCN" value="4.183333333333334"/>
+		<average label="NCSS" value="14.902777777777779"/>
+		<average label="CCN" value="4.183333333333334"/>
+		<average label="NCSS" value="14.902777777777779"/>
+		<average label="CCN" value="4.183333333333334"/>
 		<item name="bjorne_agent::interaction::trimmed( const std :: string &amp; text) at src/interaction/Interaction.cpp:18">
-			<value>334</value>
+			<value>361</value>
 			<value>11</value>
 			<value>5</value>
 		</item>
 		<item name="bjorne_agent::interaction::choiceNumber( const std :: string &amp; text) at src/interaction/Interaction.cpp:31">
-			<value>335</value>
+			<value>362</value>
 			<value>16</value>
 			<value>5</value>
 		</item>
 		<item name="bjorne_agent::interaction::readOption( const json :: Value &amp; arguments , Request &amp; request , std :: string &amp; error) at src/interaction/Interaction.cpp:48">
-			<value>336</value>
+			<value>363</value>
 			<value>18</value>
 			<value>6</value>
 		</item>
 		<item name="bjorne_agent::interaction::UnavailableChannel::UnavailableChannel( std :: string reason) at src/interaction/Interaction.cpp:69">
-			<value>337</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::interaction::UnavailableChannel::ask( const Request &amp; request , std :: string &amp; answer , std :: string &amp; error) at src/interaction/Interaction.cpp:71">
-			<value>338</value>
-			<value>6</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::interaction::ConsoleChannel::ConsoleChannel( std :: istream &amp; input , std :: ostream &amp; output) at src/interaction/Interaction.cpp:78">
-			<value>339</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::interaction::ConsoleChannel::ask( const Request &amp; request , std :: string &amp; answer , std :: string &amp; error) at src/interaction/Interaction.cpp:80">
-			<value>340</value>
-			<value>39</value>
-			<value>10</value>
-		</item>
-		<item name="bjorne_agent::interaction::makeChannel( bool interactive) at src/interaction/Interaction.cpp:122">
-			<value>341</value>
-			<value>3</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::interaction::makeChannel( bool interactive , bool standard_input_is_terminal) at src/interaction/Interaction.cpp:126">
-			<value>342</value>
-			<value>9</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::interaction::registerRequestInputTool( tools :: ToolRegistry &amp; registry , std :: shared_ptr&lt;Channel&gt; channel) at src/interaction/Interaction.cpp:136">
-			<value>343</value>
-			<value>41</value>
-			<value>7</value>
-		</item>
-		<average label="NCSS" value="14.647230320699709"/>
-		<average label="CCN" value="4.169096209912537"/>
-		<item name="bjorne_agent::interaction::UnavailableChannel::available() const at src/interaction/Interaction.h:43">
-			<value>344</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::interaction::ConsoleChannel::available() const at src/interaction/Interaction.h:56">
-			<value>345</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<average label="NCSS" value="14.568115942028985"/>
-		<average label="CCN" value="4.15072463768116"/>
-		<item name="bjorne_agent::platform::detail::shutdownFlag() at src/platform/Shutdown.h:13">
-			<value>346</value>
-			<value>4</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::detail::handleShutdownSignal( int) at src/platform/Shutdown.h:18">
-			<value>347</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::installShutdownHandlers() at src/platform/Shutdown.h:26">
-			<value>348</value>
-			<value>6</value>
-			<value>3</value>
-		</item>
-		<item name="bjorne_agent::platform::shutdownRequested() at src/platform/Shutdown.h:36">
-			<value>349</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::clearShutdownRequest() at src/platform/Shutdown.h:40">
-			<value>350</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<average label="NCSS" value="14.397142857142857"/>
-		<average label="CCN" value="4.111428571428571"/>
-		<item name="bjorne_agent::platform::quoteArgument( const std :: string &amp; argument) at src/platform/Process.cpp:23">
-			<value>351</value>
-			<value>26</value>
-			<value>8</value>
-		</item>
-		<item name="bjorne_agent::platform::environmentBlock( const std :: map&lt;std::string,std::string&gt; &amp; extra) at src/platform/Process.cpp:50">
-			<value>352</value>
-			<value>28</value>
-			<value>8</value>
-		</item>
-		<item name="bjorne_agent::platform::ChildProcess::~ChildProcess() at src/platform/Process.cpp:84">
-			<value>353</value>
-			<value>1</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::ChildProcess::start( const std :: string &amp; command , const std :: vector&lt;std::string&gt; &amp; arguments , const std :: map&lt;std::string,std::string&gt; &amp; environment , std :: string &amp; error) at src/platform/Process.cpp:86">
-			<value>354</value>
-			<value>56</value>
-			<value>11</value>
-		</item>
-		<item name="bjorne_agent::platform::ChildProcess::running() at src/platform/Process.cpp:149">
-			<value>355</value>
-			<value>11</value>
-			<value>4</value>
-		</item>
-		<item name="bjorne_agent::platform::ChildProcess::sendLine( const std :: string &amp; line , std :: string &amp; error) at src/platform/Process.cpp:161">
-			<value>356</value>
-			<value>15</value>
-			<value>5</value>
-		</item>
-		<item name="bjorne_agent::platform::ChildProcess::readLine( int timeout_ms , std :: string &amp; line , std :: string &amp; error) at src/platform/Process.cpp:177">
-			<value>357</value>
-			<value>35</value>
-			<value>11</value>
-		</item>
-		<item name="bjorne_agent::platform::ChildProcess::stop() at src/platform/Process.cpp:214">
-			<value>358</value>
-			<value>26</value>
-			<value>8</value>
-		</item>
-		<item name="bjorne_agent::platform::ChildProcess::exitCode() at src/platform/Process.cpp:241">
-			<value>359</value>
-			<value>1</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::platform::closeFd( int &amp; fd) at src/platform/Process.cpp:272">
-			<value>360</value>
-			<value>6</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::platform::setCloseOnExec( int fd) at src/platform/Process.cpp:279">
-			<value>361</value>
-			<value>7</value>
-			<value>2</value>
-		</item>
-		<item name="bjorne_agent::platform::mergedEnvironment( const std :: map&lt;std::string,std::string&gt; &amp; extra) at src/platform/Process.cpp:290">
-			<value>362</value>
-			<value>21</value>
-			<value>7</value>
-		</item>
-		<item name="bjorne_agent::platform::closeSpawnPipes( int stdin_pipe [ 2 ] , int stdout_pipe [ 2 ]) at src/platform/Process.cpp:312">
-			<value>363</value>
-			<value>6</value>
-			<value>1</value>
-		</item>
-		<item name="bjorne_agent::platform::ChildProcess::~ChildProcess() at src/platform/Process.cpp:321">
 			<value>364</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
-		<item name="bjorne_agent::platform::ChildProcess::start( const std :: string &amp; command , const std :: vector&lt;std::string&gt; &amp; arguments , const std :: map&lt;std::string,std::string&gt; &amp; environment , std :: string &amp; error) at src/platform/Process.cpp:323">
+		<item name="bjorne_agent::interaction::UnavailableChannel::ask( const Request &amp; request , std :: string &amp; answer , std :: string &amp; error) at src/interaction/Interaction.cpp:71">
 			<value>365</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::interaction::ConsoleChannel::ConsoleChannel( std :: istream &amp; input , std :: ostream &amp; output) at src/interaction/Interaction.cpp:78">
+			<value>366</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::interaction::ConsoleChannel::ask( const Request &amp; request , std :: string &amp; answer , std :: string &amp; error) at src/interaction/Interaction.cpp:80">
+			<value>367</value>
+			<value>39</value>
+			<value>10</value>
+		</item>
+		<item name="bjorne_agent::interaction::makeChannel( bool interactive) at src/interaction/Interaction.cpp:122">
+			<value>368</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::interaction::makeChannel( bool interactive , bool standard_input_is_terminal) at src/interaction/Interaction.cpp:126">
+			<value>369</value>
+			<value>9</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::interaction::registerRequestInputTool( tools :: ToolRegistry &amp; registry , std :: shared_ptr&lt;Channel&gt; channel) at src/interaction/Interaction.cpp:136">
+			<value>370</value>
+			<value>41</value>
+			<value>7</value>
+		</item>
+		<average label="NCSS" value="14.891891891891891"/>
+		<average label="CCN" value="4.178378378378379"/>
+		<item name="bjorne_agent::interaction::UnavailableChannel::available() const at src/interaction/Interaction.h:43">
+			<value>371</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::interaction::ConsoleChannel::available() const at src/interaction/Interaction.h:56">
+			<value>372</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="14.817204301075268"/>
+		<average label="CCN" value="4.161290322580645"/>
+		<item name="bjorne_agent::platform::detail::shutdownFlag() at src/platform/Shutdown.h:13">
+			<value>373</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::detail::handleShutdownSignal( int) at src/platform/Shutdown.h:18">
+			<value>374</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::installShutdownHandlers() at src/platform/Shutdown.h:26">
+			<value>375</value>
+			<value>6</value>
+			<value>3</value>
+		</item>
+		<item name="bjorne_agent::platform::shutdownRequested() at src/platform/Shutdown.h:36">
+			<value>376</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::clearShutdownRequest() at src/platform/Shutdown.h:40">
+			<value>377</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="14.655172413793103"/>
+		<average label="CCN" value="4.1246684350132625"/>
+		<item name="bjorne_agent::platform::quoteArgument( const std :: string &amp; argument) at src/platform/Process.cpp:23">
+			<value>378</value>
+			<value>26</value>
+			<value>8</value>
+		</item>
+		<item name="bjorne_agent::platform::environmentBlock( const std :: map&lt;std::string,std::string&gt; &amp; extra) at src/platform/Process.cpp:50">
+			<value>379</value>
+			<value>28</value>
+			<value>8</value>
+		</item>
+		<item name="bjorne_agent::platform::ChildProcess::~ChildProcess() at src/platform/Process.cpp:84">
+			<value>380</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::ChildProcess::start( const std :: string &amp; command , const std :: vector&lt;std::string&gt; &amp; arguments , const std :: map&lt;std::string,std::string&gt; &amp; environment , std :: string &amp; error) at src/platform/Process.cpp:86">
+			<value>381</value>
+			<value>56</value>
+			<value>11</value>
+		</item>
+		<item name="bjorne_agent::platform::ChildProcess::running() at src/platform/Process.cpp:149">
+			<value>382</value>
+			<value>11</value>
+			<value>4</value>
+		</item>
+		<item name="bjorne_agent::platform::ChildProcess::sendLine( const std :: string &amp; line , std :: string &amp; error) at src/platform/Process.cpp:161">
+			<value>383</value>
+			<value>15</value>
+			<value>5</value>
+		</item>
+		<item name="bjorne_agent::platform::ChildProcess::readLine( int timeout_ms , std :: string &amp; line , std :: string &amp; error) at src/platform/Process.cpp:177">
+			<value>384</value>
+			<value>35</value>
+			<value>11</value>
+		</item>
+		<item name="bjorne_agent::platform::ChildProcess::stop() at src/platform/Process.cpp:214">
+			<value>385</value>
+			<value>26</value>
+			<value>8</value>
+		</item>
+		<item name="bjorne_agent::platform::ChildProcess::exitCode() at src/platform/Process.cpp:241">
+			<value>386</value>
+			<value>1</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::platform::closeFd( int &amp; fd) at src/platform/Process.cpp:272">
+			<value>387</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::platform::setCloseOnExec( int fd) at src/platform/Process.cpp:279">
+			<value>388</value>
+			<value>7</value>
+			<value>2</value>
+		</item>
+		<item name="bjorne_agent::platform::mergedEnvironment( const std :: map&lt;std::string,std::string&gt; &amp; extra) at src/platform/Process.cpp:290">
+			<value>389</value>
+			<value>21</value>
+			<value>7</value>
+		</item>
+		<item name="bjorne_agent::platform::closeSpawnPipes( int stdin_pipe [ 2 ] , int stdout_pipe [ 2 ]) at src/platform/Process.cpp:312">
+			<value>390</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::ChildProcess::~ChildProcess() at src/platform/Process.cpp:321">
+			<value>391</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="bjorne_agent::platform::ChildProcess::start( const std :: string &amp; command , const std :: vector&lt;std::string&gt; &amp; arguments , const std :: map&lt;std::string,std::string&gt; &amp; environment , std :: string &amp; error) at src/platform/Process.cpp:323">
+			<value>392</value>
 			<value>58</value>
 			<value>9</value>
 		</item>
 		<item name="bjorne_agent::platform::ChildProcess::running() at src/platform/Process.cpp:388">
-			<value>366</value>
+			<value>393</value>
 			<value>15</value>
 			<value>6</value>
 		</item>
 		<item name="bjorne_agent::platform::ChildProcess::sendLine( const std :: string &amp; line , std :: string &amp; error) at src/platform/Process.cpp:404">
-			<value>367</value>
+			<value>394</value>
 			<value>20</value>
 			<value>6</value>
 		</item>
 		<item name="bjorne_agent::platform::ChildProcess::readLine( int timeout_ms , std :: string &amp; line , std :: string &amp; error) at src/platform/Process.cpp:425">
-			<value>368</value>
+			<value>395</value>
 			<value>23</value>
 			<value>7</value>
 		</item>
 		<item name="bjorne_agent::platform::ChildProcess::readChunk( std :: string &amp; line , std :: string &amp; error) at src/platform/Process.cpp:450">
-			<value>369</value>
+			<value>396</value>
 			<value>23</value>
 			<value>7</value>
 		</item>
 		<item name="bjorne_agent::platform::ChildProcess::stop() at src/platform/Process.cpp:476">
-			<value>370</value>
+			<value>397</value>
 			<value>27</value>
 			<value>7</value>
 		</item>
 		<item name="bjorne_agent::platform::ChildProcess::exitCode() at src/platform/Process.cpp:505">
-			<value>371</value>
+			<value>398</value>
 			<value>1</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::platform::ChildProcess::extractLine( std :: string &amp; line) at src/platform/Process.cpp:517">
-			<value>372</value>
+			<value>399</value>
 			<value>12</value>
 			<value>4</value>
 		</item>
-		<average label="NCSS" value="14.672043010752688"/>
-		<average label="CCN" value="4.188172043010753"/>
+		<average label="NCSS" value="14.897243107769423"/>
+		<average label="CCN" value="4.195488721804511"/>
 		<item name="bjorne_agent::platform::ChildProcess::started() const at src/platform/Process.h:53">
-			<value>373</value>
+			<value>400</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
-		<average label="NCSS" value="14.63538873994638"/>
-		<average label="CCN" value="4.1796246648793565"/>
+		<average label="NCSS" value="14.8625"/>
+		<average label="CCN" value="4.1875"/>
 		<item name="bjorne_agent::platform::initializeSockets() at src/platform/Platform.h:44">
-			<value>374</value>
+			<value>401</value>
 			<value>7</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::isValidSocket( SocketHandle handle) at src/platform/Platform.h:52">
-			<value>375</value>
+			<value>402</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::getEnvironmentVariable( const std :: string &amp; name , std :: string &amp; out) at src/platform/Platform.h:58">
-			<value>376</value>
+			<value>403</value>
 			<value>13</value>
 			<value>4</value>
 		</item>
 		<item name="bjorne_agent::platform::setEnvironmentVariable( const std :: string &amp; name , const std :: string &amp; value) at src/platform/Platform.h:72">
-			<value>377</value>
+			<value>404</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::unsetEnvironmentVariable( const std :: string &amp; name) at src/platform/Platform.h:76">
-			<value>378</value>
+			<value>405</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::processId() at src/platform/Platform.h:81">
-			<value>379</value>
+			<value>406</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::standardInputIsTerminal() at src/platform/Platform.h:88">
-			<value>380</value>
+			<value>407</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::closeSocket( SocketHandle handle) at src/platform/Platform.h:92">
-			<value>381</value>
+			<value>408</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::addressToBinary( int family , const char * text , * address) at src/platform/Platform.h:98">
-			<value>382</value>
+			<value>409</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::addressToText( int family , const * address , char * buffer , std :: size_t size) at src/platform/Platform.h:103">
-			<value>383</value>
+			<value>410</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::addressErrorMessage( int code) at src/platform/Platform.h:109">
-			<value>384</value>
+			<value>411</value>
 			<value>4</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::platform::replaceFile( const std :: string &amp; from , const std :: string &amp; to) at src/platform/Platform.h:116">
-			<value>385</value>
+			<value>412</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::initializeSockets() at src/platform/Platform.h:141">
-			<value>386</value>
+			<value>413</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::isValidSocket( SocketHandle handle) at src/platform/Platform.h:145">
-			<value>387</value>
+			<value>414</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::getEnvironmentVariable( const std :: string &amp; name , std :: string &amp; out) at src/platform/Platform.h:151">
-			<value>388</value>
+			<value>415</value>
 			<value>8</value>
 			<value>3</value>
 		</item>
 		<item name="bjorne_agent::platform::setEnvironmentVariable( const std :: string &amp; name , const std :: string &amp; value) at src/platform/Platform.h:160">
-			<value>389</value>
+			<value>416</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::unsetEnvironmentVariable( const std :: string &amp; name) at src/platform/Platform.h:164">
-			<value>390</value>
+			<value>417</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::processId() at src/platform/Platform.h:168">
-			<value>391</value>
+			<value>418</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::standardInputIsTerminal() at src/platform/Platform.h:175">
-			<value>392</value>
+			<value>419</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::closeSocket( SocketHandle handle) at src/platform/Platform.h:179">
-			<value>393</value>
+			<value>420</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::addressToBinary( int family , const char * text , * address) at src/platform/Platform.h:183">
-			<value>394</value>
+			<value>421</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::addressToText( int family , const * address , char * buffer , std :: size_t size) at src/platform/Platform.h:187">
-			<value>395</value>
+			<value>422</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::platform::addressErrorMessage( int code) at src/platform/Platform.h:191">
-			<value>396</value>
+			<value>423</value>
 			<value>4</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::platform::replaceFile( const std :: string &amp; from , const std :: string &amp; to) at src/platform/Platform.h:198">
-			<value>397</value>
+			<value>424</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
-		<average label="NCSS" value="13.984886649874056"/>
-		<average label="CCN" value="4.005037783375315"/>
-		<average label="NCSS" value="13.984886649874056"/>
-		<average label="CCN" value="4.005037783375315"/>
+		<average label="NCSS" value="14.24056603773585"/>
+		<average label="CCN" value="4.023584905660377"/>
+		<average label="NCSS" value="14.24056603773585"/>
+		<average label="CCN" value="4.023584905660377"/>
 		<item name="bjorne_agent::log::write( const char * kind , const std :: string &amp; message) at src/log/Log.cpp:19">
-			<value>398</value>
+			<value>425</value>
 			<value>4</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::log::setLevel( Level level) at src/log/Log.cpp:26">
-			<value>399</value>
+			<value>426</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::log::level() at src/log/Log.cpp:30">
-			<value>400</value>
+			<value>427</value>
 			<value>3</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::log::parseLevel( const std :: string &amp; name , Level &amp; out) at src/log/Log.cpp:34">
-			<value>401</value>
+			<value>428</value>
 			<value>15</value>
 			<value>4</value>
 		</item>
 		<item name="bjorne_agent::log::progress( const std :: string &amp; message) at src/log/Log.cpp:50">
-			<value>402</value>
+			<value>429</value>
 			<value>6</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::log::detail( const std :: string &amp; message) at src/log/Log.cpp:57">
-			<value>403</value>
+			<value>430</value>
 			<value>6</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::log::fail( const std :: string &amp; message) at src/log/Log.cpp:64">
-			<value>404</value>
+			<value>431</value>
 			<value>6</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::log::block( const std :: string &amp; label , const std :: string &amp; text , std :: size_t limit) at src/log/Log.cpp:71">
-			<value>405</value>
+			<value>432</value>
 			<value>24</value>
 			<value>9</value>
 		</item>
 		<item name="bjorne_agent::log::elapsedSeconds() at src/log/Log.cpp:98">
-			<value>406</value>
+			<value>433</value>
 			<value>4</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::log::formatSeconds( double seconds) at src/log/Log.cpp:103">
-			<value>407</value>
+			<value>434</value>
 			<value>8</value>
 			<value>3</value>
 		</item>
-		<average label="NCSS" value="13.835380835380835"/>
-		<average label="CCN" value="3.9705159705159705"/>
+		<average label="NCSS" value="14.09447004608295"/>
+		<average label="CCN" value="3.9907834101382487"/>
 		<item name="bjorne_agent::cli::namesAnExistingFile( const std :: string &amp; path) at src/cli/Invocation.cpp:15">
-			<value>408</value>
+			<value>435</value>
 			<value>4</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::cli::reservedVerb( const std :: string &amp; value , Command &amp; out) at src/cli/Invocation.cpp:23">
-			<value>409</value>
+			<value>436</value>
 			<value>23</value>
 			<value>6</value>
 		</item>
 		<item name="bjorne_agent::cli::resolveRun( const std :: vector&lt;std::string&gt; &amp; positional , Invocation &amp; out , std :: string &amp; error) at src/cli/Invocation.cpp:54">
-			<value>410</value>
+			<value>437</value>
 			<value>28</value>
 			<value>6</value>
 		</item>
 		<item name="bjorne_agent::cli::parseFlags( const std :: vector&lt;std::string&gt; &amp; arguments , Invocation &amp; out , std :: vector&lt;std::string&gt; &amp; positional , std :: string &amp; error) at src/cli/Invocation.cpp:91">
-			<value>411</value>
+			<value>438</value>
 			<value>34</value>
 			<value>12</value>
 		</item>
 		<item name="bjorne_agent::cli::selectCommand( std :: vector&lt;std::string&gt; &amp; positional , Invocation &amp; out) at src/cli/Invocation.cpp:128">
-			<value>412</value>
+			<value>439</value>
 			<value>14</value>
 			<value>3</value>
 		</item>
 		<item name="bjorne_agent::cli::parseCommandArguments( const std :: vector&lt;std::string&gt; &amp; positional , Invocation &amp; out , std :: string &amp; error) at src/cli/Invocation.cpp:143">
-			<value>413</value>
+			<value>440</value>
 			<value>39</value>
 			<value>12</value>
 		</item>
 		<item name="bjorne_agent::cli::parse( const std :: vector&lt;std::string&gt; &amp; arguments , Invocation &amp; out , std :: string &amp; error) at src/cli/Invocation.cpp:187">
-			<value>414</value>
+			<value>441</value>
 			<value>16</value>
 			<value>4</value>
 		</item>
 		<item name="bjorne_agent::cli::commandName( Command command) at src/cli/Invocation.cpp:211">
-			<value>415</value>
+			<value>442</value>
 			<value>15</value>
 			<value>6</value>
 		</item>
 		<item name="bjorne_agent::cli::usage() at src/cli/Invocation.cpp:227">
-			<value>416</value>
+			<value>443</value>
 			<value>32</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::cli::usage( Command command) at src/cli/Invocation.cpp:260">
-			<value>417</value>
+			<value>444</value>
 			<value>51</value>
 			<value>6</value>
 		</item>
-		<average label="NCSS" value="14.117505995203837"/>
-		<average label="CCN" value="4.014388489208633"/>
-		<average label="NCSS" value="14.117505995203837"/>
-		<average label="CCN" value="4.014388489208633"/>
+		<average label="NCSS" value="14.353603603603604"/>
+		<average label="CCN" value="4.031531531531532"/>
+		<average label="NCSS" value="14.353603603603604"/>
+		<average label="CCN" value="4.031531531531532"/>
 		<item name="bjorne_agent::agent::LoopObserver::onTurn( const std :: vector&lt;model::ModelMessage&gt; &amp; messages , long long turn) at src/agent/AgentLoop.h:40">
-			<value>418</value>
+			<value>445</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::agent::LoopObserver::onAssistantMessage( const std :: string &amp; content) at src/agent/AgentLoop.h:43">
-			<value>419</value>
+			<value>446</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::agent::LoopObserver::onReasoning( const std :: string &amp; reasoning) at src/agent/AgentLoop.h:46">
-			<value>420</value>
+			<value>447</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::agent::LoopObserver::onComplete( const std :: vector&lt;model::ModelMessage&gt; &amp; messages , const std :: string &amp; result) at src/agent/AgentLoop.h:49">
-			<value>421</value>
+			<value>448</value>
 			<value>4</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::agent::LoopObserver::onFailure( const std :: vector&lt;model::ModelMessage&gt; &amp; messages , const std :: string &amp; error) at src/agent/AgentLoop.h:55">
-			<value>422</value>
+			<value>449</value>
 			<value>4</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::agent::LoopObserver::onInterrupt( const std :: vector&lt;model::ModelMessage&gt; &amp; messages) at src/agent/AgentLoop.h:61">
-			<value>423</value>
+			<value>450</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::stopReason() const at src/agent/AgentLoop.h:79">
-			<value>424</value>
+			<value>451</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
-		<average label="NCSS" value="13.915094339622641"/>
-		<average label="CCN" value="3.964622641509434"/>
+		<average label="NCSS" value="14.159645232815965"/>
+		<average label="CCN" value="3.984478935698448"/>
 		<item name="bjorne_agent::agent::AgentLoop::AgentLoop( AgentLoopConfig config , std :: shared_ptr&lt;model::ModelBackend&gt; model , std :: shared_ptr&lt;context::ContextManager&gt; context , std :: shared_ptr&lt;tools::ToolRegistry&gt; tools , std :: shared_ptr&lt;LoopObserver&gt; observer) at src/agent/AgentLoop.cpp:12">
-			<value>425</value>
+			<value>452</value>
 			<value>8</value>
 			<value>1</value>
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::buildContext( const std :: string &amp; task) const at src/agent/AgentLoop.cpp:21">
-			<value>426</value>
+			<value>453</value>
 			<value>18</value>
 			<value>5</value>
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::appendToolTurn( const model :: ModelResponse &amp; response , std :: vector&lt;model::ModelMessage&gt; &amp; messages) const at src/agent/AgentLoop.cpp:40">
-			<value>427</value>
+			<value>454</value>
 			<value>15</value>
 			<value>3</value>
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::interrupt( std :: vector&lt;model::ModelMessage&gt; &amp; messages , std :: string &amp; error) at src/agent/AgentLoop.cpp:57">
-			<value>428</value>
+			<value>455</value>
 			<value>8</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::notifyFailure( const std :: vector&lt;model::ModelMessage&gt; &amp; messages , const std :: string &amp; error) at src/agent/AgentLoop.cpp:66">
-			<value>429</value>
+			<value>456</value>
 			<value>5</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::stopRequested() const at src/agent/AgentLoop.cpp:72">
-			<value>430</value>
+			<value>457</value>
 			<value>3</value>
 			<value>2</value>
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::callModel( const std :: vector&lt;model::ModelMessage&gt; &amp; messages , long long iteration , model :: ModelResponse &amp; response , std :: string &amp; error) at src/agent/AgentLoop.cpp:76">
-			<value>431</value>
+			<value>458</value>
 			<value>19</value>
 			<value>3</value>
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::narrate( const model :: ModelResponse &amp; response) at src/agent/AgentLoop.cpp:96">
-			<value>432</value>
+			<value>459</value>
 			<value>14</value>
 			<value>6</value>
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::approved( const model :: ModelResponse &amp; response , std :: string &amp; denial) at src/agent/AgentLoop.cpp:113">
-			<value>433</value>
+			<value>460</value>
 			<value>13</value>
 			<value>4</value>
 		</item>
 		<item name="bjorne_agent::agent::AgentLoop::run( const std :: string &amp; task , std :: string &amp; result , std :: string &amp; error) at src/agent/AgentLoop.cpp:127">
-			<value>434</value>
+			<value>461</value>
 			<value>61</value>
 			<value>12</value>
 		</item>
-		<average label="NCSS" value="13.972350230414747"/>
-		<average label="CCN" value="3.9654377880184333"/>
-		<item name="readStdin() at src/main.cpp:37">
-			<value>435</value>
-			<value>5</value>
-			<value>1</value>
-		</item>
-		<item name="readTextFile( const std :: string &amp; path , std :: string &amp; out) at src/main.cpp:43">
-			<value>436</value>
-			<value>10</value>
-			<value>2</value>
-		</item>
-		<item name="isPathSeparator( char c) at src/main.cpp:56">
-			<value>437</value>
-			<value>4</value>
-			<value>3</value>
-		</item>
-		<item name="isAbsolutePath( const std :: string &amp; path) at src/main.cpp:66">
-			<value>438</value>
-			<value>13</value>
-			<value>8</value>
-		</item>
-		<item name="lastPathSeparator( const std :: string &amp; path) at src/main.cpp:82">
-			<value>439</value>
-			<value>4</value>
-			<value>2</value>
-		</item>
-		<item name="resolveAgainstConfig( const std :: string &amp; configPath , const std :: string &amp; path) at src/main.cpp:90">
-			<value>440</value>
-			<value>10</value>
-			<value>4</value>
-		</item>
-		<item name="selectModel( const std :: vector&lt;bjorne_agent::config::ModelConfig&gt; &amp; models) at src/main.cpp:101">
-			<value>441</value>
-			<value>10</value>
-			<value>2</value>
-		</item>
-		<item name="applyLogEnvironment( bjorne_agent :: log :: Level &amp; level) at src/main.cpp:114">
-			<value>442</value>
+		<average label="NCSS" value="14.20824295010846"/>
+		<average label="CCN" value="3.984815618221258"/>
+		<item name="applyLogEnvironment( bjorne_agent :: log :: Level &amp; level) at src/main.cpp:15">
+			<value>462</value>
 			<value>11</value>
 			<value>3</value>
 		</item>
-		<item name="reportError( const std :: string &amp; message) at src/main.cpp:126">
-			<value>443</value>
+		<item name="parseCommandLine( int argc , char ** argv , bjorne_agent :: cli :: Invocation &amp; invocation) at src/main.cpp:30">
+			<value>463</value>
+			<value>16</value>
 			<value>4</value>
-			<value>1</value>
 		</item>
-		<item name="buildContextConfig( const std :: string &amp; configPath , const bjorne_agent :: config :: ModelConfig &amp; model , bjorne_agent :: context :: ContextManagerConfig &amp; contextConfig) at src/main.cpp:134">
-			<value>444</value>
-			<value>17</value>
-			<value>3</value>
+		<item name="applyLogLevel( const bjorne_agent :: cli :: Invocation &amp; invocation) at src/main.cpp:51">
+			<value>464</value>
+			<value>8</value>
+			<value>4</value>
 		</item>
-		<item name="makeCompressionHandler( const std :: shared_ptr&lt;bjorne_agent::model::ModelClient&gt; &amp; model) at src/main.cpp:155">
-			<value>445</value>
-			<value>18</value>
+		<item name="printHelp( const bjorne_agent :: cli :: Invocation &amp; invocation) at src/main.cpp:62">
+			<value>465</value>
+			<value>7</value>
 			<value>2</value>
 		</item>
-		<item name="buildSystemPrompt( const std :: string &amp; base , const std :: vector&lt;bjorne_agent::context::Fragment&gt; &amp; fragments) at src/main.cpp:177">
-			<value>446</value>
-			<value>12</value>
-			<value>3</value>
-		</item>
-		<item name="prepareModel( const std :: string &amp; configPath , bjorne_agent :: config :: Config &amp; config , const bjorne_agent :: config :: ModelConfig * &amp; selected) at src/main.cpp:192">
-			<value>447</value>
-			<value>24</value>
+		<item name="main( int argc , char ** argv) at src/main.cpp:72">
+			<value>466</value>
+			<value>18</value>
 			<value>5</value>
 		</item>
-		<item name="buildRuntimeFor( const std :: string &amp; configPath , const bjorne_agent :: config :: Config &amp; config , const bjorne_agent :: config :: ModelConfig &amp; selected , const RuntimeSetup &amp; setup , Runtime &amp; out) at src/main.cpp:238">
-			<value>448</value>
-			<value>48</value>
-			<value>10</value>
-		</item>
-		<item name="buildRuntime( const std :: string &amp; configPath , const bjorne_agent :: config :: Config &amp; config , const bjorne_agent :: config :: ModelConfig &amp; selected , Runtime &amp; out) at src/main.cpp:298">
-			<value>449</value>
-			<value>7</value>
-			<value>1</value>
-		</item>
-		<item name="sessionDirectoryFor( const std :: string &amp; configPath , const bjorne_agent :: config :: Config &amp; config , std :: string &amp; out) at src/main.cpp:307">
-			<value>450</value>
-			<value>8</value>
-			<value>2</value>
-		</item>
-		<item name="openSessionStore( const std :: string &amp; directory) at src/main.cpp:316">
-			<value>451</value>
-			<value>9</value>
-			<value>2</value>
-		</item>
-		<item name="shortened( const std :: string &amp; text , std :: size_t max) at src/main.cpp:326">
-			<value>452</value>
-			<value>6</value>
-			<value>2</value>
-		</item>
-		<item name="runTask( const bjorne_agent :: cli :: Invocation &amp; invocation) at src/main.cpp:335">
-			<value>453</value>
-			<value>54</value>
-			<value>10</value>
-		</item>
-		<item name="loadResumeSession( const bjorne_agent :: session :: SessionStore &amp; store , const std :: string &amp; requested , bjorne_agent :: session :: SessionState &amp; state , std :: string &amp; error) at src/main.cpp:404">
-			<value>454</value>
-			<value>22</value>
-			<value>6</value>
-		</item>
-		<item name="resumeTask( const bjorne_agent :: cli :: Invocation &amp; invocation) at src/main.cpp:431">
-			<value>455</value>
-			<value>66</value>
-			<value>15</value>
-		</item>
-		<item name="listSessions() at src/main.cpp:511">
-			<value>456</value>
-			<value>35</value>
-			<value>8</value>
-		</item>
-		<item name="runAcp( const bjorne_agent :: cli :: Invocation &amp; invocation) at src/main.cpp:554">
-			<value>457</value>
-			<value>71</value>
-			<value>12</value>
-		</item>
-		<item name="main( int argc , char ** argv) at src/main.cpp:644">
-			<value>458</value>
-			<value>46</value>
-			<value>15</value>
-		</item>
-		<average label="NCSS" value="14.362445414847162"/>
-		<average label="CCN" value="4.024017467248909"/>
+		<average label="NCSS" value="14.184549356223176"/>
+		<average label="CCN" value="3.98068669527897"/>
 	</measure>
 	<measure type="File">
 		<labels>
@@ -2619,140 +2663,152 @@
 			<value>314</value>
 			<value>68</value>
 		</item>
-		<item name="src/http/HttpClient.cpp">
+		<item name="src/app/App.cpp">
 			<value>35</value>
+			<value>514</value>
+			<value>116</value>
+			<value>27</value>
+		</item>
+		<item name="src/app/App.h">
+			<value>36</value>
+			<value>69</value>
+			<value>0</value>
+			<value>0</value>
+		</item>
+		<item name="src/http/HttpClient.cpp">
+			<value>37</value>
 			<value>419</value>
 			<value>97</value>
 			<value>22</value>
 		</item>
 		<item name="src/http/HttpClient.h">
-			<value>36</value>
+			<value>38</value>
 			<value>56</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
 		<item name="src/http/Url.h">
-			<value>37</value>
+			<value>39</value>
 			<value>14</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
 		<item name="src/http/Url.cpp">
-			<value>38</value>
+			<value>40</value>
 			<value>91</value>
 			<value>27</value>
 			<value>4</value>
 		</item>
 		<item name="src/http/Resolver.cpp">
-			<value>39</value>
+			<value>41</value>
 			<value>217</value>
 			<value>55</value>
 			<value>11</value>
 		</item>
 		<item name="src/http/DnsResponse.cpp">
-			<value>40</value>
+			<value>42</value>
 			<value>93</value>
 			<value>23</value>
 			<value>4</value>
 		</item>
 		<item name="src/http/Resolver.h">
-			<value>41</value>
+			<value>43</value>
 			<value>20</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
 		<item name="src/http/DnsResponse.h">
-			<value>42</value>
+			<value>44</value>
 			<value>8</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
 		<item name="src/interaction/Interaction.cpp">
-			<value>43</value>
+			<value>45</value>
 			<value>160</value>
 			<value>40</value>
 			<value>10</value>
 		</item>
 		<item name="src/interaction/Interaction.h">
-			<value>44</value>
+			<value>46</value>
 			<value>39</value>
 			<value>2</value>
 			<value>2</value>
 		</item>
 		<item name="src/platform/Shutdown.h">
-			<value>45</value>
+			<value>47</value>
 			<value>20</value>
 			<value>7</value>
 			<value>5</value>
 		</item>
 		<item name="src/platform/Process.cpp">
-			<value>46</value>
+			<value>48</value>
 			<value>459</value>
 			<value>119</value>
 			<value>22</value>
 		</item>
 		<item name="src/platform/Process.h">
-			<value>47</value>
+			<value>49</value>
 			<value>37</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
 		<item name="src/platform/Platform.h">
-			<value>48</value>
+			<value>50</value>
 			<value>120</value>
 			<value>31</value>
 			<value>24</value>
 		</item>
 		<item name="src/log/Log.h">
-			<value>49</value>
+			<value>51</value>
 			<value>16</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
 		<item name="src/log/Log.cpp">
-			<value>50</value>
+			<value>52</value>
 			<value>92</value>
 			<value>26</value>
 			<value>10</value>
 		</item>
 		<item name="src/cli/Invocation.cpp">
-			<value>51</value>
+			<value>53</value>
 			<value>268</value>
 			<value>58</value>
 			<value>10</value>
 		</item>
 		<item name="src/cli/Invocation.h">
-			<value>52</value>
+			<value>54</value>
 			<value>24</value>
 			<value>0</value>
 			<value>0</value>
 		</item>
 		<item name="src/agent/AgentLoop.h">
-			<value>53</value>
+			<value>55</value>
 			<value>61</value>
 			<value>7</value>
 			<value>7</value>
 		</item>
 		<item name="src/agent/AgentLoop.cpp">
-			<value>54</value>
+			<value>56</value>
 			<value>173</value>
 			<value>40</value>
 			<value>10</value>
 		</item>
 		<item name="src/main.cpp">
-			<value>55</value>
-			<value>560</value>
-			<value>122</value>
-			<value>24</value>
+			<value>57</value>
+			<value>70</value>
+			<value>18</value>
+			<value>5</value>
 		</item>
-		<average label="NCSS" value="146.03636363636363"/>
-		<average label="CCN" value="33.50909090909091"/>
-		<average label="Functions" value="8.327272727272728"/>
-		<sum label="NCSS" value="8032"/>
-		<sum label="CCN" value="1843"/>
-		<sum label="Functions" value="458"/>
-		<average label="NCSS" value="14.362445414847162"/>
-		<average label="CCN" value="4.024017467248909"/>
+		<average label="NCSS" value="142.5438596491228"/>
+		<average label="CCN" value="32.54385964912281"/>
+		<average label="Functions" value="8.175438596491228"/>
+		<sum label="NCSS" value="8125"/>
+		<sum label="CCN" value="1855"/>
+		<sum label="Functions" value="466"/>
+		<average label="NCSS" value="14.184549356223176"/>
+		<average label="CCN" value="3.98068669527897"/>
 	</measure>
 </cppncss>
 

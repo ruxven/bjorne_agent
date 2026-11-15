@@ -5,6 +5,7 @@ var hierarchy =
     [ "bjorne_agent::agent::AgentLoop", "classbjorne__agent_1_1agent_1_1AgentLoop.html", null ],
     [ "bjorne_agent::agent::AgentLoopConfig", "structbjorne__agent_1_1agent_1_1AgentLoopConfig.html", null ],
     [ "bjorne_agent::context::AgentsFiles", "structbjorne__agent_1_1context_1_1AgentsFiles.html", null ],
+    [ "bjorne_agent::app::App", "classbjorne__agent_1_1app_1_1App.html", null ],
     [ "bjorne_agent::interaction::Channel", "classbjorne__agent_1_1interaction_1_1Channel.html", [
       [ "bjorne_agent::acp::AcpChannel", "classbjorne__agent_1_1acp_1_1AcpChannel.html", null ],
       [ "bjorne_agent::interaction::ConsoleChannel", "classbjorne__agent_1_1interaction_1_1ConsoleChannel.html", null ],
@@ -39,6 +40,7 @@ var hierarchy =
     [ "bjorne_agent::config::ModelConfig", "structbjorne__agent_1_1config_1_1ModelConfig.html", null ],
     [ "bjorne_agent::model::ModelMessage", "structbjorne__agent_1_1model_1_1ModelMessage.html", null ],
     [ "bjorne_agent::model::ModelResponse", "structbjorne__agent_1_1model_1_1ModelResponse.html", null ],
+    [ "bjorne_agent::app::App::Options", "structbjorne__agent_1_1app_1_1App_1_1Options.html", null ],
     [ "bjorne_agent::http::OpenSslTransport::Options", "structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html", null ],
     [ "bjorne_agent::acp::PermissionChoice", "structbjorne__agent_1_1acp_1_1PermissionChoice.html", null ],
     [ "bjorne_agent::acp::AcpServer::Session::PlanEntry", "structbjorne__agent_1_1acp_1_1AcpServer_1_1Session_1_1PlanEntry.html", null ],
