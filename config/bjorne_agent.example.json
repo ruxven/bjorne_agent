@@ -2,6 +2,7 @@
   "version": 1,
   "agent": {
     "system_prompt": "You are a coding agent. Help the user with their task.",
+    "system_prompt_path": "prompts/system.md",
     "workspace": "/workspace",
     "skills_path": "",
     "session_dir": "",

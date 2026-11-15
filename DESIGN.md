@@ -203,8 +203,9 @@ The binary is the entrypoint, so a run takes the task as its only argument.
 The config arrives either as a mount at `/etc/bjorne_agent/bjorne_agent.json`, which is the
 default `BJORNE_AGENT_CONFIG` value, or through `BJORNE_AGENT_CONFIG` naming any other
 path. A relative `compression_prompt_path` resolves against the directory
-holding the config file, so a config mounted outside `/etc/bjorne_agent` needs the
-absolute path `/usr/local/share/bjorne_agent/prompts/compression.md`.
+holding the config file. The image carries no prompt file, so a config that
+names one either mounts it next to the config or leaves the key out, which
+leaves the built-in default instruction in place.
 
 ## Design Decisions
 

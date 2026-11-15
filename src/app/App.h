@@ -4,6 +4,7 @@
 #include <iosfwd>
 #include <map>
 #include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -48,6 +49,10 @@ class App {
     std::istream* in = nullptr;
     // Builds the ACP transport. An empty factory means the standard streams.
     TransportFactory make_transport;
+    // Whether standard input is a terminal. The init command asks its
+    // questions on the terminal, so it needs to know. Unset means the real
+    // detection; a test sets it, because a test answers on a string stream.
+    std::optional<bool> input_is_terminal;
   };
 
   App();
@@ -86,6 +91,7 @@ class App {
   int resumeTask(const cli::Invocation& invocation);
   int listSessions();
   int runAcp(const cli::Invocation& invocation);
+  int runInit();
 
   // Runs the stored conversation after the state was loaded and repaired.
   int continueSession(const std::string& config_path, const config::Config& config,
@@ -118,6 +124,7 @@ class App {
   std::ostream& out_;
   std::ostream& err_;
   std::istream& in_;
+  bool input_is_terminal_;
 };
 
 }  // namespace app

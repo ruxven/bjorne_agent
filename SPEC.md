@@ -37,6 +37,16 @@ The project creates an agent harness in C++ with minimal dependencies. The goal 
 
 Reserved verbs: `init`, `run`, `sessions`, `resume`. The bare form is `run`, so `bjorne_agent [config] [task]` and `bjorne_agent run [config] [task]` do the same thing. A first positional argument that matches a reserved verb exactly is a command, so a task that begins with one is passed after `run`: `bjorne_agent run "init the project"`. `--help` prints the usage for the selected command and needs no config file. `--` ends flag parsing. An empty command line is an error: the binary prints the usage and exits `1`.
 
+### The init command
+
+`init` creates the initial configuration. It asks its questions on the terminal, so it needs a standard input that is a terminal; without one it reports that and exits `1`.
+
+The questions are where the config goes, the endpoint, the model id, the environment variable that holds the API key, the workspace, whether self-signed certificates are accepted, and the hostname for the certificate check. Every question but the endpoint has a default, and an empty answer takes it.
+
+The command writes the config file, the prompt files next to it, and an environment file with the API key variable stubbed out. The prompt files are the ones the user customizes, so a file that is already there is kept rather than replaced. A config file that is already there is kept unless the overwrite is confirmed.
+
+The binary carries the default prompts, so the package holds the executable and nothing else, and no prompt file has to travel with it.
+
 ## Configuration
 
 ### Format

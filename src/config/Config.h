@@ -23,6 +23,10 @@ namespace config {
 
 struct AgentConfig {
   std::string system_prompt;
+  // Path to a file holding the system prompt. When set, the file content is
+  // the system prompt and the text above is only the fallback. A relative
+  // path resolves against the directory holding the config file.
+  std::string system_prompt_path;
   std::string workspace;
   std::string skills_path;
   std::string session_dir;

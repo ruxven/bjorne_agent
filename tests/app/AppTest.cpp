@@ -156,6 +156,18 @@ class ConfigEnvironment {
   ConfigEnvironment& operator=(const ConfigEnvironment&) = delete;
 };
 
+// Points the user level config directory at a temporary directory, so a test
+// never writes into the home directory of the user running it.
+class UserConfigDirectory {
+ public:
+  explicit UserConfigDirectory(const std::string& directory) {
+    bjorne_agent::platform::setEnvironmentVariable("XDG_CONFIG_HOME", directory);
+  }
+  ~UserConfigDirectory() { bjorne_agent::platform::unsetEnvironmentVariable("XDG_CONFIG_HOME"); }
+  UserConfigDirectory(const UserConfigDirectory&) = delete;
+  UserConfigDirectory& operator=(const UserConfigDirectory&) = delete;
+};
+
 bjorne_agent::cli::Invocation runInvocation() {
   bjorne_agent::cli::Invocation invocation;
   invocation.command = bjorne_agent::cli::Command::Run;
@@ -439,14 +451,69 @@ TEST_CASE("A resume of a session that does not exist reports it") {
   REQUIRE(harness.err.str().find("Cannot read session") != std::string::npos);
 }
 
-TEST_CASE("The init command reports that it is not implemented") {
+TEST_CASE("The init command runs through the app") {
+  TempDir directory;
+  const UserConfigDirectory userDirectory(directory.str());
+
   Harness harness;
-  App app(harness.options());
+  harness.in.str("2\nhttps://api.example.com/v1\n\n\n\nn\n\n");
+  harness.in.clear();
+
+  App::Options options = harness.options();
+  options.input_is_terminal = true;
+  App app(options);
+  bjorne_agent::cli::Invocation invocation;
+  invocation.command = bjorne_agent::cli::Command::Init;
+
+  REQUIRE(app.run(invocation) == 0);
+  REQUIRE(std::filesystem::exists(directory.file("bjorne_agent/bjorne_agent.json")));
+}
+
+TEST_CASE("The init command fails through the app when the input is not a terminal") {
+  Harness harness;
+  App::Options options = harness.options();
+  options.input_is_terminal = false;
+  App app(options);
   bjorne_agent::cli::Invocation invocation;
   invocation.command = bjorne_agent::cli::Command::Init;
 
   REQUIRE(app.run(invocation) == 1);
-  REQUIRE(harness.err.str().find("not implemented yet") != std::string::npos);
+  REQUIRE(harness.out.str().find("not a terminal") != std::string::npos);
+}
+
+TEST_CASE("A run reads the system prompt from the file named by the config") {
+  TempDir directory;
+  writeFile(directory.file("system.md"), "Be terse.\n");
+  const std::string configPath = writeConfigWith(directory, directory.file("sessions"),
+                                                 ",\n    \"system_prompt_path\": \"system.md\"");
+  Harness harness;
+
+  App app(harness.options());
+  bjorne_agent::cli::Invocation invocation = runInvocation();
+  invocation.configPath = configPath;
+  invocation.task = "do the thing";
+  invocation.taskFromArgument = true;
+
+  REQUIRE(app.run(invocation) == 0);
+  const std::vector<ModelMessage>& sent = harness.model->seen.front();
+  REQUIRE(sent.front().role == "system");
+  REQUIRE(sent.front().content.find("Be terse.") != std::string::npos);
+}
+
+TEST_CASE("A run reports a system prompt it cannot read") {
+  TempDir directory;
+  const std::string configPath = writeConfigWith(directory, directory.file("sessions"),
+                                                 ",\n    \"system_prompt_path\": \"missing.md\"");
+  Harness harness;
+
+  App app(harness.options());
+  bjorne_agent::cli::Invocation invocation = runInvocation();
+  invocation.configPath = configPath;
+  invocation.task = "do the thing";
+  invocation.taskFromArgument = true;
+
+  REQUIRE(app.run(invocation) == 1);
+  REQUIRE(harness.err.str().find("Cannot open system prompt") != std::string::npos);
 }
 
 TEST_CASE("A run reads the compression prompt named by the config") {
@@ -645,6 +712,53 @@ TEST_CASE("A run answers through the real HTTP client") {
   REQUIRE(server.wait());
   REQUIRE(server.request().find("do the thing") != std::string::npos);
   bjorne_agent::platform::unsetEnvironmentVariable("BJORNE_AGENT_TEST_KEY");
+}
+
+TEST_CASE("The sessions command reports that no session directory is configured") {
+  TempDir directory;
+  const std::string configPath = writeConfig(directory, "");
+  const ConfigEnvironment environment(configPath);
+
+  Harness harness;
+  App app(harness.options());
+  bjorne_agent::cli::Invocation invocation;
+  invocation.command = bjorne_agent::cli::Command::Sessions;
+
+  REQUIRE(app.run(invocation) == 1);
+  REQUIRE(harness.err.str().find("No session_dir is configured") != std::string::npos);
+}
+
+TEST_CASE("The sessions command reports a session path that is not a directory") {
+  TempDir directory;
+  const std::string sessionPath = directory.file("sessions");
+  writeFile(sessionPath, "not a directory\n");
+  const std::string configPath = writeConfig(directory, sessionPath);
+  const ConfigEnvironment environment(configPath);
+
+  Harness harness;
+  App app(harness.options());
+  bjorne_agent::cli::Invocation invocation;
+  invocation.command = bjorne_agent::cli::Command::Sessions;
+
+  REQUIRE(app.run(invocation) == 1);
+  REQUIRE(harness.err.str().find("Session path is not a directory") != std::string::npos);
+}
+
+TEST_CASE("A run accepts a self-signed certificate and a server name") {
+  TempDir directory;
+  const std::string configPath =
+      writeConfigWith(directory, directory.file("sessions"), "",
+                      ", \"ignore_self_signed\": true, \"hostname\": \"api.example.test\"");
+  Harness harness;
+
+  App app(harness.options());
+  bjorne_agent::cli::Invocation invocation = runInvocation();
+  invocation.configPath = configPath;
+  invocation.task = "do the thing";
+  invocation.taskFromArgument = true;
+
+  REQUIRE(app.run(invocation) == 0);
+  REQUIRE(harness.out.str() == "the answer\n");
 }
 
 TEST_CASE("The default app writes to the standard streams") {

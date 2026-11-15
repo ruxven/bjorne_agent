@@ -179,11 +179,28 @@ share one implementation rather than two.
 - [ ] Terminal authentication and ACP agent registry registration. The agent authenticates through
   the API key environment variable and is launched by the editor directly.
 
+### Phase G: The setup command
+
+- [x] `bjorne_agent init` replaces `setup.sh`. The command asks its questions on the terminal and
+  writes the config file, the prompt files next to it, and an environment file with the API key
+  variable stubbed out. It needs a terminal on standard input; without one it reports that and
+  exits `1`.
+- [x] The default prompts live in the binary. The package holds the executable and nothing else, so
+  no prompt file has to travel with it. The init command writes editable copies of them, which is
+  what the user customizes.
+- [x] A file that is already there is kept. A config file that is already there is kept unless the
+  overwrite is confirmed, and declining the overwrite is not an error.
+- [x] `agent.system_prompt_path` names the system prompt file. A relative path resolves against the
+  config file, and the file content wins over the inline `system_prompt` text.
+- [x] `setup.sh` is deleted. The command it stood for is the init command now.
+
 ### Spec impact
 
 - [x] `SPEC.md` gains the subcommand semantics and the MCP scope.
 - [x] `SPEC.md` gains the ACP mode.
+- [x] `SPEC.md` gains the init command.
 - [x] `SPEC.CONFIG.md` gains `skills_path`, `session_dir`, `interactive` and `mcp_servers`.
+- [x] `SPEC.CONFIG.md` gains `system_prompt_path`.
 - [ ] `SPEC.CONFIG.md` gains the tool override section. That waits for the tool set customization.
 - [x] `SPEC.LOOP.md` gains the session lifecycle, the resume semantics and the dangling call repair.
 - [x] `SPEC.LOOP.md` gains the cooperative cancellation.
@@ -193,9 +210,9 @@ share one implementation rather than two.
 
 ## Quality Gates
 
-- [x] Catch2 suite: `bjorne_agent_tests` (474 cases, 1563 assertions with TLS; 468 cases, 1547 assertions in the no TLS dynamic build; 472 cases, 1567 assertions in the static build).
+- [x] Catch2 suite: `bjorne_agent_tests` (503 cases, 1662 assertions with TLS; 497 cases, 1646 assertions in the no TLS dynamic build; 501 cases, 1666 assertions in the static build; 497 cases, 1646 assertions in the clang build with `-Werror`).
 - [x] Lizard complexity gate: `-C 15 -L 100 -a 5`, no thresholds exceeded in any configuration.
-- [x] Line and function coverage: measured with `gcovr` over the instrumented test build. Line coverage is 93.0% with TLS (4580 of 4925 lines), 93.3% in the no TLS build (4491 of 4811), and 93.4% in the static build (4539 of 4859); function coverage is 98.7% in all three builds (453 of 459 functions, 461 of 467, and 457 of 463). The measurement covers the code the test binary links and therefore leaves out `src/main.cpp`, which only the executable runs; the command logic itself lives in `src/app/App.cpp`, which the test binary links and which is therefore measured. Set `BJORNE_AGENT_OPENSSL=disabled` to measure the no TLS configuration, and add `BJORNE_AGENT_STATIC=ON` to measure the static one. The six functions that no build covers are the destructors of the abstract base classes the tests never destroy through a base pointer, and the pipe cleanup in the child process transport, which only runs when a pipe cannot be created.
+- [x] Line and function coverage: measured with `gcovr` over the instrumented test build, and summarized with `.github/scripts/coverage_summary.py` over the gcovr JSON report. Line coverage is 93.2% with TLS (4854 of 5209 lines), 93.5% in the no TLS build (4765 of 5095), and 93.6% in the static build (4813 of 5143); function coverage is 99.4% in all three builds (487 of 490 functions, 479 of 482, and 483 of 486). The measurement covers the code the test binary links and therefore leaves out `src/main.cpp`, which only the executable runs; the command logic itself lives in `src/app/App.cpp`, which the test binary links and which is therefore measured. Set `BJORNE_AGENT_OPENSSL=disabled` to measure the no TLS configuration, and add `BJORNE_AGENT_STATIC=ON` to measure the static one. The three functions that no build covers are the compression handler and the ACP notification handler, which only run when a conversation overflows its context window and when the editor sends a notification, and the pipe cleanup in the child process transport, which only runs when a pipe cannot be created.
 - [x] Transport tests against a loopback HTTP/TLS server, including read and handshake failure paths.
 - [x] DNS answer parser tests built from crafted packets, so the wire format is checked without a network.
 - [x] CodeChecker static analysis: clangsa and clang-tidy over `src/`, no findings in project code. Third party Catch2 is excluded through `.codechecker.skip`.

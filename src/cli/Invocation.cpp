@@ -278,7 +278,15 @@ std::string usage(Command command) {
     case Command::Init:
       return "Usage: bjorne_agent [options] init\n"
              "\n"
-             "Create a config file. Not implemented yet.\n";
+             "Create the initial configuration. The command asks its questions on\n"
+             "the terminal and writes the config file, the prompt files next to it\n"
+             "and an environment file for the API key. It replaces the setup\n"
+             "script: the binary carries the default prompts, so the package holds\n"
+             "the executable and nothing else.\n"
+             "\n"
+             "The config file is written to the project local path or to the user\n"
+             "level path, which are the two places a run searches. A config file\n"
+             "that is already there is kept unless the overwrite is confirmed.\n";
     case Command::Sessions:
       return "Usage: bjorne_agent [options] sessions\n"
              "\n"

@@ -34,8 +34,6 @@ The script builds the image, prints the image size and entrypoint, and runs
 | `/etc/ssl/cert.pem`, `/etc/ssl/certs/ca-certificates.crt` | the trust store the TLS transport verifies the peer against |
 | `/bin/busybox` and its applet symlinks | `run_shell` calls `popen`, which runs `/bin/sh` |
 | `/lib/ld-musl-x86_64.so.1`, `/lib/libc.musl-x86_64.so.1` | busybox is linked against musl, so the loader comes with it |
-| `/etc/bjorne_agent/prompts/compression.md` | the compression prompt, next to the default config mount point |
-| `/usr/local/share/bjorne_agent/prompts/compression.md` | the same prompt in the install layout, for configs mounted elsewhere |
 | `/etc/passwd`, `/etc/group` | scratch has no account database, so the image names its own user |
 | `/workspace` | the working directory, owned by uid 1000 |
 | `/tmp` | mode 1777, for tools that need scratch space |
@@ -89,14 +87,15 @@ in the image.
 
 ### The compression prompt path
 
+The image carries no prompt file. The default prompt lives in the binary, and
+`bjorne_agent init` writes an editable copy next to the config it creates.
+
 A relative `compression_prompt_path` in the config resolves against the
-directory holding the config file, not the working directory. That means a
-config mounted at `/etc/bjorne_agent/bjorne_agent.json` can use the relative path
-`prompts/compression.md` and find the prompt that sits next to it. A config
-mounted anywhere else needs the absolute path:
+directory holding the config file, not the working directory. A config that
+names a prompt file therefore has to mount it next to the config:
 
 ```json
-"compression_prompt_path": "/usr/local/share/bjorne_agent/prompts/compression.md"
+"compression_prompt_path": "prompts/compression.md"
 ```
 
 Leaving `compression_prompt_path` out works too. The default prompt is
@@ -137,7 +136,6 @@ The install tree sits in a subdirectory of the same place:
 ```
 build-container-static/install/bin/bjorne_agent
 build-container-static/install/lib/libbjorne_agent_core.a
-build-container-static/install/share/bjorne_agent/prompts/compression.md
 ```
 
 That is the same layout `cmake --install` produces on a host build, so the

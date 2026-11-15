@@ -3,6 +3,7 @@
 #include "acp/AcpServer.h"
 #include "acp/StdioTransport.h"
 #include "agent/AgentLoop.h"
+#include "app/Init.h"
 #include "config/ConfigPaths.h"
 #include "context/AgentsFiles.h"
 #include "interaction/Interaction.h"
@@ -92,6 +93,24 @@ std::string resolveAgainstConfig(const std::string& config_path, const std::stri
     return path;
   }
   return config_path.substr(0, slash + 1) + path;
+}
+
+// The system prompt may live in a file next to the config. The file wins over
+// the text in the config, so the prompt can be edited without touching the
+// JSON.
+bool applySystemPromptFile(const std::string& config_path, config::Config& config, std::string& error) {
+  if (config.agent.system_prompt_path.empty()) {
+    return true;
+  }
+  const std::string path = resolveAgainstConfig(config_path, config.agent.system_prompt_path);
+  log::detail("System prompt: " + path);
+  std::string prompt;
+  if (!readTextFile(path, prompt)) {
+    error = "Cannot open system prompt: " + path;
+    return false;
+  }
+  config.agent.system_prompt = prompt;
+  return true;
 }
 
 // The model with the lowest priority number wins.
@@ -191,7 +210,8 @@ App::App(Options options)
     : options_(std::move(options)),
       out_(options_.out != nullptr ? *options_.out : std::cout),
       err_(options_.err != nullptr ? *options_.err : std::cerr),
-      in_(options_.in != nullptr ? *options_.in : std::cin) {}
+      in_(options_.in != nullptr ? *options_.in : std::cin),
+      input_is_terminal_(options_.input_is_terminal.value_or(platform::standardInputIsTerminal())) {}
 
 void App::reportError(const std::string& message) {
   log::fail(message);
@@ -203,6 +223,10 @@ bool App::prepareModel(const std::string& config_path, config::Config& config,
   std::string error;
   log::progress("Loading config: " + config_path);
   if (!config::load(config_path, config, error)) {
+    reportError(error);
+    return false;
+  }
+  if (!applySystemPromptFile(config_path, config, error)) {
     reportError(error);
     return false;
   }
@@ -314,11 +338,20 @@ int App::run(const cli::Invocation& invocation) {
     case cli::Command::Acp:
       return runAcp(invocation);
     case cli::Command::Init:
-      break;
+      return runInit();
   }
 
-  err_ << "The '" << cli::commandName(invocation.command) << "' command is not implemented yet.\n";
+  // Every command is handled above. The switch covers every value of the
+  // enumeration, so a new one without a case is a compiler warning rather
+  // than a silent fall through.
   return 1;
+}
+
+int App::runInit() {
+  // The wizard asks its questions on the terminal, so the answer stream is the
+  // standard input when it is one.
+  Init init(in_, out_, input_is_terminal_);
+  return init.run();
 }
 
 int App::runTask(const cli::Invocation& invocation) {

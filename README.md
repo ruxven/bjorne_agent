@@ -89,19 +89,20 @@ The layout under the prefix:
 ```
 <prefix>/bin/bjorne_agent
 <prefix>/lib/libbjorne_agent_core.a
-<prefix>/share/bjorne_agent/prompts/compression.md
 ```
 
 `bjorne_agent` is the executable. `libbjorne_agent_core.a` is the library behind it, for
-embedding the harness in another program. The prompts directory holds the
-default compression instruction.
+embedding the harness in another program.
 
-Two install components are defined. `runtime` covers the binary and the
-library. `prompts` covers the prompt files.
+The package holds the executable and nothing else. The default prompts live in
+the binary, and `bjorne_agent init` writes editable copies of them next to the
+config file it creates.
+
+There is one install component, `runtime`, which covers the binary and the
+library.
 
 ```sh
 cmake --install build --component runtime
-cmake --install build --component prompts
 ```
 
 ### Package
@@ -381,10 +382,11 @@ The draft version two of the protocol is not implemented.
 
 ### Setting up a config
 
-`setup.sh` asks for the settings and writes both a config and a `.env`:
+`bjorne_agent init` asks for the settings on the terminal and writes the
+config, the prompt files and a `.env`:
 
 ```sh
-./setup.sh
+bjorne_agent init
 ```
 
 It writes to `./.bjorne_agent/bjorne_agent.json` or `~/.config/bjorne_agent/bjorne_agent.json`, the
@@ -396,6 +398,11 @@ source .bjorne_agent/.env
 bjorne_agent "hello"
 ```
 
+The command also writes `prompts/compression.md` and `prompts/system.md` next
+to the config and points the config at them, so the prompts are files you can
+edit. A file that is already there is kept, and a config that is already there
+is kept unless the overwrite is confirmed.
+
 ## Configuration
 
 The config is JSON with `snake_case` keys. `config/bjorne_agent.example.json` is a
@@ -406,6 +413,7 @@ complete example.
   "version": 1,
   "agent": {
     "system_prompt": "You are a coding agent. Help the user with their task.",
+    "system_prompt_path": "prompts/system.md",
     "workspace": "/workspace",
     "skills_path": "",
     "session_dir": "",
@@ -435,6 +443,7 @@ complete example.
 | Key | Type | Meaning |
 | --- | --- | --- |
 | `system_prompt` | string | Instruction content sent to the model. |
+| `system_prompt_path` | string, optional | File holding the system prompt. A relative path resolves against the config file. When set, the file content wins over the text above. |
 | `workspace` | string | Root for tool operations. Relative tool paths resolve against it. |
 | `skills_path` | string, optional | Directory holding `skills/<name>/SKILL.md`. A relative path resolves against the config file. |
 | `session_dir` | string, optional | Directory for persisted sessions. A relative path resolves against the config file. Empty keeps the one-shot behaviour. |
@@ -647,8 +656,9 @@ podman run --rm \
 ```
 
 A relative `compression_prompt_path` resolves against the directory holding
-the config file, so a config mounted outside `/etc/bjorne_agent` needs the absolute
-path `/usr/local/share/bjorne_agent/prompts/compression.md`.
+the config file. The image carries no prompt file, so a config that names one
+either mounts it next to the config or leaves the key out, which leaves the
+built-in default instruction in place.
 
 ## Development
 

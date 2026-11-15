@@ -89,6 +89,17 @@ inline bool standardInputIsTerminal() {
   return ::_isatty(::_fileno(stdin)) != 0;
 }
 
+// The current working directory. An empty string means it cannot be
+// determined, which happens when the path is longer than the buffer.
+inline std::string currentWorkingDirectory() {
+  char buffer[4096];
+  const DWORD written = ::GetCurrentDirectoryA(sizeof(buffer), buffer);
+  if (written == 0 || written >= sizeof(buffer)) {
+    return {};
+  }
+  return std::string(buffer, written);
+}
+
 inline int closeSocket(SocketHandle handle) {
   return ::closesocket(handle);
 }
@@ -174,6 +185,16 @@ inline int processId() {
 // the task or wait forever for an answer that cannot come.
 inline bool standardInputIsTerminal() {
   return ::isatty(STDIN_FILENO) != 0;
+}
+
+// The current working directory. An empty string means it cannot be
+// determined, which happens when the path is longer than the buffer.
+inline std::string currentWorkingDirectory() {
+  char buffer[4096];
+  if (::getcwd(buffer, sizeof(buffer)) == nullptr) {
+    return {};
+  }
+  return std::string(buffer);
 }
 
 inline int closeSocket(SocketHandle handle) {

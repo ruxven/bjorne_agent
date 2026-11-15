@@ -5,8 +5,6 @@
 # scratch and holds only that tree:
 #
 #   - the static bjorne_agent executable
-#   - the compression prompt, both next to the config mount point and in the
-#     install layout
 #   - a CA bundle, because the TLS transport verifies the peer against the
 #     system trust store
 #   - busybox and the musl loader, because the run_shell tool calls popen,
@@ -43,8 +41,8 @@ RUN cmake -S /src -B /src/build \
 # run_shell tool reaches for; popen itself only needs /bin/sh.
 RUN set -eu; \
     root=/out/root; \
-    mkdir -p "$root/bin" "$root/etc/ssl/certs" "$root/etc/bjorne_agent/prompts" \
-             "$root/usr/local/share/bjorne_agent/prompts" "$root/usr/local/bin" \
+    mkdir -p "$root/bin" "$root/etc/ssl/certs" "$root/etc/bjorne_agent" \
+             "$root/usr/local/bin" \
              "$root/usr/local/share/bjorne_agent/mcp" \
              "$root/home/bjorne_agent" "$root/lib" "$root/tmp" "$root/workspace"; \
     cp /bin/busybox "$root/bin/busybox"; \
@@ -59,9 +57,6 @@ RUN set -eu; \
     cp /etc/ssl/certs/ca-certificates.crt "$root/etc/ssl/certs/ca-certificates.crt"; \
     cp /etc/ssl/certs/ca-certificates.crt "$root/etc/ssl/cert.pem"; \
     cp /out/bin/bjorne_agent "$root/usr/local/bin/bjorne_agent"; \
-    cp /out/share/bjorne_agent/prompts/compression.md "$root/etc/bjorne_agent/prompts/compression.md"; \
-    cp /out/share/bjorne_agent/prompts/compression.md \
-       "$root/usr/local/share/bjorne_agent/prompts/compression.md"; \
     printf 'bjorne_agent:x:1000:1000:bjorne_agent:/home/bjorne_agent:/bin/sh\n' > "$root/etc/passwd"; \
     printf 'bjorne_agent:x:1000:\n' > "$root/etc/group"; \
     chmod 1777 "$root/tmp"; \

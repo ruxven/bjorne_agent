@@ -34,6 +34,7 @@ The environment variable is the path a container uses. The config is mounted at 
 ## Agent
 
 - system_prompt: string. Instruction content sent to the model.
+- system_prompt_path: string, optional. Path to a file holding the system prompt. When set, the file content is the system prompt and the text above is only the fallback. A relative path resolves against the directory holding the config file. The init command writes the file and points the key at it, so the prompt is a file the user edits rather than a line of JSON.
 - workspace: string. Workspace root for tool operations.
 - skills_path: string, optional. Directory holding `skills/<name>/SKILL.md` entries. A relative path resolves against the directory holding the config file. Empty disables skill discovery.
 - session_dir: string, optional. Directory for persisted sessions. A relative path resolves against the directory holding the config file. Empty disables persistence and keeps the one-shot behaviour.
@@ -77,6 +78,7 @@ Turning `ignore_self_signed` on skips both the chain check and the hostname chec
 - Key source: environment variable named by api_key_env.
 - Model selection: array with priority ordering, lower value first.
 - Compression instruction source: markdown file referenced by configuration, combined with the binary and the config file. The default compression prompt is "Summarize the conversation". A user-configured markdown file can override.
+- System prompt source: the same shape as the compression instruction. `system_prompt_path` names a file next to the config, and the file content wins over the inline text. The binary carries the default, so the init command can write the file without the package shipping one.
 - Certificate verification: on by default. `ignore_self_signed` turns it off, and `hostname` sets the name used for SNI and for the certificate hostname check.
 
 ## Open Questions

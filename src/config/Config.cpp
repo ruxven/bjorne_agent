@@ -44,6 +44,7 @@ void loadAgent(const json::Value& root, AgentConfig& agent) {
     return;
   }
   getString(*node, "system_prompt", agent.system_prompt);
+  getString(*node, "system_prompt_path", agent.system_prompt_path);
   getString(*node, "workspace", agent.workspace);
   getString(*node, "skills_path", agent.skills_path);
   getString(*node, "session_dir", agent.session_dir);

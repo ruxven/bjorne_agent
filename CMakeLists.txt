@@ -89,6 +89,8 @@ add_library(bjorne_agent_core STATIC
   src/agent/AgentLoop.cpp
   src/interaction/Interaction.cpp
   src/app/App.cpp
+  src/app/Init.cpp
+  src/config/Defaults.cpp
 )
 
 target_compile_features(bjorne_agent_core PUBLIC cxx_std_20)
@@ -192,6 +194,7 @@ if(BUILD_TESTING)
     tests/acp/StdioTransportTest.cpp
     tests/app/AppTest.cpp
     tests/app/AppAcpTest.cpp
+    tests/app/InitTest.cpp
   )
 
   # A stub MCP server the MCP tests spawn as a child process. It is a separate
@@ -246,12 +249,6 @@ if(BJORNE_AGENT_STATIC AND NOT WIN32)
 else()
   target_compile_definitions(bjorne_agent_core PUBLIC BJORNE_AGENT_USE_STUB_RESOLVER=0)
 endif()
-
-# Install configuration prompts (compression markdown, etc.) relative to config dir
-install(DIRECTORY config/prompts/
-  DESTINATION
-  share/bjorne_agent/prompts
-  COMPONENT prompts)
 
 # Install the runtime binary and its static library.
 install(TARGETS bjorne_agent
