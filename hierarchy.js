@@ -27,6 +27,8 @@ var hierarchy =
       [ "bjorne_agent::http::OpenSslTransport", "classbjorne__agent_1_1http_1_1OpenSslTransport.html", null ],
       [ "bjorne_agent::http::PlainTcpTransport", "classbjorne__agent_1_1http_1_1PlainTcpTransport.html", null ]
     ] ],
+    [ "bjorne_agent::app::Init", "classbjorne__agent_1_1app_1_1Init.html", null ],
+    [ "bjorne_agent::app::InitAnswers", "structbjorne__agent_1_1app_1_1InitAnswers.html", null ],
     [ "bjorne_agent::cli::Invocation", "structbjorne__agent_1_1cli_1_1Invocation.html", null ],
     [ "bjorne_agent::agent::LoopObserver", "classbjorne__agent_1_1agent_1_1LoopObserver.html", [
       [ "bjorne_agent::session::SessionRecorder", "classbjorne__agent_1_1session_1_1SessionRecorder.html", null ]

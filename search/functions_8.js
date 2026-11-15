@@ -1,15 +1,16 @@
 var searchData=
 [
-  ['initialize_0',['initialize',['../classbjorne__agent_1_1mcp_1_1Client.html#aef99134b4e9e1034f06501d3fce33084',1,'bjorne_agent::mcp::Client']]],
-  ['initializesockets_1',['initializeSockets',['../namespacebjorne__agent_1_1platform.html#a371b374aa4c866e0435dca12570902f2',1,'bjorne_agent::platform']]],
-  ['installshutdownhandlers_2',['installShutdownHandlers',['../namespacebjorne__agent_1_1platform.html#aabdc4b8be53c187aa31dd7793acb1943',1,'bjorne_agent::platform']]],
-  ['isarray_3',['isArray',['../classbjorne__agent_1_1json_1_1Value.html#a848c25a557e1d3f02954498fd01b9582',1,'bjorne_agent::json::Value']]],
-  ['isboolean_4',['isBoolean',['../classbjorne__agent_1_1json_1_1Value.html#a0c58f1dcfb65eb4c7c738ceaf8f3bac8',1,'bjorne_agent::json::Value']]],
-  ['isdefaultport_5',['isDefaultPort',['../namespacebjorne__agent_1_1http.html#a7ab6a9d988b77d122b6e554ec17c39af',1,'bjorne_agent::http']]],
-  ['isnull_6',['isNull',['../classbjorne__agent_1_1json_1_1Value.html#ad2ee5d420bc63e6f5028c69c2097de4b',1,'bjorne_agent::json::Value']]],
-  ['isnumber_7',['isNumber',['../classbjorne__agent_1_1json_1_1Value.html#a1ce846e72a2728c9b3bbc765044de497',1,'bjorne_agent::json::Value']]],
-  ['isobject_8',['isObject',['../classbjorne__agent_1_1json_1_1Value.html#a8b06cf1ad87d7e1eee8272ba26856af3',1,'bjorne_agent::json::Value']]],
-  ['isstring_9',['isString',['../classbjorne__agent_1_1json_1_1Value.html#a634f046bdf1b1ef81e9638450453f13d',1,'bjorne_agent::json::Value']]],
-  ['isvalidsessionid_10',['isValidSessionId',['../namespacebjorne__agent_1_1session.html#a7b35775c1a315cdd13ef716381b9e6c6',1,'bjorne_agent::session']]],
-  ['isvalidsocket_11',['isValidSocket',['../namespacebjorne__agent_1_1platform.html#a10ff51b2722614356f76a337ceecf742',1,'bjorne_agent::platform']]]
+  ['init_0',['Init',['../classbjorne__agent_1_1app_1_1Init.html#a115a1fc5a62b5025bbb3d205710cf773',1,'bjorne_agent::app::Init']]],
+  ['initialize_1',['initialize',['../classbjorne__agent_1_1mcp_1_1Client.html#aef99134b4e9e1034f06501d3fce33084',1,'bjorne_agent::mcp::Client']]],
+  ['initializesockets_2',['initializeSockets',['../namespacebjorne__agent_1_1platform.html#a371b374aa4c866e0435dca12570902f2',1,'bjorne_agent::platform']]],
+  ['installshutdownhandlers_3',['installShutdownHandlers',['../namespacebjorne__agent_1_1platform.html#aabdc4b8be53c187aa31dd7793acb1943',1,'bjorne_agent::platform']]],
+  ['isarray_4',['isArray',['../classbjorne__agent_1_1json_1_1Value.html#a848c25a557e1d3f02954498fd01b9582',1,'bjorne_agent::json::Value']]],
+  ['isboolean_5',['isBoolean',['../classbjorne__agent_1_1json_1_1Value.html#a0c58f1dcfb65eb4c7c738ceaf8f3bac8',1,'bjorne_agent::json::Value']]],
+  ['isdefaultport_6',['isDefaultPort',['../namespacebjorne__agent_1_1http.html#a7ab6a9d988b77d122b6e554ec17c39af',1,'bjorne_agent::http']]],
+  ['isnull_7',['isNull',['../classbjorne__agent_1_1json_1_1Value.html#ad2ee5d420bc63e6f5028c69c2097de4b',1,'bjorne_agent::json::Value']]],
+  ['isnumber_8',['isNumber',['../classbjorne__agent_1_1json_1_1Value.html#a1ce846e72a2728c9b3bbc765044de497',1,'bjorne_agent::json::Value']]],
+  ['isobject_9',['isObject',['../classbjorne__agent_1_1json_1_1Value.html#a8b06cf1ad87d7e1eee8272ba26856af3',1,'bjorne_agent::json::Value']]],
+  ['isstring_10',['isString',['../classbjorne__agent_1_1json_1_1Value.html#a634f046bdf1b1ef81e9638450453f13d',1,'bjorne_agent::json::Value']]],
+  ['isvalidsessionid_11',['isValidSessionId',['../namespacebjorne__agent_1_1session.html#a7b35775c1a315cdd13ef716381b9e6c6',1,'bjorne_agent::session']]],
+  ['isvalidsocket_12',['isValidSocket',['../namespacebjorne__agent_1_1platform.html#a10ff51b2722614356f76a337ceecf742',1,'bjorne_agent::platform']]]
 ];

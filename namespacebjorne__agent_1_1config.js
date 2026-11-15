@@ -8,5 +8,7 @@ var namespacebjorne__agent_1_1config =
     [ "userConfigDirectory", "namespacebjorne__agent_1_1config.html#a3a5bb54227857447687bb8f2fb90f334", null ],
     [ "environmentConfigPath", "namespacebjorne__agent_1_1config.html#a6097c519f9154b0c3bffa1498b60e038", null ],
     [ "defaultConfigPaths", "namespacebjorne__agent_1_1config.html#af36d427749bcdcfa050c18ea17e5a803", null ],
-    [ "findDefaultConfig", "namespacebjorne__agent_1_1config.html#a282cf023a690af1973f41a630403f09e", null ]
+    [ "findDefaultConfig", "namespacebjorne__agent_1_1config.html#a282cf023a690af1973f41a630403f09e", null ],
+    [ "defaultCompressionPrompt", "namespacebjorne__agent_1_1config.html#a393c3724062de0895bce6caa064d7422", null ],
+    [ "kDefaultSystemPrompt", "namespacebjorne__agent_1_1config.html#a437bbb818c91bcdf1a41f9162cf5a0f5", null ]
 ];

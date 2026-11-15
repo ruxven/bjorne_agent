@@ -13,6 +13,7 @@ var searchData=
   ['config_10',['config',['../classbjorne__agent_1_1context_1_1ContextManager.html#acde2c1f36ca8b14dba2e55fe0ac45256',1,'bjorne_agent::context::ContextManager']]],
   ['consolechannel_11',['ConsoleChannel',['../classbjorne__agent_1_1interaction_1_1ConsoleChannel.html#a988c855ad84e6af5418ecb9f96e3ecc6',1,'bjorne_agent::interaction::ConsoleChannel']]],
   ['contextmanager_12',['ContextManager',['../classbjorne__agent_1_1context_1_1ContextManager.html#ac7c2833a0aa1eb83aa821c6b894a7462',1,'bjorne_agent::context::ContextManager']]],
-  ['createopenssl_13',['createopenssl',['../classbjorne__agent_1_1http_1_1HttpClient.html#a9db7338a3ba689275c1f72c5089743c6',1,'bjorne_agent::http::HttpClient::createOpenSsl()'],['../classbjorne__agent_1_1http_1_1HttpClient.html#ae9f7a6b9d368c3e13ccec62ff0ad9b97',1,'bjorne_agent::http::HttpClient::createOpenSsl(OpenSslTransport::Options options)']]],
-  ['createplaintcp_14',['createPlainTcp',['../classbjorne__agent_1_1http_1_1HttpClient.html#a002abd3ee087585993fc7a1b1e979cef',1,'bjorne_agent::http::HttpClient']]]
+  ['createopenssl_13',['createopenssl',['../classbjorne__agent_1_1http_1_1HttpClient.html#ae9f7a6b9d368c3e13ccec62ff0ad9b97',1,'bjorne_agent::http::HttpClient::createOpenSsl(OpenSslTransport::Options options)'],['../classbjorne__agent_1_1http_1_1HttpClient.html#a9db7338a3ba689275c1f72c5089743c6',1,'bjorne_agent::http::HttpClient::createOpenSsl()']]],
+  ['createplaintcp_14',['createPlainTcp',['../classbjorne__agent_1_1http_1_1HttpClient.html#a002abd3ee087585993fc7a1b1e979cef',1,'bjorne_agent::http::HttpClient']]],
+  ['currentworkingdirectory_15',['currentWorkingDirectory',['../namespacebjorne__agent_1_1platform.html#ad66080cd326a86012265bba4f637bcae',1,'bjorne_agent::platform']]]
 ];

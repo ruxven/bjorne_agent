@@ -15,7 +15,9 @@ var annotated_dup =
         [ "LoopObserver", "classbjorne__agent_1_1agent_1_1LoopObserver.html", "classbjorne__agent_1_1agent_1_1LoopObserver" ]
       ] ],
       [ "app", "namespacebjorne__agent_1_1app.html", [
-        [ "App", "classbjorne__agent_1_1app_1_1App.html", "classbjorne__agent_1_1app_1_1App" ]
+        [ "App", "classbjorne__agent_1_1app_1_1App.html", "classbjorne__agent_1_1app_1_1App" ],
+        [ "Init", "classbjorne__agent_1_1app_1_1Init.html", "classbjorne__agent_1_1app_1_1Init" ],
+        [ "InitAnswers", "structbjorne__agent_1_1app_1_1InitAnswers.html", "structbjorne__agent_1_1app_1_1InitAnswers" ]
       ] ],
       [ "cli", "namespacebjorne__agent_1_1cli.html", [
         [ "Invocation", "structbjorne__agent_1_1cli_1_1Invocation.html", "structbjorne__agent_1_1cli_1_1Invocation" ]

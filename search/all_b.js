@@ -2,7 +2,7 @@ var searchData=
 [
   ['handle_0',['handle',['../classbjorne__agent_1_1acp_1_1AcpServer.html#a6b3694305526b679f9d63038c798d85c',1,'bjorne_agent::acp::AcpServer']]],
   ['handleshutdownsignal_1',['handleShutdownSignal',['../namespacebjorne__agent_1_1platform_1_1detail.html#a0ddd7f1f181f29e6713faf1416cadc2c',1,'bjorne_agent::platform::detail']]],
-  ['handling_2',['Error Handling',['../md_SPEC_8LOOP.html#autotoc_md71',1,'']]],
+  ['handling_2',['Error Handling',['../md_SPEC_8LOOP.html#autotoc_md72',1,'']]],
   ['harness_3',['harness',['../md_DESIGN.html',1,'Design: C++ Agent Harness'],['../md_ROADMAP.html',1,'ROADMAP: C++ Agent Harness'],['../md_SPEC.html',1,'SPEC: C++ Agent Harness']]],
   ['harness_20configuration_20specification_4',['SPEC.CONFIG: C++ Agent Harness Configuration Specification',['../md_SPEC_8CONFIG.html',1,'']]],
   ['hasdata_5',['hasData',['../structbjorne__agent_1_1jsonrpc_1_1Error.html#adcce6ef3df34c79cad2a3f9e16c7c037',1,'bjorne_agent::jsonrpc::Error']]],
@@ -14,7 +14,7 @@ var searchData=
   ['help_11',['help',['../structbjorne__agent_1_1cli_1_1Invocation.html#ad4dc04b700fc16911fc6656f3d6361e8',1,'bjorne_agent::cli::Invocation']]],
   ['history_12',['history',['../structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a1f173b8614b3910c82406706da05abe8',1,'bjorne_agent::agent::AgentLoopConfig']]],
   ['host_13',['host',['../structbjorne__agent_1_1http_1_1HttpRequest.html#a4ee4923282f38f95b5917bedcdf52c4f',1,'bjorne_agent::http::HttpRequest::host'],['../structbjorne__agent_1_1http_1_1Url.html#a540841d066af58b5beb2f6b65a021e78',1,'bjorne_agent::http::Url::host']]],
-  ['hostname_14',['hostname',['../structbjorne__agent_1_1config_1_1ModelConfig.html#a470b3778c3c291b45eb57758cfec352d',1,'bjorne_agent::config::ModelConfig::hostname'],['../structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html#af910c2025d93fff29c58d31b72c6f23d',1,'bjorne_agent::http::OpenSslTransport::Options::hostname'],['../structbjorne__agent_1_1model_1_1ModelClientOptions.html#a8e36f86be9ed866908761951518fa059',1,'bjorne_agent::model::ModelClientOptions::hostname']]],
+  ['hostname_14',['hostname',['../structbjorne__agent_1_1app_1_1InitAnswers.html#a76550e0f7c6f64d22603497a56282919',1,'bjorne_agent::app::InitAnswers::hostname'],['../structbjorne__agent_1_1config_1_1ModelConfig.html#a470b3778c3c291b45eb57758cfec352d',1,'bjorne_agent::config::ModelConfig::hostname'],['../structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html#af910c2025d93fff29c58d31b72c6f23d',1,'bjorne_agent::http::OpenSslTransport::Options::hostname'],['../structbjorne__agent_1_1model_1_1ModelClientOptions.html#a8e36f86be9ed866908761951518fa059',1,'bjorne_agent::model::ModelClientOptions::hostname']]],
   ['hosts_5fpath_15',['hosts_path',['../structbjorne__agent_1_1http_1_1ResolverOptions.html#adc3f52618fa7d49023b8c2b46bf685c4',1,'bjorne_agent::http::ResolverOptions']]],
   ['httpclient_16',['httpclient',['../classbjorne__agent_1_1http_1_1HttpClient.html#a4ed9922abb0a1b39efeebf1cfd6aae8f',1,'bjorne_agent::http::HttpClient::HttpClient()'],['../classbjorne__agent_1_1http_1_1HttpClient.html',1,'bjorne_agent::http::HttpClient']]],
   ['httpclient_2ecpp_17',['HttpClient.cpp',['../HttpClient_8cpp.html',1,'']]],

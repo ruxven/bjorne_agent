@@ -156,11 +156,10 @@ Install</h1>
 </div><!-- fragment --><p>The layout under the prefix:</p>
 <div class="fragment"><div class="line">&lt;prefix&gt;/bin/bjorne_agent</div>
 <div class="line">&lt;prefix&gt;/lib/libbjorne_agent_core.a</div>
-<div class="line">&lt;prefix&gt;/share/bjorne_agent/prompts/compression.md</div>
-</div><!-- fragment --><p><code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a></code> is the executable. <code>libbjorne_agent_core.a</code> is the library behind it, for embedding the harness in another program. The prompts directory holds the default compression instruction.</p>
-<p>Two install components are defined. <code>runtime</code> covers the binary and the library. <code>prompts</code> covers the prompt files.</p>
+</div><!-- fragment --><p><code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a></code> is the executable. <code>libbjorne_agent_core.a</code> is the library behind it, for embedding the harness in another program.</p>
+<p>The package holds the executable and nothing else. The default prompts live in the binary, and <code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> init</code> writes editable copies of them next to the config file it creates.</p>
+<p>There is one install component, <code>runtime</code>, which covers the binary and the library.</p>
 <div class="fragment"><div class="line">cmake --install build --component runtime</div>
-<div class="line">cmake --install build --component prompts</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
 Package</h2>
 <p>CPack is configured, so the build directory can produce archives directly:</p>
@@ -330,18 +329,20 @@ ACP mode</h2>
 <p>The draft version two of the protocol is not implemented.</p>
 <h2><a class="anchor" id="autotoc_md14"></a>
 Setting up a config</h2>
-<p><code>setup.sh</code> asks for the settings and writes both a config and a <code>.env</code>:</p>
-<div class="fragment"><div class="line">./setup.sh</div>
+<p><code><a class="el" href="namespacebjorne__agent.html">bjorne_agent</a> init</code> asks for the settings on the terminal and writes the config, the prompt files and a <code>.env</code>:</p>
+<div class="fragment"><div class="line">bjorne_agent init</div>
 </div><!-- fragment --><p>It writes to <code>./.bjorne_agent/bjorne_agent.json</code> or <code>~/.config/bjorne_agent/bjorne_agent.json</code>, the same two paths the binary searches, and puts a <code>.env</code> beside the config with the API key variable stubbed out. Fill in the key and source it:</p>
 <div class="fragment"><div class="line">source .bjorne_agent/.env</div>
 <div class="line">bjorne_agent &quot;hello&quot;</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md15"></a>
+</div><!-- fragment --><p>The command also writes <code>prompts/compression.md</code> and <code>prompts/system.md</code> next to the config and points the config at them, so the prompts are files you can edit. A file that is already there is kept, and a config that is already there is kept unless the overwrite is confirmed.</p>
+<h1><a class="anchor" id="autotoc_md15"></a>
 Configuration</h1>
 <p>The config is JSON with <code>snake_case</code> keys. <code>config/bjorne_agent.example.json</code> is a complete example.</p>
 <div class="fragment"><div class="line">{</div>
 <div class="line">  &quot;version&quot;: 1,</div>
 <div class="line">  &quot;agent&quot;: {</div>
 <div class="line">    &quot;system_prompt&quot;: &quot;You are a coding agent. Help the user with their task.&quot;,</div>
+<div class="line">    &quot;system_prompt_path&quot;: &quot;prompts/system.md&quot;,</div>
 <div class="line">    &quot;workspace&quot;: &quot;/workspace&quot;,</div>
 <div class="line">    &quot;skills_path&quot;: &quot;&quot;,</div>
 <div class="line">    &quot;session_dir&quot;: &quot;&quot;,</div>
@@ -372,12 +373,14 @@ Agent</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>system_prompt</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone">Instruction content sent to the model.    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>system_prompt_path</code>   </td><td class="markdownTableBodyNone">string, optional   </td><td class="markdownTableBodyNone">File holding the system prompt. A relative path resolves against the config file. When set, the file content wins over the text above.    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>workspace</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone">Root for tool operations. Relative tool paths resolve against it.    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>skills_path</code>   </td><td class="markdownTableBodyNone">string, optional   </td><td class="markdownTableBodyNone">Directory holding <code>skills/&lt;name&gt;/SKILL.md</code>. A relative path resolves against the config file.    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>session_dir</code>   </td><td class="markdownTableBodyNone">string, optional   </td><td class="markdownTableBodyNone">Directory for persisted sessions. A relative path resolves against the config file. Empty keeps the one-shot behaviour.    </td></tr>
+<td class="markdownTableBodyNone"><code>skills_path</code>   </td><td class="markdownTableBodyNone">string, optional   </td><td class="markdownTableBodyNone">Directory holding <code>skills/&lt;name&gt;/SKILL.md</code>. A relative path resolves against the config file.    </td></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>session_dir</code>   </td><td class="markdownTableBodyNone">string, optional   </td><td class="markdownTableBodyNone">Directory for persisted sessions. A relative path resolves against the config file. Empty keeps the one-shot behaviour.    </td></tr>
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>interactive</code>   </td><td class="markdownTableBodyNone">boolean, optional   </td><td class="markdownTableBodyNone">Defaults to <code>false</code>. Enables the console interaction channel when standard input is a terminal.   </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md17"></a>
@@ -508,7 +511,7 @@ Containers</h1>
 <div class="line">  -v &quot;$PWD/bjorne_agent.json:/run/conf/bjorne_agent.json:ro&quot; \</div>
 <div class="line">  -v &quot;$PWD:/workspace&quot; \</div>
 <div class="line">  bjorne_agent &quot;your task&quot;</div>
-</div><!-- fragment --><p>A relative <code>compression_prompt_path</code> resolves against the directory holding the config file, so a config mounted outside <code>/etc/bjorne_agent</code> needs the absolute path <code>/usr/local/share/bjorne_agent/prompts/compression.md</code>.</p>
+</div><!-- fragment --><p>A relative <code>compression_prompt_path</code> resolves against the directory holding the config file. The image carries no prompt file, so a config that names one either mounts it next to the config or leaves the key out, which leaves the built-in default instruction in place.</p>
 <h1><a class="anchor" id="autotoc_md23"></a>
 Development</h1>
 <p>Run the tests:</p>

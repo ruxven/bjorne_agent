@@ -60,97 +60,100 @@ var NAVTREE =
       [ "Version One Scope", "md_SPEC.html#autotoc_md28", null ],
       [ "Language and Toolchain", "md_SPEC.html#autotoc_md29", null ],
       [ "Dependencies", "md_SPEC.html#autotoc_md30", null ],
-      [ "Command Line", "md_SPEC.html#autotoc_md31", null ],
-      [ "Configuration", "md_SPEC.html#autotoc_md32", [
-        [ "Format", "md_SPEC.html#autotoc_md33", null ],
-        [ "Location", "md_SPEC.html#autotoc_md34", null ],
-        [ "Top level", "md_SPEC.html#autotoc_md35", null ]
+      [ "Command Line", "md_SPEC.html#autotoc_md31", [
+        [ "The init command", "md_SPEC.html#autotoc_md32", null ]
       ] ],
-      [ "MCP", "md_SPEC.html#autotoc_md36", [
-        [ "Agent", "md_SPEC.html#autotoc_md37", null ],
-        [ "Model", "md_SPEC.html#autotoc_md38", null ]
+      [ "Configuration", "md_SPEC.html#autotoc_md33", [
+        [ "Format", "md_SPEC.html#autotoc_md34", null ],
+        [ "Location", "md_SPEC.html#autotoc_md35", null ],
+        [ "Top level", "md_SPEC.html#autotoc_md36", null ]
       ] ],
-      [ "ACP Mode", "md_SPEC.html#autotoc_md39", null ],
-      [ "Context Fragments", "md_SPEC.html#autotoc_md40", null ],
-      [ "Context Management", "md_SPEC.html#autotoc_md41", null ],
-      [ "Build and TLS", "md_SPEC.html#autotoc_md42", null ],
-      [ "Container", "md_SPEC.html#autotoc_md43", null ],
-      [ "Next Steps", "md_SPEC.html#autotoc_md44", null ],
-      [ "Open Questions", "md_SPEC.html#autotoc_md45", null ]
+      [ "MCP", "md_SPEC.html#autotoc_md37", [
+        [ "Agent", "md_SPEC.html#autotoc_md38", null ],
+        [ "Model", "md_SPEC.html#autotoc_md39", null ]
+      ] ],
+      [ "ACP Mode", "md_SPEC.html#autotoc_md40", null ],
+      [ "Context Fragments", "md_SPEC.html#autotoc_md41", null ],
+      [ "Context Management", "md_SPEC.html#autotoc_md42", null ],
+      [ "Build and TLS", "md_SPEC.html#autotoc_md43", null ],
+      [ "Container", "md_SPEC.html#autotoc_md44", null ],
+      [ "Next Steps", "md_SPEC.html#autotoc_md45", null ],
+      [ "Open Questions", "md_SPEC.html#autotoc_md46", null ]
     ] ],
     [ "SPEC.CONFIG: C++ Agent Harness Configuration Specification", "md_SPEC_8CONFIG.html", [
-      [ "Purpose", "md_SPEC_8CONFIG.html#autotoc_md47", null ],
-      [ "Scope", "md_SPEC_8CONFIG.html#autotoc_md48", null ],
-      [ "Overview", "md_SPEC_8CONFIG.html#autotoc_md49", null ],
-      [ "Config File Location", "md_SPEC_8CONFIG.html#autotoc_md50", null ],
-      [ "Top Level", "md_SPEC_8CONFIG.html#autotoc_md51", null ],
-      [ "Agent", "md_SPEC_8CONFIG.html#autotoc_md52", null ],
-      [ "Models", "md_SPEC_8CONFIG.html#autotoc_md53", null ],
-      [ "TLS", "md_SPEC_8CONFIG.html#autotoc_md54", null ],
-      [ "Context Management", "md_SPEC_8CONFIG.html#autotoc_md55", null ],
-      [ "Decisions", "md_SPEC_8CONFIG.html#autotoc_md56", null ],
-      [ "Open Questions", "md_SPEC_8CONFIG.html#autotoc_md57", null ],
-      [ "Status", "md_SPEC_8CONFIG.html#autotoc_md58", null ]
+      [ "Purpose", "md_SPEC_8CONFIG.html#autotoc_md48", null ],
+      [ "Scope", "md_SPEC_8CONFIG.html#autotoc_md49", null ],
+      [ "Overview", "md_SPEC_8CONFIG.html#autotoc_md50", null ],
+      [ "Config File Location", "md_SPEC_8CONFIG.html#autotoc_md51", null ],
+      [ "Top Level", "md_SPEC_8CONFIG.html#autotoc_md52", null ],
+      [ "Agent", "md_SPEC_8CONFIG.html#autotoc_md53", null ],
+      [ "Models", "md_SPEC_8CONFIG.html#autotoc_md54", null ],
+      [ "TLS", "md_SPEC_8CONFIG.html#autotoc_md55", null ],
+      [ "Context Management", "md_SPEC_8CONFIG.html#autotoc_md56", null ],
+      [ "Decisions", "md_SPEC_8CONFIG.html#autotoc_md57", null ],
+      [ "Open Questions", "md_SPEC_8CONFIG.html#autotoc_md58", null ],
+      [ "Status", "md_SPEC_8CONFIG.html#autotoc_md59", null ]
     ] ],
     [ "SPEC.LOOP: Agent Loop Specification", "md_SPEC_8LOOP.html", [
-      [ "Purpose", "md_SPEC_8LOOP.html#autotoc_md60", null ],
-      [ "Overview", "md_SPEC_8LOOP.html#autotoc_md61", null ],
-      [ "Loop Stages", "md_SPEC_8LOOP.html#autotoc_md62", [
-        [ "Context Assembly", "md_SPEC_8LOOP.html#autotoc_md63", null ],
-        [ "Model Call", "md_SPEC_8LOOP.html#autotoc_md64", null ],
-        [ "Tool Execution", "md_SPEC_8LOOP.html#autotoc_md65", null ],
-        [ "Iteration", "md_SPEC_8LOOP.html#autotoc_md66", null ]
+      [ "Purpose", "md_SPEC_8LOOP.html#autotoc_md61", null ],
+      [ "Overview", "md_SPEC_8LOOP.html#autotoc_md62", null ],
+      [ "Loop Stages", "md_SPEC_8LOOP.html#autotoc_md63", [
+        [ "Context Assembly", "md_SPEC_8LOOP.html#autotoc_md64", null ],
+        [ "Model Call", "md_SPEC_8LOOP.html#autotoc_md65", null ],
+        [ "Tool Execution", "md_SPEC_8LOOP.html#autotoc_md66", null ],
+        [ "Iteration", "md_SPEC_8LOOP.html#autotoc_md67", null ]
       ] ],
-      [ "Stopping Conditions", "md_SPEC_8LOOP.html#autotoc_md67", null ],
-      [ "Cancellation", "md_SPEC_8LOOP.html#autotoc_md68", null ],
-      [ "Session Persistence", "md_SPEC_8LOOP.html#autotoc_md69", null ],
-      [ "Context Management", "md_SPEC_8LOOP.html#autotoc_md70", null ],
-      [ "Error Handling", "md_SPEC_8LOOP.html#autotoc_md71", null ],
-      [ "Status", "md_SPEC_8LOOP.html#autotoc_md72", null ]
+      [ "Stopping Conditions", "md_SPEC_8LOOP.html#autotoc_md68", null ],
+      [ "Cancellation", "md_SPEC_8LOOP.html#autotoc_md69", null ],
+      [ "Session Persistence", "md_SPEC_8LOOP.html#autotoc_md70", null ],
+      [ "Context Management", "md_SPEC_8LOOP.html#autotoc_md71", null ],
+      [ "Error Handling", "md_SPEC_8LOOP.html#autotoc_md72", null ],
+      [ "Status", "md_SPEC_8LOOP.html#autotoc_md73", null ]
     ] ],
     [ "Design: C++ Agent Harness", "md_DESIGN.html", [
-      [ "Purpose", "md_DESIGN.html#autotoc_md74", null ],
-      [ "Design Principles", "md_DESIGN.html#autotoc_md75", null ],
-      [ "Architecture", "md_DESIGN.html#autotoc_md76", [
-        [ "Entry Point", "md_DESIGN.html#autotoc_md77", null ],
-        [ "Configuration", "md_DESIGN.html#autotoc_md78", null ],
-        [ "Context Fragments", "md_DESIGN.html#autotoc_md79", null ],
-        [ "Model Client", "md_DESIGN.html#autotoc_md80", null ],
-        [ "Context Manager", "md_DESIGN.html#autotoc_md81", null ],
-        [ "Agent Loop", "md_DESIGN.html#autotoc_md82", null ],
-        [ "Session Store", "md_DESIGN.html#autotoc_md83", null ],
-        [ "Tool Layer", "md_DESIGN.html#autotoc_md84", null ],
-        [ "Interaction", "md_DESIGN.html#autotoc_md85", null ],
-        [ "JSON-RPC Core", "md_DESIGN.html#autotoc_md86", null ],
-        [ "Child Processes", "md_DESIGN.html#autotoc_md87", null ],
-        [ "MCP Client", "md_DESIGN.html#autotoc_md88", null ],
-        [ "ACP Server", "md_DESIGN.html#autotoc_md89", null ]
+      [ "Purpose", "md_DESIGN.html#autotoc_md75", null ],
+      [ "Design Principles", "md_DESIGN.html#autotoc_md76", null ],
+      [ "Architecture", "md_DESIGN.html#autotoc_md77", [
+        [ "Entry Point", "md_DESIGN.html#autotoc_md78", null ],
+        [ "Configuration", "md_DESIGN.html#autotoc_md79", null ],
+        [ "Context Fragments", "md_DESIGN.html#autotoc_md80", null ],
+        [ "Model Client", "md_DESIGN.html#autotoc_md81", null ],
+        [ "Context Manager", "md_DESIGN.html#autotoc_md82", null ],
+        [ "Agent Loop", "md_DESIGN.html#autotoc_md83", null ],
+        [ "Session Store", "md_DESIGN.html#autotoc_md84", null ],
+        [ "Tool Layer", "md_DESIGN.html#autotoc_md85", null ],
+        [ "Interaction", "md_DESIGN.html#autotoc_md86", null ],
+        [ "JSON-RPC Core", "md_DESIGN.html#autotoc_md87", null ],
+        [ "Child Processes", "md_DESIGN.html#autotoc_md88", null ],
+        [ "MCP Client", "md_DESIGN.html#autotoc_md89", null ],
+        [ "ACP Server", "md_DESIGN.html#autotoc_md90", null ]
       ] ],
-      [ "Fulfilment Mapping", "md_DESIGN.html#autotoc_md90", null ],
-      [ "Build and Container Design", "md_DESIGN.html#autotoc_md91", [
-        [ "Build Environments", "md_DESIGN.html#autotoc_md92", null ],
-        [ "Runtime Image", "md_DESIGN.html#autotoc_md93", null ]
+      [ "Fulfilment Mapping", "md_DESIGN.html#autotoc_md91", null ],
+      [ "Build and Container Design", "md_DESIGN.html#autotoc_md92", [
+        [ "Build Environments", "md_DESIGN.html#autotoc_md93", null ],
+        [ "Runtime Image", "md_DESIGN.html#autotoc_md94", null ]
       ] ],
-      [ "Design Decisions", "md_DESIGN.html#autotoc_md94", null ],
-      [ "Status", "md_DESIGN.html#autotoc_md95", null ]
+      [ "Design Decisions", "md_DESIGN.html#autotoc_md95", null ],
+      [ "Status", "md_DESIGN.html#autotoc_md96", null ]
     ] ],
     [ "ROADMAP: C++ Agent Harness", "md_ROADMAP.html", [
-      [ "Phase 1: Specification Development", "md_ROADMAP.html#autotoc_md97", null ],
-      [ "Phase 2: Design", "md_ROADMAP.html#autotoc_md98", null ],
-      [ "Phase 3: Implementation", "md_ROADMAP.html#autotoc_md99", null ],
-      [ "Phase 4: Evolution", "md_ROADMAP.html#autotoc_md100", [
-        [ "Phase A: Foundation", "md_ROADMAP.html#autotoc_md101", null ],
-        [ "Phase B: Context fragments", "md_ROADMAP.html#autotoc_md102", null ],
-        [ "Phase C: Session persistence", "md_ROADMAP.html#autotoc_md103", null ],
-        [ "Phase D: Interaction", "md_ROADMAP.html#autotoc_md104", null ],
-        [ "Phase E: MCP", "md_ROADMAP.html#autotoc_md105", null ],
-        [ "Phase F: ACP client mode", "md_ROADMAP.html#autotoc_md106", null ],
-        [ "Shared JSON-RPC core", "md_ROADMAP.html#autotoc_md107", null ],
-        [ "Tool set customization", "md_ROADMAP.html#autotoc_md108", null ],
-        [ "Deliberately out of scope", "md_ROADMAP.html#autotoc_md109", null ],
-        [ "Spec impact", "md_ROADMAP.html#autotoc_md110", null ]
+      [ "Phase 1: Specification Development", "md_ROADMAP.html#autotoc_md98", null ],
+      [ "Phase 2: Design", "md_ROADMAP.html#autotoc_md99", null ],
+      [ "Phase 3: Implementation", "md_ROADMAP.html#autotoc_md100", null ],
+      [ "Phase 4: Evolution", "md_ROADMAP.html#autotoc_md101", [
+        [ "Phase A: Foundation", "md_ROADMAP.html#autotoc_md102", null ],
+        [ "Phase B: Context fragments", "md_ROADMAP.html#autotoc_md103", null ],
+        [ "Phase C: Session persistence", "md_ROADMAP.html#autotoc_md104", null ],
+        [ "Phase D: Interaction", "md_ROADMAP.html#autotoc_md105", null ],
+        [ "Phase E: MCP", "md_ROADMAP.html#autotoc_md106", null ],
+        [ "Phase F: ACP client mode", "md_ROADMAP.html#autotoc_md107", null ],
+        [ "Shared JSON-RPC core", "md_ROADMAP.html#autotoc_md108", null ],
+        [ "Tool set customization", "md_ROADMAP.html#autotoc_md109", null ],
+        [ "Deliberately out of scope", "md_ROADMAP.html#autotoc_md110", null ],
+        [ "Phase G: The setup command", "md_ROADMAP.html#autotoc_md111", null ],
+        [ "Spec impact", "md_ROADMAP.html#autotoc_md112", null ]
       ] ],
-      [ "Quality Gates", "md_ROADMAP.html#autotoc_md111", null ]
+      [ "Quality Gates", "md_ROADMAP.html#autotoc_md113", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -187,11 +190,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AcpChannel_8cpp.html",
-"Skills_8h.html",
-"classbjorne__agent_1_1mcp_1_1Client.html#adfe0ee4b36999f6bf5bfcfbcd9906ed4",
-"md_SPEC.html#autotoc_md32",
-"structbjorne__agent_1_1cli_1_1Invocation.html#ac766841fec90f48fa1988ff6a40396ed",
-"structbjorne__agent_1_1session_1_1SessionState.html#a2243d09fd135e6c015cb3e0c99cac152"
+"Shutdown_8h.html#a0ddd7f1f181f29e6713faf1416cadc2c",
+"classbjorne__agent_1_1jsonrpc_1_1Endpoint.html#ac10c5b882ad2d40dee87bdb608347f4d",
+"md_ROADMAP.html#autotoc_md104",
+"structbjorne__agent_1_1app_1_1App_1_1Options.html#a55b71c53f979e10db1a554f6728242d4",
+"structbjorne__agent_1_1model_1_1ModelClientOptions.html#a071b7327fc45b8526ea7d703837a2e09"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

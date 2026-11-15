@@ -20,6 +20,7 @@ var namespacebjorne__agent_1_1platform =
     [ "unsetEnvironmentVariable", "namespacebjorne__agent_1_1platform.html#a08190caa786ed5d0545b75dfc7ae8dd3", null ],
     [ "processId", "namespacebjorne__agent_1_1platform.html#a871058d68e6b1db37c803a9c9489aeca", null ],
     [ "standardInputIsTerminal", "namespacebjorne__agent_1_1platform.html#a4e9e826de68f008431b91bb1a487ae06", null ],
+    [ "currentWorkingDirectory", "namespacebjorne__agent_1_1platform.html#ad66080cd326a86012265bba4f637bcae", null ],
     [ "closeSocket", "namespacebjorne__agent_1_1platform.html#a3da817f5d8bd69d9a04489402d2545a0", null ],
     [ "addressToBinary", "namespacebjorne__agent_1_1platform.html#afd25219f098f1832292005519f737747", null ],
     [ "addressToText", "namespacebjorne__agent_1_1platform.html#a11958835ec328f1d9657459673c58e11", null ],
