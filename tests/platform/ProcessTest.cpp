@@ -1,11 +1,17 @@
 #include "platform/Process.h"
 
 #include <chrono>
+#include <filesystem>
+#include <fstream>
 #include <string>
 #include <thread>
 #include <vector>
 
 #include <catch_amalgamated.hpp>
+
+#if !defined(_WIN32)
+#include <unistd.h>
+#endif
 
 using bjorne_agent::platform::ChildProcess;
 using bjorne_agent::platform::ReadStatus;
@@ -81,6 +87,41 @@ TEST_CASE("a missing command is reported") {
   REQUIRE(error.find("bjorne_agent_no_such_command_12345") != std::string::npos);
   REQUIRE_FALSE(process.started());
 }
+
+#if !defined(_WIN32)
+TEST_CASE("a command that is not a program is reported") {
+  const std::filesystem::path directory =
+      std::filesystem::temp_directory_path() /
+      ("bjorne_process_" +
+       std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(
+                          std::chrono::system_clock::now().time_since_epoch())
+                          .count()) +
+       "-" + std::to_string(::getpid()));
+  std::filesystem::create_directories(directory);
+
+  // A directory and a file without the execute bit both exist, and neither can
+  // be run as a program.
+  ChildProcess asDirectory;
+  std::string error;
+  REQUIRE_FALSE(asDirectory.start(directory.string(), {}, {}, error));
+  REQUIRE(error.find(directory.string()) != std::string::npos);
+  REQUIRE_FALSE(asDirectory.started());
+
+  const std::filesystem::path file = directory / "not-a-program";
+  {
+    std::ofstream stream(file);
+    stream << "hello\n";
+  }
+  ChildProcess asFile;
+  REQUIRE_FALSE(asFile.start(file.string(), {}, {}, error));
+  REQUIRE(error.find(file.string()) != std::string::npos);
+  REQUIRE(error.find("Cannot start MCP server") != std::string::npos);
+  REQUIRE_FALSE(asFile.started());
+
+  std::error_code code;
+  std::filesystem::remove_all(directory, code);
+}
+#endif
 
 TEST_CASE("a process cannot be started twice") {
   ChildProcess process;

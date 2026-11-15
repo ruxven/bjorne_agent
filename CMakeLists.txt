@@ -230,6 +230,9 @@ if(BJORNE_AGENT_STATIC)
   target_link_options(bjorne_agent PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
   if(BUILD_TESTING)
     target_link_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
+    # The tests spawn the stub server, so it must run next to them without a
+    # dynamic loader of its own.
+    target_link_options(bjorne_agent_mcp_stub PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
   endif()
 endif()
 

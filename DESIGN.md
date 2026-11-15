@@ -100,6 +100,8 @@ An MCP server is a child process with pipes on standard input and standard outpu
 
 The reader is a poll on POSIX and a peek on the named pipe on Windows, with a poll interval rather than a blocking read, so the endpoint can time out a request. A partial line is kept for the next call, and an oversized line is refused rather than allowed to exhaust memory.
 
+The program is looked up on `PATH` before it is spawned, so a command that is missing or not executable is reported when the server starts and names the command, rather than as a failed first request. A server may also exit between two calls: a write to its closed input pipe raises `SIGPIPE`, which by default would kill the whole agent, so the signal is ignored and the write is reported as an error instead.
+
 ### MCP Client
 
 The MCP client is the protocol half on top of the endpoint. It performs the `initialize` handshake, sends the initialized notification, lists the tools following the pagination cursor, and calls a tool. The list is paginated because a server may hold more tools than fit in one response, and the cursor is followed up to a fixed number of pages so a server cannot loop the client forever.

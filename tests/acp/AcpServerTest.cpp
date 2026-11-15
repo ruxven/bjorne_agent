@@ -205,7 +205,9 @@ class EditorTransport final : public Transport {
     condition_.notify_all();
   }
 
-  // Waits for the answer to a request the editor made.
+  // Waits for the answer to a request the editor made. The agent sends its own
+  // requests to the editor with ids from the same small range, so a message
+  // that carries a method is not an answer and is skipped.
   Value awaitResponse(int id, int timeout_ms = 3000) {
     const auto deadline = std::chrono::steady_clock::now() + std::chrono::milliseconds(timeout_ms);
     for (;;) {
@@ -213,7 +215,8 @@ class EditorTransport final : public Transport {
         std::lock_guard<std::mutex> guard(mutex_);
         for (const Value& message : written) {
           const Value* found = message.find("id");
-          if (found != nullptr && found->isNumber() && static_cast<int>(found->number) == id) {
+          if (found != nullptr && found->isNumber() && static_cast<int>(found->number) == id &&
+              message.find("method") == nullptr) {
             return message;
           }
         }
@@ -313,20 +316,24 @@ class EditorTransport final : public Transport {
 class TempDirectory {
  public:
   TempDirectory() {
-    path_ = std::filesystem::temp_directory_path() /
-            ("bjorne_acp_" + std::to_string(
-                                std::chrono::duration_cast<std::chrono::milliseconds>(
-                                    std::chrono::system_clock::now().time_since_epoch())
-                                    .count()));
-    std::filesystem::create_directories(path_);
+    directory_ = std::filesystem::temp_directory_path() /
+                 ("bjorne_acp_" + std::to_string(
+                                     std::chrono::duration_cast<std::chrono::milliseconds>(
+                                         std::chrono::system_clock::now().time_since_epoch())
+                                         .count()));
+    std::filesystem::create_directories(directory_);
+    // std::filesystem::path does not convert to std::string implicitly on
+    // every toolchain, so cross it once here.
+    path_ = directory_.string();
   }
   ~TempDirectory() {
     std::error_code code;
-    std::filesystem::remove_all(path_, code);
+    std::filesystem::remove_all(directory_, code);
   }
   const std::string& path() const { return path_; }
 
  private:
+  std::filesystem::path directory_;
   std::string path_;
 };
 

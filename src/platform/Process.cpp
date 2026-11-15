@@ -247,6 +247,7 @@ int ChildProcess::exitCode() { return exited_ ? static_cast<int>(exit_code_) : -
 
 #include <cerrno>
 #include <chrono>
+#include <cstdlib>
 #include <cstring>
 #include <string>
 #include <thread>
@@ -256,6 +257,7 @@ int ChildProcess::exitCode() { return exited_ ? static_cast<int>(exit_code_) : -
 #include <poll.h>
 #include <signal.h>
 #include <spawn.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -282,6 +284,55 @@ bool setCloseOnExec(int fd) {
     return false;
   }
   return ::fcntl(fd, F_SETFD, flags | FD_CLOEXEC) == 0;
+}
+
+// 0 when the path names a regular file this user may execute, EACCES when it
+// exists but cannot be executed, and ENOENT otherwise.
+int runnableStatus(const std::string& path) {
+  struct stat info {};
+  if (::stat(path.c_str(), &info) != 0 || !S_ISREG(info.st_mode)) {
+    return ENOENT;
+  }
+  return ::access(path.c_str(), X_OK) == 0 ? 0 : EACCES;
+}
+
+// Finds the program the way execvp does, and returns 0 or the errno a failed
+// exec would report. posix_spawnp does not report a program it cannot find on
+// every system: under qemu-user it reports success and the child never exists,
+// so the failure surfaces later as a broken pipe. Looking the program up first
+// makes a missing command a start error that names it, on every system.
+int lookupError(const std::string& command) {
+  if (command.empty()) {
+    return ENOENT;
+  }
+  if (command.find('/') != std::string::npos) {
+    return runnableStatus(command);
+  }
+
+  const char* path = std::getenv("PATH");
+  const std::string directories = path != nullptr ? path : "/bin:/usr/bin";
+  int last = ENOENT;
+  std::size_t start = 0;
+  for (;;) {
+    const std::size_t end = directories.find(':', start);
+    std::string directory = directories.substr(start, end == std::string::npos ? std::string::npos : end - start);
+    // An empty entry is the current directory, as in the shell.
+    if (directory.empty()) {
+      directory = ".";
+    }
+    const int status = runnableStatus(directory + "/" + command);
+    if (status == 0) {
+      return 0;
+    }
+    if (status != ENOENT) {
+      last = status;
+    }
+    if (end == std::string::npos) {
+      break;
+    }
+    start = end + 1;
+  }
+  return last;
 }
 
 // Copies the inherited environment, then applies the entries the config adds
@@ -324,6 +375,21 @@ bool ChildProcess::start(const std::string& command, const std::vector<std::stri
                          const std::map<std::string, std::string>& environment, std::string& error) {
   if (started_) {
     error = "The process has already been started";
+    return false;
+  }
+
+  const int lookup = lookupError(command);
+  if (lookup != 0) {
+    error = "Cannot start MCP server: " + command + ": " + std::strerror(lookup);
+    return false;
+  }
+
+  // A server may exit between two calls. A write to its closed input pipe
+  // raises SIGPIPE, which by default kills the whole agent; ignoring it turns
+  // the write into an EPIPE that sendLine reports. The TLS transport ignores
+  // the same signal for the same reason.
+  if (::signal(SIGPIPE, SIG_IGN) == SIG_ERR) {
+    error = "Cannot ignore SIGPIPE: " + std::string(std::strerror(errno));
     return false;
   }
 
