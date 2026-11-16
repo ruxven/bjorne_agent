@@ -105,7 +105,9 @@ TEST_CASE("The init command writes a config, the prompts and the environment fil
 
   REQUIRE(init.run() == 0);
 
-  const std::string configPath = directory.file("bjorne_agent/bjorne_agent.json");
+  // The wizard prints the location it writes with the forward slash it joins
+  // with, so the expected text uses that spelling on every platform.
+  const std::string configPath = directory.str() + "/bjorne_agent/bjorne_agent.json";
   REQUIRE(std::filesystem::exists(configPath));
 
   bjorne_agent::config::Config config;
@@ -124,7 +126,7 @@ TEST_CASE("The init command writes a config, the prompts and the environment fil
 
   // The prompt files sit next to the config, and the config points at them
   // with a relative path.
-  const std::string promptDirectory = directory.file("bjorne_agent/prompts");
+  const std::string promptDirectory = directory.str() + "/bjorne_agent/prompts";
   REQUIRE(readFile(promptDirectory + "/compression.md") == bjorne_agent::config::defaultCompressionPrompt());
   REQUIRE(readFile(promptDirectory + "/system.md") ==
           std::string(bjorne_agent::config::kDefaultSystemPrompt) + "\n");

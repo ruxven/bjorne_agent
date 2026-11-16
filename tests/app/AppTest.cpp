@@ -85,6 +85,21 @@ struct Harness {
   }
 };
 
+// A path that goes into a fixture as a JSON string. The native separator is a
+// backslash on Windows, and JSON reads a backslash as the start of an escape,
+// so it has to be doubled on the way in.
+std::string jsonString(const std::string& text) {
+  std::string out;
+  out.reserve(text.size());
+  for (const char character : text) {
+    if (character == '\\' || character == '"') {
+      out.push_back('\\');
+    }
+    out.push_back(character);
+  }
+  return out;
+}
+
 // Writes a config file with one model and the given session directory.
 std::string writeConfig(const TempDir& directory, const std::string& sessionDirectory) {
   const std::string path = directory.file("bjorne_agent.json");
@@ -93,8 +108,8 @@ std::string writeConfig(const TempDir& directory, const std::string& sessionDire
     "version": 1,
     "agent": {
       "system_prompt": "You are a helper.",
-      "workspace": ")" << directory.str() << R"(",
-      "session_dir": ")" << sessionDirectory << R"("
+      "workspace": ")" << jsonString(directory.str()) << R"(",
+      "session_dir": ")" << jsonString(sessionDirectory) << R"("
     },
     "models": [
       {
@@ -123,8 +138,8 @@ std::string writeConfigWith(const TempDir& directory, const std::string& session
        << "  \"version\": 1,\n"
        << "  \"agent\": {\n"
        << "    \"system_prompt\": \"You are a helper.\",\n"
-       << "    \"workspace\": \"" << directory.str() << "\",\n"
-       << "    \"session_dir\": \"" << sessionDirectory << "\""
+       << "    \"workspace\": \"" << jsonString(directory.str()) << "\",\n"
+       << "    \"session_dir\": \"" << jsonString(sessionDirectory) << "\""
        << extraAgent << "\n"
        << "  },\n"
        << "  \"models\": [\n"
@@ -677,8 +692,8 @@ TEST_CASE("A run answers through the real HTTP client") {
     "version": 1,
     "agent": {
       "system_prompt": "You are a helper.",
-      "workspace": ")" << directory.str() << R"(",
-      "session_dir": ")" << directory.file("sessions") << R"("
+      "workspace": ")" << jsonString(directory.str()) << R"(",
+      "session_dir": ")" << jsonString(directory.file("sessions")) << R"("
     },
     "models": [
       {

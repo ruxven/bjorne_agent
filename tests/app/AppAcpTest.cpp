@@ -135,6 +135,21 @@ class ScriptedModel final : public ModelBackend {
   std::string tools_json;
 };
 
+// A path that goes into a fixture as a JSON string. The native separator is a
+// backslash on Windows, and JSON reads a backslash as the start of an escape,
+// so it has to be doubled on the way in.
+std::string jsonString(const std::string& text) {
+  std::string out;
+  out.reserve(text.size());
+  for (const char character : text) {
+    if (character == '\\' || character == '"') {
+      out.push_back('\\');
+    }
+    out.push_back(character);
+  }
+  return out;
+}
+
 // Writes a config file with one model and the given session directory.
 std::string writeConfig(const TempDir& directory, const std::string& sessionDirectory) {
   const std::string path = directory.file("bjorne_agent.json");
@@ -143,8 +158,8 @@ std::string writeConfig(const TempDir& directory, const std::string& sessionDire
     "version": 1,
     "agent": {
       "system_prompt": "You are a helper.",
-      "workspace": ")" << directory.str() << R"(",
-      "session_dir": ")" << sessionDirectory << R"("
+      "workspace": ")" << jsonString(directory.str()) << R"(",
+      "session_dir": ")" << jsonString(sessionDirectory) << R"("
     },
     "models": [
       {
@@ -171,7 +186,7 @@ TEST_CASE("The ACP command serves the editor and answers its requests") {
   transport->closeAfter(2);
   transport->push(R"({"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":1}})");
   transport->push(R"({"jsonrpc":"2.0","id":2,"method":"session/new","params":{"cwd":")" +
-                   directory.str() + R"("}})");
+                   jsonString(directory.str()) + R"("}})");
 
   std::ostringstream out;
   std::ostringstream err;
