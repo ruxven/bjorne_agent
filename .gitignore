@@ -4,6 +4,7 @@ build*/
 third-party
 
 test_input.txt
+*.profraw
 
 *.sarif
 pain_points_report.*

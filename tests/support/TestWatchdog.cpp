@@ -57,8 +57,14 @@ void watchLoop() {
       }
       name = state.current;
     }
+    // A workflow command as well as a plain line: the runner turns the first
+    // into an annotation, which stays readable after the job log has been
+    // rolled up, so the culprit can be found from the check run alone.
+    std::fprintf(stdout, "\n::error title=Hanging test::The test case \"%s\" has been running for more than %lld seconds.\n",
+                 name.c_str(), static_cast<long long>(limit.count()));
     std::fprintf(stderr, "\nThe test case \"%s\" has been running for more than %lld seconds.\n", name.c_str(),
                  static_cast<long long>(limit.count()));
+    std::fflush(stdout);
     std::fflush(stderr);
     // _Exit rather than abort: no atexit handlers and no debugger break, so the
     // run fails cleanly and the harness sees a non-zero status.

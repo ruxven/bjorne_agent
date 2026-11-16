@@ -67,8 +67,29 @@ bool StdioTransport::waitForInput(int timeout_ms) {
   if (handle == INVALID_HANDLE_VALUE || handle == nullptr) {
     return false;
   }
-  const DWORD status = ::WaitForSingleObject(handle, static_cast<DWORD>(timeout_ms));
-  return status == WAIT_OBJECT_0;
+  // WaitForSingleObject does not tell whether an anonymous pipe has data: the
+  // pipe handle reports itself ready, and the read that follows then blocks
+  // until the peer writes. PeekNamedPipe answers the question the deadline
+  // needs, so a partial line times out instead of wedging the reader. A console
+  // input handle is not a pipe and is waitable, so it keeps the wait.
+  if (::GetFileType(handle) != FILE_TYPE_PIPE) {
+    return ::WaitForSingleObject(handle, static_cast<DWORD>(timeout_ms)) == WAIT_OBJECT_0;
+  }
+  const ULONGLONG deadline = ::GetTickCount64() + static_cast<ULONGLONG>(timeout_ms);
+  for (;;) {
+    DWORD available = 0;
+    if (::PeekNamedPipe(handle, nullptr, 0, nullptr, &available, nullptr) == 0) {
+      // The pipe is gone. Let the read report the end or the error.
+      return true;
+    }
+    if (available > 0) {
+      return true;
+    }
+    if (::GetTickCount64() >= deadline) {
+      return false;
+    }
+    ::Sleep(5);
+  }
 #else
   struct pollfd descriptor {};
   descriptor.fd = input_;
