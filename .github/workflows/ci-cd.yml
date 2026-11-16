@@ -206,11 +206,11 @@ jobs:
 
     - name: Report failing tests
       # The job log needs a token to read, but a workflow command becomes an
-      # annotation, which the check run serves to anyone. Keep the tail of the
-      # run, which is where the failure text lives, and escape it into a single
-      # line because a command message cannot contain a newline. The tail is
-      # short so that the escaping cannot push the message past the annotation
-      # size limit.
+      # annotation, which the check run serves to anyone. Two of them: the last
+      # lines of the run, where a failure explains itself, and the last cases
+      # the trace named, which is the only record when the process dies. Both
+      # stay small, because the runner keeps only the first few thousand
+      # characters of a message and a longer one would lose its end.
       if: failure()
       shell: pwsh
       run: |
@@ -219,12 +219,13 @@ jobs:
           Write-Output "::error title=No test output::the test step left no output behind"
           exit 0
         }
-        $text = Get-Content $log -Raw
-        if ($text.Length -gt 12000) {
-          $text = $text.Substring($text.Length - 12000)
+        function Escape([string] $text) {
+          $text -replace '%', '%25' -replace "`r", '%0D' -replace "`n", '%0A'
         }
-        $text = $text -replace '%', '%25' -replace "`r", '%0D' -replace "`n", '%0A'
-        Write-Output "::error title=Failing tests::$text"
+        $tail = (Get-Content $log -Tail 25) -join "`n"
+        Write-Output "::error title=End of the test run::$(Escape $tail)"
+        $cases = Get-Content $log | Where-Object { $_ -like '--- *' } | Select-Object -Last 10
+        Write-Output "::warning title=Last test cases::$(Escape ($cases -join "`n"))"
 
     - name: Install
       run: cmake --install build --config Release --prefix dist/windows-x64
