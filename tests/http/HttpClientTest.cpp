@@ -7,6 +7,8 @@
 
 #include "http/LoopbackServer.h"
 
+#include "FakeNameService.h"
+
 namespace {
 
 class MockTransport final : public bjorne_agent::http::HttpTransport {
@@ -259,11 +261,19 @@ TEST_CASE("plain TCP transport reports a refused connection") {
 }
 
 TEST_CASE("plain TCP transport reports a DNS failure") {
-  bjorne_agent::http::PlainTcpTransport transport;
+  // The name service is a fake, so the failure is produced without asking the
+  // machine's DNS and without reaching the network.
+  bjorne_agent_test::FakeNameService service;
+  service.answer = false;
+  bjorne_agent::http::ResolverOptions resolver;
+  resolver.name_service = &service;
+
+  bjorne_agent::http::PlainTcpTransport transport(resolver);
   std::string response;
   std::string error;
-  REQUIRE_FALSE(transport.send("GET / HTTP/1.1\r\n\r\n", "bjorne_agent.invalid", "80", response, error));
-  REQUIRE(error.find("DNS resolution failed") != std::string::npos);
+  REQUIRE_FALSE(transport.send("GET / HTTP/1.1\r\n\r\n", "api.example.test", "80", response, error));
+  REQUIRE(error == "DNS resolution failed: no such host");
+  REQUIRE(service.lookups == std::vector<std::string>{"api.example.test:80"});
 }
 
 #if BJORNE_AGENT_HAS_OPENSSL
@@ -348,11 +358,19 @@ TEST_CASE("OpenSSL transport reports a read failure") {
 
 #if BJORNE_AGENT_HAS_OPENSSL
 TEST_CASE("OpenSSL transport reports a DNS failure") {
-  bjorne_agent::http::OpenSslTransport transport;
+  // The name service is a fake, so the failure is produced without asking the
+  // machine's DNS and without reaching the network.
+  bjorne_agent_test::FakeNameService service;
+  service.answer = false;
+  bjorne_agent::http::OpenSslTransport::Options options;
+  options.resolver.name_service = &service;
+
+  bjorne_agent::http::OpenSslTransport transport(options);
   std::string response;
   std::string error;
-  REQUIRE_FALSE(transport.send("GET / HTTP/1.1\r\n\r\n", "bjorne_agent.invalid", "443", response, error));
-  REQUIRE(error.find("DNS resolution failed") != std::string::npos);
+  REQUIRE_FALSE(transport.send("GET / HTTP/1.1\r\n\r\n", "api.example.test", "443", response, error));
+  REQUIRE(error == "DNS resolution failed: no such host");
+  REQUIRE(service.lookups == std::vector<std::string>{"api.example.test:443"});
 }
 #endif
 

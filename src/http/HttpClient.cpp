@@ -211,14 +211,15 @@ std::string buildRequest(const HttpRequest& request) {
 
 // Resolves the host and connects, trying each address in turn. Returns the
 // connected socket, or kInvalidSocket with error set.
-platform::SocketHandle connectToHost(const std::string& host, const std::string& port, std::string& error) {
+platform::SocketHandle connectToHost(const std::string& host, const std::string& port, std::string& error,
+                                     const ResolverOptions& resolver) {
   if (!platform::initializeSockets()) {
     error = "Socket startup failed";
     return platform::kInvalidSocket;
   }
   std::vector<ResolvedAddress> addresses;
   log::detail("Resolving " + host + ":" + port);
-  if (!resolveHost(host, port, addresses, error)) {
+  if (!resolveHost(host, port, addresses, error, resolver)) {
     log::fail(error);
     return platform::kInvalidSocket;
   }
@@ -369,7 +370,7 @@ bool OpenSslTransport::send(const std::string& request, const std::string& host,
   return false;
 #else
   ignoreSigPipe();
-  const platform::SocketHandle fd = connectToHost(host, port, error);
+  const platform::SocketHandle fd = connectToHost(host, port, error, options_.resolver);
   if (!platform::isValidSocket(fd)) {
     return false;
   }
@@ -437,7 +438,7 @@ bool OpenSslTransport::send(const std::string& request, const std::string& host,
 
 bool PlainTcpTransport::send(const std::string& request, const std::string& host, const std::string& port,
                              std::string& response, std::string& error) {
-  const platform::SocketHandle fd = connectToHost(host, port, error);
+  const platform::SocketHandle fd = connectToHost(host, port, error, resolver_);
   if (!platform::isValidSocket(fd)) {
     return false;
   }

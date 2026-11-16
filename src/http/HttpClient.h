@@ -5,6 +5,8 @@
 #include <utility>
 #include <vector>
 
+#include "http/Resolver.h"
+
 namespace bjorne_agent {
 namespace http {
 
@@ -48,6 +50,9 @@ class OpenSslTransport final : public HttpTransport {
     bool ignore_self_signed = false;
     // SNI server name. Empty = use `host` as the SNI name.
     std::string hostname;
+    // Name resolution settings. Tests set a fake service so a resolution
+    // failure test never asks the machine's DNS or reaches the network.
+    ResolverOptions resolver;
   };
 
   // Fails with a clear error when the build has no OpenSSL, rather than
@@ -63,8 +68,14 @@ class OpenSslTransport final : public HttpTransport {
 
 class PlainTcpTransport final : public HttpTransport {
  public:
+  PlainTcpTransport() = default;
+  explicit PlainTcpTransport(ResolverOptions resolver) : resolver_(std::move(resolver)) {}
+
   bool send(const std::string& request, const std::string& host, const std::string& port,
             std::string& response, std::string& error) override;
+
+ private:
+  ResolverOptions resolver_;
 };
 
 class HttpClient final {

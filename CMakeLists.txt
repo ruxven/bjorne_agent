@@ -223,6 +223,9 @@ if(BUILD_TESTING)
   endif()
 
   add_test(NAME bjorne_agent_tests COMMAND bjorne_agent_tests)
+  # A wedged test used to run until CTest's default 25 minute timeout. Fail
+  # fast instead, so a hang is reported in minutes rather than half an hour.
+  set_tests_properties(bjorne_agent_tests PROPERTIES TIMEOUT 300)
 endif()
 
 if(BJORNE_AGENT_STATIC)

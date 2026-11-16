@@ -10,6 +10,7 @@
 #include <sys/socket.h>
 #endif
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -22,13 +23,37 @@ struct ResolvedAddress {
   platform::SocketLength length = 0;
 };
 
-// Only the static build has a use for this. A static glibc cannot resolve names through getaddrinfo: the call needs the NSS
-// modules, which are shared objects, and loading one from a static binary
-// crashes. The static build therefore resolves through /etc/hosts and the libc
-// stub resolver, which talks to the nameservers in /etc/resolv.conf directly.
-// hosts_path lets tests point at a fixture rather than the real file.
+// The network half of name resolution: turns a name into the addresses to try.
+// A build that links dynamically asks the operating system. Only the static
+// build has a use for an alternative: a static glibc cannot resolve names
+// through getaddrinfo because the call needs the NSS modules, which are shared
+// objects, and loading one from a static binary crashes. That build asks the
+// nameservers in /etc/resolv.conf directly instead.
+//
+// Tests substitute a fake, so a unit test never depends on the machine's DNS
+// configuration and never leaves the machine.
+class NameService {
+ public:
+  virtual ~NameService();
+
+  // Fills addresses with the addresses for host and port, in preference order.
+  // Returns false and sets error when the name does not resolve. A failing
+  // implementation leaves addresses untouched.
+  virtual bool resolve(const std::string& host, unsigned short port, std::vector<ResolvedAddress>& addresses,
+                       std::string& error) = 0;
+};
+
+// The name service this build uses when the caller supplies none. It exists as
+// a factory so that resolution has exactly one default and a test can reach
+// the real adapter without substituting anything.
+std::unique_ptr<NameService> makePlatformNameService();
+
+// The static build resolves names through /etc/hosts before it asks the name
+// service. hosts_path lets tests point at a fixture rather than the real file.
 struct ResolverOptions {
   std::string hosts_path = "/etc/hosts";
+  // Null means the platform lookup. Tests set a fake.
+  NameService* name_service = nullptr;
 };
 
 // Resolves host and port into the addresses to try, in preference order.

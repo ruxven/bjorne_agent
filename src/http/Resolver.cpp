@@ -177,58 +177,87 @@ bool queryDns(const std::string& host, int type, unsigned short port, std::vecto
   return parseDnsResponse(response, size, port, addresses);
 }
 
+// Asks the nameservers directly. A static glibc cannot use getaddrinfo, so the
+// static build resolves this way.
+class DnsNameService final : public NameService {
+ public:
+  bool resolve(const std::string& host, unsigned short port, std::vector<ResolvedAddress>& addresses,
+               std::string& error) override {
+    int code = NO_DATA;
+    if (!queryDns(host, T_A, port, addresses)) {
+      code = h_errno;
+    }
+    if (!queryDns(host, T_AAAA, port, addresses)) {
+      code = h_errno;
+    }
+    if (!addresses.empty()) {
+      return true;
+    }
+    error = std::string("DNS resolution failed: ") + ::hstrerror(code);
+    return false;
+  }
+};
+
 bool resolveStub(const std::string& host, unsigned short port, std::vector<ResolvedAddress>& addresses,
                  std::string& error, const ResolverOptions& options) {
   if (lookupHosts(options.hosts_path, host, port, addresses)) {
     return true;
   }
-  int code = NO_DATA;
-  if (!queryDns(host, T_A, port, addresses)) {
-    code = h_errno;
+  if (options.name_service != nullptr) {
+    return options.name_service->resolve(host, port, addresses, error);
   }
-  if (!queryDns(host, T_AAAA, port, addresses)) {
-    code = h_errno;
-  }
-  if (!addresses.empty()) {
-    return true;
-  }
-  error = std::string("DNS resolution failed: ") + ::hstrerror(code);
-  return false;
+  return makePlatformNameService()->resolve(host, port, addresses, error);
 }
 
 #else
 
-bool resolveWithGetaddrinfo(const std::string& host, const std::string& port,
-                            std::vector<ResolvedAddress>& addresses, std::string& error) {
-  addrinfo hints{};
-  hints.ai_family = AF_UNSPEC;
-  hints.ai_socktype = SOCK_STREAM;
-  addrinfo* results = nullptr;
-  const int rc = ::getaddrinfo(host.c_str(), port.c_str(), &hints, &results);
-  if (rc != 0) {
-    error = std::string("DNS resolution failed: ") + platform::addressErrorMessage(rc);
-    return false;
-  }
-  for (addrinfo* entry = results; entry != nullptr; entry = entry->ai_next) {
-    if (entry->ai_addrlen > sizeof(ResolvedAddress::storage)) {
-      continue;
+// Asks the operating system, which reaches the network through whatever the
+// machine is configured to use.
+class SystemNameService final : public NameService {
+ public:
+  bool resolve(const std::string& host, unsigned short port, std::vector<ResolvedAddress>& addresses,
+               std::string& error) override {
+    const std::string service = std::to_string(port);
+    addrinfo hints{};
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+    addrinfo* results = nullptr;
+    const int rc = ::getaddrinfo(host.c_str(), service.c_str(), &hints, &results);
+    if (rc != 0) {
+      error = std::string("DNS resolution failed: ") + platform::addressErrorMessage(rc);
+      return false;
     }
-    ResolvedAddress address;
-    std::memcpy(&address.storage, entry->ai_addr, entry->ai_addrlen);
-    address.length = static_cast<platform::SocketLength>(entry->ai_addrlen);
-    addresses.push_back(address);
+    for (addrinfo* entry = results; entry != nullptr; entry = entry->ai_next) {
+      if (entry->ai_addrlen > sizeof(ResolvedAddress::storage)) {
+        continue;
+      }
+      ResolvedAddress address;
+      std::memcpy(&address.storage, entry->ai_addr, entry->ai_addrlen);
+      address.length = static_cast<platform::SocketLength>(entry->ai_addrlen);
+      addresses.push_back(address);
+    }
+    ::freeaddrinfo(results);
+    if (addresses.empty()) {
+      error = "DNS resolution failed: no addresses";
+      return false;
+    }
+    return true;
   }
-  ::freeaddrinfo(results);
-  if (addresses.empty()) {
-    error = "DNS resolution failed: no addresses";
-    return false;
-  }
-  return true;
-}
+};
 
 #endif
 
 }  // namespace
+
+NameService::~NameService() = default;
+
+std::unique_ptr<NameService> makePlatformNameService() {
+#if BJORNE_AGENT_USE_STUB_RESOLVER && !defined(_WIN32)
+  return std::make_unique<DnsNameService>();
+#else
+  return std::make_unique<SystemNameService>();
+#endif
+}
 
 bool resolveHost(const std::string& host, const std::string& port, std::vector<ResolvedAddress>& addresses,
                  std::string& error, const ResolverOptions& options) {
@@ -250,8 +279,10 @@ bool resolveHost(const std::string& host, const std::string& port, std::vector<R
 #if BJORNE_AGENT_USE_STUB_RESOLVER && !defined(_WIN32)
   return resolveStub(host, number, addresses, error, options);
 #else
-  (void)options;
-  return resolveWithGetaddrinfo(host, port, addresses, error);
+  if (options.name_service != nullptr) {
+    return options.name_service->resolve(host, number, addresses, error);
+  }
+  return makePlatformNameService()->resolve(host, number, addresses, error);
 #endif
 }
 

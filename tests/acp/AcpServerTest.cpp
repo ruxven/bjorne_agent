@@ -36,7 +36,11 @@ class ScriptedModel final : public bjorne_agent::model::ModelBackend {
     if (holding_) {
       waiting_ = true;
       condition_.notify_all();
-      condition_.wait(guard, [this] { return !holding_; });
+      // The wait is bounded on purpose. A test that fails before it releases
+      // the model must not leave the turn thread waiting forever: the harness
+      // joins that thread when the test ends, so an unbounded wait here turns
+      // one failed assertion into a run that never finishes.
+      condition_.wait_for(guard, std::chrono::seconds(10), [this] { return !holding_; });
       waiting_ = false;
     }
     seen.push_back(messages);
@@ -1718,6 +1722,13 @@ TEST_CASE("a cancelled turn is interrupted") {
   answer.content = "Too late";
   harness.model->push(answer);
   harness.model->hold();
+  // Releases the model on every path. Without this a failed assertion between
+  // the hold and the release leaves the turn waiting, and the harness teardown
+  // waits on it forever.
+  struct ReleaseOnExit {
+    ScriptedModel& model;
+    ~ReleaseOnExit() { model.release(); }
+  } released{*harness.model};
 
   harness.transport->send("session/prompt",
                           R"({"sessionId":")" + session_id + R"(","prompt":[{"type":"text","text":"go"}]})", 3);

@@ -2,6 +2,8 @@
 
 #include "platform/Platform.h"
 
+#include "FakeNameService.h"
+
 #if defined(_WIN32)
 #include <winsock2.h>
 #include <ws2tcpip.h>
@@ -11,6 +13,7 @@
 #include <sys/socket.h>
 #endif
 
+#include <cstring>
 #include <filesystem>
 #include <fstream>
 #include <string>
@@ -40,6 +43,8 @@ unsigned short portOf(const bjorne_agent::http::ResolvedAddress& address) {
 }
 
 }  // namespace
+
+using bjorne_agent_test::FakeNameService;
 
 TEST_CASE("Resolver accepts a numeric IPv4 host") {
   std::vector<bjorne_agent::http::ResolvedAddress> addresses;
@@ -92,16 +97,46 @@ TEST_CASE("Resolver rejects port zero") {
   REQUIRE(error == "Invalid port: 0");
 }
 
-TEST_CASE("Resolver resolves a name from the system database") {
+TEST_CASE("Resolver asks the name service for a name it cannot read as an address") {
+  FakeNameService service;
+  bjorne_agent::http::ResolverOptions options;
+  options.name_service = &service;
+
   std::vector<bjorne_agent::http::ResolvedAddress> addresses;
   std::string error;
-  REQUIRE(bjorne_agent::http::resolveHost("localhost", "80", addresses, error));
+  REQUIRE(bjorne_agent::http::resolveHost("api.example.test", "8443", addresses, error, options));
   REQUIRE(error.empty());
-  REQUIRE_FALSE(addresses.empty());
-  for (const auto& address : addresses) {
-    REQUIRE((address.storage.ss_family == AF_INET || address.storage.ss_family == AF_INET6));
-    REQUIRE(portOf(address) == 80);
-  }
+  REQUIRE(addresses.size() == 1);
+  REQUIRE(addressText(addresses[0]) == "192.0.2.10");
+  REQUIRE(portOf(addresses[0]) == 8443);
+  REQUIRE(service.lookups == std::vector<std::string>{"api.example.test:8443"});
+}
+
+TEST_CASE("Resolver reports a name the name service cannot resolve") {
+  FakeNameService service;
+  service.answer = false;
+  bjorne_agent::http::ResolverOptions options;
+  options.name_service = &service;
+
+  std::vector<bjorne_agent::http::ResolvedAddress> addresses;
+  std::string error;
+  REQUIRE_FALSE(bjorne_agent::http::resolveHost("missing.example.test", "80", addresses, error, options));
+  REQUIRE(addresses.empty());
+  REQUIRE(error == "DNS resolution failed: no such host");
+  REQUIRE(service.lookups.size() == 1);
+}
+
+TEST_CASE("Resolver does not ask the name service for a numeric host") {
+  FakeNameService service;
+  service.answer = false;
+  bjorne_agent::http::ResolverOptions options;
+  options.name_service = &service;
+
+  std::vector<bjorne_agent::http::ResolvedAddress> addresses;
+  std::string error;
+  REQUIRE(bjorne_agent::http::resolveHost("127.0.0.1", "80", addresses, error, options));
+  REQUIRE(addresses.size() == 1);
+  REQUIRE(service.lookups.empty());
 }
 
 TEST_CASE("Resolver drops addresses from a previous call") {
@@ -113,7 +148,31 @@ TEST_CASE("Resolver drops addresses from a previous call") {
   REQUIRE(addresses.empty());
 }
 
+#if !BJORNE_AGENT_USE_STUB_RESOLVER
+TEST_CASE("The platform name service turns a numeric address into an address") {
+  // A numeric literal is parsed locally, so this exercises the real adapter
+  // without a lookup or a network round trip.
+  const std::unique_ptr<bjorne_agent::http::NameService> service =
+      bjorne_agent::http::makePlatformNameService();
+  std::vector<bjorne_agent::http::ResolvedAddress> addresses;
+  std::string error;
+  REQUIRE(service->resolve("127.0.0.1", 8080, addresses, error));
+  REQUIRE(error.empty());
+  REQUIRE(addresses.size() == 1);
+  REQUIRE(addressText(addresses[0]) == "127.0.0.1");
+  REQUIRE(portOf(addresses[0]) == 8080);
+}
+#endif
+
 #if BJORNE_AGENT_USE_STUB_RESOLVER
+TEST_CASE("The stub build hands out its own name service") {
+  // The static build cannot use getaddrinfo, so the default service has to be
+  // the direct DNS one. Constructing it is enough: resolving would need a
+  // network, and the tests substitute a fake for every actual answer.
+  const std::unique_ptr<bjorne_agent::http::NameService> service =
+      bjorne_agent::http::makePlatformNameService();
+  REQUIRE(service != nullptr);
+}
 
 namespace {
 
@@ -143,13 +202,19 @@ bjorne_agent::http::ResolverOptions hostsOptions() {
 TEST_CASE("Stub resolver reads a name from the hosts file") {
   writeHosts("127.0.0.1 localhost\n10.1.2.3 api.example.test alias.example.test\n");
 
+  // A hosts file hit must not reach the name service.
+  FakeNameService service;
+  bjorne_agent::http::ResolverOptions options = hostsOptions();
+  options.name_service = &service;
+
   std::vector<bjorne_agent::http::ResolvedAddress> addresses;
   std::string error;
-  REQUIRE(bjorne_agent::http::resolveHost("api.example.test", "8443", addresses, error, hostsOptions()));
+  REQUIRE(bjorne_agent::http::resolveHost("api.example.test", "8443", addresses, error, options));
   REQUIRE(error.empty());
   REQUIRE(addresses.size() == 1);
   REQUIRE(addressText(addresses[0]) == "10.1.2.3");
   REQUIRE(portOf(addresses[0]) == 8443);
+  REQUIRE(service.lookups.empty());
 }
 
 TEST_CASE("Stub resolver matches aliases, comments, and case") {
@@ -161,45 +226,62 @@ TEST_CASE("Stub resolver matches aliases, comments, and case") {
       "single-field-line\n"
       "not-an-address broken.example.test\n");
 
+  // The broken line falls through to the name service, which refuses every
+  // name, so the test never asks the real DNS.
+  FakeNameService service;
+  service.answer = false;
+  bjorne_agent::http::ResolverOptions options = hostsOptions();
+  options.name_service = &service;
+
   std::vector<bjorne_agent::http::ResolvedAddress> addresses;
   std::string error;
-  REQUIRE(bjorne_agent::http::resolveHost("api.example.test", "80", addresses, error, hostsOptions()));
+  REQUIRE(bjorne_agent::http::resolveHost("api.example.test", "80", addresses, error, options));
   REQUIRE(addresses.size() == 1);
   REQUIRE(addressText(addresses[0]) == "10.9.8.7");
 
   addresses.clear();
-  REQUIRE(bjorne_agent::http::resolveHost("ipv6.example.test", "80", addresses, error, hostsOptions()));
+  REQUIRE(bjorne_agent::http::resolveHost("ipv6.example.test", "80", addresses, error, options));
   REQUIRE(addresses.size() == 1);
   REQUIRE(addresses[0].storage.ss_family == AF_INET6);
   REQUIRE(addressText(addresses[0]) == "::1");
 
   addresses.clear();
-  REQUIRE_FALSE(bjorne_agent::http::resolveHost("broken.example.test", "80", addresses, error, hostsOptions()));
+  REQUIRE_FALSE(bjorne_agent::http::resolveHost("broken.example.test", "80", addresses, error, options));
   REQUIRE(addresses.empty());
+  REQUIRE(service.lookups == std::vector<std::string>{"broken.example.test:80"});
 }
 
-TEST_CASE("Stub resolver falls back to DNS when the hosts file is missing") {
+TEST_CASE("Stub resolver falls back to the name service when the hosts file is missing") {
+  FakeNameService service;
+  service.address_text = "198.51.100.7";
   bjorne_agent::http::ResolverOptions options;
-  options.hosts_path = "/tmp/opencode/definitely_missing_bjorne_agent_hosts";
+  options.hosts_path = "/definitely/missing/bjorne_agent_hosts";
+  options.name_service = &service;
 
   std::vector<bjorne_agent::http::ResolvedAddress> addresses;
   std::string error;
-  REQUIRE_FALSE(bjorne_agent::http::resolveHost("bjorne_agent.invalid", "80", addresses, error, options));
-  REQUIRE(addresses.empty());
-  REQUIRE(error.rfind("DNS resolution failed", 0) == 0);
+  REQUIRE(bjorne_agent::http::resolveHost("api.example.test", "80", addresses, error, options));
+  REQUIRE(error.empty());
+  REQUIRE(addresses.size() == 1);
+  REQUIRE(addressText(addresses[0]) == "198.51.100.7");
+  REQUIRE(service.lookups == std::vector<std::string>{"api.example.test:80"});
 }
 
-TEST_CASE("Stub resolver falls back to DNS when the hosts path cannot be read") {
+TEST_CASE("Stub resolver falls back to the name service when the hosts path cannot be read") {
   // Opening a directory succeeds; reading it fails, which is the read error
   // path in the file loader.
+  FakeNameService service;
+  service.answer = false;
   bjorne_agent::http::ResolverOptions options;
   options.hosts_path = std::filesystem::temp_directory_path().string();
+  options.name_service = &service;
 
   std::vector<bjorne_agent::http::ResolvedAddress> addresses;
   std::string error;
-  REQUIRE_FALSE(bjorne_agent::http::resolveHost("bjorne_agent.invalid", "80", addresses, error, options));
+  REQUIRE_FALSE(bjorne_agent::http::resolveHost("missing.example.test", "80", addresses, error, options));
   REQUIRE(addresses.empty());
-  REQUIRE(error.rfind("DNS resolution failed", 0) == 0);
+  REQUIRE(error == "DNS resolution failed: no such host");
+  REQUIRE(service.lookups == std::vector<std::string>{"missing.example.test:80"});
 }
 
 #endif
