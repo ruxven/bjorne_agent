@@ -166,6 +166,7 @@ if(BUILD_TESTING)
   target_include_directories(catch2_main PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third_party/catch2)
 
   add_executable(bjorne_agent_tests
+    tests/support/TestWatchdog.cpp
     tests/json/JsonTest.cpp
     tests/config/ConfigTest.cpp
     tests/config/ConfigPathsTest.cpp
