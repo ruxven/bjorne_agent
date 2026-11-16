@@ -19,14 +19,22 @@ using bjorne_agent::jsonrpc::ReadResult;
 
 namespace {
 
+#if defined(_WIN32)
+// The byte size of each pipe. Windows gives _pipe a fixed buffer, and a write
+// that does not fit blocks until a reader drains it, so the buffer has to hold
+// a whole line before the test reads it. POSIX ignores the size and uses the
+// kernel pipe buffer.
+constexpr unsigned int kPipeBufferSize = 4096;
+#endif
+
 // A pair of pipes standing in for the editor connection. The test writes into
 // the input pipe and reads out of the output pipe.
 class PipePair {
  public:
   PipePair() {
 #if defined(_WIN32)
-    _pipe(input_, sizeof(input_), 0);
-    _pipe(output_, sizeof(output_), 0);
+    _pipe(input_, kPipeBufferSize, 0);
+    _pipe(output_, kPipeBufferSize, 0);
 #else
     ::pipe(input_);
     ::pipe(output_);
