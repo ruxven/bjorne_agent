@@ -820,7 +820,7 @@
       },
       {
         "line_start": 64,
-        "line_end": 84,
+        "line_end": 105,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 2,
@@ -828,8 +828,8 @@
         "function_name": "_ZN12bjorne_agent3acp14StdioTransport12waitForInputEi"
       },
       {
-        "line_start": 86,
-        "line_end": 108,
+        "line_start": 107,
+        "line_end": 129,
         "line_count": 20,
         "line_hit": 12,
         "branch_count": 4,
@@ -837,8 +837,8 @@
         "function_name": "_ZN12bjorne_agent3acp14StdioTransport9readChunkERNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 110,
-        "line_end": 145,
+        "line_start": 131,
+        "line_end": 166,
         "line_count": 31,
         "line_hit": 31,
         "branch_count": 16,
@@ -11285,8 +11285,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/tests/support/TestWatchdog.cpp",
     "function_coverage": [
       {
-        "line_start": 71,
-        "line_end": 71,
+        "line_start": 77,
+        "line_end": 77,
         "line_count": 1,
         "line_hit": 1,
         "branch_count": 0,
@@ -11294,8 +11294,8 @@
         "function_name": "TestWatchdog.cpp:_ZN12_GLOBAL__N_112TestWatchdogC2EPKN5Catch7IConfigE"
       },
       {
-        "line_start": 73,
-        "line_end": 83,
+        "line_start": 79,
+        "line_end": 89,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 2,
@@ -11313,9 +11313,9 @@
       },
       {
         "line_start": 47,
-        "line_end": 67,
-        "line_count": 19,
-        "line_hit": 18,
+        "line_end": 73,
+        "line_count": 22,
+        "line_hit": 21,
         "branch_count": 6,
         "branch_hit": 5,
         "function_name": "TestWatchdog.cpp:_ZN12_GLOBAL__N_19watchLoopEv"
@@ -11330,8 +11330,8 @@
         "function_name": "TestWatchdog.cpp:_ZN12_GLOBAL__N_112limitSecondsEv"
       },
       {
-        "line_start": 85,
-        "line_end": 89,
+        "line_start": 91,
+        "line_end": 95,
         "line_count": 5,
         "line_hit": 5,
         "branch_count": 0,
