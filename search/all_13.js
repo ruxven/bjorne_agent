@@ -8,7 +8,7 @@ var searchData=
   ['parselevel_5',['parseLevel',['../namespacebjorne__agent_1_1log.html#a84b2fcbd9acdd6ec069955643f3fbd18',1,'bjorne_agent::log']]],
   ['parsetoolarguments_6',['parseToolArguments',['../namespacebjorne__agent_1_1tools.html#a567f75a682fdcac685243ef21753af1f',1,'bjorne_agent::tools']]],
   ['parseurl_7',['parseUrl',['../namespacebjorne__agent_1_1http.html#a1de187c402c3d5009043ffb8c2c2bbeb',1,'bjorne_agent::http']]],
-  ['path_8',['path',['../structbjorne__agent_1_1skills_1_1Skill.html#aa1be44e2b2849f559090bdd9839863c0',1,'bjorne_agent::skills::Skill::path'],['../structbjorne__agent_1_1http_1_1Url.html#a098952e28528a2329df3535aa459d1e1',1,'bjorne_agent::http::Url::path'],['../structbjorne__agent_1_1http_1_1HttpRequest.html#aea704eb6b0699d25852c7cb27a67d04a',1,'bjorne_agent::http::HttpRequest::path']]],
+  ['path_8',['path',['../structbjorne__agent_1_1http_1_1HttpRequest.html#aea704eb6b0699d25852c7cb27a67d04a',1,'bjorne_agent::http::HttpRequest::path'],['../structbjorne__agent_1_1http_1_1Url.html#a098952e28528a2329df3535aa459d1e1',1,'bjorne_agent::http::Url::path'],['../structbjorne__agent_1_1skills_1_1Skill.html#aa1be44e2b2849f559090bdd9839863c0',1,'bjorne_agent::skills::Skill::path']]],
   ['permissionchoice_9',['PermissionChoice',['../structbjorne__agent_1_1acp_1_1PermissionChoice.html',1,'bjorne_agent::acp']]],
   ['permissionchoiceforlabel_10',['permissionChoiceForLabel',['../namespacebjorne__agent_1_1acp.html#ab1c32ec55cd8bb741ff6176c5baf16e1',1,'bjorne_agent::acp']]],
   ['permissionchoices_11',['permissionChoices',['../namespacebjorne__agent_1_1acp.html#a4c4b912b1e0f6e16c6625b465cd1cd5a',1,'bjorne_agent::acp']]],
@@ -27,7 +27,7 @@ var searchData=
   ['phase_20f_3a_20acp_20client_20mode_24',['Phase F: ACP client mode',['../md_ROADMAP.html#autotoc_md107',1,'']]],
   ['phase_20g_3a_20the_20setup_20command_25',['Phase G: The setup command',['../md_ROADMAP.html#autotoc_md111',1,'']]],
   ['pi_26',['Cross build for ARM (Raspberry Pi)',['../md_README.html#autotoc_md7',1,'']]],
-  ['plaintcptransport_27',['PlainTcpTransport',['../classbjorne__agent_1_1http_1_1PlainTcpTransport.html',1,'bjorne_agent::http']]],
+  ['plaintcptransport_27',['plaintcptransport',['../classbjorne__agent_1_1http_1_1PlainTcpTransport.html',1,'bjorne_agent::http::PlainTcpTransport'],['../classbjorne__agent_1_1http_1_1PlainTcpTransport.html#aeb08a89b9caa2e7dbccc2c8d9c743498',1,'bjorne_agent::http::PlainTcpTransport::PlainTcpTransport()=default'],['../classbjorne__agent_1_1http_1_1PlainTcpTransport.html#a7a8fa7f2f0962f4916a459fdd9882a3e',1,'bjorne_agent::http::PlainTcpTransport::PlainTcpTransport(ResolverOptions resolver)']]],
   ['planentry_28',['PlanEntry',['../structbjorne__agent_1_1acp_1_1AcpServer_1_1Session_1_1PlanEntry.html',1,'bjorne_agent::acp::AcpServer::Session']]],
   ['platform_2eh_29',['Platform.h',['../Platform_8h.html',1,'']]],
   ['point_30',['Entry Point',['../md_DESIGN.html#autotoc_md78',1,'']]],
@@ -40,5 +40,5 @@ var searchData=
   ['processid_37',['processId',['../namespacebjorne__agent_1_1platform.html#a871058d68e6b1db37c803a9c9489aeca',1,'bjorne_agent::platform']]],
   ['progress_38',['progress',['../namespacebjorne__agent_1_1log.html#a490e68ceb9168265077a796c4b171f3c',1,'bjorne_agent::log']]],
   ['provider_39',['provider',['../structbjorne__agent_1_1config_1_1ModelConfig.html#a72dd924bbaddbf918fada09d371fd290',1,'bjorne_agent::config::ModelConfig']]],
-  ['purpose_40',['purpose',['../md_SPEC_8CONFIG.html#autotoc_md48',1,'Purpose'],['../md_DESIGN.html#autotoc_md75',1,'Purpose'],['../md_SPEC.html#autotoc_md26',1,'Purpose'],['../md_SPEC_8LOOP.html#autotoc_md61',1,'Purpose']]]
+  ['purpose_40',['purpose',['../md_DESIGN.html#autotoc_md75',1,'Purpose'],['../md_SPEC_8LOOP.html#autotoc_md61',1,'Purpose'],['../md_SPEC_8CONFIG.html#autotoc_md48',1,'Purpose'],['../md_SPEC.html#autotoc_md26',1,'Purpose']]]
 ];

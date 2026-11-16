@@ -8,6 +8,7 @@ var searchData=
   ['permissionchoiceforlabel_5',['permissionChoiceForLabel',['../namespacebjorne__agent_1_1acp.html#ab1c32ec55cd8bb741ff6176c5baf16e1',1,'bjorne_agent::acp']]],
   ['permissionchoices_6',['permissionChoices',['../namespacebjorne__agent_1_1acp.html#a4c4b912b1e0f6e16c6625b465cd1cd5a',1,'bjorne_agent::acp']]],
   ['permissionrequest_7',['permissionRequest',['../namespacebjorne__agent_1_1acp.html#a49e2d778893c2c76137d98f59ad832f2',1,'bjorne_agent::acp']]],
-  ['processid_8',['processId',['../namespacebjorne__agent_1_1platform.html#a871058d68e6b1db37c803a9c9489aeca',1,'bjorne_agent::platform']]],
-  ['progress_9',['progress',['../namespacebjorne__agent_1_1log.html#a490e68ceb9168265077a796c4b171f3c',1,'bjorne_agent::log']]]
+  ['plaintcptransport_8',['plaintcptransport',['../classbjorne__agent_1_1http_1_1PlainTcpTransport.html#aeb08a89b9caa2e7dbccc2c8d9c743498',1,'bjorne_agent::http::PlainTcpTransport::PlainTcpTransport()=default'],['../classbjorne__agent_1_1http_1_1PlainTcpTransport.html#a7a8fa7f2f0962f4916a459fdd9882a3e',1,'bjorne_agent::http::PlainTcpTransport::PlainTcpTransport(ResolverOptions resolver)']]],
+  ['processid_9',['processId',['../namespacebjorne__agent_1_1platform.html#a871058d68e6b1db37c803a9c9489aeca',1,'bjorne_agent::platform']]],
+  ['progress_10',['progress',['../namespacebjorne__agent_1_1log.html#a490e68ceb9168265077a796c4b171f3c',1,'bjorne_agent::log']]]
 ];

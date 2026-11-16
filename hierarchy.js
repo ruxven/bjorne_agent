@@ -42,6 +42,7 @@ var hierarchy =
     [ "bjorne_agent::config::ModelConfig", "structbjorne__agent_1_1config_1_1ModelConfig.html", null ],
     [ "bjorne_agent::model::ModelMessage", "structbjorne__agent_1_1model_1_1ModelMessage.html", null ],
     [ "bjorne_agent::model::ModelResponse", "structbjorne__agent_1_1model_1_1ModelResponse.html", null ],
+    [ "bjorne_agent::http::NameService", "classbjorne__agent_1_1http_1_1NameService.html", null ],
     [ "bjorne_agent::app::App::Options", "structbjorne__agent_1_1app_1_1App_1_1Options.html", null ],
     [ "bjorne_agent::http::OpenSslTransport::Options", "structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html", null ],
     [ "bjorne_agent::acp::PermissionChoice", "structbjorne__agent_1_1acp_1_1PermissionChoice.html", null ],

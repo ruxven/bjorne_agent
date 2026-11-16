@@ -1,7 +1,7 @@
 var searchData=
 [
   ['readfragment_0',['readFragment',['../namespacebjorne__agent_1_1context.html#acc4f1e5cda33f7727a0a78f505533832',1,'bjorne_agent::context']]],
-  ['readline_1',['readline',['../classbjorne__agent_1_1jsonrpc_1_1Transport.html#ad8a4ffa02f07233ad8cc10888e6216e6',1,'bjorne_agent::jsonrpc::Transport::readLine()'],['../classbjorne__agent_1_1platform_1_1ChildProcess.html#aef25ae8f4b77f65785156eec857bc2ac',1,'bjorne_agent::platform::ChildProcess::readLine()'],['../classbjorne__agent_1_1acp_1_1StdioTransport.html#a1503b1f3c3f272e02e411d8979fa3987',1,'bjorne_agent::acp::StdioTransport::readLine()']]],
+  ['readline_1',['readline',['../classbjorne__agent_1_1jsonrpc_1_1Transport.html#ad8a4ffa02f07233ad8cc10888e6216e6',1,'bjorne_agent::jsonrpc::Transport::readLine()'],['../classbjorne__agent_1_1acp_1_1StdioTransport.html#a1503b1f3c3f272e02e411d8979fa3987',1,'bjorne_agent::acp::StdioTransport::readLine()'],['../classbjorne__agent_1_1platform_1_1ChildProcess.html#aef25ae8f4b77f65785156eec857bc2ac',1,'bjorne_agent::platform::ChildProcess::readLine()']]],
   ['registerloadskilltool_2',['registerLoadSkillTool',['../namespacebjorne__agent_1_1skills.html#aaff49f98c659a2126b5603e29069eb3e',1,'bjorne_agent::skills']]],
   ['registerrequestinputtool_3',['registerRequestInputTool',['../namespacebjorne__agent_1_1interaction.html#a6f55ba10df9a2e34c8b63dabbf096326',1,'bjorne_agent::interaction']]],
   ['registerservers_4',['registerServers',['../namespacebjorne__agent_1_1mcp.html#a712085e902452569e7f568e0ac22ac5e',1,'bjorne_agent::mcp']]],
@@ -11,9 +11,10 @@ var searchData=
   ['repairdanglingtoolcalls_8',['repairDanglingToolCalls',['../namespacebjorne__agent_1_1session.html#a2c46551dca13daafcdf91efda3094462',1,'bjorne_agent::session']]],
   ['replacefile_9',['replaceFile',['../namespacebjorne__agent_1_1platform.html#ac6779366681684ead2b73c85eb704452',1,'bjorne_agent::platform']]],
   ['request_10',['request',['../classbjorne__agent_1_1http_1_1HttpClient.html#a846e18faebd19cd04461f23ebaf3a582',1,'bjorne_agent::http::HttpClient::request()'],['../classbjorne__agent_1_1jsonrpc_1_1Endpoint.html#a9656f4206510ac093a40794af6ac6cce',1,'bjorne_agent::jsonrpc::Endpoint::request()']]],
-  ['resolvehost_11',['resolveHost',['../namespacebjorne__agent_1_1http.html#a04d1001f2945eb2a0996234dbdcb4984',1,'bjorne_agent::http']]],
-  ['resolvetoolpath_12',['resolveToolPath',['../namespacebjorne__agent_1_1tools.html#a3c6a6a92c5d57afc92ee982262c17289',1,'bjorne_agent::tools']]],
-  ['respond_13',['respond',['../classbjorne__agent_1_1model_1_1ModelClient.html#a219985f3e4f6e00f1a68957b4bca8061',1,'bjorne_agent::model::ModelClient::respond()'],['../classbjorne__agent_1_1model_1_1ModelBackend.html#a7928168c672e16f7064536aeef09263d',1,'bjorne_agent::model::ModelBackend::respond()']]],
-  ['run_14',['run',['../classbjorne__agent_1_1app_1_1Init.html#a5f95800f1d48c3be6fb5996aed8e7c92',1,'bjorne_agent::app::Init::run()'],['../classbjorne__agent_1_1app_1_1App.html#a76586b5418ad561fbdecd77519ecb0ce',1,'bjorne_agent::app::App::run()'],['../classbjorne__agent_1_1agent_1_1AgentLoop.html#af2930aa5a10e285f985295c3f5e59bf9',1,'bjorne_agent::agent::AgentLoop::run()']]],
-  ['running_15',['running',['../classbjorne__agent_1_1platform_1_1ChildProcess.html#a00bff59f75306e5cf4356b5b9f620a94',1,'bjorne_agent::platform::ChildProcess']]]
+  ['resolve_11',['resolve',['../classbjorne__agent_1_1http_1_1NameService.html#ac388761bc21a8f283638dce1a01886e3',1,'bjorne_agent::http::NameService']]],
+  ['resolvehost_12',['resolveHost',['../namespacebjorne__agent_1_1http.html#a04d1001f2945eb2a0996234dbdcb4984',1,'bjorne_agent::http']]],
+  ['resolvetoolpath_13',['resolveToolPath',['../namespacebjorne__agent_1_1tools.html#a3c6a6a92c5d57afc92ee982262c17289',1,'bjorne_agent::tools']]],
+  ['respond_14',['respond',['../classbjorne__agent_1_1model_1_1ModelClient.html#a219985f3e4f6e00f1a68957b4bca8061',1,'bjorne_agent::model::ModelClient::respond()'],['../classbjorne__agent_1_1model_1_1ModelBackend.html#a7928168c672e16f7064536aeef09263d',1,'bjorne_agent::model::ModelBackend::respond()']]],
+  ['run_15',['run',['../classbjorne__agent_1_1app_1_1Init.html#a5f95800f1d48c3be6fb5996aed8e7c92',1,'bjorne_agent::app::Init::run()'],['../classbjorne__agent_1_1app_1_1App.html#a76586b5418ad561fbdecd77519ecb0ce',1,'bjorne_agent::app::App::run()'],['../classbjorne__agent_1_1agent_1_1AgentLoop.html#af2930aa5a10e285f985295c3f5e59bf9',1,'bjorne_agent::agent::AgentLoop::run()']]],
+  ['running_16',['running',['../classbjorne__agent_1_1platform_1_1ChildProcess.html#a00bff59f75306e5cf4356b5b9f620a94',1,'bjorne_agent::platform::ChildProcess']]]
 ];

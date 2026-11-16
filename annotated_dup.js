@@ -40,6 +40,7 @@ var annotated_dup =
         [ "HttpRequest", "structbjorne__agent_1_1http_1_1HttpRequest.html", "structbjorne__agent_1_1http_1_1HttpRequest" ],
         [ "HttpResponse", "structbjorne__agent_1_1http_1_1HttpResponse.html", "structbjorne__agent_1_1http_1_1HttpResponse" ],
         [ "HttpTransport", "classbjorne__agent_1_1http_1_1HttpTransport.html", "classbjorne__agent_1_1http_1_1HttpTransport" ],
+        [ "NameService", "classbjorne__agent_1_1http_1_1NameService.html", "classbjorne__agent_1_1http_1_1NameService" ],
         [ "OpenSslTransport", "classbjorne__agent_1_1http_1_1OpenSslTransport.html", "classbjorne__agent_1_1http_1_1OpenSslTransport" ],
         [ "PlainTcpTransport", "classbjorne__agent_1_1http_1_1PlainTcpTransport.html", "classbjorne__agent_1_1http_1_1PlainTcpTransport" ],
         [ "ResolvedAddress", "structbjorne__agent_1_1http_1_1ResolvedAddress.html", "structbjorne__agent_1_1http_1_1ResolvedAddress" ],

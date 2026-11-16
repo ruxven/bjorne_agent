@@ -107,6 +107,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1http_1_1HttpTransport.html">HttpTransport</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1http_1_1NameService.html">NameService</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1http_1_1OpenSslTransport.html">OpenSslTransport</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbjorne__agent_1_1http_1_1PlainTcpTransport.html">PlainTcpTransport</a></td></tr>
@@ -122,6 +124,8 @@ Classes</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a87e983bcb4a09fd86132d8fc45cf44d8" id="r_a87e983bcb4a09fd86132d8fc45cf44d8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1http.html#a87e983bcb4a09fd86132d8fc45cf44d8">parseDnsResponse</a> (const unsigned char *data, int size, unsigned short port, std::vector&lt; <a class="el" href="structbjorne__agent_1_1http_1_1ResolvedAddress.html">ResolvedAddress</a> &gt; &amp;addresses)</td></tr>
 <tr class="separator:a87e983bcb4a09fd86132d8fc45cf44d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a476daadc034670dbc1ea109f20c8f4" id="r_a9a476daadc034670dbc1ea109f20c8f4"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classbjorne__agent_1_1http_1_1NameService.html">NameService</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1http.html#a9a476daadc034670dbc1ea109f20c8f4">makePlatformNameService</a> ()</td></tr>
+<tr class="separator:a9a476daadc034670dbc1ea109f20c8f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04d1001f2945eb2a0996234dbdcb4984" id="r_a04d1001f2945eb2a0996234dbdcb4984"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1http.html#a04d1001f2945eb2a0996234dbdcb4984">resolveHost</a> (const std::string &amp;host, const std::string &amp;port, std::vector&lt; <a class="el" href="structbjorne__agent_1_1http_1_1ResolvedAddress.html">ResolvedAddress</a> &gt; &amp;addresses, std::string &amp;error, const <a class="el" href="structbjorne__agent_1_1http_1_1ResolverOptions.html">ResolverOptions</a> &amp;options)</td></tr>
 <tr class="separator:a04d1001f2945eb2a0996234dbdcb4984"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ab6a9d988b77d122b6e554ec17c39af" id="r_a7ab6a9d988b77d122b6e554ec17c39af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebjorne__agent_1_1http.html#a7ab6a9d988b77d122b6e554ec17c39af">isDefaultPort</a> (const std::string &amp;port)</td></tr>
@@ -172,6 +176,25 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a9a476daadc034670dbc1ea109f20c8f4" name="a9a476daadc034670dbc1ea109f20c8f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a476daadc034670dbc1ea109f20c8f4">&#9670;&#160;</a></span>makePlatformNameService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unique_ptr&lt; <a class="el" href="classbjorne__agent_1_1http_1_1NameService.html">NameService</a> &gt; bjorne_agent::http::makePlatformNameService </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Resolver_8cpp_source.html#l00254">254</a> of file <a class="el" href="Resolver_8cpp_source.html">Resolver.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a04d1001f2945eb2a0996234dbdcb4984" name="a04d1001f2945eb2a0996234dbdcb4984"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a04d1001f2945eb2a0996234dbdcb4984">&#9670;&#160;</a></span>resolveHost()</h2>
 
@@ -216,7 +239,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Resolver_8cpp_source.html#l00233">233</a> of file <a class="el" href="Resolver_8cpp_source.html">Resolver.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Resolver_8cpp_source.html#l00262">262</a> of file <a class="el" href="Resolver_8cpp_source.html">Resolver.cpp</a>.</p>
 
 </div>
 </div>

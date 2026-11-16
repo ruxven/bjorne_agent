@@ -226,10 +226,12 @@ var NAVTREEINDEX0 =
 "Process_8h.html#a9082d940e1587586496d5ad2365132d0ac85a251cc457840f1e032f1b733e9398":[8,0,0,13,2,1,1],
 "Process_8h_source.html":[8,0,0,13,2],
 "Resolver_8cpp.html":[8,0,0,6,4],
-"Resolver_8cpp.html#a04d1001f2945eb2a0996234dbdcb4984":[8,0,0,6,4,0],
+"Resolver_8cpp.html#a04d1001f2945eb2a0996234dbdcb4984":[8,0,0,6,4,1],
+"Resolver_8cpp.html#a9a476daadc034670dbc1ea109f20c8f4":[8,0,0,6,4,0],
 "Resolver_8cpp_source.html":[8,0,0,6,4],
 "Resolver_8h.html":[8,0,0,6,5],
-"Resolver_8h.html#a04d1001f2945eb2a0996234dbdcb4984":[8,0,0,6,5,2],
+"Resolver_8h.html#a04d1001f2945eb2a0996234dbdcb4984":[8,0,0,6,5,4],
+"Resolver_8h.html#a9a476daadc034670dbc1ea109f20c8f4":[8,0,0,6,5,3],
 "Resolver_8h_source.html":[8,0,0,6,5],
 "SessionRecorder_8cpp.html":[8,0,0,14,2],
 "SessionRecorder_8cpp_source.html":[8,0,0,14,2],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "Session_8h.html#a3717766687435bd3c86186b6ce976b23":[8,0,0,14,1,5],
 "Session_8h.html#a7b35775c1a315cdd13ef716381b9e6c6":[8,0,0,14,1,3],
 "Session_8h.html#ad73200a363bba08764aeab5e0175dbab":[8,0,0,14,1,4],
-"Session_8h.html#aebdc556aa34fb69b3b81d03a4582ed95":[8,0,0,14,1,6],
-"Session_8h_source.html":[8,0,0,14,1],
-"Shutdown_8h.html":[8,0,0,13,3]
+"Session_8h.html#aebdc556aa34fb69b3b81d03a4582ed95":[8,0,0,14,1,6]
 };

@@ -6,6 +6,7 @@ var searchData=
   ['_7ehttptransport_3',['~HttpTransport',['../classbjorne__agent_1_1http_1_1HttpTransport.html#abcc6d75dcb51a8b50e9191636cc52eec',1,'bjorne_agent::http::HttpTransport']]],
   ['_7eloopobserver_4',['~LoopObserver',['../classbjorne__agent_1_1agent_1_1LoopObserver.html#a3b56235d59200f161ed3d8fa134a7d9e',1,'bjorne_agent::agent::LoopObserver']]],
   ['_7emodelbackend_5',['~ModelBackend',['../classbjorne__agent_1_1model_1_1ModelBackend.html#a3659a157af28794393f83995fbc8a01d',1,'bjorne_agent::model::ModelBackend']]],
-  ['_7eserver_6',['~Server',['../classbjorne__agent_1_1mcp_1_1Server.html#a36d831fa149083cbb716ccb1268628f1',1,'bjorne_agent::mcp::Server']]],
-  ['_7etransport_7',['~Transport',['../classbjorne__agent_1_1jsonrpc_1_1Transport.html#a67d6c4638a98c0fce32c6cbf078a031d',1,'bjorne_agent::jsonrpc::Transport']]]
+  ['_7enameservice_6',['~NameService',['../classbjorne__agent_1_1http_1_1NameService.html#a8ca4919e1bc526bee9ffca7018f7f8c5',1,'bjorne_agent::http::NameService']]],
+  ['_7eserver_7',['~Server',['../classbjorne__agent_1_1mcp_1_1Server.html#a36d831fa149083cbb716ccb1268628f1',1,'bjorne_agent::mcp::Server']]],
+  ['_7etransport_8',['~Transport',['../classbjorne__agent_1_1jsonrpc_1_1Transport.html#a67d6c4638a98c0fce32c6cbf078a031d',1,'bjorne_agent::jsonrpc::Transport']]]
 ];

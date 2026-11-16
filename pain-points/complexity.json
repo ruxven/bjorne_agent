@@ -1,1986 +1,5 @@
 [
   {
-    "filename": "src/mcp/McpClient.h",
-    "function_list": [
-      {
-        "name": "bjorne_agent::mcp::Server::name",
-        "cyclomatic_complexity": 1,
-        "start_line": 72,
-        "end_line": 72,
-        "nloc": 1,
-        "token_count": 9,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::mcp::Server::tools",
-        "cyclomatic_complexity": 1,
-        "start_line": 73,
-        "end_line": 73,
-        "nloc": 1,
-        "token_count": 9,
-        "parameter_count": 0
-      }
-    ]
-  },
-  {
-    "filename": "src/mcp/McpClient.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::mcp::objectValue",
-        "cyclomatic_complexity": 1,
-        "start_line": 24,
-        "end_line": 28,
-        "nloc": 5,
-        "token_count": 25,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::mcp::stringValue",
-        "cyclomatic_complexity": 1,
-        "start_line": 30,
-        "end_line": 35,
-        "nloc": 6,
-        "token_count": 37,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::mcp::ProcessTransport::ProcessTransport",
-        "cyclomatic_complexity": 1,
-        "start_line": 41,
-        "end_line": 41,
-        "nloc": 1,
-        "token_count": 24,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::mcp::ProcessTransport::sendLine",
-        "cyclomatic_complexity": 1,
-        "start_line": 43,
-        "end_line": 45,
-        "nloc": 3,
-        "token_count": 28,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::mcp::ProcessTransport::readLine",
-        "cyclomatic_complexity": 5,
-        "start_line": 47,
-        "end_line": 59,
-        "nloc": 13,
-        "token_count": 93,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::mcp::contentText",
-        "cyclomatic_complexity": 11,
-        "start_line": 67,
-        "end_line": 86,
-        "nloc": 20,
-        "token_count": 156,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::mcp::toolName",
-        "cyclomatic_complexity": 1,
-        "start_line": 90,
-        "end_line": 92,
-        "nloc": 3,
-        "token_count": 27,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::mcp::Client::Client",
-        "cyclomatic_complexity": 2,
-        "start_line": 94,
-        "end_line": 109,
-        "nloc": 13,
-        "token_count": 104,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::mcp::Client::initialize",
-        "cyclomatic_complexity": 3,
-        "start_line": 111,
-        "end_line": 129,
-        "nloc": 18,
-        "token_count": 151,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::mcp::Client::fetchToolPage",
-        "cyclomatic_complexity": 6,
-        "start_line": 131,
-        "end_line": 149,
-        "nloc": 19,
-        "token_count": 143,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::mcp::Client::appendTools",
-        "cyclomatic_complexity": 12,
-        "start_line": 151,
-        "end_line": 177,
-        "nloc": 27,
-        "token_count": 211,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::mcp::Client::listTools",
-        "cyclomatic_complexity": 6,
-        "start_line": 179,
-        "end_line": 197,
-        "nloc": 18,
-        "token_count": 144,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::mcp::Client::callTool",
-        "cyclomatic_complexity": 10,
-        "start_line": 199,
-        "end_line": 237,
-        "nloc": 36,
-        "token_count": 260,
-        "parameter_count": 5
-      },
-      {
-        "name": "bjorne_agent::mcp::Client::closed",
-        "cyclomatic_complexity": 1,
-        "start_line": 239,
-        "end_line": 239,
-        "nloc": 1,
-        "token_count": 15,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::mcp::Server::Server",
-        "cyclomatic_complexity": 1,
-        "start_line": 241,
-        "end_line": 242,
-        "nloc": 2,
-        "token_count": 36,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::mcp::Server::~Server",
-        "cyclomatic_complexity": 1,
-        "start_line": 244,
-        "end_line": 244,
-        "nloc": 1,
-        "token_count": 11,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::mcp::Server::key",
-        "cyclomatic_complexity": 1,
-        "start_line": 246,
-        "end_line": 246,
-        "nloc": 1,
-        "token_count": 11,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::mcp::Server::start",
-        "cyclomatic_complexity": 2,
-        "start_line": 248,
-        "end_line": 253,
-        "nloc": 6,
-        "token_count": 31,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::mcp::Server::launch",
-        "cyclomatic_complexity": 2,
-        "start_line": 255,
-        "end_line": 265,
-        "nloc": 11,
-        "token_count": 101,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::mcp::Server::initializeConnection",
-        "cyclomatic_complexity": 2,
-        "start_line": 267,
-        "end_line": 272,
-        "nloc": 6,
-        "token_count": 37,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::mcp::Server::shutdown",
-        "cyclomatic_complexity": 2,
-        "start_line": 274,
-        "end_line": 284,
-        "nloc": 9,
-        "token_count": 43,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::mcp::Server::call",
-        "cyclomatic_complexity": 13,
-        "start_line": 286,
-        "end_line": 329,
-        "nloc": 37,
-        "token_count": 296,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::mcp::registerServers",
-        "cyclomatic_complexity": 6,
-        "start_line": 331,
-        "end_line": 360,
-        "nloc": 30,
-        "token_count": 265,
-        "parameter_count": 2
-      }
-    ]
-  },
-  {
-    "filename": "src/context/Fragments.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::context::utf8Boundary",
-        "cyclomatic_complexity": 4,
-        "start_line": 16,
-        "end_line": 24,
-        "nloc": 9,
-        "token_count": 67,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::context::readFragment",
-        "cyclomatic_complexity": 3,
-        "start_line": 28,
-        "end_line": 41,
-        "nloc": 14,
-        "token_count": 89,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::context::renderFragments",
-        "cyclomatic_complexity": 8,
-        "start_line": 43,
-        "end_line": 79,
-        "nloc": 33,
-        "token_count": 197,
-        "parameter_count": 2
-      }
-    ]
-  },
-  {
-    "filename": "src/context/AgentsFiles.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::context::absolutePath",
-        "cyclomatic_complexity": 3,
-        "start_line": 16,
-        "end_line": 23,
-        "nloc": 8,
-        "token_count": 64,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::context::isRegularFile",
-        "cyclomatic_complexity": 2,
-        "start_line": 25,
-        "end_line": 29,
-        "nloc": 5,
-        "token_count": 39,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::context::comparisonKey",
-        "cyclomatic_complexity": 2,
-        "start_line": 34,
-        "end_line": 41,
-        "nloc": 8,
-        "token_count": 61,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::context::loadAgentsFiles",
-        "cyclomatic_complexity": 12,
-        "start_line": 45,
-        "end_line": 92,
-        "nloc": 42,
-        "token_count": 355,
-        "parameter_count": 2
-      }
-    ]
-  },
-  {
-    "filename": "src/context/ContextManager.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::context::ContextManager::ContextManager",
-        "cyclomatic_complexity": 1,
-        "start_line": 9,
-        "end_line": 10,
-        "nloc": 2,
-        "token_count": 32,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::context::ContextManager::config",
-        "cyclomatic_complexity": 1,
-        "start_line": 12,
-        "end_line": 12,
-        "nloc": 1,
-        "token_count": 11,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::context::ContextManager::compressionHandler",
-        "cyclomatic_complexity": 1,
-        "start_line": 14,
-        "end_line": 14,
-        "nloc": 1,
-        "token_count": 11,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::context::ContextManager::tokenCountOf",
-        "cyclomatic_complexity": 1,
-        "start_line": 16,
-        "end_line": 19,
-        "nloc": 3,
-        "token_count": 34,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::context::ContextManager::estimateTokens",
-        "cyclomatic_complexity": 2,
-        "start_line": 21,
-        "end_line": 27,
-        "nloc": 7,
-        "token_count": 48,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::context::ContextManager::trim",
-        "cyclomatic_complexity": 4,
-        "start_line": 29,
-        "end_line": 43,
-        "nloc": 15,
-        "token_count": 111,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::context::ContextManager::truncate",
-        "cyclomatic_complexity": 7,
-        "start_line": 45,
-        "end_line": 71,
-        "nloc": 27,
-        "token_count": 270,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::context::ContextManager::compress",
-        "cyclomatic_complexity": 6,
-        "start_line": 73,
-        "end_line": 101,
-        "nloc": 29,
-        "token_count": 174,
-        "parameter_count": 3
-      }
-    ]
-  },
-  {
-    "filename": "src/model/ModelClient.h",
-    "function_list": [
-      {
-        "name": "bjorne_agent::model::ModelBackend::setTools",
-        "cyclomatic_complexity": 1,
-        "start_line": 44,
-        "end_line": 44,
-        "nloc": 1,
-        "token_count": 16,
-        "parameter_count": 1
-      }
-    ]
-  },
-  {
-    "filename": "src/model/ModelClient.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::model::escapeJson",
-        "cyclomatic_complexity": 8,
-        "start_line": 21,
-        "end_line": 43,
-        "nloc": 23,
-        "token_count": 153,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::model::toolCallJson",
-        "cyclomatic_complexity": 2,
-        "start_line": 45,
-        "end_line": 51,
-        "nloc": 7,
-        "token_count": 75,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::model::messageJson",
-        "cyclomatic_complexity": 6,
-        "start_line": 53,
-        "end_line": 70,
-        "nloc": 18,
-        "token_count": 153,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::model::requestBodyJson",
-        "cyclomatic_complexity": 4,
-        "start_line": 72,
-        "end_line": 87,
-        "nloc": 16,
-        "token_count": 112,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::model::parseToolCalls",
-        "cyclomatic_complexity": 14,
-        "start_line": 89,
-        "end_line": 118,
-        "nloc": 30,
-        "token_count": 238,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::model::parseChatResponse",
-        "cyclomatic_complexity": 12,
-        "start_line": 121,
-        "end_line": 156,
-        "nloc": 34,
-        "token_count": 279,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::model::ModelClient::ModelClient",
-        "cyclomatic_complexity": 1,
-        "start_line": 160,
-        "end_line": 166,
-        "nloc": 7,
-        "token_count": 76,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::model::ModelClient::ModelClient",
-        "cyclomatic_complexity": 1,
-        "start_line": 168,
-        "end_line": 170,
-        "nloc": 3,
-        "token_count": 60,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::model::ModelClient::respond",
-        "cyclomatic_complexity": 10,
-        "start_line": 172,
-        "end_line": 231,
-        "nloc": 52,
-        "token_count": 419,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::model::ModelClient::setTools",
-        "cyclomatic_complexity": 1,
-        "start_line": 233,
-        "end_line": 233,
-        "nloc": 1,
-        "token_count": 17,
-        "parameter_count": 1
-      }
-    ]
-  },
-  {
-    "filename": "src/config/ConfigPaths.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::config::isPathSeparator",
-        "cyclomatic_complexity": 3,
-        "start_line": 20,
-        "end_line": 26,
-        "nloc": 4,
-        "token_count": 21,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::config::isAbsolutePath",
-        "cyclomatic_complexity": 8,
-        "start_line": 30,
-        "end_line": 44,
-        "nloc": 13,
-        "token_count": 92,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::config::joinPath",
-        "cyclomatic_complexity": 3,
-        "start_line": 48,
-        "end_line": 56,
-        "nloc": 9,
-        "token_count": 56,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::config::userConfigDirectory",
-        "cyclomatic_complexity": 10,
-        "start_line": 64,
-        "end_line": 86,
-        "nloc": 19,
-        "token_count": 149,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::config::userConfigPath",
-        "cyclomatic_complexity": 2,
-        "start_line": 90,
-        "end_line": 93,
-        "nloc": 4,
-        "token_count": 35,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::config::trimmed",
-        "cyclomatic_complexity": 2,
-        "start_line": 97,
-        "end_line": 104,
-        "nloc": 8,
-        "token_count": 63,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::config::environmentConfigPath",
-        "cyclomatic_complexity": 2,
-        "start_line": 108,
-        "end_line": 114,
-        "nloc": 7,
-        "token_count": 34,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::config::defaultConfigPaths",
-        "cyclomatic_complexity": 2,
-        "start_line": 116,
-        "end_line": 124,
-        "nloc": 9,
-        "token_count": 53,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::config::findDefaultConfig",
-        "cyclomatic_complexity": 8,
-        "start_line": 126,
-        "end_line": 154,
-        "nloc": 24,
-        "token_count": 151,
-        "parameter_count": 1
-      }
-    ]
-  },
-  {
-    "filename": "src/config/Defaults.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::config::defaultCompressionPrompt",
-        "cyclomatic_complexity": 1,
-        "start_line": 6,
-        "end_line": 9,
-        "nloc": 4,
-        "token_count": 9,
-        "parameter_count": 0
-      }
-    ]
-  },
-  {
-    "filename": "src/config/Config.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::config::getString",
-        "cyclomatic_complexity": 3,
-        "start_line": 14,
-        "end_line": 21,
-        "nloc": 8,
-        "token_count": 65,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::config::getNumber",
-        "cyclomatic_complexity": 3,
-        "start_line": 23,
-        "end_line": 30,
-        "nloc": 8,
-        "token_count": 71,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::config::getBoolean",
-        "cyclomatic_complexity": 3,
-        "start_line": 32,
-        "end_line": 39,
-        "nloc": 8,
-        "token_count": 63,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::config::loadAgent",
-        "cyclomatic_complexity": 3,
-        "start_line": 41,
-        "end_line": 52,
-        "nloc": 12,
-        "token_count": 118,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::config::loadModel",
-        "cyclomatic_complexity": 7,
-        "start_line": 54,
-        "end_line": 75,
-        "nloc": 22,
-        "token_count": 211,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::config::loadModels",
-        "cyclomatic_complexity": 5,
-        "start_line": 77,
-        "end_line": 90,
-        "nloc": 14,
-        "token_count": 96,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::config::loadMcpServers",
-        "cyclomatic_complexity": 13,
-        "start_line": 92,
-        "end_line": 121,
-        "nloc": 30,
-        "token_count": 241,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::config::load",
-        "cyclomatic_complexity": 7,
-        "start_line": 125,
-        "end_line": 160,
-        "nloc": 34,
-        "token_count": 238,
-        "parameter_count": 3
-      }
-    ]
-  },
-  {
-    "filename": "src/session/SessionRecorder.h",
-    "function_list": [
-      {
-        "name": "bjorne_agent::session::SessionRecorder::state",
-        "cyclomatic_complexity": 1,
-        "start_line": 25,
-        "end_line": 25,
-        "nloc": 1,
-        "token_count": 8,
-        "parameter_count": 0
-      }
-    ]
-  },
-  {
-    "filename": "src/session/SessionRecorder.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::session::SessionRecorder::SessionRecorder",
-        "cyclomatic_complexity": 1,
-        "start_line": 12,
-        "end_line": 13,
-        "nloc": 2,
-        "token_count": 37,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::session::SessionRecorder::onTurn",
-        "cyclomatic_complexity": 1,
-        "start_line": 15,
-        "end_line": 18,
-        "nloc": 4,
-        "token_count": 41,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::session::SessionRecorder::onComplete",
-        "cyclomatic_complexity": 1,
-        "start_line": 20,
-        "end_line": 22,
-        "nloc": 3,
-        "token_count": 37,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::session::SessionRecorder::onFailure",
-        "cyclomatic_complexity": 1,
-        "start_line": 24,
-        "end_line": 26,
-        "nloc": 3,
-        "token_count": 37,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::session::SessionRecorder::onInterrupt",
-        "cyclomatic_complexity": 1,
-        "start_line": 28,
-        "end_line": 30,
-        "nloc": 3,
-        "token_count": 30,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::SessionRecorder::persist",
-        "cyclomatic_complexity": 3,
-        "start_line": 32,
-        "end_line": 46,
-        "nloc": 14,
-        "token_count": 100,
-        "parameter_count": 4
-      }
-    ]
-  },
-  {
-    "filename": "src/session/Session.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::session::nowSeconds",
-        "cyclomatic_complexity": 1,
-        "start_line": 28,
-        "end_line": 30,
-        "nloc": 3,
-        "token_count": 38,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::session::readFile",
-        "cyclomatic_complexity": 3,
-        "start_line": 32,
-        "end_line": 44,
-        "nloc": 13,
-        "token_count": 83,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::session::objectNode",
-        "cyclomatic_complexity": 1,
-        "start_line": 46,
-        "end_line": 50,
-        "nloc": 5,
-        "token_count": 25,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::session::arrayNode",
-        "cyclomatic_complexity": 1,
-        "start_line": 52,
-        "end_line": 56,
-        "nloc": 5,
-        "token_count": 25,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::session::stringNode",
-        "cyclomatic_complexity": 1,
-        "start_line": 58,
-        "end_line": 63,
-        "nloc": 6,
-        "token_count": 37,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::numberNode",
-        "cyclomatic_complexity": 1,
-        "start_line": 65,
-        "end_line": 70,
-        "nloc": 6,
-        "token_count": 40,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::toolCallJson",
-        "cyclomatic_complexity": 1,
-        "start_line": 72,
-        "end_line": 78,
-        "nloc": 7,
-        "token_count": 65,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::messageJson",
-        "cyclomatic_complexity": 4,
-        "start_line": 80,
-        "end_line": 95,
-        "nloc": 16,
-        "token_count": 141,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::toJson",
-        "cyclomatic_complexity": 2,
-        "start_line": 97,
-        "end_line": 117,
-        "nloc": 20,
-        "token_count": 228,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::getString",
-        "cyclomatic_complexity": 3,
-        "start_line": 119,
-        "end_line": 126,
-        "nloc": 8,
-        "token_count": 65,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::session::getNumber",
-        "cyclomatic_complexity": 3,
-        "start_line": 128,
-        "end_line": 135,
-        "nloc": 8,
-        "token_count": 71,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::session::parseToolCall",
-        "cyclomatic_complexity": 2,
-        "start_line": 137,
-        "end_line": 145,
-        "nloc": 9,
-        "token_count": 74,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::session::parseMessage",
-        "cyclomatic_complexity": 8,
-        "start_line": 147,
-        "end_line": 170,
-        "nloc": 24,
-        "token_count": 168,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::session::fromJson",
-        "cyclomatic_complexity": 9,
-        "start_line": 172,
-        "end_line": 222,
-        "nloc": 48,
-        "token_count": 346,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::session::writeAtomic",
-        "cyclomatic_complexity": 4,
-        "start_line": 224,
-        "end_line": 250,
-        "nloc": 26,
-        "token_count": 167,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::session::oneLineTask",
-        "cyclomatic_complexity": 5,
-        "start_line": 252,
-        "end_line": 263,
-        "nloc": 12,
-        "token_count": 73,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::isValidSessionId",
-        "cyclomatic_complexity": 10,
-        "start_line": 267,
-        "end_line": 278,
-        "nloc": 12,
-        "token_count": 95,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::generateSessionId",
-        "cyclomatic_complexity": 1,
-        "start_line": 280,
-        "end_line": 286,
-        "nloc": 7,
-        "token_count": 95,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::session::formatTimestamp",
-        "cyclomatic_complexity": 5,
-        "start_line": 288,
-        "end_line": 306,
-        "nloc": 16,
-        "token_count": 122,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::formatIsoTimestamp",
-        "cyclomatic_complexity": 2,
-        "start_line": 308,
-        "end_line": 314,
-        "nloc": 7,
-        "token_count": 56,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::SessionStore::SessionStore",
-        "cyclomatic_complexity": 1,
-        "start_line": 316,
-        "end_line": 316,
-        "nloc": 1,
-        "token_count": 21,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::SessionStore::open",
-        "cyclomatic_complexity": 9,
-        "start_line": 318,
-        "end_line": 347,
-        "nloc": 29,
-        "token_count": 191,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::session::SessionStore::pathFor",
-        "cyclomatic_complexity": 1,
-        "start_line": 349,
-        "end_line": 351,
-        "nloc": 3,
-        "token_count": 36,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::SessionStore::begin",
-        "cyclomatic_complexity": 3,
-        "start_line": 353,
-        "end_line": 365,
-        "nloc": 10,
-        "token_count": 70,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::session::SessionStore::save",
-        "cyclomatic_complexity": 2,
-        "start_line": 367,
-        "end_line": 374,
-        "nloc": 8,
-        "token_count": 65,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::session::SessionStore::load",
-        "cyclomatic_complexity": 4,
-        "start_line": 376,
-        "end_line": 396,
-        "nloc": 17,
-        "token_count": 104,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::session::SessionStore::erase",
-        "cyclomatic_complexity": 3,
-        "start_line": 398,
-        "end_line": 410,
-        "nloc": 13,
-        "token_count": 83,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::session::SessionStore::list",
-        "cyclomatic_complexity": 11,
-        "start_line": 412,
-        "end_line": 455,
-        "nloc": 41,
-        "token_count": 347,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::SessionStore::latest",
-        "cyclomatic_complexity": 3,
-        "start_line": 457,
-        "end_line": 463,
-        "nloc": 7,
-        "token_count": 57,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::session::repairDanglingToolCalls",
-        "cyclomatic_complexity": 9,
-        "start_line": 465,
-        "end_line": 501,
-        "nloc": 31,
-        "token_count": 285,
-        "parameter_count": 1
-      }
-    ]
-  },
-  {
-    "filename": "src/session/Session.h",
-    "function_list": [
-      {
-        "name": "bjorne_agent::session::SessionStore::directory",
-        "cyclomatic_complexity": 1,
-        "start_line": 57,
-        "end_line": 57,
-        "nloc": 1,
-        "token_count": 9,
-        "parameter_count": 0
-      }
-    ]
-  },
-  {
-    "filename": "src/tools/Tools.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::tools::isPathSeparator",
-        "cyclomatic_complexity": 3,
-        "start_line": 29,
-        "end_line": 35,
-        "nloc": 4,
-        "token_count": 21,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::nextPathSeparator",
-        "cyclomatic_complexity": 3,
-        "start_line": 37,
-        "end_line": 44,
-        "nloc": 8,
-        "token_count": 56,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::tools::isAbsolutePath",
-        "cyclomatic_complexity": 8,
-        "start_line": 48,
-        "end_line": 62,
-        "nloc": 13,
-        "token_count": 92,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::hasParentTraversal",
-        "cyclomatic_complexity": 4,
-        "start_line": 64,
-        "end_line": 75,
-        "nloc": 12,
-        "token_count": 88,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::shellQuote",
-        "cyclomatic_complexity": 6,
-        "start_line": 77,
-        "end_line": 103,
-        "nloc": 22,
-        "token_count": 97,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::shellExitCode",
-        "cyclomatic_complexity": 5,
-        "start_line": 108,
-        "end_line": 119,
-        "nloc": 9,
-        "token_count": 66,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::openShellPipe",
-        "cyclomatic_complexity": 2,
-        "start_line": 121,
-        "end_line": 127,
-        "nloc": 4,
-        "token_count": 37,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::stringNode",
-        "cyclomatic_complexity": 1,
-        "start_line": 129,
-        "end_line": 134,
-        "nloc": 6,
-        "token_count": 37,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::objectNode",
-        "cyclomatic_complexity": 1,
-        "start_line": 136,
-        "end_line": 140,
-        "nloc": 5,
-        "token_count": 25,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::tools::arrayNode",
-        "cyclomatic_complexity": 1,
-        "start_line": 142,
-        "end_line": 146,
-        "nloc": 5,
-        "token_count": 25,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::tools::readFileDefinition",
-        "cyclomatic_complexity": 1,
-        "start_line": 148,
-        "end_line": 150,
-        "nloc": 3,
-        "token_count": 27,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::tools::writeFileDefinition",
-        "cyclomatic_complexity": 1,
-        "start_line": 152,
-        "end_line": 156,
-        "nloc": 5,
-        "token_count": 35,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::tools::editFileDefinition",
-        "cyclomatic_complexity": 1,
-        "start_line": 158,
-        "end_line": 163,
-        "nloc": 6,
-        "token_count": 43,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::tools::runShellDefinition",
-        "cyclomatic_complexity": 1,
-        "start_line": 165,
-        "end_line": 167,
-        "nloc": 3,
-        "token_count": 27,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::tools::stringParameters",
-        "cyclomatic_complexity": 3,
-        "start_line": 172,
-        "end_line": 190,
-        "nloc": 19,
-        "token_count": 194,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::tools::parseToolArguments",
-        "cyclomatic_complexity": 3,
-        "start_line": 192,
-        "end_line": 199,
-        "nloc": 8,
-        "token_count": 57,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::tools::toolStringArgument",
-        "cyclomatic_complexity": 3,
-        "start_line": 201,
-        "end_line": 208,
-        "nloc": 8,
-        "token_count": 65,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::tools::resolveToolPath",
-        "cyclomatic_complexity": 6,
-        "start_line": 210,
-        "end_line": 228,
-        "nloc": 19,
-        "token_count": 109,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::tools::ToolRegistry::ToolRegistry",
-        "cyclomatic_complexity": 1,
-        "start_line": 230,
-        "end_line": 230,
-        "nloc": 1,
-        "token_count": 25,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::ToolRegistry::registerBuiltins",
-        "cyclomatic_complexity": 1,
-        "start_line": 232,
-        "end_line": 237,
-        "nloc": 6,
-        "token_count": 115,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::tools::ToolRegistry::registerTool",
-        "cyclomatic_complexity": 3,
-        "start_line": 239,
-        "end_line": 248,
-        "nloc": 10,
-        "token_count": 78,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::tools::ToolRegistry::removeTool",
-        "cyclomatic_complexity": 1,
-        "start_line": 250,
-        "end_line": 250,
-        "nloc": 1,
-        "token_count": 23,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::ToolRegistry::hasTool",
-        "cyclomatic_complexity": 1,
-        "start_line": 252,
-        "end_line": 252,
-        "nloc": 1,
-        "token_count": 22,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::ToolRegistry::toolNames",
-        "cyclomatic_complexity": 2,
-        "start_line": 254,
-        "end_line": 261,
-        "nloc": 8,
-        "token_count": 52,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::tools::ToolRegistry::execute",
-        "cyclomatic_complexity": 3,
-        "start_line": 263,
-        "end_line": 279,
-        "nloc": 14,
-        "token_count": 150,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::tools::ToolRegistry::resolvePath",
-        "cyclomatic_complexity": 1,
-        "start_line": 281,
-        "end_line": 283,
-        "nloc": 3,
-        "token_count": 30,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::tools::ToolRegistry::readFile",
-        "cyclomatic_complexity": 5,
-        "start_line": 285,
-        "end_line": 306,
-        "nloc": 22,
-        "token_count": 152,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::ToolRegistry::writeFile",
-        "cyclomatic_complexity": 8,
-        "start_line": 308,
-        "end_line": 340,
-        "nloc": 33,
-        "token_count": 237,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::ToolRegistry::editFile",
-        "cyclomatic_complexity": 10,
-        "start_line": 342,
-        "end_line": 386,
-        "nloc": 45,
-        "token_count": 315,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::ToolRegistry::runShell",
-        "cyclomatic_complexity": 12,
-        "start_line": 388,
-        "end_line": 438,
-        "nloc": 46,
-        "token_count": 308,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::tools::ToolRegistry::definitionsJson",
-        "cyclomatic_complexity": 2,
-        "start_line": 440,
-        "end_line": 454,
-        "nloc": 14,
-        "token_count": 139,
-        "parameter_count": 0
-      }
-    ]
-  },
-  {
-    "filename": "src/skills/Skills.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::skills::readFile",
-        "cyclomatic_complexity": 3,
-        "start_line": 19,
-        "end_line": 31,
-        "nloc": 13,
-        "token_count": 83,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::skills::trim",
-        "cyclomatic_complexity": 2,
-        "start_line": 33,
-        "end_line": 40,
-        "nloc": 8,
-        "token_count": 67,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::skills::unquote",
-        "cyclomatic_complexity": 6,
-        "start_line": 42,
-        "end_line": 51,
-        "nloc": 10,
-        "token_count": 86,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::skills::nextLine",
-        "cyclomatic_complexity": 6,
-        "start_line": 55,
-        "end_line": 68,
-        "nloc": 14,
-        "token_count": 106,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::skills::parseFrontmatter",
-        "cyclomatic_complexity": 11,
-        "start_line": 72,
-        "end_line": 113,
-        "nloc": 39,
-        "token_count": 290,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::skills::parseSkillFile",
-        "cyclomatic_complexity": 8,
-        "start_line": 115,
-        "end_line": 150,
-        "nloc": 33,
-        "token_count": 262,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::skills::loadSkills",
-        "cyclomatic_complexity": 12,
-        "start_line": 154,
-        "end_line": 194,
-        "nloc": 37,
-        "token_count": 270,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::skills::findSkill",
-        "cyclomatic_complexity": 3,
-        "start_line": 196,
-        "end_line": 203,
-        "nloc": 8,
-        "token_count": 49,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::skills::skillIndexFragment",
-        "cyclomatic_complexity": 3,
-        "start_line": 205,
-        "end_line": 218,
-        "nloc": 14,
-        "token_count": 75,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::skills::registerLoadSkillTool",
-        "cyclomatic_complexity": 6,
-        "start_line": 220,
-        "end_line": 244,
-        "nloc": 24,
-        "token_count": 203,
-        "parameter_count": 2
-      }
-    ]
-  },
-  {
-    "filename": "src/jsonrpc/JsonRpc.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::jsonrpc::stringValue",
-        "cyclomatic_complexity": 1,
-        "start_line": 13,
-        "end_line": 18,
-        "nloc": 6,
-        "token_count": 37,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::numberValue",
-        "cyclomatic_complexity": 1,
-        "start_line": 20,
-        "end_line": 25,
-        "nloc": 6,
-        "token_count": 33,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::objectValue",
-        "cyclomatic_complexity": 1,
-        "start_line": 27,
-        "end_line": 31,
-        "nloc": 5,
-        "token_count": 25,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::envelope",
-        "cyclomatic_complexity": 1,
-        "start_line": 35,
-        "end_line": 39,
-        "nloc": 5,
-        "token_count": 29,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::readId",
-        "cyclomatic_complexity": 4,
-        "start_line": 41,
-        "end_line": 52,
-        "nloc": 12,
-        "token_count": 81,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::parseParams",
-        "cyclomatic_complexity": 5,
-        "start_line": 54,
-        "end_line": 65,
-        "nloc": 12,
-        "token_count": 88,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::parseError",
-        "cyclomatic_complexity": 8,
-        "start_line": 67,
-        "end_line": 90,
-        "nloc": 24,
-        "token_count": 195,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::parseCall",
-        "cyclomatic_complexity": 6,
-        "start_line": 93,
-        "end_line": 109,
-        "nloc": 17,
-        "token_count": 146,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::parseResponse",
-        "cyclomatic_complexity": 7,
-        "start_line": 112,
-        "end_line": 140,
-        "nloc": 28,
-        "token_count": 175,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::numberId",
-        "cyclomatic_complexity": 1,
-        "start_line": 144,
-        "end_line": 146,
-        "nloc": 3,
-        "token_count": 20,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::stringId",
-        "cyclomatic_complexity": 1,
-        "start_line": 148,
-        "end_line": 150,
-        "nloc": 3,
-        "token_count": 17,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::encodeRequest",
-        "cyclomatic_complexity": 1,
-        "start_line": 152,
-        "end_line": 158,
-        "nloc": 7,
-        "token_count": 72,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::encodeNotification",
-        "cyclomatic_complexity": 1,
-        "start_line": 160,
-        "end_line": 165,
-        "nloc": 6,
-        "token_count": 56,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::encodeResult",
-        "cyclomatic_complexity": 1,
-        "start_line": 167,
-        "end_line": 172,
-        "nloc": 6,
-        "token_count": 53,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::encodeError",
-        "cyclomatic_complexity": 1,
-        "start_line": 174,
-        "end_line": 179,
-        "nloc": 6,
-        "token_count": 44,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::encodeError",
-        "cyclomatic_complexity": 2,
-        "start_line": 181,
-        "end_line": 193,
-        "nloc": 12,
-        "token_count": 118,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::parse",
-        "cyclomatic_complexity": 7,
-        "start_line": 195,
-        "end_line": 216,
-        "nloc": 22,
-        "token_count": 160,
-        "parameter_count": 3
-      }
-    ]
-  },
-  {
-    "filename": "src/jsonrpc/Endpoint.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::jsonrpc::writeLine",
-        "cyclomatic_complexity": 1,
-        "start_line": 18,
-        "end_line": 22,
-        "nloc": 5,
-        "token_count": 56,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::Endpoint",
-        "cyclomatic_complexity": 1,
-        "start_line": 26,
-        "end_line": 26,
-        "nloc": 1,
-        "token_count": 24,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::~Endpoint",
-        "cyclomatic_complexity": 3,
-        "start_line": 28,
-        "end_line": 44,
-        "nloc": 15,
-        "token_count": 75,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::setRequestHandler",
-        "cyclomatic_complexity": 1,
-        "start_line": 46,
-        "end_line": 46,
-        "nloc": 1,
-        "token_count": 18,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::setNotificationHandler",
-        "cyclomatic_complexity": 1,
-        "start_line": 48,
-        "end_line": 50,
-        "nloc": 3,
-        "token_count": 18,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::start",
-        "cyclomatic_complexity": 2,
-        "start_line": 52,
-        "end_line": 60,
-        "nloc": 9,
-        "token_count": 60,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::waitForClose",
-        "cyclomatic_complexity": 2,
-        "start_line": 62,
-        "end_line": 65,
-        "nloc": 4,
-        "token_count": 38,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::request",
-        "cyclomatic_complexity": 13,
-        "start_line": 67,
-        "end_line": 127,
-        "nloc": 57,
-        "token_count": 441,
-        "parameter_count": 5
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::notify",
-        "cyclomatic_complexity": 1,
-        "start_line": 129,
-        "end_line": 131,
-        "nloc": 3,
-        "token_count": 43,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::closed",
-        "cyclomatic_complexity": 1,
-        "start_line": 133,
-        "end_line": 136,
-        "nloc": 4,
-        "token_count": 24,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::closeReason",
-        "cyclomatic_complexity": 1,
-        "start_line": 138,
-        "end_line": 141,
-        "nloc": 4,
-        "token_count": 24,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::readLoop",
-        "cyclomatic_complexity": 11,
-        "start_line": 143,
-        "end_line": 191,
-        "nloc": 40,
-        "token_count": 202,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::workerLoop",
-        "cyclomatic_complexity": 6,
-        "start_line": 193,
-        "end_line": 210,
-        "nloc": 18,
-        "token_count": 105,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::queueMessage",
-        "cyclomatic_complexity": 1,
-        "start_line": 212,
-        "end_line": 216,
-        "nloc": 5,
-        "token_count": 37,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::fulfill",
-        "cyclomatic_complexity": 3,
-        "start_line": 218,
-        "end_line": 233,
-        "nloc": 16,
-        "token_count": 118,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::dispatch",
-        "cyclomatic_complexity": 7,
-        "start_line": 235,
-        "end_line": 261,
-        "nloc": 24,
-        "token_count": 167,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::markClosed",
-        "cyclomatic_complexity": 3,
-        "start_line": 263,
-        "end_line": 275,
-        "nloc": 13,
-        "token_count": 69,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::jsonrpc::Endpoint::failPending",
-        "cyclomatic_complexity": 3,
-        "start_line": 277,
-        "end_line": 288,
-        "nloc": 12,
-        "token_count": 75,
-        "parameter_count": 1
-      }
-    ]
-  },
-  {
-    "filename": "src/json/Json.h",
-    "function_list": [
-      {
-        "name": "bjorne_agent::json::Value::isObject",
-        "cyclomatic_complexity": 1,
-        "start_line": 25,
-        "end_line": 25,
-        "nloc": 1,
-        "token_count": 13,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::json::Value::isArray",
-        "cyclomatic_complexity": 1,
-        "start_line": 26,
-        "end_line": 26,
-        "nloc": 1,
-        "token_count": 13,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::json::Value::isString",
-        "cyclomatic_complexity": 1,
-        "start_line": 27,
-        "end_line": 27,
-        "nloc": 1,
-        "token_count": 13,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::json::Value::isNumber",
-        "cyclomatic_complexity": 1,
-        "start_line": 28,
-        "end_line": 28,
-        "nloc": 1,
-        "token_count": 13,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::json::Value::isBoolean",
-        "cyclomatic_complexity": 1,
-        "start_line": 29,
-        "end_line": 29,
-        "nloc": 1,
-        "token_count": 13,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::json::Value::isNull",
-        "cyclomatic_complexity": 1,
-        "start_line": 30,
-        "end_line": 30,
-        "nloc": 1,
-        "token_count": 13,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::json::Value::find",
-        "cyclomatic_complexity": 3,
-        "start_line": 32,
-        "end_line": 41,
-        "nloc": 10,
-        "token_count": 56,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::json::Value::operator [ ]",
-        "cyclomatic_complexity": 1,
-        "start_line": 43,
-        "end_line": 45,
-        "nloc": 3,
-        "token_count": 21,
-        "parameter_count": 1
-      }
-    ]
-  },
-  {
-    "filename": "src/json/Json.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::json::Parser::Parser",
-        "cyclomatic_complexity": 1,
-        "start_line": 16,
-        "end_line": 16,
-        "nloc": 1,
-        "token_count": 16,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::json::Parser::parse",
-        "cyclomatic_complexity": 2,
-        "start_line": 18,
-        "end_line": 25,
-        "nloc": 8,
-        "token_count": 40,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::json::Parser::peek",
-        "cyclomatic_complexity": 2,
-        "start_line": 31,
-        "end_line": 36,
-        "nloc": 6,
-        "token_count": 32,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::json::Parser::skipWhitespace",
-        "cyclomatic_complexity": 6,
-        "start_line": 38,
-        "end_line": 47,
-        "nloc": 10,
-        "token_count": 53,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::json::Parser::advanceLiteral",
-        "cyclomatic_complexity": 2,
-        "start_line": 49,
-        "end_line": 55,
-        "nloc": 7,
-        "token_count": 53,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::json::Parser::parseValue",
-        "cyclomatic_complexity": 11,
-        "start_line": 57,
-        "end_line": 100,
-        "nloc": 44,
-        "token_count": 211,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::json::Parser::parseObject",
-        "cyclomatic_complexity": 7,
-        "start_line": 102,
-        "end_line": 136,
-        "nloc": 35,
-        "token_count": 169,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::json::Parser::parseArray",
-        "cyclomatic_complexity": 5,
-        "start_line": 138,
-        "end_line": 162,
-        "nloc": 25,
-        "token_count": 112,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::json::Parser::appendUtf8",
-        "cyclomatic_complexity": 4,
-        "start_line": 165,
-        "end_line": 181,
-        "nloc": 17,
-        "token_count": 245,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::json::Parser::readHex4",
-        "cyclomatic_complexity": 9,
-        "start_line": 184,
-        "end_line": 204,
-        "nloc": 21,
-        "token_count": 163,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::json::Parser::parseUnicodeEscape",
-        "cyclomatic_complexity": 10,
-        "start_line": 209,
-        "end_line": 226,
-        "nloc": 18,
-        "token_count": 153,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::json::Parser::parseString",
-        "cyclomatic_complexity": 15,
-        "start_line": 228,
-        "end_line": 268,
-        "nloc": 41,
-        "token_count": 266,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::json::Parser::parseNumber",
-        "cyclomatic_complexity": 10,
-        "start_line": 270,
-        "end_line": 284,
-        "nloc": 15,
-        "token_count": 142,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::json::writeString",
-        "cyclomatic_complexity": 10,
-        "start_line": 289,
-        "end_line": 314,
-        "nloc": 26,
-        "token_count": 184,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::json::writeNumber",
-        "cyclomatic_complexity": 4,
-        "start_line": 316,
-        "end_line": 330,
-        "nloc": 11,
-        "token_count": 92,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::json::writeValue",
-        "cyclomatic_complexity": 13,
-        "start_line": 332,
-        "end_line": 378,
-        "nloc": 47,
-        "token_count": 272,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::json::write",
-        "cyclomatic_complexity": 1,
-        "start_line": 382,
-        "end_line": 386,
-        "nloc": 5,
-        "token_count": 26,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::json::parse",
-        "cyclomatic_complexity": 1,
-        "start_line": 388,
-        "end_line": 391,
-        "nloc": 4,
-        "token_count": 24,
-        "parameter_count": 1
-      }
-    ]
-  },
-  {
     "filename": "src/acp/AcpChannel.cpp",
     "function_list": [
       {
@@ -2757,177 +776,2831 @@
     ]
   },
   {
-    "filename": "src/app/Init.cpp",
+    "filename": "src/skills/Skills.cpp",
     "function_list": [
       {
-        "name": "bjorne_agent::app::trimmed",
-        "cyclomatic_complexity": 5,
-        "start_line": 40,
-        "end_line": 50,
-        "nloc": 11,
-        "token_count": 107,
-        "parameter_count": 1
+        "name": "bjorne_agent::skills::readFile",
+        "cyclomatic_complexity": 3,
+        "start_line": 19,
+        "end_line": 31,
+        "nloc": 13,
+        "token_count": 83,
+        "parameter_count": 2
       },
       {
-        "name": "bjorne_agent::app::quoted",
-        "cyclomatic_complexity": 1,
-        "start_line": 55,
-        "end_line": 60,
-        "nloc": 6,
-        "token_count": 42,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::app::number",
+        "name": "bjorne_agent::skills::trim",
         "cyclomatic_complexity": 2,
-        "start_line": 65,
-        "end_line": 72,
+        "start_line": 33,
+        "end_line": 40,
         "nloc": 8,
-        "token_count": 62,
+        "token_count": 67,
         "parameter_count": 1
       },
       {
-        "name": "bjorne_agent::app::exists",
+        "name": "bjorne_agent::skills::unquote",
+        "cyclomatic_complexity": 6,
+        "start_line": 42,
+        "end_line": 51,
+        "nloc": 10,
+        "token_count": 86,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::skills::nextLine",
+        "cyclomatic_complexity": 6,
+        "start_line": 55,
+        "end_line": 68,
+        "nloc": 14,
+        "token_count": 106,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::skills::parseFrontmatter",
+        "cyclomatic_complexity": 11,
+        "start_line": 72,
+        "end_line": 113,
+        "nloc": 39,
+        "token_count": 290,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::skills::parseSkillFile",
+        "cyclomatic_complexity": 8,
+        "start_line": 115,
+        "end_line": 150,
+        "nloc": 33,
+        "token_count": 262,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::skills::loadSkills",
+        "cyclomatic_complexity": 12,
+        "start_line": 154,
+        "end_line": 194,
+        "nloc": 37,
+        "token_count": 270,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::skills::findSkill",
+        "cyclomatic_complexity": 3,
+        "start_line": 196,
+        "end_line": 203,
+        "nloc": 8,
+        "token_count": 49,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::skills::skillIndexFragment",
+        "cyclomatic_complexity": 3,
+        "start_line": 205,
+        "end_line": 218,
+        "nloc": 14,
+        "token_count": 75,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::skills::registerLoadSkillTool",
+        "cyclomatic_complexity": 6,
+        "start_line": 220,
+        "end_line": 244,
+        "nloc": 24,
+        "token_count": 203,
+        "parameter_count": 2
+      }
+    ]
+  },
+  {
+    "filename": "src/cli/Invocation.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::cli::namesAnExistingFile",
         "cyclomatic_complexity": 2,
-        "start_line": 74,
-        "end_line": 77,
+        "start_line": 15,
+        "end_line": 18,
         "nloc": 4,
         "token_count": 31,
         "parameter_count": 1
       },
       {
-        "name": "bjorne_agent::app::directoryOf",
-        "cyclomatic_complexity": 1,
-        "start_line": 81,
-        "end_line": 83,
-        "nloc": 3,
-        "token_count": 29,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::app::joinPath",
-        "cyclomatic_complexity": 4,
-        "start_line": 85,
-        "end_line": 93,
-        "nloc": 9,
-        "token_count": 63,
+        "name": "bjorne_agent::cli::reservedVerb",
+        "cyclomatic_complexity": 6,
+        "start_line": 23,
+        "end_line": 45,
+        "nloc": 23,
+        "token_count": 103,
         "parameter_count": 2
       },
       {
-        "name": "bjorne_agent::app::projectConfigPath",
+        "name": "bjorne_agent::cli::resolveRun",
+        "cyclomatic_complexity": 6,
+        "start_line": 54,
+        "end_line": 87,
+        "nloc": 28,
+        "token_count": 188,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::cli::parseFlags",
+        "cyclomatic_complexity": 12,
+        "start_line": 91,
+        "end_line": 124,
+        "nloc": 34,
+        "token_count": 203,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::cli::selectCommand",
+        "cyclomatic_complexity": 3,
+        "start_line": 128,
+        "end_line": 141,
+        "nloc": 14,
+        "token_count": 93,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::cli::parseCommandArguments",
+        "cyclomatic_complexity": 12,
+        "start_line": 143,
+        "end_line": 183,
+        "nloc": 39,
+        "token_count": 235,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::cli::parse",
+        "cyclomatic_complexity": 4,
+        "start_line": 187,
+        "end_line": 209,
+        "nloc": 16,
+        "token_count": 106,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::cli::commandName",
+        "cyclomatic_complexity": 6,
+        "start_line": 211,
+        "end_line": 225,
+        "nloc": 15,
+        "token_count": 56,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::cli::usage",
         "cyclomatic_complexity": 1,
-        "start_line": 98,
-        "end_line": 100,
+        "start_line": 227,
+        "end_line": 258,
+        "nloc": 32,
+        "token_count": 37,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::cli::usage",
+        "cyclomatic_complexity": 6,
+        "start_line": 260,
+        "end_line": 318,
+        "nloc": 59,
+        "token_count": 102,
+        "parameter_count": 1
+      }
+    ]
+  },
+  {
+    "filename": "src/session/Session.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::session::nowSeconds",
+        "cyclomatic_complexity": 1,
+        "start_line": 28,
+        "end_line": 30,
+        "nloc": 3,
+        "token_count": 38,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::session::readFile",
+        "cyclomatic_complexity": 3,
+        "start_line": 32,
+        "end_line": 44,
+        "nloc": 13,
+        "token_count": 83,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::session::objectNode",
+        "cyclomatic_complexity": 1,
+        "start_line": 46,
+        "end_line": 50,
+        "nloc": 5,
+        "token_count": 25,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::session::arrayNode",
+        "cyclomatic_complexity": 1,
+        "start_line": 52,
+        "end_line": 56,
+        "nloc": 5,
+        "token_count": 25,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::session::stringNode",
+        "cyclomatic_complexity": 1,
+        "start_line": 58,
+        "end_line": 63,
+        "nloc": 6,
+        "token_count": 37,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::numberNode",
+        "cyclomatic_complexity": 1,
+        "start_line": 65,
+        "end_line": 70,
+        "nloc": 6,
+        "token_count": 40,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::toolCallJson",
+        "cyclomatic_complexity": 1,
+        "start_line": 72,
+        "end_line": 78,
+        "nloc": 7,
+        "token_count": 65,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::messageJson",
+        "cyclomatic_complexity": 4,
+        "start_line": 80,
+        "end_line": 95,
+        "nloc": 16,
+        "token_count": 141,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::toJson",
+        "cyclomatic_complexity": 2,
+        "start_line": 97,
+        "end_line": 117,
+        "nloc": 20,
+        "token_count": 228,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::getString",
+        "cyclomatic_complexity": 3,
+        "start_line": 119,
+        "end_line": 126,
+        "nloc": 8,
+        "token_count": 65,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::session::getNumber",
+        "cyclomatic_complexity": 3,
+        "start_line": 128,
+        "end_line": 135,
+        "nloc": 8,
+        "token_count": 71,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::session::parseToolCall",
+        "cyclomatic_complexity": 2,
+        "start_line": 137,
+        "end_line": 145,
+        "nloc": 9,
+        "token_count": 74,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::session::parseMessage",
+        "cyclomatic_complexity": 8,
+        "start_line": 147,
+        "end_line": 170,
+        "nloc": 24,
+        "token_count": 168,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::session::fromJson",
+        "cyclomatic_complexity": 9,
+        "start_line": 172,
+        "end_line": 222,
+        "nloc": 48,
+        "token_count": 346,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::session::writeAtomic",
+        "cyclomatic_complexity": 4,
+        "start_line": 224,
+        "end_line": 250,
+        "nloc": 26,
+        "token_count": 167,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::session::oneLineTask",
+        "cyclomatic_complexity": 5,
+        "start_line": 252,
+        "end_line": 263,
+        "nloc": 12,
+        "token_count": 73,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::isValidSessionId",
+        "cyclomatic_complexity": 10,
+        "start_line": 267,
+        "end_line": 278,
+        "nloc": 12,
+        "token_count": 95,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::generateSessionId",
+        "cyclomatic_complexity": 1,
+        "start_line": 280,
+        "end_line": 286,
+        "nloc": 7,
+        "token_count": 95,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::session::formatTimestamp",
+        "cyclomatic_complexity": 5,
+        "start_line": 288,
+        "end_line": 306,
+        "nloc": 16,
+        "token_count": 122,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::formatIsoTimestamp",
+        "cyclomatic_complexity": 2,
+        "start_line": 308,
+        "end_line": 314,
+        "nloc": 7,
+        "token_count": 56,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::SessionStore::SessionStore",
+        "cyclomatic_complexity": 1,
+        "start_line": 316,
+        "end_line": 316,
+        "nloc": 1,
+        "token_count": 21,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::SessionStore::open",
+        "cyclomatic_complexity": 9,
+        "start_line": 318,
+        "end_line": 347,
+        "nloc": 29,
+        "token_count": 191,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::session::SessionStore::pathFor",
+        "cyclomatic_complexity": 1,
+        "start_line": 349,
+        "end_line": 351,
+        "nloc": 3,
+        "token_count": 36,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::SessionStore::begin",
+        "cyclomatic_complexity": 3,
+        "start_line": 353,
+        "end_line": 365,
+        "nloc": 10,
+        "token_count": 70,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::session::SessionStore::save",
+        "cyclomatic_complexity": 2,
+        "start_line": 367,
+        "end_line": 374,
+        "nloc": 8,
+        "token_count": 65,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::session::SessionStore::load",
+        "cyclomatic_complexity": 4,
+        "start_line": 376,
+        "end_line": 396,
+        "nloc": 17,
+        "token_count": 104,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::session::SessionStore::erase",
+        "cyclomatic_complexity": 3,
+        "start_line": 398,
+        "end_line": 410,
+        "nloc": 13,
+        "token_count": 83,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::session::SessionStore::list",
+        "cyclomatic_complexity": 11,
+        "start_line": 412,
+        "end_line": 455,
+        "nloc": 41,
+        "token_count": 347,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::SessionStore::latest",
+        "cyclomatic_complexity": 3,
+        "start_line": 457,
+        "end_line": 463,
+        "nloc": 7,
+        "token_count": 57,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::repairDanglingToolCalls",
+        "cyclomatic_complexity": 9,
+        "start_line": 465,
+        "end_line": 501,
+        "nloc": 31,
+        "token_count": 285,
+        "parameter_count": 1
+      }
+    ]
+  },
+  {
+    "filename": "src/session/SessionRecorder.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::session::SessionRecorder::SessionRecorder",
+        "cyclomatic_complexity": 1,
+        "start_line": 12,
+        "end_line": 13,
+        "nloc": 2,
+        "token_count": 37,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::session::SessionRecorder::onTurn",
+        "cyclomatic_complexity": 1,
+        "start_line": 15,
+        "end_line": 18,
+        "nloc": 4,
+        "token_count": 41,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::session::SessionRecorder::onComplete",
+        "cyclomatic_complexity": 1,
+        "start_line": 20,
+        "end_line": 22,
+        "nloc": 3,
+        "token_count": 37,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::session::SessionRecorder::onFailure",
+        "cyclomatic_complexity": 1,
+        "start_line": 24,
+        "end_line": 26,
+        "nloc": 3,
+        "token_count": 37,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::session::SessionRecorder::onInterrupt",
+        "cyclomatic_complexity": 1,
+        "start_line": 28,
+        "end_line": 30,
+        "nloc": 3,
+        "token_count": 30,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::session::SessionRecorder::persist",
+        "cyclomatic_complexity": 3,
+        "start_line": 32,
+        "end_line": 46,
+        "nloc": 14,
+        "token_count": 100,
+        "parameter_count": 4
+      }
+    ]
+  },
+  {
+    "filename": "src/session/SessionRecorder.h",
+    "function_list": [
+      {
+        "name": "bjorne_agent::session::SessionRecorder::state",
+        "cyclomatic_complexity": 1,
+        "start_line": 25,
+        "end_line": 25,
+        "nloc": 1,
+        "token_count": 8,
+        "parameter_count": 0
+      }
+    ]
+  },
+  {
+    "filename": "src/session/Session.h",
+    "function_list": [
+      {
+        "name": "bjorne_agent::session::SessionStore::directory",
+        "cyclomatic_complexity": 1,
+        "start_line": 57,
+        "end_line": 57,
+        "nloc": 1,
+        "token_count": 9,
+        "parameter_count": 0
+      }
+    ]
+  },
+  {
+    "filename": "src/platform/Platform.h",
+    "function_list": [
+      {
+        "name": "bjorne_agent::platform::initializeSockets",
+        "cyclomatic_complexity": 1,
+        "start_line": 44,
+        "end_line": 50,
+        "nloc": 7,
+        "token_count": 42,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::isValidSocket",
+        "cyclomatic_complexity": 1,
+        "start_line": 52,
+        "end_line": 54,
+        "nloc": 3,
+        "token_count": 12,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::platform::getEnvironmentVariable",
+        "cyclomatic_complexity": 4,
+        "start_line": 58,
+        "end_line": 70,
+        "nloc": 13,
+        "token_count": 109,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::platform::setEnvironmentVariable",
+        "cyclomatic_complexity": 1,
+        "start_line": 72,
+        "end_line": 74,
+        "nloc": 3,
+        "token_count": 34,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::platform::unsetEnvironmentVariable",
+        "cyclomatic_complexity": 1,
+        "start_line": 76,
+        "end_line": 79,
+        "nloc": 3,
+        "token_count": 23,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::platform::processId",
+        "cyclomatic_complexity": 1,
+        "start_line": 81,
+        "end_line": 83,
         "nloc": 3,
         "token_count": 17,
         "parameter_count": 0
       },
       {
-        "name": "bjorne_agent::app::userConfigPath",
-        "cyclomatic_complexity": 2,
-        "start_line": 102,
-        "end_line": 108,
-        "nloc": 7,
-        "token_count": 39,
+        "name": "bjorne_agent::platform::standardInputIsTerminal",
+        "cyclomatic_complexity": 1,
+        "start_line": 88,
+        "end_line": 90,
+        "nloc": 3,
+        "token_count": 18,
         "parameter_count": 0
       },
       {
-        "name": "bjorne_agent::app::configText",
-        "cyclomatic_complexity": 2,
-        "start_line": 112,
-        "end_line": 142,
-        "nloc": 31,
-        "token_count": 240,
+        "name": "bjorne_agent::platform::currentWorkingDirectory",
+        "cyclomatic_complexity": 3,
+        "start_line": 94,
+        "end_line": 101,
+        "nloc": 8,
+        "token_count": 55,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::closeSocket",
+        "cyclomatic_complexity": 1,
+        "start_line": 103,
+        "end_line": 105,
+        "nloc": 3,
+        "token_count": 14,
         "parameter_count": 1
       },
       {
-        "name": "bjorne_agent::app::Init::Init",
+        "name": "bjorne_agent::platform::addressToBinary",
         "cyclomatic_complexity": 1,
-        "start_line": 146,
-        "end_line": 147,
-        "nloc": 2,
-        "token_count": 36,
+        "start_line": 109,
+        "end_line": 111,
+        "nloc": 3,
+        "token_count": 27,
         "parameter_count": 3
       },
       {
-        "name": "bjorne_agent::app::Init::run",
-        "cyclomatic_complexity": 5,
-        "start_line": 149,
-        "end_line": 168,
-        "nloc": 19,
-        "token_count": 77,
-        "parameter_count": 0
+        "name": "bjorne_agent::platform::addressToText",
+        "cyclomatic_complexity": 1,
+        "start_line": 114,
+        "end_line": 116,
+        "nloc": 3,
+        "token_count": 40,
+        "parameter_count": 4
       },
       {
-        "name": "bjorne_agent::app::Init::ask",
-        "cyclomatic_complexity": 4,
-        "start_line": 170,
-        "end_line": 187,
-        "nloc": 17,
-        "token_count": 118,
-        "parameter_count": 3
+        "name": "bjorne_agent::platform::addressErrorMessage",
+        "cyclomatic_complexity": 2,
+        "start_line": 120,
+        "end_line": 123,
+        "nloc": 4,
+        "token_count": 37,
+        "parameter_count": 1
       },
       {
-        "name": "bjorne_agent::app::Init::askChoice",
-        "cyclomatic_complexity": 12,
-        "start_line": 189,
-        "end_line": 235,
-        "nloc": 44,
-        "token_count": 328,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::app::Init::confirm",
-        "cyclomatic_complexity": 4,
-        "start_line": 237,
-        "end_line": 250,
-        "nloc": 13,
-        "token_count": 98,
+        "name": "bjorne_agent::platform::replaceFile",
+        "cyclomatic_complexity": 1,
+        "start_line": 127,
+        "end_line": 129,
+        "nloc": 3,
+        "token_count": 41,
         "parameter_count": 2
       },
       {
-        "name": "bjorne_agent::app::Init::collect",
+        "name": "bjorne_agent::platform::initializeSockets",
+        "cyclomatic_complexity": 1,
+        "start_line": 152,
+        "end_line": 154,
+        "nloc": 3,
+        "token_count": 8,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::isValidSocket",
+        "cyclomatic_complexity": 1,
+        "start_line": 156,
+        "end_line": 158,
+        "nloc": 3,
+        "token_count": 12,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::platform::getEnvironmentVariable",
+        "cyclomatic_complexity": 3,
+        "start_line": 162,
+        "end_line": 169,
+        "nloc": 8,
+        "token_count": 58,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::platform::setEnvironmentVariable",
+        "cyclomatic_complexity": 1,
+        "start_line": 171,
+        "end_line": 173,
+        "nloc": 3,
+        "token_count": 36,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::platform::unsetEnvironmentVariable",
+        "cyclomatic_complexity": 1,
+        "start_line": 175,
+        "end_line": 177,
+        "nloc": 3,
+        "token_count": 21,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::platform::processId",
+        "cyclomatic_complexity": 1,
+        "start_line": 179,
+        "end_line": 181,
+        "nloc": 3,
+        "token_count": 17,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::standardInputIsTerminal",
+        "cyclomatic_complexity": 1,
+        "start_line": 186,
+        "end_line": 188,
+        "nloc": 3,
+        "token_count": 14,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::currentWorkingDirectory",
         "cyclomatic_complexity": 2,
-        "start_line": 252,
-        "end_line": 258,
+        "start_line": 192,
+        "end_line": 198,
         "nloc": 7,
+        "token_count": 40,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::closeSocket",
+        "cyclomatic_complexity": 1,
+        "start_line": 200,
+        "end_line": 202,
+        "nloc": 3,
+        "token_count": 14,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::platform::addressToBinary",
+        "cyclomatic_complexity": 1,
+        "start_line": 204,
+        "end_line": 206,
+        "nloc": 3,
+        "token_count": 27,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::platform::addressToText",
+        "cyclomatic_complexity": 1,
+        "start_line": 208,
+        "end_line": 210,
+        "nloc": 3,
+        "token_count": 34,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::platform::addressErrorMessage",
+        "cyclomatic_complexity": 2,
+        "start_line": 212,
+        "end_line": 215,
+        "nloc": 4,
+        "token_count": 37,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::platform::replaceFile",
+        "cyclomatic_complexity": 1,
+        "start_line": 219,
+        "end_line": 221,
+        "nloc": 3,
         "token_count": 38,
-        "parameter_count": 1
-      },
+        "parameter_count": 2
+      }
+    ]
+  },
+  {
+    "filename": "src/platform/Process.h",
+    "function_list": [
       {
-        "name": "bjorne_agent::app::Init::collectLocation",
+        "name": "bjorne_agent::platform::ChildProcess::started",
+        "cyclomatic_complexity": 1,
+        "start_line": 53,
+        "end_line": 53,
+        "nloc": 1,
+        "token_count": 9,
+        "parameter_count": 0
+      }
+    ]
+  },
+  {
+    "filename": "src/platform/Process.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::platform::quoteArgument",
         "cyclomatic_complexity": 8,
-        "start_line": 261,
-        "end_line": 290,
+        "start_line": 23,
+        "end_line": 48,
         "nloc": 26,
-        "token_count": 189,
+        "token_count": 187,
         "parameter_count": 1
       },
       {
-        "name": "bjorne_agent::app::Init::collectSettings",
+        "name": "bjorne_agent::platform::environmentBlock",
+        "cyclomatic_complexity": 8,
+        "start_line": 50,
+        "end_line": 80,
+        "nloc": 28,
+        "token_count": 231,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::~ChildProcess",
+        "cyclomatic_complexity": 1,
+        "start_line": 84,
+        "end_line": 84,
+        "nloc": 1,
+        "token_count": 11,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::start",
         "cyclomatic_complexity": 11,
-        "start_line": 293,
-        "end_line": 326,
-        "nloc": 31,
-        "token_count": 220,
-        "parameter_count": 1
+        "start_line": 86,
+        "end_line": 147,
+        "nloc": 56,
+        "token_count": 438,
+        "parameter_count": 4
       },
       {
-        "name": "bjorne_agent::app::Init::write",
-        "cyclomatic_complexity": 11,
-        "start_line": 328,
-        "end_line": 388,
-        "nloc": 53,
-        "token_count": 443,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::app::Init::writeFile",
+        "name": "bjorne_agent::platform::ChildProcess::running",
         "cyclomatic_complexity": 4,
-        "start_line": 390,
-        "end_line": 411,
+        "start_line": 149,
+        "end_line": 159,
+        "nloc": 11,
+        "token_count": 64,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::sendLine",
+        "cyclomatic_complexity": 5,
+        "start_line": 161,
+        "end_line": 175,
+        "nloc": 15,
+        "token_count": 111,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::readLine",
+        "cyclomatic_complexity": 11,
+        "start_line": 177,
+        "end_line": 212,
+        "nloc": 35,
+        "token_count": 240,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::stop",
+        "cyclomatic_complexity": 8,
+        "start_line": 214,
+        "end_line": 239,
+        "nloc": 26,
+        "token_count": 170,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::exitCode",
+        "cyclomatic_complexity": 2,
+        "start_line": 241,
+        "end_line": 241,
+        "nloc": 1,
+        "token_count": 21,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::closeFd",
+        "cyclomatic_complexity": 2,
+        "start_line": 274,
+        "end_line": 279,
+        "nloc": 6,
+        "token_count": 27,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::platform::setCloseOnExec",
+        "cyclomatic_complexity": 2,
+        "start_line": 281,
+        "end_line": 287,
+        "nloc": 7,
+        "token_count": 45,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::platform::runnableStatus",
+        "cyclomatic_complexity": 4,
+        "start_line": 291,
+        "end_line": 297,
+        "nloc": 7,
+        "token_count": 66,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::platform::lookupError",
+        "cyclomatic_complexity": 10,
+        "start_line": 304,
+        "end_line": 336,
+        "nloc": 31,
+        "token_count": 210,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::platform::mergedEnvironment",
+        "cyclomatic_complexity": 7,
+        "start_line": 341,
+        "end_line": 361,
+        "nloc": 21,
+        "token_count": 154,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::platform::closeSpawnPipes",
+        "cyclomatic_complexity": 1,
+        "start_line": 363,
+        "end_line": 368,
+        "nloc": 6,
+        "token_count": 48,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::~ChildProcess",
+        "cyclomatic_complexity": 1,
+        "start_line": 372,
+        "end_line": 372,
+        "nloc": 1,
+        "token_count": 11,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::start",
+        "cyclomatic_complexity": 11,
+        "start_line": 374,
+        "end_line": 452,
+        "nloc": 67,
+        "token_count": 600,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::running",
+        "cyclomatic_complexity": 6,
+        "start_line": 454,
+        "end_line": 468,
+        "nloc": 15,
+        "token_count": 92,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::sendLine",
+        "cyclomatic_complexity": 6,
+        "start_line": 470,
+        "end_line": 489,
+        "nloc": 20,
+        "token_count": 144,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::readLine",
+        "cyclomatic_complexity": 7,
+        "start_line": 491,
+        "end_line": 514,
+        "nloc": 23,
+        "token_count": 146,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::readChunk",
+        "cyclomatic_complexity": 7,
+        "start_line": 516,
+        "end_line": 540,
+        "nloc": 23,
+        "token_count": 157,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::stop",
+        "cyclomatic_complexity": 7,
+        "start_line": 542,
+        "end_line": 569,
+        "nloc": 27,
+        "token_count": 169,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::exitCode",
+        "cyclomatic_complexity": 2,
+        "start_line": 571,
+        "end_line": 571,
+        "nloc": 1,
+        "token_count": 15,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::ChildProcess::extractLine",
+        "cyclomatic_complexity": 4,
+        "start_line": 583,
+        "end_line": 594,
+        "nloc": 12,
+        "token_count": 90,
+        "parameter_count": 1
+      }
+    ]
+  },
+  {
+    "filename": "src/platform/Shutdown.h",
+    "function_list": [
+      {
+        "name": "bjorne_agent::platform::detail::shutdownFlag",
+        "cyclomatic_complexity": 1,
+        "start_line": 13,
+        "end_line": 16,
+        "nloc": 4,
+        "token_count": 17,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::detail::handleShutdownSignal",
+        "cyclomatic_complexity": 1,
+        "start_line": 18,
+        "end_line": 18,
+        "nloc": 1,
+        "token_count": 12,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::platform::installShutdownHandlers",
+        "cyclomatic_complexity": 3,
+        "start_line": 26,
+        "end_line": 34,
+        "nloc": 6,
+        "token_count": 50,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::shutdownRequested",
+        "cyclomatic_complexity": 1,
+        "start_line": 36,
+        "end_line": 36,
+        "nloc": 1,
+        "token_count": 14,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::platform::clearShutdownRequest",
+        "cyclomatic_complexity": 1,
+        "start_line": 40,
+        "end_line": 40,
+        "nloc": 1,
+        "token_count": 13,
+        "parameter_count": 0
+      }
+    ]
+  },
+  {
+    "filename": "src/tools/Tools.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::tools::isPathSeparator",
+        "cyclomatic_complexity": 3,
+        "start_line": 29,
+        "end_line": 35,
+        "nloc": 4,
+        "token_count": 21,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::nextPathSeparator",
+        "cyclomatic_complexity": 3,
+        "start_line": 37,
+        "end_line": 44,
+        "nloc": 8,
+        "token_count": 56,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::tools::isAbsolutePath",
+        "cyclomatic_complexity": 8,
+        "start_line": 48,
+        "end_line": 62,
+        "nloc": 13,
+        "token_count": 92,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::hasParentTraversal",
+        "cyclomatic_complexity": 4,
+        "start_line": 64,
+        "end_line": 75,
+        "nloc": 12,
+        "token_count": 88,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::shellQuote",
+        "cyclomatic_complexity": 6,
+        "start_line": 77,
+        "end_line": 103,
         "nloc": 22,
+        "token_count": 97,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::shellExitCode",
+        "cyclomatic_complexity": 5,
+        "start_line": 108,
+        "end_line": 119,
+        "nloc": 9,
+        "token_count": 66,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::openShellPipe",
+        "cyclomatic_complexity": 2,
+        "start_line": 121,
+        "end_line": 127,
+        "nloc": 4,
+        "token_count": 37,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::stringNode",
+        "cyclomatic_complexity": 1,
+        "start_line": 129,
+        "end_line": 134,
+        "nloc": 6,
+        "token_count": 37,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::objectNode",
+        "cyclomatic_complexity": 1,
+        "start_line": 136,
+        "end_line": 140,
+        "nloc": 5,
+        "token_count": 25,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::tools::arrayNode",
+        "cyclomatic_complexity": 1,
+        "start_line": 142,
+        "end_line": 146,
+        "nloc": 5,
+        "token_count": 25,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::tools::readFileDefinition",
+        "cyclomatic_complexity": 1,
+        "start_line": 148,
+        "end_line": 150,
+        "nloc": 3,
+        "token_count": 27,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::tools::writeFileDefinition",
+        "cyclomatic_complexity": 1,
+        "start_line": 152,
+        "end_line": 156,
+        "nloc": 5,
+        "token_count": 35,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::tools::editFileDefinition",
+        "cyclomatic_complexity": 1,
+        "start_line": 158,
+        "end_line": 163,
+        "nloc": 6,
+        "token_count": 43,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::tools::runShellDefinition",
+        "cyclomatic_complexity": 1,
+        "start_line": 165,
+        "end_line": 167,
+        "nloc": 3,
+        "token_count": 27,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::tools::stringParameters",
+        "cyclomatic_complexity": 3,
+        "start_line": 172,
+        "end_line": 190,
+        "nloc": 19,
+        "token_count": 194,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::tools::parseToolArguments",
+        "cyclomatic_complexity": 3,
+        "start_line": 192,
+        "end_line": 199,
+        "nloc": 8,
+        "token_count": 57,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::tools::toolStringArgument",
+        "cyclomatic_complexity": 3,
+        "start_line": 201,
+        "end_line": 208,
+        "nloc": 8,
+        "token_count": 65,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::tools::resolveToolPath",
+        "cyclomatic_complexity": 6,
+        "start_line": 210,
+        "end_line": 228,
+        "nloc": 19,
+        "token_count": 109,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::tools::ToolRegistry::ToolRegistry",
+        "cyclomatic_complexity": 1,
+        "start_line": 230,
+        "end_line": 230,
+        "nloc": 1,
+        "token_count": 25,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::ToolRegistry::registerBuiltins",
+        "cyclomatic_complexity": 1,
+        "start_line": 232,
+        "end_line": 237,
+        "nloc": 6,
+        "token_count": 115,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::tools::ToolRegistry::registerTool",
+        "cyclomatic_complexity": 3,
+        "start_line": 239,
+        "end_line": 248,
+        "nloc": 10,
+        "token_count": 78,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::tools::ToolRegistry::removeTool",
+        "cyclomatic_complexity": 1,
+        "start_line": 250,
+        "end_line": 250,
+        "nloc": 1,
+        "token_count": 23,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::ToolRegistry::hasTool",
+        "cyclomatic_complexity": 1,
+        "start_line": 252,
+        "end_line": 252,
+        "nloc": 1,
+        "token_count": 22,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::ToolRegistry::toolNames",
+        "cyclomatic_complexity": 2,
+        "start_line": 254,
+        "end_line": 261,
+        "nloc": 8,
+        "token_count": 52,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::tools::ToolRegistry::execute",
+        "cyclomatic_complexity": 3,
+        "start_line": 263,
+        "end_line": 279,
+        "nloc": 14,
+        "token_count": 150,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::tools::ToolRegistry::resolvePath",
+        "cyclomatic_complexity": 1,
+        "start_line": 281,
+        "end_line": 283,
+        "nloc": 3,
+        "token_count": 30,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::tools::ToolRegistry::readFile",
+        "cyclomatic_complexity": 5,
+        "start_line": 285,
+        "end_line": 306,
+        "nloc": 22,
+        "token_count": 152,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::ToolRegistry::writeFile",
+        "cyclomatic_complexity": 8,
+        "start_line": 308,
+        "end_line": 340,
+        "nloc": 33,
+        "token_count": 237,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::ToolRegistry::editFile",
+        "cyclomatic_complexity": 10,
+        "start_line": 342,
+        "end_line": 386,
+        "nloc": 45,
+        "token_count": 315,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::ToolRegistry::runShell",
+        "cyclomatic_complexity": 12,
+        "start_line": 388,
+        "end_line": 438,
+        "nloc": 46,
+        "token_count": 308,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::tools::ToolRegistry::definitionsJson",
+        "cyclomatic_complexity": 2,
+        "start_line": 440,
+        "end_line": 454,
+        "nloc": 14,
+        "token_count": 139,
+        "parameter_count": 0
+      }
+    ]
+  },
+  {
+    "filename": "src/log/Log.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::log::write",
+        "cyclomatic_complexity": 1,
+        "start_line": 19,
+        "end_line": 22,
+        "nloc": 4,
+        "token_count": 54,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::log::setLevel",
+        "cyclomatic_complexity": 1,
+        "start_line": 26,
+        "end_line": 28,
+        "nloc": 3,
+        "token_count": 11,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::log::level",
+        "cyclomatic_complexity": 1,
+        "start_line": 30,
+        "end_line": 32,
+        "nloc": 3,
+        "token_count": 8,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::log::parseLevel",
+        "cyclomatic_complexity": 4,
+        "start_line": 34,
+        "end_line": 48,
+        "nloc": 15,
+        "token_count": 69,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::log::progress",
+        "cyclomatic_complexity": 2,
+        "start_line": 50,
+        "end_line": 55,
+        "nloc": 6,
+        "token_count": 30,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::log::detail",
+        "cyclomatic_complexity": 2,
+        "start_line": 57,
+        "end_line": 62,
+        "nloc": 6,
+        "token_count": 30,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::log::fail",
+        "cyclomatic_complexity": 2,
+        "start_line": 64,
+        "end_line": 69,
+        "nloc": 6,
+        "token_count": 30,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::log::block",
+        "cyclomatic_complexity": 9,
+        "start_line": 71,
+        "end_line": 96,
+        "nloc": 24,
+        "token_count": 234,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::log::elapsedSeconds",
+        "cyclomatic_complexity": 1,
+        "start_line": 98,
+        "end_line": 101,
+        "nloc": 4,
+        "token_count": 38,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::log::formatSeconds",
+        "cyclomatic_complexity": 3,
+        "start_line": 103,
+        "end_line": 110,
+        "nloc": 8,
+        "token_count": 60,
+        "parameter_count": 1
+      }
+    ]
+  },
+  {
+    "filename": "src/http/DnsResponse.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::http::readU16",
+        "cyclomatic_complexity": 1,
+        "start_line": 26,
+        "end_line": 28,
+        "nloc": 3,
+        "token_count": 40,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::http::skipName",
+        "cyclomatic_complexity": 5,
+        "start_line": 33,
+        "end_line": 46,
+        "nloc": 14,
+        "token_count": 94,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::http::appendRecord",
+        "cyclomatic_complexity": 9,
+        "start_line": 48,
+        "end_line": 80,
+        "nloc": 33,
+        "token_count": 287,
+        "parameter_count": 5
+      },
+      {
+        "name": "bjorne_agent::http::parseDnsResponse",
+        "cyclomatic_complexity": 8,
+        "start_line": 84,
+        "end_line": 109,
+        "nloc": 25,
+        "token_count": 192,
+        "parameter_count": 4
+      }
+    ]
+  },
+  {
+    "filename": "src/http/Resolver.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::http::parsePort",
+        "cyclomatic_complexity": 7,
+        "start_line": 40,
+        "end_line": 59,
+        "nloc": 20,
+        "token_count": 113,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::http::withoutBrackets",
+        "cyclomatic_complexity": 4,
+        "start_line": 63,
+        "end_line": 68,
+        "nloc": 6,
+        "token_count": 58,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::http::numericAddress",
+        "cyclomatic_complexity": 3,
+        "start_line": 70,
+        "end_line": 89,
+        "nloc": 20,
+        "token_count": 181,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::http::readFile",
+        "cyclomatic_complexity": 5,
+        "start_line": 93,
+        "end_line": 112,
+        "nloc": 20,
+        "token_count": 125,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::http::splitFields",
+        "cyclomatic_complexity": 7,
+        "start_line": 114,
+        "end_line": 130,
+        "nloc": 17,
+        "token_count": 139,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::http::hostsLineMatches",
+        "cyclomatic_complexity": 5,
+        "start_line": 133,
+        "end_line": 146,
+        "nloc": 14,
+        "token_count": 141,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::http::lookupHosts",
+        "cyclomatic_complexity": 7,
+        "start_line": 148,
+        "end_line": 169,
+        "nloc": 22,
+        "token_count": 172,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::http::queryDns",
+        "cyclomatic_complexity": 2,
+        "start_line": 171,
+        "end_line": 178,
+        "nloc": 8,
+        "token_count": 88,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::http::DnsNameService::resolve",
+        "cyclomatic_complexity": 4,
+        "start_line": 184,
+        "end_line": 198,
+        "nloc": 15,
+        "token_count": 108,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::http::resolveStub",
+        "cyclomatic_complexity": 3,
+        "start_line": 201,
+        "end_line": 210,
+        "nloc": 10,
+        "token_count": 97,
+        "parameter_count": 5
+      },
+      {
+        "name": "bjorne_agent::http::SystemNameService::resolve",
+        "cyclomatic_complexity": 5,
+        "start_line": 218,
+        "end_line": 245,
+        "nloc": 28,
+        "token_count": 227,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::http::makePlatformNameService",
+        "cyclomatic_complexity": 2,
+        "start_line": 254,
+        "end_line": 260,
+        "nloc": 4,
+        "token_count": 25,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::http::resolveHost",
+        "cyclomatic_complexity": 6,
+        "start_line": 262,
+        "end_line": 287,
+        "nloc": 23,
+        "token_count": 171,
+        "parameter_count": 5
+      }
+    ]
+  },
+  {
+    "filename": "src/http/HttpClient.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::http::ignoreSigPipe",
+        "cyclomatic_complexity": 3,
+        "start_line": 60,
+        "end_line": 71,
+        "nloc": 10,
+        "token_count": 50,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::http::findHeader",
+        "cyclomatic_complexity": 7,
+        "start_line": 76,
+        "end_line": 105,
+        "nloc": 30,
+        "token_count": 313,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::http::parseChunkSize",
+        "cyclomatic_complexity": 11,
+        "start_line": 108,
+        "end_line": 141,
+        "nloc": 34,
+        "token_count": 241,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::http::decodeChunked",
+        "cyclomatic_complexity": 7,
+        "start_line": 146,
+        "end_line": 169,
+        "nloc": 24,
+        "token_count": 150,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::http::readBody",
+        "cyclomatic_complexity": 7,
+        "start_line": 173,
+        "end_line": 196,
+        "nloc": 22,
+        "token_count": 168,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::http::buildRequest",
+        "cyclomatic_complexity": 3,
+        "start_line": 198,
+        "end_line": 210,
+        "nloc": 13,
+        "token_count": 128,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::http::connectToHost",
+        "cyclomatic_complexity": 6,
+        "start_line": 214,
+        "end_line": 242,
+        "nloc": 29,
+        "token_count": 233,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::http::readAllPlain",
+        "cyclomatic_complexity": 4,
+        "start_line": 244,
+        "end_line": 258,
+        "nloc": 15,
+        "token_count": 97,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::http::tlsError",
+        "cyclomatic_complexity": 1,
+        "start_line": 261,
+        "end_line": 266,
+        "nloc": 6,
+        "token_count": 48,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::http::readAllTls",
+        "cyclomatic_complexity": 4,
+        "start_line": 268,
+        "end_line": 282,
+        "nloc": 15,
+        "token_count": 94,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::http::closeTransport",
+        "cyclomatic_complexity": 1,
+        "start_line": 284,
+        "end_line": 287,
+        "nloc": 4,
+        "token_count": 25,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::http::configureTlsSession",
+        "cyclomatic_complexity": 6,
+        "start_line": 291,
+        "end_line": 309,
+        "nloc": 17,
+        "token_count": 136,
+        "parameter_count": 5
+      },
+      {
+        "name": "bjorne_agent::http::handshakeTls",
+        "cyclomatic_complexity": 6,
+        "start_line": 314,
+        "end_line": 340,
+        "nloc": 25,
+        "token_count": 165,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::http::writeTlsRequest",
+        "cyclomatic_complexity": 3,
+        "start_line": 343,
+        "end_line": 355,
+        "nloc": 13,
+        "token_count": 116,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::http::OpenSslTransport::OpenSslTransport",
+        "cyclomatic_complexity": 1,
+        "start_line": 360,
+        "end_line": 360,
+        "nloc": 1,
+        "token_count": 19,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::http::OpenSslTransport::send",
+        "cyclomatic_complexity": 10,
+        "start_line": 362,
+        "end_line": 437,
+        "nloc": 62,
+        "token_count": 392,
+        "parameter_count": 5
+      },
+      {
+        "name": "bjorne_agent::http::PlainTcpTransport::send",
+        "cyclomatic_complexity": 5,
+        "start_line": 439,
+        "end_line": 470,
+        "nloc": 29,
+        "token_count": 239,
+        "parameter_count": 5
+      },
+      {
+        "name": "bjorne_agent::http::HttpClient::createOpenSsl",
+        "cyclomatic_complexity": 1,
+        "start_line": 472,
+        "end_line": 474,
+        "nloc": 3,
+        "token_count": 25,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::http::HttpClient::createOpenSsl",
+        "cyclomatic_complexity": 1,
+        "start_line": 476,
+        "end_line": 478,
+        "nloc": 3,
+        "token_count": 35,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::http::HttpClient::createPlainTcp",
+        "cyclomatic_complexity": 1,
+        "start_line": 480,
+        "end_line": 482,
+        "nloc": 3,
+        "token_count": 25,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::http::HttpClient::HttpClient",
+        "cyclomatic_complexity": 1,
+        "start_line": 484,
+        "end_line": 484,
+        "nloc": 1,
+        "token_count": 24,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::http::HttpClient::request",
+        "cyclomatic_complexity": 8,
+        "start_line": 486,
+        "end_line": 517,
+        "nloc": 30,
+        "token_count": 292,
+        "parameter_count": 3
+      }
+    ]
+  },
+  {
+    "filename": "src/http/HttpClient.h",
+    "function_list": [
+      {
+        "name": "bjorne_agent::http::PlainTcpTransport::PlainTcpTransport",
+        "cyclomatic_complexity": 1,
+        "start_line": 72,
+        "end_line": 72,
+        "nloc": 1,
+        "token_count": 17,
+        "parameter_count": 1
+      }
+    ]
+  },
+  {
+    "filename": "src/http/Url.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::http::allDigits",
+        "cyclomatic_complexity": 5,
+        "start_line": 10,
+        "end_line": 20,
+        "nloc": 11,
+        "token_count": 52,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::http::splitAuthority",
+        "cyclomatic_complexity": 11,
+        "start_line": 25,
+        "end_line": 65,
+        "nloc": 39,
+        "token_count": 269,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::http::isDefaultPort",
+        "cyclomatic_complexity": 3,
+        "start_line": 69,
+        "end_line": 69,
+        "nloc": 1,
+        "token_count": 26,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::http::parseUrl",
+        "cyclomatic_complexity": 8,
+        "start_line": 71,
+        "end_line": 106,
+        "nloc": 32,
+        "token_count": 236,
+        "parameter_count": 3
+      }
+    ]
+  },
+  {
+    "filename": "src/json/Json.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::json::Parser::Parser",
+        "cyclomatic_complexity": 1,
+        "start_line": 16,
+        "end_line": 16,
+        "nloc": 1,
+        "token_count": 16,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::json::Parser::parse",
+        "cyclomatic_complexity": 2,
+        "start_line": 18,
+        "end_line": 25,
+        "nloc": 8,
+        "token_count": 40,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::json::Parser::peek",
+        "cyclomatic_complexity": 2,
+        "start_line": 31,
+        "end_line": 36,
+        "nloc": 6,
+        "token_count": 32,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::json::Parser::skipWhitespace",
+        "cyclomatic_complexity": 6,
+        "start_line": 38,
+        "end_line": 47,
+        "nloc": 10,
+        "token_count": 53,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::json::Parser::advanceLiteral",
+        "cyclomatic_complexity": 2,
+        "start_line": 49,
+        "end_line": 55,
+        "nloc": 7,
+        "token_count": 53,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::json::Parser::parseValue",
+        "cyclomatic_complexity": 11,
+        "start_line": 57,
+        "end_line": 100,
+        "nloc": 44,
+        "token_count": 211,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::json::Parser::parseObject",
+        "cyclomatic_complexity": 7,
+        "start_line": 102,
+        "end_line": 136,
+        "nloc": 35,
+        "token_count": 169,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::json::Parser::parseArray",
+        "cyclomatic_complexity": 5,
+        "start_line": 138,
+        "end_line": 162,
+        "nloc": 25,
+        "token_count": 112,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::json::Parser::appendUtf8",
+        "cyclomatic_complexity": 4,
+        "start_line": 165,
+        "end_line": 181,
+        "nloc": 17,
+        "token_count": 245,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::json::Parser::readHex4",
+        "cyclomatic_complexity": 9,
+        "start_line": 184,
+        "end_line": 204,
+        "nloc": 21,
+        "token_count": 163,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::json::Parser::parseUnicodeEscape",
+        "cyclomatic_complexity": 10,
+        "start_line": 209,
+        "end_line": 226,
+        "nloc": 18,
+        "token_count": 153,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::json::Parser::parseString",
+        "cyclomatic_complexity": 15,
+        "start_line": 228,
+        "end_line": 268,
+        "nloc": 41,
+        "token_count": 266,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::json::Parser::parseNumber",
+        "cyclomatic_complexity": 10,
+        "start_line": 270,
+        "end_line": 284,
+        "nloc": 15,
+        "token_count": 142,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::json::writeString",
+        "cyclomatic_complexity": 10,
+        "start_line": 289,
+        "end_line": 314,
+        "nloc": 26,
+        "token_count": 184,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::json::writeNumber",
+        "cyclomatic_complexity": 4,
+        "start_line": 316,
+        "end_line": 330,
+        "nloc": 11,
+        "token_count": 92,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::json::writeValue",
+        "cyclomatic_complexity": 13,
+        "start_line": 332,
+        "end_line": 378,
+        "nloc": 47,
+        "token_count": 272,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::json::write",
+        "cyclomatic_complexity": 1,
+        "start_line": 382,
+        "end_line": 386,
+        "nloc": 5,
+        "token_count": 26,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::json::parse",
+        "cyclomatic_complexity": 1,
+        "start_line": 388,
+        "end_line": 391,
+        "nloc": 4,
+        "token_count": 24,
+        "parameter_count": 1
+      }
+    ]
+  },
+  {
+    "filename": "src/json/Json.h",
+    "function_list": [
+      {
+        "name": "bjorne_agent::json::Value::isObject",
+        "cyclomatic_complexity": 1,
+        "start_line": 25,
+        "end_line": 25,
+        "nloc": 1,
+        "token_count": 13,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::json::Value::isArray",
+        "cyclomatic_complexity": 1,
+        "start_line": 26,
+        "end_line": 26,
+        "nloc": 1,
+        "token_count": 13,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::json::Value::isString",
+        "cyclomatic_complexity": 1,
+        "start_line": 27,
+        "end_line": 27,
+        "nloc": 1,
+        "token_count": 13,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::json::Value::isNumber",
+        "cyclomatic_complexity": 1,
+        "start_line": 28,
+        "end_line": 28,
+        "nloc": 1,
+        "token_count": 13,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::json::Value::isBoolean",
+        "cyclomatic_complexity": 1,
+        "start_line": 29,
+        "end_line": 29,
+        "nloc": 1,
+        "token_count": 13,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::json::Value::isNull",
+        "cyclomatic_complexity": 1,
+        "start_line": 30,
+        "end_line": 30,
+        "nloc": 1,
+        "token_count": 13,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::json::Value::find",
+        "cyclomatic_complexity": 3,
+        "start_line": 32,
+        "end_line": 41,
+        "nloc": 10,
+        "token_count": 56,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::json::Value::operator [ ]",
+        "cyclomatic_complexity": 1,
+        "start_line": 43,
+        "end_line": 45,
+        "nloc": 3,
+        "token_count": 21,
+        "parameter_count": 1
+      }
+    ]
+  },
+  {
+    "filename": "src/jsonrpc/JsonRpc.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::jsonrpc::stringValue",
+        "cyclomatic_complexity": 1,
+        "start_line": 13,
+        "end_line": 18,
+        "nloc": 6,
+        "token_count": 37,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::numberValue",
+        "cyclomatic_complexity": 1,
+        "start_line": 20,
+        "end_line": 25,
+        "nloc": 6,
+        "token_count": 33,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::objectValue",
+        "cyclomatic_complexity": 1,
+        "start_line": 27,
+        "end_line": 31,
+        "nloc": 5,
+        "token_count": 25,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::envelope",
+        "cyclomatic_complexity": 1,
+        "start_line": 35,
+        "end_line": 39,
+        "nloc": 5,
+        "token_count": 29,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::readId",
+        "cyclomatic_complexity": 4,
+        "start_line": 41,
+        "end_line": 52,
+        "nloc": 12,
+        "token_count": 81,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::parseParams",
+        "cyclomatic_complexity": 5,
+        "start_line": 54,
+        "end_line": 65,
+        "nloc": 12,
+        "token_count": 88,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::parseError",
+        "cyclomatic_complexity": 8,
+        "start_line": 67,
+        "end_line": 90,
+        "nloc": 24,
+        "token_count": 195,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::parseCall",
+        "cyclomatic_complexity": 6,
+        "start_line": 93,
+        "end_line": 109,
+        "nloc": 17,
+        "token_count": 146,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::parseResponse",
+        "cyclomatic_complexity": 7,
+        "start_line": 112,
+        "end_line": 140,
+        "nloc": 28,
+        "token_count": 175,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::numberId",
+        "cyclomatic_complexity": 1,
+        "start_line": 144,
+        "end_line": 146,
+        "nloc": 3,
+        "token_count": 20,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::stringId",
+        "cyclomatic_complexity": 1,
+        "start_line": 148,
+        "end_line": 150,
+        "nloc": 3,
+        "token_count": 17,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::encodeRequest",
+        "cyclomatic_complexity": 1,
+        "start_line": 152,
+        "end_line": 158,
+        "nloc": 7,
+        "token_count": 72,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::encodeNotification",
+        "cyclomatic_complexity": 1,
+        "start_line": 160,
+        "end_line": 165,
+        "nloc": 6,
+        "token_count": 56,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::encodeResult",
+        "cyclomatic_complexity": 1,
+        "start_line": 167,
+        "end_line": 172,
+        "nloc": 6,
+        "token_count": 53,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::encodeError",
+        "cyclomatic_complexity": 1,
+        "start_line": 174,
+        "end_line": 179,
+        "nloc": 6,
+        "token_count": 44,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::encodeError",
+        "cyclomatic_complexity": 2,
+        "start_line": 181,
+        "end_line": 193,
+        "nloc": 12,
+        "token_count": 118,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::parse",
+        "cyclomatic_complexity": 7,
+        "start_line": 195,
+        "end_line": 216,
+        "nloc": 22,
+        "token_count": 160,
+        "parameter_count": 3
+      }
+    ]
+  },
+  {
+    "filename": "src/jsonrpc/Endpoint.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::jsonrpc::writeLine",
+        "cyclomatic_complexity": 1,
+        "start_line": 18,
+        "end_line": 22,
+        "nloc": 5,
+        "token_count": 56,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::Endpoint",
+        "cyclomatic_complexity": 1,
+        "start_line": 26,
+        "end_line": 26,
+        "nloc": 1,
+        "token_count": 24,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::~Endpoint",
+        "cyclomatic_complexity": 3,
+        "start_line": 28,
+        "end_line": 44,
+        "nloc": 15,
+        "token_count": 75,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::setRequestHandler",
+        "cyclomatic_complexity": 1,
+        "start_line": 46,
+        "end_line": 46,
+        "nloc": 1,
+        "token_count": 18,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::setNotificationHandler",
+        "cyclomatic_complexity": 1,
+        "start_line": 48,
+        "end_line": 50,
+        "nloc": 3,
+        "token_count": 18,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::start",
+        "cyclomatic_complexity": 2,
+        "start_line": 52,
+        "end_line": 60,
+        "nloc": 9,
+        "token_count": 60,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::waitForClose",
+        "cyclomatic_complexity": 2,
+        "start_line": 62,
+        "end_line": 65,
+        "nloc": 4,
+        "token_count": 38,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::request",
+        "cyclomatic_complexity": 13,
+        "start_line": 67,
+        "end_line": 127,
+        "nloc": 57,
+        "token_count": 441,
+        "parameter_count": 5
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::notify",
+        "cyclomatic_complexity": 1,
+        "start_line": 129,
+        "end_line": 131,
+        "nloc": 3,
+        "token_count": 43,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::closed",
+        "cyclomatic_complexity": 1,
+        "start_line": 133,
+        "end_line": 136,
+        "nloc": 4,
+        "token_count": 24,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::closeReason",
+        "cyclomatic_complexity": 1,
+        "start_line": 138,
+        "end_line": 141,
+        "nloc": 4,
+        "token_count": 24,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::readLoop",
+        "cyclomatic_complexity": 11,
+        "start_line": 143,
+        "end_line": 191,
+        "nloc": 40,
+        "token_count": 202,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::workerLoop",
+        "cyclomatic_complexity": 6,
+        "start_line": 193,
+        "end_line": 210,
+        "nloc": 18,
+        "token_count": 105,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::queueMessage",
+        "cyclomatic_complexity": 1,
+        "start_line": 212,
+        "end_line": 216,
+        "nloc": 5,
+        "token_count": 37,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::fulfill",
+        "cyclomatic_complexity": 3,
+        "start_line": 218,
+        "end_line": 233,
+        "nloc": 16,
+        "token_count": 118,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::dispatch",
+        "cyclomatic_complexity": 7,
+        "start_line": 235,
+        "end_line": 261,
+        "nloc": 24,
+        "token_count": 167,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::markClosed",
+        "cyclomatic_complexity": 3,
+        "start_line": 263,
+        "end_line": 275,
+        "nloc": 13,
+        "token_count": 69,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::jsonrpc::Endpoint::failPending",
+        "cyclomatic_complexity": 3,
+        "start_line": 277,
+        "end_line": 288,
+        "nloc": 12,
+        "token_count": 75,
+        "parameter_count": 1
+      }
+    ]
+  },
+  {
+    "filename": "src/mcp/McpClient.h",
+    "function_list": [
+      {
+        "name": "bjorne_agent::mcp::Server::name",
+        "cyclomatic_complexity": 1,
+        "start_line": 72,
+        "end_line": 72,
+        "nloc": 1,
+        "token_count": 9,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::mcp::Server::tools",
+        "cyclomatic_complexity": 1,
+        "start_line": 73,
+        "end_line": 73,
+        "nloc": 1,
+        "token_count": 9,
+        "parameter_count": 0
+      }
+    ]
+  },
+  {
+    "filename": "src/mcp/McpClient.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::mcp::objectValue",
+        "cyclomatic_complexity": 1,
+        "start_line": 24,
+        "end_line": 28,
+        "nloc": 5,
+        "token_count": 25,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::mcp::stringValue",
+        "cyclomatic_complexity": 1,
+        "start_line": 30,
+        "end_line": 35,
+        "nloc": 6,
+        "token_count": 37,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::mcp::ProcessTransport::ProcessTransport",
+        "cyclomatic_complexity": 1,
+        "start_line": 41,
+        "end_line": 41,
+        "nloc": 1,
+        "token_count": 24,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::mcp::ProcessTransport::sendLine",
+        "cyclomatic_complexity": 1,
+        "start_line": 43,
+        "end_line": 45,
+        "nloc": 3,
+        "token_count": 28,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::mcp::ProcessTransport::readLine",
+        "cyclomatic_complexity": 5,
+        "start_line": 47,
+        "end_line": 59,
+        "nloc": 13,
+        "token_count": 93,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::mcp::contentText",
+        "cyclomatic_complexity": 11,
+        "start_line": 67,
+        "end_line": 86,
+        "nloc": 20,
+        "token_count": 156,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::mcp::toolName",
+        "cyclomatic_complexity": 1,
+        "start_line": 90,
+        "end_line": 92,
+        "nloc": 3,
+        "token_count": 27,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::mcp::Client::Client",
+        "cyclomatic_complexity": 2,
+        "start_line": 94,
+        "end_line": 109,
+        "nloc": 13,
+        "token_count": 104,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::mcp::Client::initialize",
+        "cyclomatic_complexity": 3,
+        "start_line": 111,
+        "end_line": 129,
+        "nloc": 18,
+        "token_count": 151,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::mcp::Client::fetchToolPage",
+        "cyclomatic_complexity": 6,
+        "start_line": 131,
+        "end_line": 149,
+        "nloc": 19,
         "token_count": 143,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::mcp::Client::appendTools",
+        "cyclomatic_complexity": 12,
+        "start_line": 151,
+        "end_line": 177,
+        "nloc": 27,
+        "token_count": 211,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::mcp::Client::listTools",
+        "cyclomatic_complexity": 6,
+        "start_line": 179,
+        "end_line": 197,
+        "nloc": 18,
+        "token_count": 144,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::mcp::Client::callTool",
+        "cyclomatic_complexity": 10,
+        "start_line": 199,
+        "end_line": 237,
+        "nloc": 36,
+        "token_count": 260,
+        "parameter_count": 5
+      },
+      {
+        "name": "bjorne_agent::mcp::Client::closed",
+        "cyclomatic_complexity": 1,
+        "start_line": 239,
+        "end_line": 239,
+        "nloc": 1,
+        "token_count": 15,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::mcp::Server::Server",
+        "cyclomatic_complexity": 1,
+        "start_line": 241,
+        "end_line": 242,
+        "nloc": 2,
+        "token_count": 36,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::mcp::Server::~Server",
+        "cyclomatic_complexity": 1,
+        "start_line": 244,
+        "end_line": 244,
+        "nloc": 1,
+        "token_count": 11,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::mcp::Server::key",
+        "cyclomatic_complexity": 1,
+        "start_line": 246,
+        "end_line": 246,
+        "nloc": 1,
+        "token_count": 11,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::mcp::Server::start",
+        "cyclomatic_complexity": 2,
+        "start_line": 248,
+        "end_line": 253,
+        "nloc": 6,
+        "token_count": 31,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::mcp::Server::launch",
+        "cyclomatic_complexity": 2,
+        "start_line": 255,
+        "end_line": 265,
+        "nloc": 11,
+        "token_count": 101,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::mcp::Server::initializeConnection",
+        "cyclomatic_complexity": 2,
+        "start_line": 267,
+        "end_line": 272,
+        "nloc": 6,
+        "token_count": 37,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::mcp::Server::shutdown",
+        "cyclomatic_complexity": 2,
+        "start_line": 274,
+        "end_line": 284,
+        "nloc": 9,
+        "token_count": 43,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::mcp::Server::call",
+        "cyclomatic_complexity": 13,
+        "start_line": 286,
+        "end_line": 329,
+        "nloc": 37,
+        "token_count": 296,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::mcp::registerServers",
+        "cyclomatic_complexity": 6,
+        "start_line": 331,
+        "end_line": 360,
+        "nloc": 30,
+        "token_count": 265,
+        "parameter_count": 2
+      }
+    ]
+  },
+  {
+    "filename": "src/context/ContextManager.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::context::ContextManager::ContextManager",
+        "cyclomatic_complexity": 1,
+        "start_line": 9,
+        "end_line": 10,
+        "nloc": 2,
+        "token_count": 32,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::context::ContextManager::config",
+        "cyclomatic_complexity": 1,
+        "start_line": 12,
+        "end_line": 12,
+        "nloc": 1,
+        "token_count": 11,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::context::ContextManager::compressionHandler",
+        "cyclomatic_complexity": 1,
+        "start_line": 14,
+        "end_line": 14,
+        "nloc": 1,
+        "token_count": 11,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::context::ContextManager::tokenCountOf",
+        "cyclomatic_complexity": 1,
+        "start_line": 16,
+        "end_line": 19,
+        "nloc": 3,
+        "token_count": 34,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::context::ContextManager::estimateTokens",
+        "cyclomatic_complexity": 2,
+        "start_line": 21,
+        "end_line": 27,
+        "nloc": 7,
+        "token_count": 48,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::context::ContextManager::trim",
+        "cyclomatic_complexity": 4,
+        "start_line": 29,
+        "end_line": 43,
+        "nloc": 15,
+        "token_count": 111,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::context::ContextManager::truncate",
+        "cyclomatic_complexity": 7,
+        "start_line": 45,
+        "end_line": 71,
+        "nloc": 27,
+        "token_count": 270,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::context::ContextManager::compress",
+        "cyclomatic_complexity": 6,
+        "start_line": 73,
+        "end_line": 101,
+        "nloc": 29,
+        "token_count": 174,
+        "parameter_count": 3
+      }
+    ]
+  },
+  {
+    "filename": "src/context/Fragments.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::context::utf8Boundary",
+        "cyclomatic_complexity": 4,
+        "start_line": 16,
+        "end_line": 24,
+        "nloc": 9,
+        "token_count": 67,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::context::readFragment",
+        "cyclomatic_complexity": 3,
+        "start_line": 28,
+        "end_line": 41,
+        "nloc": 14,
+        "token_count": 89,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::context::renderFragments",
+        "cyclomatic_complexity": 8,
+        "start_line": 43,
+        "end_line": 79,
+        "nloc": 33,
+        "token_count": 197,
+        "parameter_count": 2
+      }
+    ]
+  },
+  {
+    "filename": "src/context/AgentsFiles.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::context::absolutePath",
+        "cyclomatic_complexity": 3,
+        "start_line": 16,
+        "end_line": 23,
+        "nloc": 8,
+        "token_count": 64,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::context::isRegularFile",
+        "cyclomatic_complexity": 2,
+        "start_line": 25,
+        "end_line": 29,
+        "nloc": 5,
+        "token_count": 39,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::context::comparisonKey",
+        "cyclomatic_complexity": 2,
+        "start_line": 34,
+        "end_line": 41,
+        "nloc": 8,
+        "token_count": 61,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::context::loadAgentsFiles",
+        "cyclomatic_complexity": 12,
+        "start_line": 45,
+        "end_line": 92,
+        "nloc": 42,
+        "token_count": 355,
         "parameter_count": 2
       }
     ]
@@ -3199,1291 +3872,178 @@
     ]
   },
   {
-    "filename": "src/http/HttpClient.cpp",
+    "filename": "src/app/Init.cpp",
     "function_list": [
       {
-        "name": "bjorne_agent::http::ignoreSigPipe",
-        "cyclomatic_complexity": 3,
-        "start_line": 60,
-        "end_line": 71,
-        "nloc": 10,
-        "token_count": 50,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::http::findHeader",
-        "cyclomatic_complexity": 7,
-        "start_line": 76,
-        "end_line": 105,
-        "nloc": 30,
-        "token_count": 313,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::http::parseChunkSize",
-        "cyclomatic_complexity": 11,
-        "start_line": 108,
-        "end_line": 141,
-        "nloc": 34,
-        "token_count": 241,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::http::decodeChunked",
-        "cyclomatic_complexity": 7,
-        "start_line": 146,
-        "end_line": 169,
-        "nloc": 24,
-        "token_count": 150,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::http::readBody",
-        "cyclomatic_complexity": 7,
-        "start_line": 173,
-        "end_line": 196,
-        "nloc": 22,
-        "token_count": 168,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::http::buildRequest",
-        "cyclomatic_complexity": 3,
-        "start_line": 198,
-        "end_line": 210,
-        "nloc": 13,
-        "token_count": 128,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::http::connectToHost",
-        "cyclomatic_complexity": 6,
-        "start_line": 214,
-        "end_line": 241,
-        "nloc": 28,
-        "token_count": 226,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::http::readAllPlain",
-        "cyclomatic_complexity": 4,
-        "start_line": 243,
-        "end_line": 257,
-        "nloc": 15,
-        "token_count": 97,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::http::tlsError",
-        "cyclomatic_complexity": 1,
-        "start_line": 260,
-        "end_line": 265,
-        "nloc": 6,
-        "token_count": 48,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::http::readAllTls",
-        "cyclomatic_complexity": 4,
-        "start_line": 267,
-        "end_line": 281,
-        "nloc": 15,
-        "token_count": 94,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::http::closeTransport",
-        "cyclomatic_complexity": 1,
-        "start_line": 283,
-        "end_line": 286,
-        "nloc": 4,
-        "token_count": 25,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::http::configureTlsSession",
-        "cyclomatic_complexity": 6,
-        "start_line": 290,
-        "end_line": 308,
-        "nloc": 17,
-        "token_count": 136,
-        "parameter_count": 5
-      },
-      {
-        "name": "bjorne_agent::http::handshakeTls",
-        "cyclomatic_complexity": 6,
-        "start_line": 313,
-        "end_line": 339,
-        "nloc": 25,
-        "token_count": 165,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::http::writeTlsRequest",
-        "cyclomatic_complexity": 3,
-        "start_line": 342,
-        "end_line": 354,
-        "nloc": 13,
-        "token_count": 116,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::http::OpenSslTransport::OpenSslTransport",
-        "cyclomatic_complexity": 1,
-        "start_line": 359,
-        "end_line": 359,
-        "nloc": 1,
-        "token_count": 19,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::http::OpenSslTransport::send",
-        "cyclomatic_complexity": 10,
-        "start_line": 361,
-        "end_line": 436,
-        "nloc": 62,
-        "token_count": 388,
-        "parameter_count": 5
-      },
-      {
-        "name": "bjorne_agent::http::PlainTcpTransport::send",
+        "name": "bjorne_agent::app::trimmed",
         "cyclomatic_complexity": 5,
-        "start_line": 438,
-        "end_line": 469,
-        "nloc": 29,
-        "token_count": 237,
-        "parameter_count": 5
-      },
-      {
-        "name": "bjorne_agent::http::HttpClient::createOpenSsl",
-        "cyclomatic_complexity": 1,
-        "start_line": 471,
-        "end_line": 473,
-        "nloc": 3,
-        "token_count": 25,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::http::HttpClient::createOpenSsl",
-        "cyclomatic_complexity": 1,
-        "start_line": 475,
-        "end_line": 477,
-        "nloc": 3,
-        "token_count": 35,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::http::HttpClient::createPlainTcp",
-        "cyclomatic_complexity": 1,
-        "start_line": 479,
-        "end_line": 481,
-        "nloc": 3,
-        "token_count": 25,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::http::HttpClient::HttpClient",
-        "cyclomatic_complexity": 1,
-        "start_line": 483,
-        "end_line": 483,
-        "nloc": 1,
-        "token_count": 24,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::http::HttpClient::request",
-        "cyclomatic_complexity": 8,
-        "start_line": 485,
-        "end_line": 516,
-        "nloc": 30,
-        "token_count": 292,
-        "parameter_count": 3
-      }
-    ]
-  },
-  {
-    "filename": "src/http/Url.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::http::allDigits",
-        "cyclomatic_complexity": 5,
-        "start_line": 10,
-        "end_line": 20,
-        "nloc": 11,
-        "token_count": 52,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::http::splitAuthority",
-        "cyclomatic_complexity": 11,
-        "start_line": 25,
-        "end_line": 65,
-        "nloc": 39,
-        "token_count": 269,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::http::isDefaultPort",
-        "cyclomatic_complexity": 3,
-        "start_line": 69,
-        "end_line": 69,
-        "nloc": 1,
-        "token_count": 26,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::http::parseUrl",
-        "cyclomatic_complexity": 8,
-        "start_line": 71,
-        "end_line": 106,
-        "nloc": 32,
-        "token_count": 236,
-        "parameter_count": 3
-      }
-    ]
-  },
-  {
-    "filename": "src/http/Resolver.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::http::parsePort",
-        "cyclomatic_complexity": 7,
         "start_line": 40,
-        "end_line": 59,
-        "nloc": 20,
-        "token_count": 113,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::http::withoutBrackets",
-        "cyclomatic_complexity": 4,
-        "start_line": 63,
-        "end_line": 68,
-        "nloc": 6,
-        "token_count": 58,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::http::numericAddress",
-        "cyclomatic_complexity": 3,
-        "start_line": 70,
-        "end_line": 89,
-        "nloc": 20,
-        "token_count": 181,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::http::readFile",
-        "cyclomatic_complexity": 5,
-        "start_line": 93,
-        "end_line": 112,
-        "nloc": 20,
-        "token_count": 125,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::http::splitFields",
-        "cyclomatic_complexity": 7,
-        "start_line": 114,
-        "end_line": 130,
-        "nloc": 17,
-        "token_count": 139,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::http::hostsLineMatches",
-        "cyclomatic_complexity": 5,
-        "start_line": 133,
-        "end_line": 146,
-        "nloc": 14,
-        "token_count": 141,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::http::lookupHosts",
-        "cyclomatic_complexity": 7,
-        "start_line": 148,
-        "end_line": 169,
-        "nloc": 22,
-        "token_count": 172,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::http::queryDns",
-        "cyclomatic_complexity": 2,
-        "start_line": 171,
-        "end_line": 178,
-        "nloc": 8,
-        "token_count": 88,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::http::resolveStub",
-        "cyclomatic_complexity": 5,
-        "start_line": 180,
-        "end_line": 197,
-        "nloc": 18,
-        "token_count": 132,
-        "parameter_count": 5
-      },
-      {
-        "name": "bjorne_agent::http::resolveWithGetaddrinfo",
-        "cyclomatic_complexity": 5,
-        "start_line": 201,
-        "end_line": 227,
-        "nloc": 27,
-        "token_count": 216,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::http::resolveHost",
-        "cyclomatic_complexity": 5,
-        "start_line": 233,
-        "end_line": 256,
-        "nloc": 21,
-        "token_count": 146,
-        "parameter_count": 5
-      }
-    ]
-  },
-  {
-    "filename": "src/http/DnsResponse.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::http::readU16",
-        "cyclomatic_complexity": 1,
-        "start_line": 26,
-        "end_line": 28,
-        "nloc": 3,
-        "token_count": 40,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::http::skipName",
-        "cyclomatic_complexity": 5,
-        "start_line": 33,
-        "end_line": 46,
-        "nloc": 14,
-        "token_count": 94,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::http::appendRecord",
-        "cyclomatic_complexity": 9,
-        "start_line": 48,
-        "end_line": 80,
-        "nloc": 33,
-        "token_count": 287,
-        "parameter_count": 5
-      },
-      {
-        "name": "bjorne_agent::http::parseDnsResponse",
-        "cyclomatic_complexity": 8,
-        "start_line": 84,
-        "end_line": 109,
-        "nloc": 25,
-        "token_count": 192,
-        "parameter_count": 4
-      }
-    ]
-  },
-  {
-    "filename": "src/interaction/Interaction.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::interaction::trimmed",
-        "cyclomatic_complexity": 5,
-        "start_line": 18,
-        "end_line": 28,
+        "end_line": 50,
         "nloc": 11,
         "token_count": 107,
         "parameter_count": 1
       },
       {
-        "name": "bjorne_agent::interaction::choiceNumber",
-        "cyclomatic_complexity": 5,
-        "start_line": 31,
-        "end_line": 46,
-        "nloc": 16,
-        "token_count": 96,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::interaction::readOption",
-        "cyclomatic_complexity": 6,
-        "start_line": 48,
-        "end_line": 65,
-        "nloc": 18,
-        "token_count": 119,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::interaction::UnavailableChannel::UnavailableChannel",
+        "name": "bjorne_agent::app::quoted",
         "cyclomatic_complexity": 1,
-        "start_line": 69,
-        "end_line": 69,
-        "nloc": 1,
-        "token_count": 21,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::interaction::UnavailableChannel::ask",
-        "cyclomatic_complexity": 1,
-        "start_line": 71,
-        "end_line": 76,
+        "start_line": 55,
+        "end_line": 60,
         "nloc": 6,
         "token_count": 42,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::interaction::ConsoleChannel::ConsoleChannel",
-        "cyclomatic_complexity": 1,
-        "start_line": 78,
-        "end_line": 78,
-        "nloc": 1,
-        "token_count": 28,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::interaction::ConsoleChannel::ask",
-        "cyclomatic_complexity": 10,
-        "start_line": 80,
-        "end_line": 120,
-        "nloc": 39,
-        "token_count": 278,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::interaction::makeChannel",
-        "cyclomatic_complexity": 1,
-        "start_line": 122,
-        "end_line": 124,
-        "nloc": 3,
-        "token_count": 19,
         "parameter_count": 1
       },
       {
-        "name": "bjorne_agent::interaction::makeChannel",
-        "cyclomatic_complexity": 3,
-        "start_line": 126,
-        "end_line": 134,
-        "nloc": 9,
-        "token_count": 63,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::interaction::registerRequestInputTool",
-        "cyclomatic_complexity": 7,
-        "start_line": 136,
-        "end_line": 177,
-        "nloc": 41,
-        "token_count": 223,
-        "parameter_count": 2
-      }
-    ]
-  },
-  {
-    "filename": "src/interaction/Interaction.h",
-    "function_list": [
-      {
-        "name": "bjorne_agent::interaction::UnavailableChannel::available",
-        "cyclomatic_complexity": 1,
-        "start_line": 43,
-        "end_line": 43,
-        "nloc": 1,
-        "token_count": 10,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::interaction::ConsoleChannel::available",
-        "cyclomatic_complexity": 1,
-        "start_line": 56,
-        "end_line": 56,
-        "nloc": 1,
-        "token_count": 10,
-        "parameter_count": 0
-      }
-    ]
-  },
-  {
-    "filename": "src/platform/Shutdown.h",
-    "function_list": [
-      {
-        "name": "bjorne_agent::platform::detail::shutdownFlag",
-        "cyclomatic_complexity": 1,
-        "start_line": 13,
-        "end_line": 16,
-        "nloc": 4,
-        "token_count": 17,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::detail::handleShutdownSignal",
-        "cyclomatic_complexity": 1,
-        "start_line": 18,
-        "end_line": 18,
-        "nloc": 1,
-        "token_count": 12,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::installShutdownHandlers",
-        "cyclomatic_complexity": 3,
-        "start_line": 26,
-        "end_line": 34,
-        "nloc": 6,
-        "token_count": 50,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::shutdownRequested",
-        "cyclomatic_complexity": 1,
-        "start_line": 36,
-        "end_line": 36,
-        "nloc": 1,
-        "token_count": 14,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::clearShutdownRequest",
-        "cyclomatic_complexity": 1,
-        "start_line": 40,
-        "end_line": 40,
-        "nloc": 1,
-        "token_count": 13,
-        "parameter_count": 0
-      }
-    ]
-  },
-  {
-    "filename": "src/platform/Process.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::platform::quoteArgument",
-        "cyclomatic_complexity": 8,
-        "start_line": 23,
-        "end_line": 48,
-        "nloc": 26,
-        "token_count": 187,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::environmentBlock",
-        "cyclomatic_complexity": 8,
-        "start_line": 50,
-        "end_line": 80,
-        "nloc": 28,
-        "token_count": 231,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::~ChildProcess",
-        "cyclomatic_complexity": 1,
-        "start_line": 84,
-        "end_line": 84,
-        "nloc": 1,
-        "token_count": 11,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::start",
-        "cyclomatic_complexity": 11,
-        "start_line": 86,
-        "end_line": 147,
-        "nloc": 56,
-        "token_count": 438,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::running",
-        "cyclomatic_complexity": 4,
-        "start_line": 149,
-        "end_line": 159,
-        "nloc": 11,
-        "token_count": 64,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::sendLine",
-        "cyclomatic_complexity": 5,
-        "start_line": 161,
-        "end_line": 175,
-        "nloc": 15,
-        "token_count": 111,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::readLine",
-        "cyclomatic_complexity": 11,
-        "start_line": 177,
-        "end_line": 212,
-        "nloc": 35,
-        "token_count": 240,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::stop",
-        "cyclomatic_complexity": 8,
-        "start_line": 214,
-        "end_line": 239,
-        "nloc": 26,
-        "token_count": 170,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::exitCode",
+        "name": "bjorne_agent::app::number",
         "cyclomatic_complexity": 2,
-        "start_line": 241,
-        "end_line": 241,
-        "nloc": 1,
-        "token_count": 21,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::closeFd",
-        "cyclomatic_complexity": 2,
-        "start_line": 274,
-        "end_line": 279,
-        "nloc": 6,
-        "token_count": 27,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::setCloseOnExec",
-        "cyclomatic_complexity": 2,
-        "start_line": 281,
-        "end_line": 287,
-        "nloc": 7,
-        "token_count": 45,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::runnableStatus",
-        "cyclomatic_complexity": 4,
-        "start_line": 291,
-        "end_line": 297,
-        "nloc": 7,
-        "token_count": 66,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::lookupError",
-        "cyclomatic_complexity": 10,
-        "start_line": 304,
-        "end_line": 336,
-        "nloc": 31,
-        "token_count": 210,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::mergedEnvironment",
-        "cyclomatic_complexity": 7,
-        "start_line": 341,
-        "end_line": 361,
-        "nloc": 21,
-        "token_count": 154,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::closeSpawnPipes",
-        "cyclomatic_complexity": 1,
-        "start_line": 363,
-        "end_line": 368,
-        "nloc": 6,
-        "token_count": 48,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::~ChildProcess",
-        "cyclomatic_complexity": 1,
-        "start_line": 372,
-        "end_line": 372,
-        "nloc": 1,
-        "token_count": 11,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::start",
-        "cyclomatic_complexity": 11,
-        "start_line": 374,
-        "end_line": 452,
-        "nloc": 67,
-        "token_count": 600,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::running",
-        "cyclomatic_complexity": 6,
-        "start_line": 454,
-        "end_line": 468,
-        "nloc": 15,
-        "token_count": 92,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::sendLine",
-        "cyclomatic_complexity": 6,
-        "start_line": 470,
-        "end_line": 489,
-        "nloc": 20,
-        "token_count": 144,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::readLine",
-        "cyclomatic_complexity": 7,
-        "start_line": 491,
-        "end_line": 514,
-        "nloc": 23,
-        "token_count": 146,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::readChunk",
-        "cyclomatic_complexity": 7,
-        "start_line": 516,
-        "end_line": 540,
-        "nloc": 23,
-        "token_count": 157,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::stop",
-        "cyclomatic_complexity": 7,
-        "start_line": 542,
-        "end_line": 569,
-        "nloc": 27,
-        "token_count": 169,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::exitCode",
-        "cyclomatic_complexity": 2,
-        "start_line": 571,
-        "end_line": 571,
-        "nloc": 1,
-        "token_count": 15,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::ChildProcess::extractLine",
-        "cyclomatic_complexity": 4,
-        "start_line": 583,
-        "end_line": 594,
-        "nloc": 12,
-        "token_count": 90,
-        "parameter_count": 1
-      }
-    ]
-  },
-  {
-    "filename": "src/platform/Process.h",
-    "function_list": [
-      {
-        "name": "bjorne_agent::platform::ChildProcess::started",
-        "cyclomatic_complexity": 1,
-        "start_line": 53,
-        "end_line": 53,
-        "nloc": 1,
-        "token_count": 9,
-        "parameter_count": 0
-      }
-    ]
-  },
-  {
-    "filename": "src/platform/Platform.h",
-    "function_list": [
-      {
-        "name": "bjorne_agent::platform::initializeSockets",
-        "cyclomatic_complexity": 1,
-        "start_line": 44,
-        "end_line": 50,
-        "nloc": 7,
-        "token_count": 42,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::isValidSocket",
-        "cyclomatic_complexity": 1,
-        "start_line": 52,
-        "end_line": 54,
-        "nloc": 3,
-        "token_count": 12,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::getEnvironmentVariable",
-        "cyclomatic_complexity": 4,
-        "start_line": 58,
-        "end_line": 70,
-        "nloc": 13,
-        "token_count": 109,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::platform::setEnvironmentVariable",
-        "cyclomatic_complexity": 1,
-        "start_line": 72,
-        "end_line": 74,
-        "nloc": 3,
-        "token_count": 34,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::platform::unsetEnvironmentVariable",
-        "cyclomatic_complexity": 1,
-        "start_line": 76,
-        "end_line": 79,
-        "nloc": 3,
-        "token_count": 23,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::processId",
-        "cyclomatic_complexity": 1,
-        "start_line": 81,
-        "end_line": 83,
-        "nloc": 3,
-        "token_count": 17,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::standardInputIsTerminal",
-        "cyclomatic_complexity": 1,
-        "start_line": 88,
-        "end_line": 90,
-        "nloc": 3,
-        "token_count": 18,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::currentWorkingDirectory",
-        "cyclomatic_complexity": 3,
-        "start_line": 94,
-        "end_line": 101,
+        "start_line": 65,
+        "end_line": 72,
         "nloc": 8,
-        "token_count": 55,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::closeSocket",
-        "cyclomatic_complexity": 1,
-        "start_line": 103,
-        "end_line": 105,
-        "nloc": 3,
-        "token_count": 14,
+        "token_count": 62,
         "parameter_count": 1
       },
       {
-        "name": "bjorne_agent::platform::addressToBinary",
-        "cyclomatic_complexity": 1,
-        "start_line": 109,
-        "end_line": 111,
-        "nloc": 3,
-        "token_count": 27,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::platform::addressToText",
-        "cyclomatic_complexity": 1,
-        "start_line": 114,
-        "end_line": 116,
-        "nloc": 3,
-        "token_count": 40,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::platform::addressErrorMessage",
+        "name": "bjorne_agent::app::exists",
         "cyclomatic_complexity": 2,
-        "start_line": 120,
-        "end_line": 123,
-        "nloc": 4,
-        "token_count": 37,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::replaceFile",
-        "cyclomatic_complexity": 1,
-        "start_line": 127,
-        "end_line": 129,
-        "nloc": 3,
-        "token_count": 41,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::platform::initializeSockets",
-        "cyclomatic_complexity": 1,
-        "start_line": 152,
-        "end_line": 154,
-        "nloc": 3,
-        "token_count": 8,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::isValidSocket",
-        "cyclomatic_complexity": 1,
-        "start_line": 156,
-        "end_line": 158,
-        "nloc": 3,
-        "token_count": 12,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::getEnvironmentVariable",
-        "cyclomatic_complexity": 3,
-        "start_line": 162,
-        "end_line": 169,
-        "nloc": 8,
-        "token_count": 58,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::platform::setEnvironmentVariable",
-        "cyclomatic_complexity": 1,
-        "start_line": 171,
-        "end_line": 173,
-        "nloc": 3,
-        "token_count": 36,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::platform::unsetEnvironmentVariable",
-        "cyclomatic_complexity": 1,
-        "start_line": 175,
-        "end_line": 177,
-        "nloc": 3,
-        "token_count": 21,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::processId",
-        "cyclomatic_complexity": 1,
-        "start_line": 179,
-        "end_line": 181,
-        "nloc": 3,
-        "token_count": 17,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::standardInputIsTerminal",
-        "cyclomatic_complexity": 1,
-        "start_line": 186,
-        "end_line": 188,
-        "nloc": 3,
-        "token_count": 14,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::currentWorkingDirectory",
-        "cyclomatic_complexity": 2,
-        "start_line": 192,
-        "end_line": 198,
-        "nloc": 7,
-        "token_count": 40,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::platform::closeSocket",
-        "cyclomatic_complexity": 1,
-        "start_line": 200,
-        "end_line": 202,
-        "nloc": 3,
-        "token_count": 14,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::addressToBinary",
-        "cyclomatic_complexity": 1,
-        "start_line": 204,
-        "end_line": 206,
-        "nloc": 3,
-        "token_count": 27,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::platform::addressToText",
-        "cyclomatic_complexity": 1,
-        "start_line": 208,
-        "end_line": 210,
-        "nloc": 3,
-        "token_count": 34,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::platform::addressErrorMessage",
-        "cyclomatic_complexity": 2,
-        "start_line": 212,
-        "end_line": 215,
-        "nloc": 4,
-        "token_count": 37,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::platform::replaceFile",
-        "cyclomatic_complexity": 1,
-        "start_line": 219,
-        "end_line": 221,
-        "nloc": 3,
-        "token_count": 38,
-        "parameter_count": 2
-      }
-    ]
-  },
-  {
-    "filename": "src/log/Log.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::log::write",
-        "cyclomatic_complexity": 1,
-        "start_line": 19,
-        "end_line": 22,
-        "nloc": 4,
-        "token_count": 54,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::log::setLevel",
-        "cyclomatic_complexity": 1,
-        "start_line": 26,
-        "end_line": 28,
-        "nloc": 3,
-        "token_count": 11,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::log::level",
-        "cyclomatic_complexity": 1,
-        "start_line": 30,
-        "end_line": 32,
-        "nloc": 3,
-        "token_count": 8,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::log::parseLevel",
-        "cyclomatic_complexity": 4,
-        "start_line": 34,
-        "end_line": 48,
-        "nloc": 15,
-        "token_count": 69,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::log::progress",
-        "cyclomatic_complexity": 2,
-        "start_line": 50,
-        "end_line": 55,
-        "nloc": 6,
-        "token_count": 30,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::log::detail",
-        "cyclomatic_complexity": 2,
-        "start_line": 57,
-        "end_line": 62,
-        "nloc": 6,
-        "token_count": 30,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::log::fail",
-        "cyclomatic_complexity": 2,
-        "start_line": 64,
-        "end_line": 69,
-        "nloc": 6,
-        "token_count": 30,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::log::block",
-        "cyclomatic_complexity": 9,
-        "start_line": 71,
-        "end_line": 96,
-        "nloc": 24,
-        "token_count": 234,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::log::elapsedSeconds",
-        "cyclomatic_complexity": 1,
-        "start_line": 98,
-        "end_line": 101,
-        "nloc": 4,
-        "token_count": 38,
-        "parameter_count": 0
-      },
-      {
-        "name": "bjorne_agent::log::formatSeconds",
-        "cyclomatic_complexity": 3,
-        "start_line": 103,
-        "end_line": 110,
-        "nloc": 8,
-        "token_count": 60,
-        "parameter_count": 1
-      }
-    ]
-  },
-  {
-    "filename": "src/cli/Invocation.cpp",
-    "function_list": [
-      {
-        "name": "bjorne_agent::cli::namesAnExistingFile",
-        "cyclomatic_complexity": 2,
-        "start_line": 15,
-        "end_line": 18,
+        "start_line": 74,
+        "end_line": 77,
         "nloc": 4,
         "token_count": 31,
         "parameter_count": 1
       },
       {
-        "name": "bjorne_agent::cli::reservedVerb",
-        "cyclomatic_complexity": 6,
-        "start_line": 23,
-        "end_line": 45,
-        "nloc": 23,
-        "token_count": 103,
-        "parameter_count": 2
+        "name": "bjorne_agent::app::directoryOf",
+        "cyclomatic_complexity": 1,
+        "start_line": 81,
+        "end_line": 83,
+        "nloc": 3,
+        "token_count": 29,
+        "parameter_count": 1
       },
       {
-        "name": "bjorne_agent::cli::resolveRun",
-        "cyclomatic_complexity": 6,
-        "start_line": 54,
-        "end_line": 87,
-        "nloc": 28,
-        "token_count": 188,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::cli::parseFlags",
-        "cyclomatic_complexity": 12,
-        "start_line": 91,
-        "end_line": 124,
-        "nloc": 34,
-        "token_count": 203,
-        "parameter_count": 4
-      },
-      {
-        "name": "bjorne_agent::cli::selectCommand",
-        "cyclomatic_complexity": 3,
-        "start_line": 128,
-        "end_line": 141,
-        "nloc": 14,
-        "token_count": 93,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::cli::parseCommandArguments",
-        "cyclomatic_complexity": 12,
-        "start_line": 143,
-        "end_line": 183,
-        "nloc": 39,
-        "token_count": 235,
-        "parameter_count": 3
-      },
-      {
-        "name": "bjorne_agent::cli::parse",
+        "name": "bjorne_agent::app::joinPath",
         "cyclomatic_complexity": 4,
-        "start_line": 187,
-        "end_line": 209,
-        "nloc": 16,
-        "token_count": 106,
+        "start_line": 85,
+        "end_line": 93,
+        "nloc": 9,
+        "token_count": 63,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::app::projectConfigPath",
+        "cyclomatic_complexity": 1,
+        "start_line": 98,
+        "end_line": 100,
+        "nloc": 3,
+        "token_count": 17,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::app::userConfigPath",
+        "cyclomatic_complexity": 2,
+        "start_line": 102,
+        "end_line": 108,
+        "nloc": 7,
+        "token_count": 39,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::app::configText",
+        "cyclomatic_complexity": 2,
+        "start_line": 112,
+        "end_line": 142,
+        "nloc": 31,
+        "token_count": 240,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::app::Init::Init",
+        "cyclomatic_complexity": 1,
+        "start_line": 146,
+        "end_line": 147,
+        "nloc": 2,
+        "token_count": 36,
         "parameter_count": 3
       },
       {
-        "name": "bjorne_agent::cli::commandName",
-        "cyclomatic_complexity": 6,
-        "start_line": 211,
-        "end_line": 225,
-        "nloc": 15,
-        "token_count": 56,
-        "parameter_count": 1
+        "name": "bjorne_agent::app::Init::run",
+        "cyclomatic_complexity": 5,
+        "start_line": 149,
+        "end_line": 168,
+        "nloc": 19,
+        "token_count": 77,
+        "parameter_count": 0
       },
       {
-        "name": "bjorne_agent::cli::usage",
-        "cyclomatic_complexity": 1,
-        "start_line": 227,
+        "name": "bjorne_agent::app::Init::ask",
+        "cyclomatic_complexity": 4,
+        "start_line": 170,
+        "end_line": 187,
+        "nloc": 17,
+        "token_count": 118,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::app::Init::askChoice",
+        "cyclomatic_complexity": 12,
+        "start_line": 189,
+        "end_line": 235,
+        "nloc": 44,
+        "token_count": 328,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::app::Init::confirm",
+        "cyclomatic_complexity": 4,
+        "start_line": 237,
+        "end_line": 250,
+        "nloc": 13,
+        "token_count": 98,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::app::Init::collect",
+        "cyclomatic_complexity": 2,
+        "start_line": 252,
         "end_line": 258,
-        "nloc": 32,
-        "token_count": 37,
-        "parameter_count": 0
+        "nloc": 7,
+        "token_count": 38,
+        "parameter_count": 1
       },
       {
-        "name": "bjorne_agent::cli::usage",
-        "cyclomatic_complexity": 6,
-        "start_line": 260,
-        "end_line": 318,
-        "nloc": 59,
-        "token_count": 102,
+        "name": "bjorne_agent::app::Init::collectLocation",
+        "cyclomatic_complexity": 8,
+        "start_line": 261,
+        "end_line": 290,
+        "nloc": 26,
+        "token_count": 189,
         "parameter_count": 1
-      }
-    ]
-  },
-  {
-    "filename": "src/agent/AgentLoop.h",
-    "function_list": [
+      },
       {
-        "name": "bjorne_agent::agent::LoopObserver::onTurn",
-        "cyclomatic_complexity": 1,
-        "start_line": 40,
-        "end_line": 40,
-        "nloc": 1,
-        "token_count": 30,
+        "name": "bjorne_agent::app::Init::collectSettings",
+        "cyclomatic_complexity": 11,
+        "start_line": 293,
+        "end_line": 326,
+        "nloc": 31,
+        "token_count": 220,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::app::Init::write",
+        "cyclomatic_complexity": 11,
+        "start_line": 328,
+        "end_line": 388,
+        "nloc": 53,
+        "token_count": 443,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::app::Init::writeFile",
+        "cyclomatic_complexity": 4,
+        "start_line": 390,
+        "end_line": 411,
+        "nloc": 22,
+        "token_count": 143,
         "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::agent::LoopObserver::onAssistantMessage",
-        "cyclomatic_complexity": 1,
-        "start_line": 43,
-        "end_line": 43,
-        "nloc": 1,
-        "token_count": 16,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::agent::LoopObserver::onReasoning",
-        "cyclomatic_complexity": 1,
-        "start_line": 46,
-        "end_line": 46,
-        "nloc": 1,
-        "token_count": 16,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::agent::LoopObserver::onComplete",
-        "cyclomatic_complexity": 1,
-        "start_line": 49,
-        "end_line": 52,
-        "nloc": 4,
-        "token_count": 33,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::agent::LoopObserver::onFailure",
-        "cyclomatic_complexity": 1,
-        "start_line": 55,
-        "end_line": 58,
-        "nloc": 4,
-        "token_count": 33,
-        "parameter_count": 2
-      },
-      {
-        "name": "bjorne_agent::agent::LoopObserver::onInterrupt",
-        "cyclomatic_complexity": 1,
-        "start_line": 61,
-        "end_line": 61,
-        "nloc": 1,
-        "token_count": 21,
-        "parameter_count": 1
-      },
-      {
-        "name": "bjorne_agent::agent::AgentLoop::stopReason",
-        "cyclomatic_complexity": 1,
-        "start_line": 79,
-        "end_line": 79,
-        "nloc": 1,
-        "token_count": 9,
-        "parameter_count": 0
       }
     ]
   },
@@ -4579,6 +4139,478 @@
         "nloc": 61,
         "token_count": 377,
         "parameter_count": 3
+      }
+    ]
+  },
+  {
+    "filename": "src/agent/AgentLoop.h",
+    "function_list": [
+      {
+        "name": "bjorne_agent::agent::LoopObserver::onTurn",
+        "cyclomatic_complexity": 1,
+        "start_line": 40,
+        "end_line": 40,
+        "nloc": 1,
+        "token_count": 30,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::agent::LoopObserver::onAssistantMessage",
+        "cyclomatic_complexity": 1,
+        "start_line": 43,
+        "end_line": 43,
+        "nloc": 1,
+        "token_count": 16,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::agent::LoopObserver::onReasoning",
+        "cyclomatic_complexity": 1,
+        "start_line": 46,
+        "end_line": 46,
+        "nloc": 1,
+        "token_count": 16,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::agent::LoopObserver::onComplete",
+        "cyclomatic_complexity": 1,
+        "start_line": 49,
+        "end_line": 52,
+        "nloc": 4,
+        "token_count": 33,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::agent::LoopObserver::onFailure",
+        "cyclomatic_complexity": 1,
+        "start_line": 55,
+        "end_line": 58,
+        "nloc": 4,
+        "token_count": 33,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::agent::LoopObserver::onInterrupt",
+        "cyclomatic_complexity": 1,
+        "start_line": 61,
+        "end_line": 61,
+        "nloc": 1,
+        "token_count": 21,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::agent::AgentLoop::stopReason",
+        "cyclomatic_complexity": 1,
+        "start_line": 79,
+        "end_line": 79,
+        "nloc": 1,
+        "token_count": 9,
+        "parameter_count": 0
+      }
+    ]
+  },
+  {
+    "filename": "src/config/ConfigPaths.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::config::isPathSeparator",
+        "cyclomatic_complexity": 3,
+        "start_line": 20,
+        "end_line": 26,
+        "nloc": 4,
+        "token_count": 21,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::config::isAbsolutePath",
+        "cyclomatic_complexity": 8,
+        "start_line": 30,
+        "end_line": 44,
+        "nloc": 13,
+        "token_count": 92,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::config::joinPath",
+        "cyclomatic_complexity": 3,
+        "start_line": 48,
+        "end_line": 56,
+        "nloc": 9,
+        "token_count": 56,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::config::userConfigDirectory",
+        "cyclomatic_complexity": 10,
+        "start_line": 64,
+        "end_line": 86,
+        "nloc": 19,
+        "token_count": 149,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::config::userConfigPath",
+        "cyclomatic_complexity": 2,
+        "start_line": 90,
+        "end_line": 93,
+        "nloc": 4,
+        "token_count": 35,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::config::trimmed",
+        "cyclomatic_complexity": 2,
+        "start_line": 97,
+        "end_line": 104,
+        "nloc": 8,
+        "token_count": 63,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::config::environmentConfigPath",
+        "cyclomatic_complexity": 2,
+        "start_line": 108,
+        "end_line": 114,
+        "nloc": 7,
+        "token_count": 34,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::config::defaultConfigPaths",
+        "cyclomatic_complexity": 2,
+        "start_line": 116,
+        "end_line": 124,
+        "nloc": 9,
+        "token_count": 53,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::config::findDefaultConfig",
+        "cyclomatic_complexity": 8,
+        "start_line": 126,
+        "end_line": 154,
+        "nloc": 24,
+        "token_count": 151,
+        "parameter_count": 1
+      }
+    ]
+  },
+  {
+    "filename": "src/config/Defaults.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::config::defaultCompressionPrompt",
+        "cyclomatic_complexity": 1,
+        "start_line": 6,
+        "end_line": 9,
+        "nloc": 4,
+        "token_count": 9,
+        "parameter_count": 0
+      }
+    ]
+  },
+  {
+    "filename": "src/config/Config.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::config::getString",
+        "cyclomatic_complexity": 3,
+        "start_line": 14,
+        "end_line": 21,
+        "nloc": 8,
+        "token_count": 65,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::config::getNumber",
+        "cyclomatic_complexity": 3,
+        "start_line": 23,
+        "end_line": 30,
+        "nloc": 8,
+        "token_count": 71,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::config::getBoolean",
+        "cyclomatic_complexity": 3,
+        "start_line": 32,
+        "end_line": 39,
+        "nloc": 8,
+        "token_count": 63,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::config::loadAgent",
+        "cyclomatic_complexity": 3,
+        "start_line": 41,
+        "end_line": 52,
+        "nloc": 12,
+        "token_count": 118,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::config::loadModel",
+        "cyclomatic_complexity": 7,
+        "start_line": 54,
+        "end_line": 75,
+        "nloc": 22,
+        "token_count": 211,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::config::loadModels",
+        "cyclomatic_complexity": 5,
+        "start_line": 77,
+        "end_line": 90,
+        "nloc": 14,
+        "token_count": 96,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::config::loadMcpServers",
+        "cyclomatic_complexity": 13,
+        "start_line": 92,
+        "end_line": 121,
+        "nloc": 30,
+        "token_count": 241,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::config::load",
+        "cyclomatic_complexity": 7,
+        "start_line": 125,
+        "end_line": 160,
+        "nloc": 34,
+        "token_count": 238,
+        "parameter_count": 3
+      }
+    ]
+  },
+  {
+    "filename": "src/model/ModelClient.h",
+    "function_list": [
+      {
+        "name": "bjorne_agent::model::ModelBackend::setTools",
+        "cyclomatic_complexity": 1,
+        "start_line": 44,
+        "end_line": 44,
+        "nloc": 1,
+        "token_count": 16,
+        "parameter_count": 1
+      }
+    ]
+  },
+  {
+    "filename": "src/model/ModelClient.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::model::escapeJson",
+        "cyclomatic_complexity": 8,
+        "start_line": 21,
+        "end_line": 43,
+        "nloc": 23,
+        "token_count": 153,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::model::toolCallJson",
+        "cyclomatic_complexity": 2,
+        "start_line": 45,
+        "end_line": 51,
+        "nloc": 7,
+        "token_count": 75,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::model::messageJson",
+        "cyclomatic_complexity": 6,
+        "start_line": 53,
+        "end_line": 70,
+        "nloc": 18,
+        "token_count": 153,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::model::requestBodyJson",
+        "cyclomatic_complexity": 4,
+        "start_line": 72,
+        "end_line": 87,
+        "nloc": 16,
+        "token_count": 112,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::model::parseToolCalls",
+        "cyclomatic_complexity": 14,
+        "start_line": 89,
+        "end_line": 118,
+        "nloc": 30,
+        "token_count": 238,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::model::parseChatResponse",
+        "cyclomatic_complexity": 12,
+        "start_line": 121,
+        "end_line": 156,
+        "nloc": 34,
+        "token_count": 279,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::model::ModelClient::ModelClient",
+        "cyclomatic_complexity": 1,
+        "start_line": 160,
+        "end_line": 166,
+        "nloc": 7,
+        "token_count": 76,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::model::ModelClient::ModelClient",
+        "cyclomatic_complexity": 1,
+        "start_line": 168,
+        "end_line": 170,
+        "nloc": 3,
+        "token_count": 60,
+        "parameter_count": 4
+      },
+      {
+        "name": "bjorne_agent::model::ModelClient::respond",
+        "cyclomatic_complexity": 10,
+        "start_line": 172,
+        "end_line": 231,
+        "nloc": 52,
+        "token_count": 419,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::model::ModelClient::setTools",
+        "cyclomatic_complexity": 1,
+        "start_line": 233,
+        "end_line": 233,
+        "nloc": 1,
+        "token_count": 17,
+        "parameter_count": 1
+      }
+    ]
+  },
+  {
+    "filename": "src/interaction/Interaction.h",
+    "function_list": [
+      {
+        "name": "bjorne_agent::interaction::UnavailableChannel::available",
+        "cyclomatic_complexity": 1,
+        "start_line": 43,
+        "end_line": 43,
+        "nloc": 1,
+        "token_count": 10,
+        "parameter_count": 0
+      },
+      {
+        "name": "bjorne_agent::interaction::ConsoleChannel::available",
+        "cyclomatic_complexity": 1,
+        "start_line": 56,
+        "end_line": 56,
+        "nloc": 1,
+        "token_count": 10,
+        "parameter_count": 0
+      }
+    ]
+  },
+  {
+    "filename": "src/interaction/Interaction.cpp",
+    "function_list": [
+      {
+        "name": "bjorne_agent::interaction::trimmed",
+        "cyclomatic_complexity": 5,
+        "start_line": 18,
+        "end_line": 28,
+        "nloc": 11,
+        "token_count": 107,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::interaction::choiceNumber",
+        "cyclomatic_complexity": 5,
+        "start_line": 31,
+        "end_line": 46,
+        "nloc": 16,
+        "token_count": 96,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::interaction::readOption",
+        "cyclomatic_complexity": 6,
+        "start_line": 48,
+        "end_line": 65,
+        "nloc": 18,
+        "token_count": 119,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::interaction::UnavailableChannel::UnavailableChannel",
+        "cyclomatic_complexity": 1,
+        "start_line": 69,
+        "end_line": 69,
+        "nloc": 1,
+        "token_count": 21,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::interaction::UnavailableChannel::ask",
+        "cyclomatic_complexity": 1,
+        "start_line": 71,
+        "end_line": 76,
+        "nloc": 6,
+        "token_count": 42,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::interaction::ConsoleChannel::ConsoleChannel",
+        "cyclomatic_complexity": 1,
+        "start_line": 78,
+        "end_line": 78,
+        "nloc": 1,
+        "token_count": 28,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::interaction::ConsoleChannel::ask",
+        "cyclomatic_complexity": 10,
+        "start_line": 80,
+        "end_line": 120,
+        "nloc": 39,
+        "token_count": 278,
+        "parameter_count": 3
+      },
+      {
+        "name": "bjorne_agent::interaction::makeChannel",
+        "cyclomatic_complexity": 1,
+        "start_line": 122,
+        "end_line": 124,
+        "nloc": 3,
+        "token_count": 19,
+        "parameter_count": 1
+      },
+      {
+        "name": "bjorne_agent::interaction::makeChannel",
+        "cyclomatic_complexity": 3,
+        "start_line": 126,
+        "end_line": 134,
+        "nloc": 9,
+        "token_count": 63,
+        "parameter_count": 2
+      },
+      {
+        "name": "bjorne_agent::interaction::registerRequestInputTool",
+        "cyclomatic_complexity": 7,
+        "start_line": 136,
+        "end_line": 177,
+        "nloc": 41,
+        "token_count": 223,
+        "parameter_count": 2
       }
     ]
   },

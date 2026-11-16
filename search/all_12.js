@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['object_0',['object',['../namespacebjorne__agent_1_1json.html#a2751ea680716e84d69c621345d2f50ab',1,'bjorne_agent::json::Object'],['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8a497031794414a552435f90151ac3b54b',1,'bjorne_agent::json::Value::Object'],['../classbjorne__agent_1_1json_1_1Value.html#a5cf3a67a10e1f3ea614fe295872c7c9a',1,'bjorne_agent::json::Value::object']]],
+  ['object_0',['object',['../namespacebjorne__agent_1_1json.html#a2751ea680716e84d69c621345d2f50ab',1,'bjorne_agent::json::Object'],['../classbjorne__agent_1_1json_1_1Value.html#a5cf3a67a10e1f3ea614fe295872c7c9a',1,'bjorne_agent::json::Value::object'],['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8a497031794414a552435f90151ac3b54b',1,'bjorne_agent::json::Value::Object']]],
   ['of_20scope_1',['Deliberately out of scope',['../md_ROADMAP.html#autotoc_md110',1,'']]],
   ['ok_2',['ok',['../structbjorne__agent_1_1tools_1_1ToolResult.html#a3e74617481b63e57dd0f578e5c712251',1,'bjorne_agent::tools::ToolResult']]],
   ['onassistantmessage_3',['onAssistantMessage',['../classbjorne__agent_1_1agent_1_1LoopObserver.html#a769d256b66bb1b634685e7184c774083',1,'bjorne_agent::agent::LoopObserver']]],

@@ -277,101 +277,138 @@ $(document).ready(function(){initNavTree('Resolver_8cpp_source.html',''); initRe
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespacebjorne__agent_1_1http.html#a87e983bcb4a09fd86132d8fc45cf44d8">parseDnsResponse</a>(response, size, port, addresses);</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>}</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="keywordtype">bool</span> resolveStub(<span class="keyword">const</span> std::string&amp; host, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> port, std::vector&lt;ResolvedAddress&gt;&amp; addresses,</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>                 std::string&amp; error, <span class="keyword">const</span> ResolverOptions&amp; options) {</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  <span class="keywordflow">if</span> (lookupHosts(options.hosts_path, host, port, addresses)) {</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  }</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  <span class="keywordtype">int</span> code = NO_DATA;</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="keywordflow">if</span> (!queryDns(host, T_A, port, addresses)) {</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    code = h_errno;</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  }</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  <span class="keywordflow">if</span> (!queryDns(host, T_AAAA, port, addresses)) {</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    code = h_errno;</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>  }</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>  <span class="keywordflow">if</span> (!addresses.empty()) {</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>  }</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  error = std::string(<span class="stringliteral">&quot;DNS resolution failed: &quot;</span>) + ::hstrerror(code);</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>}</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment">// Asks the nameservers directly. A static glibc cannot use getaddrinfo, so the</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="comment">// static build resolves this way.</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="keyword">class </span>DnsNameService final : <span class="keyword">public</span> NameService {</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  <span class="keywordtype">bool</span> resolve(<span class="keyword">const</span> std::string&amp; host, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> port, std::vector&lt;ResolvedAddress&gt;&amp; addresses,</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>               std::string&amp; error)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordtype">int</span> code = NO_DATA;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keywordflow">if</span> (!queryDns(host, T_A, port, addresses)) {</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>      code = h_errno;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    }</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordflow">if</span> (!queryDns(host, T_AAAA, port, addresses)) {</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>      code = h_errno;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    }</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">if</span> (!addresses.empty()) {</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    }</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    error = std::string(<span class="stringliteral">&quot;DNS resolution failed: &quot;</span>) + ::hstrerror(code);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  }</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>};</div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="keywordtype">bool</span> resolveWithGetaddrinfo(<span class="keyword">const</span> std::string&amp; host, <span class="keyword">const</span> std::string&amp; port,</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                            std::vector&lt;ResolvedAddress&gt;&amp; addresses, std::string&amp; error) {</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>  addrinfo hints{};</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  hints.ai_family = AF_UNSPEC;</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>  hints.ai_socktype = SOCK_STREAM;</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>  addrinfo* results = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> rc = ::getaddrinfo(host.c_str(), port.c_str(), &amp;hints, &amp;results);</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>  <span class="keywordflow">if</span> (rc != 0) {</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    error = std::string(<span class="stringliteral">&quot;DNS resolution failed: &quot;</span>) + <a class="code hl_function" href="namespacebjorne__agent_1_1platform.html#ae46cfb3143fb8a6c4f60030389f6938b">platform::addressErrorMessage</a>(rc);</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  }</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>  <span class="keywordflow">for</span> (addrinfo* entry = results; entry != <span class="keyword">nullptr</span>; entry = entry-&gt;ai_next) {</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordflow">if</span> (entry-&gt;ai_addrlen &gt; <span class="keyword">sizeof</span>(<a class="code hl_variable" href="structbjorne__agent_1_1http_1_1ResolvedAddress.html#acbfdc8f8c526b9784589b6c3198f8359">ResolvedAddress::storage</a>)) {</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>      <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    }</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    ResolvedAddress address;</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    std::memcpy(&amp;address.storage, entry-&gt;ai_addr, entry-&gt;ai_addrlen);</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    address.length = <span class="keyword">static_cast&lt;</span><a class="code hl_typedef" href="namespacebjorne__agent_1_1platform.html#a4e87167b29675f7efb89819dd0762380">platform::SocketLength</a><span class="keyword">&gt;</span>(entry-&gt;ai_addrlen);</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    addresses.push_back(address);</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>  }</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>  ::freeaddrinfo(results);</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>  <span class="keywordflow">if</span> (addresses.empty()) {</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    error = <span class="stringliteral">&quot;DNS resolution failed: no addresses&quot;</span>;</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>  }</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>}</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>}  <span class="comment">// namespace</span></div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
-<div class="foldopen" id="foldopen00233" data-start="{" data-end="}">
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="namespacebjorne__agent_1_1http.html#a04d1001f2945eb2a0996234dbdcb4984">  233</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="namespacebjorne__agent_1_1http.html#a04d1001f2945eb2a0996234dbdcb4984">resolveHost</a>(<span class="keyword">const</span> std::string&amp; host, <span class="keyword">const</span> std::string&amp; port, std::vector&lt;ResolvedAddress&gt;&amp; addresses,</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>                 std::string&amp; error, <span class="keyword">const</span> <a class="code hl_struct" href="structbjorne__agent_1_1http_1_1ResolverOptions.html">ResolverOptions</a>&amp; options) {</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>  addresses.clear();</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>  <span class="keywordflow">if</span> (!<a class="code hl_function" href="namespacebjorne__agent_1_1platform.html#a371b374aa4c866e0435dca12570902f2">platform::initializeSockets</a>()) {</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    error = <span class="stringliteral">&quot;DNS resolution failed: socket startup failed&quot;</span>;</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  }</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> number = 0;</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>  <span class="keywordflow">if</span> (!parsePort(port, number)) {</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    error = <span class="stringliteral">&quot;Invalid port: &quot;</span> + port;</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>  }</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  <a class="code hl_struct" href="structbjorne__agent_1_1http_1_1ResolvedAddress.html">ResolvedAddress</a> literal;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>  <span class="keywordflow">if</span> (numericAddress(host, number, literal)) {</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    addresses.push_back(literal);</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>  }</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="preprocessor">#if BJORNE_AGENT_USE_STUB_RESOLVER &amp;&amp; !defined(_WIN32)</span></div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  <span class="keywordflow">return</span> resolveStub(host, number, addresses, error, options);</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>  (void)options;</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>  <span class="keywordflow">return</span> resolveWithGetaddrinfo(host, port, addresses, error);</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>}</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="keywordtype">bool</span> resolveStub(<span class="keyword">const</span> std::string&amp; host, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> port, std::vector&lt;ResolvedAddress&gt;&amp; addresses,</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                 std::string&amp; error, <span class="keyword">const</span> ResolverOptions&amp; options) {</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>  <span class="keywordflow">if</span> (lookupHosts(options.hosts_path, host, port, addresses)) {</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>  }</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>  <span class="keywordflow">if</span> (options.name_service != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordflow">return</span> options.name_service-&gt;resolve(host, port, addresses, error);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>  }</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespacebjorne__agent_1_1http.html#a9a476daadc034670dbc1ea109f20c8f4">makePlatformNameService</a>()-&gt;resolve(host, port, addresses, error);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>}</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="comment">// Asks the operating system, which reaches the network through whatever the</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment">// machine is configured to use.</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="keyword">class </span>SystemNameService final : <span class="keyword">public</span> NameService {</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>  <span class="keywordtype">bool</span> resolve(<span class="keyword">const</span> std::string&amp; host, <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> port, std::vector&lt;ResolvedAddress&gt;&amp; addresses,</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>               std::string&amp; error)<span class="keyword"> override </span>{</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keyword">const</span> std::string service = std::to_string(port);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    addrinfo hints{};</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    hints.ai_family = AF_UNSPEC;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    hints.ai_socktype = SOCK_STREAM;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    addrinfo* results = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> rc = ::getaddrinfo(host.c_str(), service.c_str(), &amp;hints, &amp;results);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordflow">if</span> (rc != 0) {</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>      error = std::string(<span class="stringliteral">&quot;DNS resolution failed: &quot;</span>) + <a class="code hl_function" href="namespacebjorne__agent_1_1platform.html#ae46cfb3143fb8a6c4f60030389f6938b">platform::addressErrorMessage</a>(rc);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    }</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordflow">for</span> (addrinfo* entry = results; entry != <span class="keyword">nullptr</span>; entry = entry-&gt;ai_next) {</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>      <span class="keywordflow">if</span> (entry-&gt;ai_addrlen &gt; <span class="keyword">sizeof</span>(<a class="code hl_variable" href="structbjorne__agent_1_1http_1_1ResolvedAddress.html#acbfdc8f8c526b9784589b6c3198f8359">ResolvedAddress::storage</a>)) {</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>      }</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>      ResolvedAddress address;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>      std::memcpy(&amp;address.storage, entry-&gt;ai_addr, entry-&gt;ai_addrlen);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>      address.length = <span class="keyword">static_cast&lt;</span><a class="code hl_typedef" href="namespacebjorne__agent_1_1platform.html#a4e87167b29675f7efb89819dd0762380">platform::SocketLength</a><span class="keyword">&gt;</span>(entry-&gt;ai_addrlen);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>      addresses.push_back(address);</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    }</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    ::freeaddrinfo(results);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="keywordflow">if</span> (addresses.empty()) {</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>      error = <span class="stringliteral">&quot;DNS resolution failed: no addresses&quot;</span>;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    }</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  }</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>};</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>}  <span class="comment">// namespace</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><a class="code hl_function" href="classbjorne__agent_1_1http_1_1NameService.html#a8ca4919e1bc526bee9ffca7018f7f8c5">NameService::~NameService</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="foldopen" id="foldopen00254" data-start="{" data-end="}">
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno"><a class="line" href="namespacebjorne__agent_1_1http.html#a9a476daadc034670dbc1ea109f20c8f4">  254</a></span>std::unique_ptr&lt;NameService&gt; <a class="code hl_function" href="namespacebjorne__agent_1_1http.html#a9a476daadc034670dbc1ea109f20c8f4">makePlatformNameService</a>() {</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="preprocessor">#if BJORNE_AGENT_USE_STUB_RESOLVER &amp;&amp; !defined(_WIN32)</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>  <span class="keywordflow">return</span> std::make_unique&lt;DnsNameService&gt;();</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>  <span class="keywordflow">return</span> std::make_unique&lt;SystemNameService&gt;();</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>}</div>
 </div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>}  <span class="comment">// namespace http</span></div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>}  <span class="comment">// namespace bjorne_agent</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="foldopen" id="foldopen00262" data-start="{" data-end="}">
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="namespacebjorne__agent_1_1http.html#a04d1001f2945eb2a0996234dbdcb4984">  262</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="namespacebjorne__agent_1_1http.html#a04d1001f2945eb2a0996234dbdcb4984">resolveHost</a>(<span class="keyword">const</span> std::string&amp; host, <span class="keyword">const</span> std::string&amp; port, std::vector&lt;ResolvedAddress&gt;&amp; addresses,</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                 std::string&amp; error, <span class="keyword">const</span> <a class="code hl_struct" href="structbjorne__agent_1_1http_1_1ResolverOptions.html">ResolverOptions</a>&amp; options) {</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  addresses.clear();</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>  <span class="keywordflow">if</span> (!<a class="code hl_function" href="namespacebjorne__agent_1_1platform.html#a371b374aa4c866e0435dca12570902f2">platform::initializeSockets</a>()) {</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    error = <span class="stringliteral">&quot;DNS resolution failed: socket startup failed&quot;</span>;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  }</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> number = 0;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  <span class="keywordflow">if</span> (!parsePort(port, number)) {</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    error = <span class="stringliteral">&quot;Invalid port: &quot;</span> + port;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>  }</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>  <a class="code hl_struct" href="structbjorne__agent_1_1http_1_1ResolvedAddress.html">ResolvedAddress</a> literal;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  <span class="keywordflow">if</span> (numericAddress(host, number, literal)) {</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    addresses.push_back(literal);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>  }</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="preprocessor">#if BJORNE_AGENT_USE_STUB_RESOLVER &amp;&amp; !defined(_WIN32)</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>  <span class="keywordflow">return</span> resolveStub(host, number, addresses, error, options);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>  <span class="keywordflow">if</span> (options.<a class="code hl_variable" href="structbjorne__agent_1_1http_1_1ResolverOptions.html#a0a2535b404328ddd116b2b379336068f">name_service</a> != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordflow">return</span> options.<a class="code hl_variable" href="structbjorne__agent_1_1http_1_1ResolverOptions.html#a0a2535b404328ddd116b2b379336068f">name_service</a>-&gt;<a class="code hl_function" href="classbjorne__agent_1_1http_1_1NameService.html#ac388761bc21a8f283638dce1a01886e3">resolve</a>(host, number, addresses, error);</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>  }</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespacebjorne__agent_1_1http.html#a9a476daadc034670dbc1ea109f20c8f4">makePlatformNameService</a>()-&gt;resolve(host, number, addresses, error);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>}</div>
+</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>}  <span class="comment">// namespace http</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>}  <span class="comment">// namespace bjorne_agent</span></div>
 <div class="ttc" id="aDnsResponse_8h_html"><div class="ttname"><a href="DnsResponse_8h.html">DnsResponse.h</a></div></div>
 <div class="ttc" id="aPlatform_8h_html"><div class="ttname"><a href="Platform_8h.html">Platform.h</a></div></div>
 <div class="ttc" id="aResolver_8h_html"><div class="ttname"><a href="Resolver_8h.html">Resolver.h</a></div></div>
-<div class="ttc" id="anamespacebjorne__agent_1_1http_html_a04d1001f2945eb2a0996234dbdcb4984"><div class="ttname"><a href="namespacebjorne__agent_1_1http.html#a04d1001f2945eb2a0996234dbdcb4984">bjorne_agent::http::resolveHost</a></div><div class="ttdeci">bool resolveHost(const std::string &amp;host, const std::string &amp;port, std::vector&lt; ResolvedAddress &gt; &amp;addresses, std::string &amp;error, const ResolverOptions &amp;options)</div><div class="ttdef"><b>Definition</b> <a href="Resolver_8cpp_source.html#l00233">Resolver.cpp:233</a></div></div>
+<div class="ttc" id="aclassbjorne__agent_1_1http_1_1NameService_html_a8ca4919e1bc526bee9ffca7018f7f8c5"><div class="ttname"><a href="classbjorne__agent_1_1http_1_1NameService.html#a8ca4919e1bc526bee9ffca7018f7f8c5">bjorne_agent::http::NameService::~NameService</a></div><div class="ttdeci">virtual ~NameService()</div></div>
+<div class="ttc" id="aclassbjorne__agent_1_1http_1_1NameService_html_ac388761bc21a8f283638dce1a01886e3"><div class="ttname"><a href="classbjorne__agent_1_1http_1_1NameService.html#ac388761bc21a8f283638dce1a01886e3">bjorne_agent::http::NameService::resolve</a></div><div class="ttdeci">virtual bool resolve(const std::string &amp;host, unsigned short port, std::vector&lt; ResolvedAddress &gt; &amp;addresses, std::string &amp;error)=0</div></div>
+<div class="ttc" id="anamespacebjorne__agent_1_1http_html_a04d1001f2945eb2a0996234dbdcb4984"><div class="ttname"><a href="namespacebjorne__agent_1_1http.html#a04d1001f2945eb2a0996234dbdcb4984">bjorne_agent::http::resolveHost</a></div><div class="ttdeci">bool resolveHost(const std::string &amp;host, const std::string &amp;port, std::vector&lt; ResolvedAddress &gt; &amp;addresses, std::string &amp;error, const ResolverOptions &amp;options)</div><div class="ttdef"><b>Definition</b> <a href="Resolver_8cpp_source.html#l00262">Resolver.cpp:262</a></div></div>
 <div class="ttc" id="anamespacebjorne__agent_1_1http_html_a87e983bcb4a09fd86132d8fc45cf44d8"><div class="ttname"><a href="namespacebjorne__agent_1_1http.html#a87e983bcb4a09fd86132d8fc45cf44d8">bjorne_agent::http::parseDnsResponse</a></div><div class="ttdeci">bool parseDnsResponse(const unsigned char *data, int size, unsigned short port, std::vector&lt; ResolvedAddress &gt; &amp;addresses)</div><div class="ttdef"><b>Definition</b> <a href="DnsResponse_8cpp_source.html#l00084">DnsResponse.cpp:84</a></div></div>
+<div class="ttc" id="anamespacebjorne__agent_1_1http_html_a9a476daadc034670dbc1ea109f20c8f4"><div class="ttname"><a href="namespacebjorne__agent_1_1http.html#a9a476daadc034670dbc1ea109f20c8f4">bjorne_agent::http::makePlatformNameService</a></div><div class="ttdeci">std::unique_ptr&lt; NameService &gt; makePlatformNameService()</div><div class="ttdef"><b>Definition</b> <a href="Resolver_8cpp_source.html#l00254">Resolver.cpp:254</a></div></div>
 <div class="ttc" id="anamespacebjorne__agent_1_1platform_html_a371b374aa4c866e0435dca12570902f2"><div class="ttname"><a href="namespacebjorne__agent_1_1platform.html#a371b374aa4c866e0435dca12570902f2">bjorne_agent::platform::initializeSockets</a></div><div class="ttdeci">bool initializeSockets()</div><div class="ttdef"><b>Definition</b> <a href="Platform_8h_source.html#l00152">Platform.h:152</a></div></div>
 <div class="ttc" id="anamespacebjorne__agent_1_1platform_html_a4e87167b29675f7efb89819dd0762380"><div class="ttname"><a href="namespacebjorne__agent_1_1platform.html#a4e87167b29675f7efb89819dd0762380">bjorne_agent::platform::SocketLength</a></div><div class="ttdeci">socklen_t SocketLength</div><div class="ttdef"><b>Definition</b> <a href="Platform_8h_source.html#l00150">Platform.h:150</a></div></div>
 <div class="ttc" id="anamespacebjorne__agent_1_1platform_html_ae46cfb3143fb8a6c4f60030389f6938b"><div class="ttname"><a href="namespacebjorne__agent_1_1platform.html#ae46cfb3143fb8a6c4f60030389f6938b">bjorne_agent::platform::addressErrorMessage</a></div><div class="ttdeci">std::string addressErrorMessage(int code)</div><div class="ttdef"><b>Definition</b> <a href="Platform_8h_source.html#l00212">Platform.h:212</a></div></div>
 <div class="ttc" id="anamespacebjorne__agent_1_1platform_html_afd25219f098f1832292005519f737747"><div class="ttname"><a href="namespacebjorne__agent_1_1platform.html#afd25219f098f1832292005519f737747">bjorne_agent::platform::addressToBinary</a></div><div class="ttdeci">int addressToBinary(int family, const char *text, void *address)</div><div class="ttdef"><b>Definition</b> <a href="Platform_8h_source.html#l00204">Platform.h:204</a></div></div>
 <div class="ttc" id="anamespacebjorne__agent_html"><div class="ttname"><a href="namespacebjorne__agent.html">bjorne_agent</a></div><div class="ttdef"><b>Definition</b> <a href="AcpChannel_8cpp_source.html#l00007">AcpChannel.cpp:7</a></div></div>
-<div class="ttc" id="astructbjorne__agent_1_1http_1_1ResolvedAddress_html"><div class="ttname"><a href="structbjorne__agent_1_1http_1_1ResolvedAddress.html">bjorne_agent::http::ResolvedAddress</a></div><div class="ttdef"><b>Definition</b> <a href="Resolver_8h_source.html#l00020">Resolver.h:20</a></div></div>
-<div class="ttc" id="astructbjorne__agent_1_1http_1_1ResolvedAddress_html_acbfdc8f8c526b9784589b6c3198f8359"><div class="ttname"><a href="structbjorne__agent_1_1http_1_1ResolvedAddress.html#acbfdc8f8c526b9784589b6c3198f8359">bjorne_agent::http::ResolvedAddress::storage</a></div><div class="ttdeci">sockaddr_storage storage</div><div class="ttdef"><b>Definition</b> <a href="Resolver_8h_source.html#l00021">Resolver.h:21</a></div></div>
-<div class="ttc" id="astructbjorne__agent_1_1http_1_1ResolverOptions_html"><div class="ttname"><a href="structbjorne__agent_1_1http_1_1ResolverOptions.html">bjorne_agent::http::ResolverOptions</a></div><div class="ttdef"><b>Definition</b> <a href="Resolver_8h_source.html#l00030">Resolver.h:30</a></div></div>
+<div class="ttc" id="astructbjorne__agent_1_1http_1_1ResolvedAddress_html"><div class="ttname"><a href="structbjorne__agent_1_1http_1_1ResolvedAddress.html">bjorne_agent::http::ResolvedAddress</a></div><div class="ttdef"><b>Definition</b> <a href="Resolver_8h_source.html#l00021">Resolver.h:21</a></div></div>
+<div class="ttc" id="astructbjorne__agent_1_1http_1_1ResolvedAddress_html_acbfdc8f8c526b9784589b6c3198f8359"><div class="ttname"><a href="structbjorne__agent_1_1http_1_1ResolvedAddress.html#acbfdc8f8c526b9784589b6c3198f8359">bjorne_agent::http::ResolvedAddress::storage</a></div><div class="ttdeci">sockaddr_storage storage</div><div class="ttdef"><b>Definition</b> <a href="Resolver_8h_source.html#l00022">Resolver.h:22</a></div></div>
+<div class="ttc" id="astructbjorne__agent_1_1http_1_1ResolverOptions_html"><div class="ttname"><a href="structbjorne__agent_1_1http_1_1ResolverOptions.html">bjorne_agent::http::ResolverOptions</a></div><div class="ttdef"><b>Definition</b> <a href="Resolver_8h_source.html#l00053">Resolver.h:53</a></div></div>
+<div class="ttc" id="astructbjorne__agent_1_1http_1_1ResolverOptions_html_a0a2535b404328ddd116b2b379336068f"><div class="ttname"><a href="structbjorne__agent_1_1http_1_1ResolverOptions.html#a0a2535b404328ddd116b2b379336068f">bjorne_agent::http::ResolverOptions::name_service</a></div><div class="ttdeci">NameService * name_service</div><div class="ttdef"><b>Definition</b> <a href="Resolver_8h_source.html#l00056">Resolver.h:56</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
