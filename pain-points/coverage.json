@@ -2665,7 +2665,7 @@
         "line_count": 10,
         "line_hit": 10,
         "branch_count": 10,
-        "branch_hit": 9,
+        "branch_hit": 8,
         "function_name": "Json.cpp:_ZN12bjorne_agent4json12_GLOBAL__N_16Parser14skipWhitespaceEv"
       }
     ]
@@ -11127,8 +11127,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/tests/skills/SkillsTest.cpp",
     "function_coverage": [
       {
-        "line_start": 46,
-        "line_end": 67,
+        "line_start": 48,
+        "line_end": 69,
         "line_count": 20,
         "line_hit": 20,
         "branch_count": 0,
@@ -11155,7 +11155,7 @@
       },
       {
         "line_start": 39,
-        "line_end": 42,
+        "line_end": 44,
         "line_count": 4,
         "line_hit": 4,
         "branch_count": 0,
@@ -11172,8 +11172,8 @@
         "function_name": "SkillsTest.cpp:_ZN12_GLOBAL__N_17TempDirD2Ev"
       },
       {
-        "line_start": 69,
-        "line_end": 75,
+        "line_start": 71,
+        "line_end": 77,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 0,
@@ -11181,8 +11181,8 @@
         "function_name": "SkillsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_2v"
       },
       {
-        "line_start": 77,
-        "line_end": 87,
+        "line_start": 79,
+        "line_end": 89,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -11190,8 +11190,8 @@
         "function_name": "SkillsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_4v"
       },
       {
-        "line_start": 89,
-        "line_end": 99,
+        "line_start": 91,
+        "line_end": 101,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -11199,8 +11199,8 @@
         "function_name": "SkillsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_6v"
       },
       {
-        "line_start": 101,
-        "line_end": 111,
+        "line_start": 103,
+        "line_end": 113,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -11208,8 +11208,8 @@
         "function_name": "SkillsTest.cpp:_ZL22CATCH2_INTERNAL_TEST_8v"
       },
       {
-        "line_start": 113,
-        "line_end": 123,
+        "line_start": 115,
+        "line_end": 125,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -11217,8 +11217,8 @@
         "function_name": "SkillsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_10v"
       },
       {
-        "line_start": 125,
-        "line_end": 135,
+        "line_start": 127,
+        "line_end": 137,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -11226,8 +11226,8 @@
         "function_name": "SkillsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_12v"
       },
       {
-        "line_start": 137,
-        "line_end": 147,
+        "line_start": 139,
+        "line_end": 149,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -11235,8 +11235,8 @@
         "function_name": "SkillsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_14v"
       },
       {
-        "line_start": 149,
-        "line_end": 156,
+        "line_start": 151,
+        "line_end": 158,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
@@ -11244,8 +11244,8 @@
         "function_name": "SkillsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_16v"
       },
       {
-        "line_start": 158,
-        "line_end": 170,
+        "line_start": 160,
+        "line_end": 172,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
@@ -11253,8 +11253,8 @@
         "function_name": "SkillsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_18v"
       },
       {
-        "line_start": 172,
-        "line_end": 176,
+        "line_start": 174,
+        "line_end": 178,
         "line_count": 5,
         "line_hit": 5,
         "branch_count": 0,
@@ -11262,8 +11262,8 @@
         "function_name": "SkillsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_20v"
       },
       {
-        "line_start": 178,
-        "line_end": 195,
+        "line_start": 180,
+        "line_end": 197,
         "line_count": 16,
         "line_hit": 16,
         "branch_count": 0,
@@ -11271,8 +11271,8 @@
         "function_name": "SkillsTest.cpp:_ZL23CATCH2_INTERNAL_TEST_22v"
       },
       {
-        "line_start": 197,
-        "line_end": 205,
+        "line_start": 199,
+        "line_end": 207,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -11285,8 +11285,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/tests/support/TestWatchdog.cpp",
     "function_coverage": [
       {
-        "line_start": 81,
-        "line_end": 81,
+        "line_start": 96,
+        "line_end": 96,
         "line_count": 1,
         "line_hit": 1,
         "branch_count": 0,
@@ -11294,17 +11294,35 @@
         "function_name": "TestWatchdog.cpp:_ZN12_GLOBAL__N_112TestWatchdogC2EPKN5Catch7IConfigE"
       },
       {
-        "line_start": 83,
-        "line_end": 93,
-        "line_count": 11,
-        "line_hit": 11,
-        "branch_count": 2,
-        "branch_hit": 2,
+        "line_start": 98,
+        "line_end": 111,
+        "line_count": 14,
+        "line_hit": 12,
+        "branch_count": 4,
+        "branch_hit": 3,
         "function_name": "TestWatchdog.cpp:_ZN12_GLOBAL__N_112TestWatchdog16testCaseStartingERKN5Catch12TestCaseInfoE"
       },
       {
-        "line_start": 37,
-        "line_end": 40,
+        "line_start": 56,
+        "line_end": 59,
+        "line_count": 4,
+        "line_hit": 4,
+        "branch_count": 2,
+        "branch_hit": 1,
+        "function_name": "TestWatchdog.cpp:_ZN12_GLOBAL__N_17tracingEv"
+      },
+      {
+        "line_start": 61,
+        "line_end": 64,
+        "line_count": 4,
+        "line_hit": 0,
+        "branch_count": 0,
+        "branch_hit": 0,
+        "function_name": "TestWatchdog.cpp:_ZN12_GLOBAL__N_19traceCaseERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
+      },
+      {
+        "line_start": 39,
+        "line_end": 42,
         "line_count": 4,
         "line_hit": 4,
         "branch_count": 0,
@@ -11312,8 +11330,8 @@
         "function_name": "TestWatchdog.cpp:_ZN12_GLOBAL__N_15watchEv"
       },
       {
-        "line_start": 51,
-        "line_end": 77,
+        "line_start": 66,
+        "line_end": 92,
         "line_count": 22,
         "line_hit": 21,
         "branch_count": 6,
@@ -11321,8 +11339,8 @@
         "function_name": "TestWatchdog.cpp:_ZN12_GLOBAL__N_19watchLoopEv"
       },
       {
-        "line_start": 42,
-        "line_end": 49,
+        "line_start": 44,
+        "line_end": 51,
         "line_count": 8,
         "line_hit": 6,
         "branch_count": 2,
@@ -11330,8 +11348,8 @@
         "function_name": "TestWatchdog.cpp:_ZN12_GLOBAL__N_112limitSecondsEv"
       },
       {
-        "line_start": 95,
-        "line_end": 106,
+        "line_start": 113,
+        "line_end": 124,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
