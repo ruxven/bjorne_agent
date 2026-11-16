@@ -189,9 +189,12 @@ jobs:
     - name: Run tests
       # Run the binary itself rather than ctest, so that a crash reports its
       # exit code instead of only "test failed", and keep the output for the
-      # next step.
+      # next step. The trace names every case on stderr as it starts, so the
+      # last line still points at the culprit if the process dies mid-case.
       working-directory: build
       shell: pwsh
+      env:
+        BJORNE_AGENT_TEST_TRACE: 1
       run: |
         & ".\Release\bjorne_agent_tests.exe" 2>&1 | Tee-Object -FilePath test-output.txt
         if ($LASTEXITCODE -ne 0) {

@@ -38,7 +38,9 @@ class TempDir {
 
 void writeFile(const std::string& path, const std::string& content) {
   std::filesystem::create_directories(std::filesystem::path(path).parent_path());
-  std::ofstream(path) << content;
+  // Binary, so the bytes land as written: a text mode stream would turn the
+  // CRLF in the beta skill into CRCRLF on Windows and change what is read back.
+  std::ofstream(path, std::ios::binary) << content;
 }
 
 }  // namespace

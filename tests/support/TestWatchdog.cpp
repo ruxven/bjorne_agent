@@ -1,12 +1,14 @@
 // A Catch2 listener that names a test case that has been running too long, and
-// that flushes the report after every case.
+// that keeps the report readable across a crash.
 //
 // The suite drives threads and child processes, so a wedged wait shows up as a
 // CI job that sits there until the harness kills it, with nothing in the log
 // saying which case caused it. This listener turns that into a message that
 // names the case and then fails the run. The per case flush is for the other
 // way a run dies: a crash throws away whatever the report had buffered, and
-// the CI shows only the log tail.
+// the CI shows only the log tail. The optional trace names each case on
+// stderr as it starts, which is the only record left when a case kills the
+// process before the report can say anything.
 
 #include <chrono>
 #include <cstdio>
@@ -48,6 +50,19 @@ int limitSeconds() {
   return seconds > 0 ? seconds : kDefaultLimitSeconds;
 }
 
+// Set on a runner whose test step keeps no readable log. Every case names
+// itself as it starts, on unbuffered stderr, so the last line points at the
+// case that took the process down even when the report itself is lost.
+bool tracing() {
+  const char* value = std::getenv("BJORNE_AGENT_TEST_TRACE");
+  return value != nullptr && std::string(value) == "1";
+}
+
+void traceCase(const std::string& name) {
+  std::fprintf(stderr, "--- %s\n", name.c_str());
+  std::fflush(stderr);
+}
+
 void watchLoop() {
   const auto limit = std::chrono::seconds(limitSeconds());
   for (;;) {
@@ -81,6 +96,9 @@ class TestWatchdog final : public Catch::EventListenerBase {
   explicit TestWatchdog(const Catch::IConfig* config) : Catch::EventListenerBase(config) {}
 
   void testCaseStarting(const Catch::TestCaseInfo& info) override {
+    if (tracing()) {
+      traceCase(info.name);
+    }
     Watch& state = watch();
     std::lock_guard<std::mutex> guard(state.mutex);
     state.current = info.name;
