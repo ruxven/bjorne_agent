@@ -42,6 +42,12 @@ StdioTransport::StdioTransport(int input_descriptor, int output_descriptor)
     : input_(input_descriptor), output_(output_descriptor), standard_output_(false) {}
 
 bool StdioTransport::sendLine(const std::string& line, std::string& error) {
+  // The Windows CRT treats a write to an invalid descriptor as a fatal error,
+  // so it is checked here rather than left to the write.
+  if (output_ < 0) {
+    error = "Cannot write to standard output";
+    return false;
+  }
   const std::string payload = line + "\n";
 #if defined(_WIN32)
   const int written = ::_write(output_, payload.data(), static_cast<unsigned int>(payload.size()));
@@ -62,6 +68,9 @@ bool StdioTransport::sendLine(const std::string& line, std::string& error) {
 }
 
 bool StdioTransport::waitForInput(int timeout_ms) {
+  if (input_ < 0) {
+    return false;
+  }
 #if defined(_WIN32)
   const HANDLE handle = reinterpret_cast<HANDLE>(static_cast<std::intptr_t>(_get_osfhandle(input_)));
   if (handle == INVALID_HANDLE_VALUE || handle == nullptr) {
@@ -105,6 +114,10 @@ bool StdioTransport::waitForInput(int timeout_ms) {
 }
 
 bool StdioTransport::readChunk(std::string& error) {
+  if (input_ < 0) {
+    error = "Cannot read from standard input";
+    return false;
+  }
   char chunk[kChunkSize];
 #if defined(_WIN32)
   const int read = ::_read(input_, chunk, static_cast<unsigned int>(sizeof(chunk)));

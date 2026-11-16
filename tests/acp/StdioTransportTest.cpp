@@ -69,8 +69,14 @@ class PipePair {
     (void)written;
   }
 
-  // Closes the writing end, so the transport sees the end of the stream.
+  // Closes the writing end, so the transport sees the end of the stream. A
+  // second close is a no-op: the Windows CRT treats a close of an invalid
+  // descriptor as a fatal error, and the test body and the destructor both
+  // reach this.
   void closeInput() {
+    if (input_write_ < 0) {
+      return;
+    }
 #if defined(_WIN32)
     ::_close(input_write_);
 #else
