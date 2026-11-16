@@ -59,7 +59,8 @@ TEST_CASE("loadSkills reads name, description and instructions") {
   REQUIRE(load.skills[0].name == "alpha");
   REQUIRE(load.skills[0].description == "Alpha skill");
   REQUIRE(load.skills[0].instructions == "Alpha instructions.");
-  REQUIRE(load.skills[0].path.find("alpha/SKILL.md") != std::string::npos);
+  REQUIRE(load.skills[0].path.find((std::filesystem::path("alpha") / "SKILL.md").string()) !=
+          std::string::npos);
   REQUIRE(load.skills[1].name == "beta");
   REQUIRE(load.skills[1].description == "Beta skill");
   REQUIRE(load.skills[1].instructions == "Line one.\r\nLine two.");

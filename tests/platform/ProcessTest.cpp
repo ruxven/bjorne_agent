@@ -18,12 +18,10 @@ using bjorne_agent::platform::ReadStatus;
 
 namespace {
 
-// The echo helper differs per platform: POSIX has cat, Windows has the shell.
-#if defined(_WIN32)
-const char* kEchoCommand = "cmd.exe";
-#else
-const char* kEchoCommand = "cat";
-#endif
+// The tests drive the child process transport against a stub that echoes each
+// line back. Neither shell would do: cmd.exe prints a banner and treats every
+// input line as a command, and a POSIX shell adds a prompt of its own.
+const char* kEchoCommand = BJORNE_AGENT_ECHO_STUB;
 
 }  // namespace
 

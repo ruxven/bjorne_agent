@@ -1,13 +1,17 @@
-// A Catch2 listener that names a test case that has been running too long.
+// A Catch2 listener that names a test case that has been running too long, and
+// that flushes the report after every case.
 //
 // The suite drives threads and child processes, so a wedged wait shows up as a
 // CI job that sits there until the harness kills it, with nothing in the log
 // saying which case caused it. This listener turns that into a message that
-// names the case and then fails the run.
+// names the case and then fails the run. The per case flush is for the other
+// way a run dies: a crash throws away whatever the report had buffered, and
+// the CI shows only the log tail.
 
 #include <chrono>
 #include <cstdio>
 #include <cstdlib>
+#include <iostream>
 #include <mutex>
 #include <string>
 #include <thread>
@@ -89,6 +93,13 @@ class TestWatchdog final : public Catch::EventListenerBase {
   }
 
   void testCaseEnded(const Catch::TestCaseStats&) override {
+    // A crash would otherwise take the buffered report with it, and the CI only
+    // shows the tail of the log.
+    std::cout.flush();
+    std::cerr.flush();
+    std::fflush(stdout);
+    std::fflush(stderr);
+
     Watch& state = watch();
     std::lock_guard<std::mutex> guard(state.mutex);
     state.running = false;

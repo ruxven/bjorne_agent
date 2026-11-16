@@ -205,12 +205,19 @@ if(BUILD_TESTING)
   target_compile_options(bjorne_agent_mcp_stub PRIVATE ${BJORNE_AGENT_WARNING_FLAGS})
   target_link_libraries(bjorne_agent_mcp_stub PRIVATE bjorne_agent_core)
 
+  # A stub that echoes each line back, so the process tests drive the real
+  # child process transport without depending on a shell being present.
+  add_executable(bjorne_agent_echo_stub tests/support/EchoStub.cpp)
+  target_compile_features(bjorne_agent_echo_stub PRIVATE cxx_std_20)
+  target_compile_options(bjorne_agent_echo_stub PRIVATE ${BJORNE_AGENT_WARNING_FLAGS})
+
   target_compile_features(bjorne_agent_tests PRIVATE cxx_std_20)
   target_compile_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_WARNING_FLAGS})
   target_include_directories(bjorne_agent_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
-  # The MCP tests spawn the stub server, so they need to know where it is.
+  # The tests spawn the stubs, so they need to know where they are.
   target_compile_definitions(bjorne_agent_tests PRIVATE
-    BJORNE_AGENT_MCP_STUB="$<TARGET_FILE:bjorne_agent_mcp_stub>")
+    BJORNE_AGENT_MCP_STUB="$<TARGET_FILE:bjorne_agent_mcp_stub>"
+    BJORNE_AGENT_ECHO_STUB="$<TARGET_FILE:bjorne_agent_echo_stub>")
   target_link_libraries(bjorne_agent_tests PRIVATE bjorne_agent_core catch2_main Threads::Threads)
 
   if(BJORNE_AGENT_COVERAGE)
@@ -234,9 +241,10 @@ if(BJORNE_AGENT_STATIC)
   target_link_options(bjorne_agent PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
   if(BUILD_TESTING)
     target_link_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
-    # The tests spawn the stub server, so it must run next to them without a
-    # dynamic loader of its own.
+    # The tests spawn the stubs, so they must run next to them without a
+    # dynamic loader of their own.
     target_link_options(bjorne_agent_mcp_stub PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
+    target_link_options(bjorne_agent_echo_stub PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
   endif()
 endif()
 

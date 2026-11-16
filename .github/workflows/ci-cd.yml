@@ -187,24 +187,38 @@ jobs:
       run: cmake --build build --config Release
 
     - name: Run tests
-      run: ctest --test-dir build -C Release --output-on-failure
+      # Run the binary itself rather than ctest, so that a crash reports its
+      # exit code instead of only "test failed", and keep the output for the
+      # next step.
+      working-directory: build
+      shell: pwsh
+      run: |
+        & ".\Release\bjorne_agent_tests.exe" 2>&1 | Tee-Object -FilePath test-output.txt
+        if ($LASTEXITCODE -ne 0) {
+          # A crash shows up as a large hex exit code, which separates a failed
+          # assertion from an access violation.
+          Write-Output "::error title=Test binary exit code::$LASTEXITCODE"
+          exit 1
+        }
 
     - name: Report failing tests
       # The job log needs a token to read, but a workflow command becomes an
       # annotation, which the check run serves to anyone. Keep the tail of the
-      # ctest log, which is where the failure text lives, and escape it into a
-      # single line because a command message cannot contain a newline.
+      # run, which is where the failure text lives, and escape it into a single
+      # line because a command message cannot contain a newline. The tail is
+      # short so that the escaping cannot push the message past the annotation
+      # size limit.
       if: failure()
       shell: pwsh
       run: |
-        $log = "build/Testing/Temporary/LastTest.log"
+        $log = "build/test-output.txt"
         if (-not (Test-Path $log)) {
-          Write-Output "::error title=No test log::ctest left no LastTest.log"
+          Write-Output "::error title=No test output::the test step left no output behind"
           exit 0
         }
         $text = Get-Content $log -Raw
-        if ($text.Length -gt 50000) {
-          $text = $text.Substring($text.Length - 50000)
+        if ($text.Length -gt 12000) {
+          $text = $text.Substring($text.Length - 12000)
         }
         $text = $text -replace '%', '%25' -replace "`r", '%0D' -replace "`n", '%0A'
         Write-Output "::error title=Failing tests::$text"
