@@ -6028,8 +6028,8 @@
     "filename": "/home/runner/work/bjorne_agent/bjorne_agent/tests/acp/StdioTransportTest.cpp",
     "function_coverage": [
       {
-        "line_start": 111,
-        "line_end": 119,
+        "line_start": 119,
+        "line_end": 127,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -6037,8 +6037,8 @@
         "function_name": "StdioTransportTest.cpp:_ZL22CATCH2_INTERNAL_TEST_0v"
       },
       {
-        "line_start": 26,
-        "line_end": 40,
+        "line_start": 34,
+        "line_end": 48,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -6046,8 +6046,8 @@
         "function_name": "StdioTransportTest.cpp:_ZN12_GLOBAL__N_18PipePairC2Ev"
       },
       {
-        "line_start": 74,
-        "line_end": 92,
+        "line_start": 82,
+        "line_end": 100,
         "line_count": 16,
         "line_hit": 14,
         "branch_count": 4,
@@ -6055,8 +6055,8 @@
         "function_name": "StdioTransportTest.cpp:_ZN12_GLOBAL__N_18PipePair4readB5cxx11Ev"
       },
       {
-        "line_start": 42,
-        "line_end": 53,
+        "line_start": 50,
+        "line_end": 61,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
@@ -6064,8 +6064,8 @@
         "function_name": "StdioTransportTest.cpp:_ZN12_GLOBAL__N_18PipePairD2Ev"
       },
       {
-        "line_start": 65,
-        "line_end": 72,
+        "line_start": 73,
+        "line_end": 80,
         "line_count": 5,
         "line_hit": 5,
         "branch_count": 0,
@@ -6073,8 +6073,8 @@
         "function_name": "StdioTransportTest.cpp:_ZN12_GLOBAL__N_18PipePair10closeInputEv"
       },
       {
-        "line_start": 121,
-        "line_end": 132,
+        "line_start": 129,
+        "line_end": 140,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
@@ -6082,8 +6082,8 @@
         "function_name": "StdioTransportTest.cpp:_ZL22CATCH2_INTERNAL_TEST_2v"
       },
       {
-        "line_start": 55,
-        "line_end": 62,
+        "line_start": 63,
+        "line_end": 70,
         "line_count": 5,
         "line_hit": 5,
         "branch_count": 0,
@@ -6091,8 +6091,8 @@
         "function_name": "StdioTransportTest.cpp:_ZN12_GLOBAL__N_18PipePair5writeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE"
       },
       {
-        "line_start": 134,
-        "line_end": 145,
+        "line_start": 142,
+        "line_end": 153,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
@@ -6100,8 +6100,8 @@
         "function_name": "StdioTransportTest.cpp:_ZL22CATCH2_INTERNAL_TEST_4v"
       },
       {
-        "line_start": 147,
-        "line_end": 156,
+        "line_start": 155,
+        "line_end": 164,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -6109,8 +6109,8 @@
         "function_name": "StdioTransportTest.cpp:_ZL22CATCH2_INTERNAL_TEST_6v"
       },
       {
-        "line_start": 158,
-        "line_end": 170,
+        "line_start": 166,
+        "line_end": 178,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
@@ -6118,8 +6118,8 @@
         "function_name": "StdioTransportTest.cpp:_ZL22CATCH2_INTERNAL_TEST_8v"
       },
       {
-        "line_start": 172,
-        "line_end": 179,
+        "line_start": 180,
+        "line_end": 187,
         "line_count": 6,
         "line_hit": 6,
         "branch_count": 0,
@@ -6127,8 +6127,8 @@
         "function_name": "StdioTransportTest.cpp:_ZL23CATCH2_INTERNAL_TEST_10v"
       },
       {
-        "line_start": 181,
-        "line_end": 193,
+        "line_start": 189,
+        "line_end": 201,
         "line_count": 9,
         "line_hit": 9,
         "branch_count": 0,
@@ -6136,8 +6136,8 @@
         "function_name": "StdioTransportTest.cpp:_ZL23CATCH2_INTERNAL_TEST_12v"
       },
       {
-        "line_start": 195,
-        "line_end": 203,
+        "line_start": 203,
+        "line_end": 211,
         "line_count": 8,
         "line_hit": 8,
         "branch_count": 0,
@@ -6145,8 +6145,8 @@
         "function_name": "StdioTransportTest.cpp:_ZL23CATCH2_INTERNAL_TEST_14v"
       },
       {
-        "line_start": 205,
-        "line_end": 212,
+        "line_start": 213,
+        "line_end": 220,
         "line_count": 7,
         "line_hit": 7,
         "branch_count": 0,
@@ -6154,8 +6154,8 @@
         "function_name": "StdioTransportTest.cpp:_ZL23CATCH2_INTERNAL_TEST_16v"
       },
       {
-        "line_start": 214,
-        "line_end": 228,
+        "line_start": 222,
+        "line_end": 236,
         "line_count": 11,
         "line_hit": 11,
         "branch_count": 0,
