@@ -226,8 +226,11 @@ TEST_CASE("The init command accepts the name of a choice") {
   TempDir directory;
   const UserConfigDirectory userDirectory(directory.str());
 
-  std::istringstream input(std::string("User level: ") + directory.file("bjorne_agent/bjorne_agent.json") +
-                           "\nhttps://api.example.com/v1\n\n\n\nn\n\n");
+  // The wizard prints the user level location as the temporary directory with
+  // the config directory and file appended with forward slashes, so the answer
+  // has to be spelled the same way to match it.
+  const std::string choice = directory.str() + "/bjorne_agent/bjorne_agent.json";
+  std::istringstream input(std::string("User level: ") + choice + "\nhttps://api.example.com/v1\n\n\n\nn\n\n");
   std::ostringstream output;
   Init init(input, output, true);
 

@@ -206,11 +206,11 @@ jobs:
 
     - name: Report failing tests
       # The job log needs a token to read, but a workflow command becomes an
-      # annotation, which the check run serves to anyone. Two of them: the last
-      # lines of the run, where a failure explains itself, and the last cases
-      # the trace named, which is the only record when the process dies. Both
-      # stay small, because the runner keeps only the first few thousand
-      # characters of a message and a longer one would lose its end.
+      # annotation, which the check run serves to anyone. The assertions that
+      # failed come first, because that is the list worth having, then the last
+      # lines of the run and the last cases the trace named, which is the only
+      # record when the process dies mid-case. Every message is cut into pieces
+      # under the runner's size limit, which would otherwise drop its end.
       if: failure()
       shell: pwsh
       run: |
@@ -222,10 +222,46 @@ jobs:
         function Escape([string] $text) {
           $text -replace '%', '%25' -replace "`r", '%0D' -replace "`n", '%0A'
         }
-        $tail = (Get-Content $log -Tail 25) -join "`n"
-        Write-Output "::error title=End of the test run::$(Escape $tail)"
-        $cases = Get-Content $log | Where-Object { $_ -like '--- *' } | Select-Object -Last 10
-        Write-Output "::warning title=Last test cases::$(Escape ($cases -join "`n"))"
+        function Speak([string] $level, [string] $title, [string] $text) {
+          # 2000 characters of escaped text stays well inside the limit.
+          $piece = 1
+          for ($at = 0; $at -lt $text.Length; $at += 2000) {
+            $take = [Math]::Min(2000, $text.Length - $at)
+            $name = if ($piece -eq 1) { $title } else { "$title $piece" }
+            Write-Output "::${level} title=${name}::$(Escape $text.Substring($at, $take))"
+            $piece++
+          }
+        }
+
+        # A failed assertion prints as the source location, the condition and
+        # the values, so those three lines name every failure.
+        $lines = @(Get-Content $log)
+        $blocks = @()
+        for ($i = 0; $i -lt $lines.Count; $i++) {
+          if ($lines[$i] -notmatch ': FAILED:') {
+            continue
+          }
+          $block = $lines[$i]
+          if ($i + 1 -lt $lines.Count) {
+            $block += "`n" + $lines[$i + 1].Trim()
+          }
+          if ($i + 3 -lt $lines.Count -and $lines[$i + 2] -match 'with expansion') {
+            $block += "`n" + $lines[$i + 3].Trim()
+          }
+          $blocks += $block
+          if ($blocks.Count -ge 40) {
+            break
+          }
+        }
+        if ($blocks.Count -eq 0) {
+          Write-Output "::error title=No failed assertion::the run failed without printing one"
+        } else {
+          Speak "error" "Failed assertions" ($blocks -join "`n")
+        }
+
+        Speak "error" "End of the test run" ((@(Get-Content $log -Tail 15)) -join "`n")
+        $cases = @(Get-Content $log | Where-Object { $_ -like '--- *' } | Select-Object -Last 10)
+        Speak "warning" "Last test cases" ($cases -join "`n")
 
     - name: Install
       run: cmake --install build --config Release --prefix dist/windows-x64
