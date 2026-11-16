@@ -341,8 +341,9 @@ jobs:
         file build_arm64/bin/bjorne_agent | grep -q 'statically linked'
 
     - name: Run tests under qemu
-      # The test binary is static, so qemu needs no sysroot. The shell commands
-      # the tests start are host binaries, which exec directly.
+      # The test binary is static, so qemu needs no sysroot. The child process
+      # tests start the echo stub, which this build produces for the target, so
+      # they need no helper from the host.
       run: qemu-aarch64-static build_arm64/bin/bjorne_agent_tests
 
     - name: Upload executable
