@@ -189,6 +189,26 @@ jobs:
     - name: Run tests
       run: ctest --test-dir build -C Release --output-on-failure
 
+    - name: Report failing tests
+      # The job log needs a token to read, but a workflow command becomes an
+      # annotation, which the check run serves to anyone. Keep the tail of the
+      # ctest log, which is where the failure text lives, and escape it into a
+      # single line because a command message cannot contain a newline.
+      if: failure()
+      shell: pwsh
+      run: |
+        $log = "build/Testing/Temporary/LastTest.log"
+        if (-not (Test-Path $log)) {
+          Write-Output "::error title=No test log::ctest left no LastTest.log"
+          exit 0
+        }
+        $text = Get-Content $log -Raw
+        if ($text.Length -gt 50000) {
+          $text = $text.Substring($text.Length - 50000)
+        }
+        $text = $text -replace '%', '%25' -replace "`r", '%0D' -replace "`n", '%0A'
+        Write-Output "::error title=Failing tests::$text"
+
     - name: Install
       run: cmake --install build --config Release --prefix dist/windows-x64
 
