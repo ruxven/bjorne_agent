@@ -127,7 +127,7 @@ Every mode writes to `build-container-<mode>/`, owned by the caller:
 
 ```
 build-container-static/bjorne_agent            the executable
-build-container-static/bjorne_agent_tests      the test binary
+build-container-static/bjorne_agent_*_tests    one test suite per test directory
 build-container-static/libbjorne_agent_core.a  the core library
 ```
 
@@ -222,6 +222,8 @@ coverage flag set directly:
 
 ```sh
 cmake -S . -B build-coverage -DBJORNE_AGENT_COVERAGE=ON -DBJORNE_AGENT_OPENSSL=shared
-cmake --build build-coverage --target bjorne_agent_tests
-./build-coverage/bjorne_agent_tests
+cmake --build build-coverage
+for suite in build-coverage/bjorne_agent_*_tests; do
+  "$suite"
+done
 ```

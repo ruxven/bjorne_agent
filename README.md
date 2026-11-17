@@ -183,11 +183,13 @@ cmake -S . -B build_arm64 -G Ninja \
 For armhf the library directory is `/usr/lib/arm-linux-gnueabihf`.
 
 To run the cross built tests on the build machine, install `qemu-user-static`
-and run the test binary through it. The binary is static, so no sysroot is
+and run each suite through it. The binaries are static, so no sysroot is
 needed:
 
 ```sh
-qemu-aarch64-static build_arm64/bin/bjorne_agent_tests
+for suite in build_arm64/bin/bjorne_agent_*_tests; do
+  qemu-aarch64-static "$suite"
+done
 ```
 
 ## Usage

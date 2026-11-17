@@ -153,6 +153,17 @@ The design meets the specifications:
 - Config: mount as a file or pass via environment.
 - Entry point: binary.
 
+### Test Binaries
+
+The Catch2 suite is split into one executable per directory under `tests/`:
+`bjorne_agent_acp_tests`, `bjorne_agent_agent_tests`, and so on, 17 in all.
+Each links the shared core library, the vendored Catch2 main and the watchdog
+listener, and each is registered with CTest. A hang therefore kills one small
+suite, and the CTest name says which directory to investigate. The MCP stub and
+the echo stub stay separate binaries because the process suites spawn them as
+children. Coverage runs execute every suite and merge the profiles, so the
+reported totals cover the same sources as the old single binary.
+
 ### Build Environments
 
 Three podman environments, one per link mode, live in `container/`:

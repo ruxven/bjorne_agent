@@ -74,15 +74,22 @@ jobs:
         cd build
         # Merge profile data
         llvm-profdata merge -sparse coverage-*.profraw -o coverage.profdata
-        # Find the test executable
-        TEST_BINARIES=$(find . -name "bjorne_agent_tests" -type f -perm -111 | tr '\n' ' ')
+        # Find the per-directory test executables. llvm-cov only maps the first
+        # positional argument, so every binary has to be passed with --object.
+        mapfile -t TEST_BINARIES < <(find . -name "bjorne_agent_*_tests" -type f -perm -111 | sort)
+        TEST_OBJECTS=()
+        for binary in "${TEST_BINARIES[@]}"; do
+          TEST_OBJECTS+=(--object="$binary")
+        done
+        # Only project code is a coverage gate; tests and vendored Catch2 are support.
+        COVERAGE_FILTER='(^|/)(tests|third_party)/'
         # Generate coverage report (text)
-        llvm-cov show $TEST_BINARIES -instr-profile=coverage.profdata -format=text > coverage.txt
-        llvm-cov report $TEST_BINARIES -instr-profile=coverage.profdata
+        llvm-cov show "${TEST_OBJECTS[@]}" -instr-profile=coverage.profdata --ignore-filename-regex="$COVERAGE_FILTER" -format=text > coverage.txt
+        llvm-cov report "${TEST_OBJECTS[@]}" -instr-profile=coverage.profdata --ignore-filename-regex="$COVERAGE_FILTER"
         # Generate HTML report
-        llvm-cov show $TEST_BINARIES -instr-profile=coverage.profdata -format=html -output-dir=coverage_html
+        llvm-cov show "${TEST_OBJECTS[@]}" -instr-profile=coverage.profdata --ignore-filename-regex="$COVERAGE_FILTER" -format=html -output-dir=coverage_html
         # Generate lcov format for codecov
-        llvm-cov export $TEST_BINARIES -instr-profile=coverage.profdata -format=lcov > coverage.lcov
+        llvm-cov export "${TEST_OBJECTS[@]}" -instr-profile=coverage.profdata --ignore-filename-regex="$COVERAGE_FILTER" -format=lcov > coverage.lcov
         # Translate lcov formate to json for pain point analysis
         python3 "${GITHUB_WORKSPACE}/.github/scripts/lcov_to_json.py" coverage.lcov coverage.json
 
@@ -187,35 +194,54 @@ jobs:
       run: cmake --build build --config Release
 
     - name: Run tests
-      # Run the binary itself rather than ctest, so that a crash reports its
-      # exit code instead of only "test failed", and keep the output for the
-      # next step. The trace names every case on stderr as it starts, so the
-      # last line still points at the culprit if the process dies mid-case.
+      # Run each suite directly rather than through ctest, so a crash reports
+      # its exit code instead of only "test failed", and keep the output for
+      # the next step. The trace names every case on stderr as it starts, so
+      # the last line still points at the culprit if one suite dies mid-case.
       working-directory: build
       shell: pwsh
       env:
         BJORNE_AGENT_TEST_TRACE: 1
       run: |
-        & ".\Release\bjorne_agent_tests.exe" 2>&1 | Tee-Object -FilePath test-output.txt
-        if ($LASTEXITCODE -ne 0) {
-          # A crash shows up as a large hex exit code, which separates a failed
-          # assertion from an access violation.
-          Write-Output "::error title=Test binary exit code::$LASTEXITCODE"
+        New-Item -ItemType Directory -Force -Path test-output | Out-Null
+        $suites = @(Get-ChildItem -Path 'Release' -Filter 'bjorne_agent_*_tests.exe' -File | Sort-Object Name)
+        if ($suites.Count -eq 0) {
+          Write-Output "::error title=No test binaries::the build left no bjorne_agent_*_tests.exe under Release"
+          exit 1
+        }
+        $failed = 0
+        foreach ($suite in $suites) {
+          $name = $suite.BaseName
+          $log = Join-Path 'test-output' "$name.txt"
+          Write-Output "=== $name ==="
+          & "$($suite.FullName)" 2>&1 | Tee-Object -FilePath $log
+          $code = $LASTEXITCODE
+          if ($code -ne 0) {
+            # A crash shows up as a large hex exit code, which separates a
+            # failed assertion from an access violation.
+            Write-Output "::error title=$name exit code::$code"
+            $failed++
+          }
+        }
+        if ($failed -ne 0) {
+          Write-Output "::error title=Test suites failed::$failed of $($suites.Count) suites failed"
           exit 1
         }
 
     - name: Report failing tests
       # The job log needs a token to read, but a workflow command becomes an
       # annotation, which the check run serves to anyone. The assertions that
-      # failed come first, because that is the list worth having, then the last
-      # lines of the run and the last cases the trace named, which is the only
-      # record when the process dies mid-case. Every message is cut into pieces
-      # under the runner's size limit, which would otherwise drop its end.
+      # failed come first, because that is the list worth having; the tail and
+      # the last traced cases come from each suite that did not finish cleanly,
+      # which is the only record when a process dies mid-case. Every message is
+      # cut into pieces under the runner's size limit, which would otherwise
+      # drop its end.
       if: failure()
       shell: pwsh
       run: |
-        $log = "build/test-output.txt"
-        if (-not (Test-Path $log)) {
+        $dir = "build/test-output"
+        $logs = @(Get-ChildItem -Path $dir -Filter '*.txt' -File -ErrorAction SilentlyContinue | Sort-Object Name)
+        if ($logs.Count -eq 0) {
           Write-Output "::error title=No test output::the test step left no output behind"
           exit 0
         }
@@ -234,21 +260,36 @@ jobs:
         }
 
         # A failed assertion prints as the source location, the condition and
-        # the values, so those three lines name every failure.
-        $lines = @(Get-Content $log)
+        # the values, so those three lines name every failure. The log name
+        # says which suite to rerun.
         $blocks = @()
-        for ($i = 0; $i -lt $lines.Count; $i++) {
-          if ($lines[$i] -notmatch ': FAILED:') {
-            continue
+        foreach ($log in $logs) {
+          $suite = $log.BaseName
+          $lines = @(Get-Content $log.FullName)
+          for ($i = 0; $i -lt $lines.Count; $i++) {
+            if ($lines[$i] -notmatch ': FAILED:') {
+              continue
+            }
+            $block = "${suite}: " + $lines[$i]
+            if ($i + 1 -lt $lines.Count) {
+              $block += "`n" + $lines[$i + 1].Trim()
+            }
+            if ($i + 3 -lt $lines.Count -and $lines[$i + 2] -match 'with expansion') {
+              $block += "`n" + $lines[$i + 3].Trim()
+            }
+            $blocks += $block
+            if ($blocks.Count -ge 40) {
+              break
+            }
           }
-          $block = $lines[$i]
-          if ($i + 1 -lt $lines.Count) {
-            $block += "`n" + $lines[$i + 1].Trim()
+          # A clean run ends with a summary line. A suite without one crashed
+          # or hung, so its tail is the evidence that is left.
+          if (@($lines | Where-Object { $_ -match 'All tests passed|test cases:' }).Count -eq 0) {
+            $tail = @($lines | Select-Object -Last 15) -join "`n"
+            Speak "error" "$suite end of run" $tail
+            $cases = @($lines | Where-Object { $_ -like '--- *' } | Select-Object -Last 10)
+            Speak "warning" "$suite last test cases" ($cases -join "`n")
           }
-          if ($i + 3 -lt $lines.Count -and $lines[$i + 2] -match 'with expansion') {
-            $block += "`n" + $lines[$i + 3].Trim()
-          }
-          $blocks += $block
           if ($blocks.Count -ge 40) {
             break
           }
@@ -258,10 +299,6 @@ jobs:
         } else {
           Speak "error" "Failed assertions" ($blocks -join "`n")
         }
-
-        Speak "error" "End of the test run" ((@(Get-Content $log -Tail 15)) -join "`n")
-        $cases = @(Get-Content $log | Where-Object { $_ -like '--- *' } | Select-Object -Last 10)
-        Speak "warning" "Last test cases" ($cases -join "`n")
 
     - name: Install
       run: cmake --install build --config Release --prefix dist/windows-x64
@@ -341,10 +378,21 @@ jobs:
         file build_arm64/bin/bjorne_agent | grep -q 'statically linked'
 
     - name: Run tests under qemu
-      # The test binary is static, so qemu needs no sysroot. The child process
+      # Every suite is static, so qemu needs no sysroot. The child process
       # tests start the echo stub, which this build produces for the target, so
       # they need no helper from the host.
-      run: qemu-aarch64-static build_arm64/bin/bjorne_agent_tests
+      run: |
+        set -e
+        shopt -s nullglob
+        suites=(build_arm64/bin/bjorne_agent_*_tests)
+        if [ ${#suites[@]} -eq 0 ]; then
+          echo "No test binaries found under build_arm64/bin"
+          exit 1
+        fi
+        for suite in "${suites[@]}"; do
+          echo "=== $(basename "$suite") ==="
+          qemu-aarch64-static "$suite"
+        done
 
     - name: Upload executable
       uses: actions/upload-artifact@v4
@@ -598,7 +646,7 @@ jobs:
           sudo apt-get install -y cmake ninja-build libssl-dev
 
       - name: Build for CodeQL
-        # BUILD_TESTING=OFF keeps the test binary and the vendored Catch2
+        # BUILD_TESTING=OFF keeps the test binaries and the vendored Catch2
         # translation unit out of the build entirely. CodeQL's C++ extractor
         # traces the compiler invocations it is given; paths-ignore filters
         # the database afterwards but does not reliably remove an already

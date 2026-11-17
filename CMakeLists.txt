@@ -3,7 +3,7 @@ project(bjorne_agent VERSION 0.1.0 LANGUAGES CXX)
 
 # Declares the standard BUILD_TESTING cache option (default ON) and calls
 # enable_testing() when it is set. Building with -DBUILD_TESTING=OFF skips the
-# vendored Catch2 translation unit and the test binary entirely, which matters
+# vendored Catch2 translation unit and the test binaries entirely, which matters
 # for CodeQL: the C++ extractor traces whatever the build actually compiles,
 # and paths-ignore in the CodeQL config does not reliably remove an already
 # traced compilation unit after the fact.
@@ -153,7 +153,7 @@ if(BJORNE_AGENT_STATIC AND BJORNE_AGENT_OPENSSL STREQUAL "shared")
   message(FATAL_ERROR "BJORNE_AGENT_STATIC=ON cannot work with a shared OpenSSL; use static or disabled")
 endif()
 
-# The test binary, and the vendored Catch2 translation unit it links, only
+# The test applications and the vendored Catch2 translation unit they link only
 # exist when BUILD_TESTING is ON (the CTest default). CodeQL's build job turns
 # this off so the third party source is never compiled, and therefore never
 # traced into the CodeQL database in the first place.
@@ -165,83 +165,100 @@ if(BUILD_TESTING)
   target_compile_options(catch2_main PRIVATE ${BJORNE_AGENT_RELEASE_FLAGS} ${BJORNE_AGENT_WARNING_FLAGS})
   target_include_directories(catch2_main PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third_party/catch2)
 
-  add_executable(bjorne_agent_tests
-    tests/support/TestWatchdog.cpp
-    tests/json/JsonTest.cpp
-    tests/config/ConfigTest.cpp
-    tests/config/ConfigPathsTest.cpp
-    tests/cli/InvocationTest.cpp
-    tests/http/UrlTest.cpp
-    tests/http/ResolverTest.cpp
-    tests/http/DnsResponseTest.cpp
-    tests/http/HttpClientTest.cpp
-    tests/log/LogTest.cpp
-    tests/model/ModelClientTest.cpp
-    tests/context/ContextManagerTest.cpp
-    tests/context/FragmentsTest.cpp
-    tests/context/AgentsFilesTest.cpp
-    tests/interaction/InteractionTest.cpp
-    tests/jsonrpc/JsonRpcTest.cpp
-    tests/jsonrpc/EndpointTest.cpp
-    tests/mcp/McpClientTest.cpp
-    tests/platform/ProcessTest.cpp
-    tests/platform/ShutdownTest.cpp
-    tests/skills/SkillsTest.cpp
-    tests/session/SessionTest.cpp
-    tests/tools/ToolsTest.cpp
-    tests/agent/AgentLoopTest.cpp
-    tests/acp/AcpChannelTest.cpp
-    tests/acp/AcpServerTest.cpp
-    tests/acp/StdioTransportTest.cpp
-    tests/app/AppTest.cpp
-    tests/app/AppAcpTest.cpp
-    tests/app/InitTest.cpp
-  )
-
-  # A stub MCP server the MCP tests spawn as a child process. It is a separate
-  # binary so the test exercises the real process transport.
+  # A stub MCP server and a line echo helper, spawned as child processes by the
+  # suites that exercise the real process transport. They stay shared binaries
+  # so every suite finds them at the same path.
   add_executable(bjorne_agent_mcp_stub tests/mcp/McpStubServer.cpp)
   target_compile_features(bjorne_agent_mcp_stub PRIVATE cxx_std_20)
   target_compile_options(bjorne_agent_mcp_stub PRIVATE ${BJORNE_AGENT_WARNING_FLAGS})
   target_link_libraries(bjorne_agent_mcp_stub PRIVATE bjorne_agent_core)
 
-  # A stub that echoes each line back, so the process tests drive the real
-  # child process transport without depending on a shell being present.
   add_executable(bjorne_agent_echo_stub tests/support/EchoStub.cpp)
   target_compile_features(bjorne_agent_echo_stub PRIVATE cxx_std_20)
   target_compile_options(bjorne_agent_echo_stub PRIVATE ${BJORNE_AGENT_WARNING_FLAGS})
 
-  target_compile_features(bjorne_agent_tests PRIVATE cxx_std_20)
-  target_compile_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_WARNING_FLAGS})
-  target_include_directories(bjorne_agent_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
-  # The tests spawn the stubs, so they need to know where they are.
-  target_compile_definitions(bjorne_agent_tests PRIVATE
-    BJORNE_AGENT_MCP_STUB="$<TARGET_FILE:bjorne_agent_mcp_stub>"
-    BJORNE_AGENT_ECHO_STUB="$<TARGET_FILE:bjorne_agent_echo_stub>")
-  target_link_libraries(bjorne_agent_tests PRIVATE bjorne_agent_core catch2_main Threads::Threads)
+  # One application per test directory. A hang now kills one small suite and
+  # CTest names it, instead of a single binary hiding which area is wedged.
+  set(BJORNE_AGENT_TEST_TARGETS)
+  function(add_bjorne_agent_test directory)
+    set(target bjorne_agent_${directory}_tests)
+    add_executable(${target}
+      tests/support/TestWatchdog.cpp
+      ${ARGN})
+    target_compile_features(${target} PRIVATE cxx_std_20)
+    target_compile_options(${target} PRIVATE ${BJORNE_AGENT_WARNING_FLAGS})
+    # Test helpers such as LogCapture.h and LoopbackServer.h live in sibling
+    # directories, so every suite sees the whole tests tree.
+    target_include_directories(${target} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+    target_compile_definitions(${target} PRIVATE
+      BJORNE_AGENT_MCP_STUB="$<TARGET_FILE:bjorne_agent_mcp_stub>"
+      BJORNE_AGENT_ECHO_STUB="$<TARGET_FILE:bjorne_agent_echo_stub>")
+    target_link_libraries(${target} PRIVATE bjorne_agent_core catch2_main Threads::Threads)
 
-  if(BJORNE_AGENT_COVERAGE)
-    target_compile_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_COVERAGE_FLAGS} --coverage)
-  else()
-    target_compile_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_RELEASE_FLAGS})
-  endif()
+    if(BJORNE_AGENT_COVERAGE)
+      target_compile_options(${target} PRIVATE ${BJORNE_AGENT_COVERAGE_FLAGS} --coverage)
+    else()
+      target_compile_options(${target} PRIVATE ${BJORNE_AGENT_RELEASE_FLAGS})
+    endif()
+    if(BJORNE_AGENT_WITH_OPENSSL)
+      target_link_libraries(${target} PRIVATE OpenSSL::SSL OpenSSL::Crypto)
+    endif()
 
-  if(BJORNE_AGENT_WITH_OPENSSL)
-    target_link_libraries(bjorne_agent_tests PRIVATE OpenSSL::SSL OpenSSL::Crypto)
-  endif()
+    add_test(NAME ${target} COMMAND ${target})
+    # A wedged test used to run until CTest's default 25 minute timeout. Fail
+    # fast instead, so a hang is reported in minutes rather than half an hour.
+    set_tests_properties(${target} PROPERTIES TIMEOUT 300)
 
-  add_test(NAME bjorne_agent_tests COMMAND bjorne_agent_tests)
-  # A wedged test used to run until CTest's default 25 minute timeout. Fail
-  # fast instead, so a hang is reported in minutes rather than half an hour.
-  set_tests_properties(bjorne_agent_tests PROPERTIES TIMEOUT 300)
+    list(APPEND BJORNE_AGENT_TEST_TARGETS ${target})
+    set(BJORNE_AGENT_TEST_TARGETS ${BJORNE_AGENT_TEST_TARGETS} PARENT_SCOPE)
+  endfunction()
+
+  add_bjorne_agent_test(acp
+    tests/acp/AcpChannelTest.cpp
+    tests/acp/AcpServerTest.cpp
+    tests/acp/StdioTransportTest.cpp)
+  add_bjorne_agent_test(agent tests/agent/AgentLoopTest.cpp)
+  add_bjorne_agent_test(app
+    tests/app/AppTest.cpp
+    tests/app/AppAcpTest.cpp
+    tests/app/InitTest.cpp)
+  add_bjorne_agent_test(cli tests/cli/InvocationTest.cpp)
+  add_bjorne_agent_test(config
+    tests/config/ConfigTest.cpp
+    tests/config/ConfigPathsTest.cpp)
+  add_bjorne_agent_test(context
+    tests/context/ContextManagerTest.cpp
+    tests/context/FragmentsTest.cpp
+    tests/context/AgentsFilesTest.cpp)
+  add_bjorne_agent_test(http
+    tests/http/UrlTest.cpp
+    tests/http/ResolverTest.cpp
+    tests/http/DnsResponseTest.cpp
+    tests/http/HttpClientTest.cpp)
+  add_bjorne_agent_test(interaction tests/interaction/InteractionTest.cpp)
+  add_bjorne_agent_test(json tests/json/JsonTest.cpp)
+  add_bjorne_agent_test(jsonrpc
+    tests/jsonrpc/JsonRpcTest.cpp
+    tests/jsonrpc/EndpointTest.cpp)
+  add_bjorne_agent_test(log tests/log/LogTest.cpp)
+  add_bjorne_agent_test(mcp tests/mcp/McpClientTest.cpp)
+  add_bjorne_agent_test(model tests/model/ModelClientTest.cpp)
+  add_bjorne_agent_test(platform
+    tests/platform/ProcessTest.cpp
+    tests/platform/ShutdownTest.cpp)
+  add_bjorne_agent_test(session tests/session/SessionTest.cpp)
+  add_bjorne_agent_test(skills tests/skills/SkillsTest.cpp)
+  add_bjorne_agent_test(tools tests/tools/ToolsTest.cpp)
 endif()
 
 if(BJORNE_AGENT_STATIC)
   message(STATUS "Static link: bjorne_agent will have no dynamic dependencies")
   target_link_options(bjorne_agent PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
   if(BUILD_TESTING)
-    target_link_options(bjorne_agent_tests PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
-    # The tests spawn the stubs, so they must run next to them without a
+    foreach(target IN LISTS BJORNE_AGENT_TEST_TARGETS)
+      target_link_options(${target} PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
+    endforeach()
+    # The suites spawn the stubs, so they must run next to them without a
     # dynamic loader of their own.
     target_link_options(bjorne_agent_mcp_stub PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
     target_link_options(bjorne_agent_echo_stub PRIVATE ${BJORNE_AGENT_STATIC_LINK_FLAG})
