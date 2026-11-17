@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['e_3a_20mcp_0',['Phase E: MCP',['../md_ROADMAP.html#autotoc_md106',1,'']]],
+  ['e_3a_20mcp_0',['Phase E: MCP',['../md_ROADMAP.html#autotoc_md107',1,'']]],
   ['elapsedseconds_1',['elapsedSeconds',['../namespacebjorne__agent_1_1log.html#aa98eb282dd86ab30c0750f9a66d53b05',1,'bjorne_agent::log']]],
   ['encodeerror_2',['encodeerror',['../namespacebjorne__agent_1_1jsonrpc.html#a48021c6002f22642392ecc15251d4d88',1,'bjorne_agent::jsonrpc::encodeError(const json::Value &amp;id, const Error &amp;error)'],['../namespacebjorne__agent_1_1jsonrpc.html#ad821f57bdfca002e062a8395e9427d6a',1,'bjorne_agent::jsonrpc::encodeError(const json::Value &amp;id, int code, const std::string &amp;message)']]],
   ['encodenotification_3',['encodeNotification',['../namespacebjorne__agent_1_1jsonrpc.html#ac864a0e00942a74d9795151892ddebff',1,'bjorne_agent::jsonrpc']]],
@@ -13,13 +13,13 @@ var searchData=
   ['env_10',['env',['../structbjorne__agent_1_1config_1_1McpServerConfig.html#a50271b14344fb4bd8ed25a1dba8bac63',1,'bjorne_agent::config::McpServerConfig']]],
   ['environ_11',['environ',['../Process_8cpp.html#aa006daaf11f1e2e45a6ababaf463212b',1,'Process.cpp']]],
   ['environmentconfigpath_12',['environmentConfigPath',['../namespacebjorne__agent_1_1config.html#a6097c519f9154b0c3bffa1498b60e038',1,'bjorne_agent::config']]],
-  ['environments_13',['Build Environments',['../md_DESIGN.html#autotoc_md93',1,'']]],
+  ['environments_13',['Build Environments',['../md_DESIGN.html#autotoc_md94',1,'']]],
   ['erase_14',['erase',['../classbjorne__agent_1_1session_1_1SessionStore.html#a4f1e298b78be034800d943a9007a734e',1,'bjorne_agent::session::SessionStore']]],
   ['err_15',['err',['../structbjorne__agent_1_1app_1_1App_1_1Options.html#a0a4990172ea5ae00be3e774c5be41e9a',1,'bjorne_agent::app::App::Options']]],
   ['error_16',['error',['../namespacebjorne__agent_1_1jsonrpc.html#a16d235299fdb02c34e68a49c21323c7ca902b0d55fddef6f8d651fe1035b7d4bd',1,'bjorne_agent::jsonrpc::Error'],['../namespacebjorne__agent_1_1platform.html#a9082d940e1587586496d5ad2365132d0a902b0d55fddef6f8d651fe1035b7d4bd',1,'bjorne_agent::platform::Error'],['../structbjorne__agent_1_1jsonrpc_1_1Error.html',1,'bjorne_agent::jsonrpc::Error'],['../structbjorne__agent_1_1session_1_1SessionState.html#abb3453695eab438b559aea9926e1dada',1,'bjorne_agent::session::SessionState::error'],['../structbjorne__agent_1_1jsonrpc_1_1Message.html#a5ba33a522d5fa52634920a7e3c344cd0',1,'bjorne_agent::jsonrpc::Message::error']]],
   ['error_20handling_17',['Error Handling',['../md_SPEC_8LOOP.html#autotoc_md72',1,'']]],
   ['estimatetokens_18',['estimateTokens',['../classbjorne__agent_1_1context_1_1ContextManager.html#a257fc11de2b506a305c791055c69f4ba',1,'bjorne_agent::context::ContextManager']]],
-  ['evolution_19',['Phase 4: Evolution',['../md_ROADMAP.html#autotoc_md101',1,'']]],
+  ['evolution_19',['Phase 4: Evolution',['../md_ROADMAP.html#autotoc_md102',1,'']]],
   ['execute_20',['execute',['../classbjorne__agent_1_1tools_1_1ToolRegistry.html#a280314817de3b6bb8539cb2e67d69ce7',1,'bjorne_agent::tools::ToolRegistry']]],
   ['execution_21',['Tool Execution',['../md_SPEC_8LOOP.html#autotoc_md66',1,'']]],
   ['exit_20codes_22',['Exit codes',['../md_README.html#autotoc_md11',1,'']]],

@@ -130,30 +130,31 @@ var NAVTREE =
       ] ],
       [ "Fulfilment Mapping", "md_DESIGN.html#autotoc_md91", null ],
       [ "Build and Container Design", "md_DESIGN.html#autotoc_md92", [
-        [ "Build Environments", "md_DESIGN.html#autotoc_md93", null ],
-        [ "Runtime Image", "md_DESIGN.html#autotoc_md94", null ]
+        [ "Test Binaries", "md_DESIGN.html#autotoc_md93", null ],
+        [ "Build Environments", "md_DESIGN.html#autotoc_md94", null ],
+        [ "Runtime Image", "md_DESIGN.html#autotoc_md95", null ]
       ] ],
-      [ "Design Decisions", "md_DESIGN.html#autotoc_md95", null ],
-      [ "Status", "md_DESIGN.html#autotoc_md96", null ]
+      [ "Design Decisions", "md_DESIGN.html#autotoc_md96", null ],
+      [ "Status", "md_DESIGN.html#autotoc_md97", null ]
     ] ],
     [ "ROADMAP: C++ Agent Harness", "md_ROADMAP.html", [
-      [ "Phase 1: Specification Development", "md_ROADMAP.html#autotoc_md98", null ],
-      [ "Phase 2: Design", "md_ROADMAP.html#autotoc_md99", null ],
-      [ "Phase 3: Implementation", "md_ROADMAP.html#autotoc_md100", null ],
-      [ "Phase 4: Evolution", "md_ROADMAP.html#autotoc_md101", [
-        [ "Phase A: Foundation", "md_ROADMAP.html#autotoc_md102", null ],
-        [ "Phase B: Context fragments", "md_ROADMAP.html#autotoc_md103", null ],
-        [ "Phase C: Session persistence", "md_ROADMAP.html#autotoc_md104", null ],
-        [ "Phase D: Interaction", "md_ROADMAP.html#autotoc_md105", null ],
-        [ "Phase E: MCP", "md_ROADMAP.html#autotoc_md106", null ],
-        [ "Phase F: ACP client mode", "md_ROADMAP.html#autotoc_md107", null ],
-        [ "Shared JSON-RPC core", "md_ROADMAP.html#autotoc_md108", null ],
-        [ "Tool set customization", "md_ROADMAP.html#autotoc_md109", null ],
-        [ "Deliberately out of scope", "md_ROADMAP.html#autotoc_md110", null ],
-        [ "Phase G: The setup command", "md_ROADMAP.html#autotoc_md111", null ],
-        [ "Spec impact", "md_ROADMAP.html#autotoc_md112", null ]
+      [ "Phase 1: Specification Development", "md_ROADMAP.html#autotoc_md99", null ],
+      [ "Phase 2: Design", "md_ROADMAP.html#autotoc_md100", null ],
+      [ "Phase 3: Implementation", "md_ROADMAP.html#autotoc_md101", null ],
+      [ "Phase 4: Evolution", "md_ROADMAP.html#autotoc_md102", [
+        [ "Phase A: Foundation", "md_ROADMAP.html#autotoc_md103", null ],
+        [ "Phase B: Context fragments", "md_ROADMAP.html#autotoc_md104", null ],
+        [ "Phase C: Session persistence", "md_ROADMAP.html#autotoc_md105", null ],
+        [ "Phase D: Interaction", "md_ROADMAP.html#autotoc_md106", null ],
+        [ "Phase E: MCP", "md_ROADMAP.html#autotoc_md107", null ],
+        [ "Phase F: ACP client mode", "md_ROADMAP.html#autotoc_md108", null ],
+        [ "Shared JSON-RPC core", "md_ROADMAP.html#autotoc_md109", null ],
+        [ "Tool set customization", "md_ROADMAP.html#autotoc_md110", null ],
+        [ "Deliberately out of scope", "md_ROADMAP.html#autotoc_md111", null ],
+        [ "Phase G: The setup command", "md_ROADMAP.html#autotoc_md112", null ],
+        [ "Spec impact", "md_ROADMAP.html#autotoc_md113", null ]
       ] ],
-      [ "Quality Gates", "md_ROADMAP.html#autotoc_md113", null ]
+      [ "Quality Gates", "md_ROADMAP.html#autotoc_md114", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -192,7 +193,7 @@ var NAVTREEINDEX =
 "AcpChannel_8cpp.html",
 "Session_8h_source.html",
 "classbjorne__agent_1_1jsonrpc_1_1Endpoint.html#a4c162850e2b200a2a4a847eaf8f4180c",
-"md_README.html#autotoc_md3",
+"md_README.html#autotoc_md24",
 "structbjorne__agent_1_1agent_1_1AgentLoopConfig.html#a2faf3dd28d46ff81abbada61a766f590",
 "structbjorne__agent_1_1jsonrpc_1_1Message.html#ae177fd1cda26b2fa5562bc0201fb72ac"
 ];

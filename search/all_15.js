@@ -35,10 +35,10 @@ var searchData=
   ['roadmap_2emd_32',['ROADMAP.md',['../ROADMAP_8md.html',1,'']]],
   ['roadmap_3a_20c_20agent_20harness_33',['ROADMAP: C++ Agent Harness',['../md_ROADMAP.html',1,'']]],
   ['role_34',['role',['../structbjorne__agent_1_1model_1_1ModelMessage.html#a5efe2c1f148dc593f7b83e70c494c4df',1,'bjorne_agent::model::ModelMessage']]],
-  ['rpc_20core_35',['rpc core',['../md_DESIGN.html#autotoc_md87',1,'JSON-RPC Core'],['../md_ROADMAP.html#autotoc_md108',1,'Shared JSON-RPC core']]],
+  ['rpc_20core_35',['rpc core',['../md_DESIGN.html#autotoc_md87',1,'JSON-RPC Core'],['../md_ROADMAP.html#autotoc_md109',1,'Shared JSON-RPC core']]],
   ['run_36',['run',['../classbjorne__agent_1_1app_1_1Init.html#a5f95800f1d48c3be6fb5996aed8e7c92',1,'bjorne_agent::app::Init::run()'],['../namespacebjorne__agent_1_1cli.html#af3439404a9a79b847d8f06aed44b547eac5301693c4e792bcd5a479ef38fb8f8d',1,'bjorne_agent::cli::Run'],['../classbjorne__agent_1_1app_1_1App.html#a76586b5418ad561fbdecd77519ecb0ce',1,'bjorne_agent::app::App::run()'],['../classbjorne__agent_1_1agent_1_1AgentLoop.html#af2930aa5a10e285f985295c3f5e59bf9',1,'bjorne_agent::agent::AgentLoop::run()']]],
   ['running_37',['running',['../classbjorne__agent_1_1platform_1_1ChildProcess.html#a00bff59f75306e5cf4356b5b9f620a94',1,'bjorne_agent::platform::ChildProcess']]],
-  ['runtime_20image_38',['Runtime Image',['../md_DESIGN.html#autotoc_md94',1,'']]],
+  ['runtime_20image_38',['Runtime Image',['../md_DESIGN.html#autotoc_md95',1,'']]],
   ['runtimefactory_39',['RuntimeFactory',['../namespacebjorne__agent_1_1acp.html#a3060505ce5c49c446e2961cf6e57d40f',1,'bjorne_agent::acp']]],
   ['runtimerequest_40',['RuntimeRequest',['../structbjorne__agent_1_1acp_1_1RuntimeRequest.html',1,'bjorne_agent::acp']]]
 ];

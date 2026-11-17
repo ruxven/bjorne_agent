@@ -1,10 +1,10 @@
 var searchData=
 [
   ['a_20config_0',['Setting up a config',['../md_README.html#autotoc_md14',1,'']]],
-  ['a_3a_20foundation_1',['Phase A: Foundation',['../md_ROADMAP.html#autotoc_md102',1,'']]],
+  ['a_3a_20foundation_1',['Phase A: Foundation',['../md_ROADMAP.html#autotoc_md103',1,'']]],
   ['abort_2',['abort',['../structbjorne__agent_1_1jsonrpc_1_1RequestOptions.html#a57f012c6347118d660d7f235f0041c56',1,'bjorne_agent::jsonrpc::RequestOptions']]],
   ['acp_3',['Acp',['../namespacebjorne__agent_1_1cli.html#af3439404a9a79b847d8f06aed44b547ea2ee70e592374c1d22bdc3e4072a4bfc3',1,'bjorne_agent::cli']]],
-  ['acp_20client_20mode_4',['Phase F: ACP client mode',['../md_ROADMAP.html#autotoc_md107',1,'']]],
+  ['acp_20client_20mode_4',['Phase F: ACP client mode',['../md_ROADMAP.html#autotoc_md108',1,'']]],
   ['acp_20mode_5',['acp mode',['../md_SPEC.html#autotoc_md40',1,'ACP Mode'],['../md_README.html#autotoc_md13',1,'ACP mode']]],
   ['acp_20server_6',['ACP Server',['../md_DESIGN.html#autotoc_md90',1,'']]],
   ['acpchannel_7',['acpchannel',['../classbjorne__agent_1_1acp_1_1AcpChannel.html',1,'bjorne_agent::acp::AcpChannel'],['../classbjorne__agent_1_1acp_1_1AcpChannel.html#a644f40ed917ed3def7d68433ee9d0e9d',1,'bjorne_agent::acp::AcpChannel::AcpChannel()']]],

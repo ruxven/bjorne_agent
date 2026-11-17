@@ -201,8 +201,10 @@ Cross build for ARM (Raspberry Pi)</h2>
 <div class="line">  -DOPENSSL_CRYPTO_LIBRARY=/usr/lib/aarch64-linux-gnu/libcrypto.a \</div>
 <div class="line">  -DCMAKE_CXX_STANDARD_LIBRARIES=&quot;-lz -lzstd&quot;</div>
 </div><!-- fragment --><p>For armhf the library directory is <code>/usr/lib/arm-linux-gnueabihf</code>.</p>
-<p>To run the cross built tests on the build machine, install <code>qemu-user-static</code> and run the test binary through it. The binary is static, so no sysroot is needed:</p>
-<div class="fragment"><div class="line">qemu-aarch64-static build_arm64/bin/bjorne_agent_tests</div>
+<p>To run the cross built tests on the build machine, install <code>qemu-user-static</code> and run each suite through it. The binaries are static, so no sysroot is needed:</p>
+<div class="fragment"><div class="line">for suite in build_arm64/bin/bjorne_agent_*_tests; do</div>
+<div class="line">  qemu-aarch64-static &quot;$suite&quot;</div>
+<div class="line">done</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
 Usage</h1>
 <div class="fragment"><div class="line">bjorne_agent [options] [config] [task]</div>

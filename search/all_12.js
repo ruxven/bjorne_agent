@@ -1,7 +1,7 @@
 var searchData=
 [
   ['object_0',['object',['../namespacebjorne__agent_1_1json.html#a2751ea680716e84d69c621345d2f50ab',1,'bjorne_agent::json::Object'],['../classbjorne__agent_1_1json_1_1Value.html#a5cf3a67a10e1f3ea614fe295872c7c9a',1,'bjorne_agent::json::Value::object'],['../classbjorne__agent_1_1json_1_1Value.html#a2576e8f0c4d74a10fb0ac5972ff7efb8a497031794414a552435f90151ac3b54b',1,'bjorne_agent::json::Value::Object']]],
-  ['of_20scope_1',['Deliberately out of scope',['../md_ROADMAP.html#autotoc_md110',1,'']]],
+  ['of_20scope_1',['Deliberately out of scope',['../md_ROADMAP.html#autotoc_md111',1,'']]],
   ['ok_2',['ok',['../structbjorne__agent_1_1tools_1_1ToolResult.html#a3e74617481b63e57dd0f578e5c712251',1,'bjorne_agent::tools::ToolResult']]],
   ['onassistantmessage_3',['onAssistantMessage',['../classbjorne__agent_1_1agent_1_1LoopObserver.html#a769d256b66bb1b634685e7184c774083',1,'bjorne_agent::agent::LoopObserver']]],
   ['oncomplete_4',['oncomplete',['../classbjorne__agent_1_1agent_1_1LoopObserver.html#a176c540acba586d34dfce85e77248479',1,'bjorne_agent::agent::LoopObserver::onComplete()'],['../classbjorne__agent_1_1session_1_1SessionRecorder.html#aafe9f0c9ee95de33e482b1a7e28abcf7',1,'bjorne_agent::session::SessionRecorder::onComplete()']]],
@@ -17,7 +17,7 @@ var searchData=
   ['operator_5b_5d_14',['operator[]',['../classbjorne__agent_1_1json_1_1Value.html#a502236c15f6164bde1577f6d63b0720b',1,'bjorne_agent::json::Value']]],
   ['options_15',['options',['../structbjorne__agent_1_1interaction_1_1Request.html#ada53de17f4af0b3aa2ddaf9fe421db0e',1,'bjorne_agent::interaction::Request::options'],['../structbjorne__agent_1_1http_1_1OpenSslTransport_1_1Options.html',1,'bjorne_agent::http::OpenSslTransport::Options'],['../structbjorne__agent_1_1app_1_1App_1_1Options.html',1,'bjorne_agent::app::App::Options']]],
   ['out_16',['out',['../structbjorne__agent_1_1app_1_1App_1_1Options.html#a72e702ada9d463610305d38f3e8a31a8',1,'bjorne_agent::app::App::Options']]],
-  ['out_20of_20scope_17',['Deliberately out of scope',['../md_ROADMAP.html#autotoc_md110',1,'']]],
+  ['out_20of_20scope_17',['Deliberately out of scope',['../md_ROADMAP.html#autotoc_md111',1,'']]],
   ['output_18',['output',['../structbjorne__agent_1_1tools_1_1ToolResult.html#ad3b9f5d3f7b7336c251316509f825beb',1,'bjorne_agent::tools::ToolResult']]],
   ['output_20levels_19',['Output levels',['../md_README.html#autotoc_md10',1,'']]],
   ['overflow_5fstrategy_20',['overflow_strategy',['../structbjorne__agent_1_1context_1_1ContextManagerConfig.html#a2767ec1f9a88d38c4ca41f7db2bf1cc7',1,'bjorne_agent::context::ContextManagerConfig']]],
